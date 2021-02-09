@@ -35,7 +35,7 @@
 	<section class="login-form">
 		<h1>LOGIN</h1>
 		<c:if test="${ empty sessionScope.loginUser }">
-		<form action="login.do" method="post">
+		<!-- <form action="login.do" method="post"> -->
 			<div class="login-area">
 				<input type="text" name="id" required>
 				<label for="id">USER ID</label>
@@ -48,7 +48,7 @@
 				<button id="btn" 
 					type="submit">LOGIN</button>
 			</div>
-		</form>
+		<!-- </form> -->
 		<div class="caption">
 			<a href="#">회원가입</a>
 			<a href="#">아이디/비밀번호 찾기</a>

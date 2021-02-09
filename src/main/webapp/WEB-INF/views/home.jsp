@@ -336,7 +336,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						<div class="edgtf-position-right-inner">
 							<div
 								class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
-								<a href="#" class="edgtf-login-opener"> <i
+								<a href="loginView.do" class="edgtf-login-opener"> <i
 									class="edgtf-icon-font-awesome far fa-user edgtf-logged-in-icon"></i>
 									<span class="edgtf-login-text">Join us</span>
 								</a>
