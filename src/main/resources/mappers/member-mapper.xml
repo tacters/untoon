@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+
+<resultMap id="memberResultSet" type="Member">
+	<id property="id" column="ID"/>
+	<result property="pwd" column="PWD"/>
+	<result property="name" column="NAME"/>
+	<result property="email" column="EMAIL"/>
+	<result property="nickname" column="NICKNAME"/>
+	<result property="uesr_lv" column="USER_LV"/>
+	<result property="birthday" column="BIRTHDATY"/>
+	<result property="gender" column="GENDER"/>
+	<result property="phone" column="PHONE"/>
+	<result property="enroll_date" column="ENROLL_DATE"/>
+	<result property="update_date" column="UPDATE_DATE"/>
+	<result property="m_status" column="M_STATUS"/>
+</resultMap>
+
+<resultMap id="memberResultSet" type="Member">
+	<id property="id" column="ID"/>
+	<result property="pwd" column="PWD"/>
+	<result property="name" column="NAME"/>
+	<result property="email" column="EMAIL"/>
+	<result property="nickname" column="NICKNAME"/>
+	<result property="uesr_lv" column="USER_LV"/>
+	<result property="tchr_upload" column="TCHR_UPLOAD"/>
+	<result property="birthday" column="BIRTHDATY"/>
+	<result property="gender" column="GENDER"/>
+	<result property="phone" column="PHONE"/>
+	<result property="enroll_date" column="ENROLL_DATE"/>
+	<result property="update_date" column="UPDATE_DATE"/>
+	<result property="m_status" column="M_STATUS"/>
+	<result property="bank_acct" column="BANK_ACCT"/>
+</resultMap>
+
+  	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
+  	SELECT *
+  	  FROM MEMBER
+  	 WHERE ID=#{id}
+  	   AND M_STATUS='Y'
+  	</select>
+
+	<insert id="insertMember" parameterType="Member" >
+	INSERT
+	  INTO MEMBER
+		<if test="user_lv == 1">
+			VALUES ( #{id}, #{pwd}, #{name}, #{email}, #{nickname} 
+		   		   , #{user_lv}, #{birthday}, #{gender}, #{phone}
+		           , sysdate, sysdate, default)
+	    </if>
+	    <if test="user_lv == 2">
+	    	VALUES ( #{id}, #{pwd}, #{name}, #{email}, #{nickname} 
+		   		   , #{user_lv},#{tchr_upload},#{birthday}, #{gender}, #{phone}
+		           , sysdate, sysdate, default, #{bank_acct} )
+	    </if>
+    </insert>  	   
+    
+    <update id="updateMember" parameterType="Member">
+    	UPDATE MEMBER
+    	   SET EMAILE=#{email}
+    	     , PWD=#{pwd}
+    	     , PHONE=#{phone}
+    	     , UPDATE_DATE= sysdate
+    	 WHERE ID = #{id}
+    </update>
+    
+    <update id="deleteMember" parameterType="String">
+    	UPDATE MEMBER
+    	   SET M_STATUS='N'
+    	 WHERE ID=#{id}
+    </update>
+    
+    <select id="idCheck" parameterType="string" resultType="_int">
+    	SELECT
+    		COUNT(*)
+    	  FROM MEMBER
+    	 WHERE ID=#{id}
+    </select>
+    
+    <select id="nicknameCheck" parameterType="string" resultType="_int">
+    	SELECT
+    	 	COUNT(*)
+    	 FROM MEMBER
+    	WHERE NICKNAME=#{nickname}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
