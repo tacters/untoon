@@ -1,4 +1,4 @@
-package com.untoon.ad.model.vo;
+package com.untoon.clss.model.vo;
 
 import java.sql.Date;
 
