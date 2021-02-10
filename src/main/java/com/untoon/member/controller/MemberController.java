@@ -31,7 +31,7 @@ public class MemberController {
 		private Logger logger = LoggerFactory.getLogger(MemberController.class);
 		
 	//로그인 페이지로 이동
-	@RequestMapping("loginView.do")
+	@RequestMapping("loginpage.do")
 	public String loginView() {
 		return "member/loginPage";
 	}
