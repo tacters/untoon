@@ -50,7 +50,7 @@
 			</div>
 		<!-- </form> -->
 		<div class="caption">
-			<a href="#">회원가입</a>
+			<a href="enrollView.do">회원가입</a>
 			<a href="#">아이디/비밀번호 찾기</a>
 		</div>
 		</c:if>

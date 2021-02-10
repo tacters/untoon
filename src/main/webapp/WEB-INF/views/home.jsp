@@ -337,14 +337,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 							<div
 								class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
 								<c:if test="${ empty sessionScope.loginUser }">
-									<c:url var="loginpage" value="/loginpage.do"/>
-									<a class="edgtf-login-opener"> 
+									<a href="loginpage.do" class="edgtf-login-opener"> 
 									<i class="edgtf-icon-font-awesome far fa-user edgtf-logged-in-icon"></i>
-									<button onclick="location.href='${ loginpage }'" title="Join us"></button>
 									<span class="edgtf-login-text">Join us</span>
 								</a>
 								</c:if>
-								
+								<c:if test="${ !empty sessionScope.loginUser }">
+									<c:out value="${ loginUser.nickname }"/>
+								</c:if>
 							</div>
 							<div class="edgtf-add-listing-widget">
 								<a itemprop="url"
