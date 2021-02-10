@@ -23,12 +23,14 @@ public class MemberController {
 		@Autowired
 		private MemberService mService;
 		
-		//암호화 처리(spring-security에 bean등록 후) 후 작성
-		@Autowired
-		private BCryptPasswordEncoder bcryptPasswordEncoder;
-		
-		//로그인시 추가
-		private Logger logger = LoggerFactory.getLogger(MemberController.class);
+		/*
+		 * //암호화 처리(spring-security에 bean등록 후) 후 작성
+		 * 
+		 * @Autowired private BCryptPasswordEncoder bcryptPasswordEncoder;
+		 * 
+		 * //로그인시 추가 private Logger logger =
+		 * LoggerFactory.getLogger(MemberController.class);
+		 */
 		
 	//로그인 페이지로 이동
 	@RequestMapping("loginpage.do")
