@@ -9,21 +9,6 @@
 	<result property="email" column="EMAIL"/>
 	<result property="nickname" column="NICKNAME"/>
 	<result property="uesr_lv" column="USER_LV"/>
-	<result property="birthday" column="BIRTHDATY"/>
-	<result property="gender" column="GENDER"/>
-	<result property="phone" column="PHONE"/>
-	<result property="enroll_date" column="ENROLL_DATE"/>
-	<result property="update_date" column="UPDATE_DATE"/>
-	<result property="m_status" column="M_STATUS"/>
-</resultMap>
-
-<resultMap id="memberResultSet" type="Member">
-	<id property="id" column="ID"/>
-	<result property="pwd" column="PWD"/>
-	<result property="name" column="NAME"/>
-	<result property="email" column="EMAIL"/>
-	<result property="nickname" column="NICKNAME"/>
-	<result property="uesr_lv" column="USER_LV"/>
 	<result property="tchr_upload" column="TCHR_UPLOAD"/>
 	<result property="birthday" column="BIRTHDATY"/>
 	<result property="gender" column="GENDER"/>
@@ -44,16 +29,16 @@
 	<insert id="insertMember" parameterType="Member" >
 	INSERT
 	  INTO MEMBER
-		<if test="user_lv == 1">
-			VALUES ( #{id}, #{pwd}, #{name}, #{email}, #{nickname} 
-		   		   , #{user_lv}, #{birthday}, #{gender}, #{phone}
-		           , sysdate, sysdate, default)
-	    </if>
+		<!-- <if test="user_lv == 1"> -->
+			VALUES ( #{id}, #{pwd}, #{name}, #{email}, default, #{nickname} 
+		   		   , default ,default, default, default, #{birthday}, #{gender}
+		           , #{phone}, sysdate, sysdate, default, #{bank_acct})
+	  <!--   </if>
 	    <if test="user_lv == 2">
-	    	VALUES ( #{id}, #{pwd}, #{name}, #{email}, #{nickname} 
+	    	VALUES ( #{id}, #{pwd}, #{name}, #{email},#{email_cert} ,#{nickname} 
 		   		   , #{user_lv},#{tchr_upload},#{birthday}, #{gender}, #{phone}
 		           , sysdate, sysdate, default, #{bank_acct} )
-	    </if>
+	    </if> -->
     </insert>  	   
     
     <update id="updateMember" parameterType="Member">

@@ -55,13 +55,18 @@ span.error {
 					<td>EMAIL</td>
 					<td><input type="email" name="email" required></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td>EMAIL NUMBER </td>
 					<td><input type="email" name="email2" required></td>
-				</tr>
+				</tr> -->
 				<tr>
 					<td>NICKNAME</td>
 					<td><input type="text" name="nickname" required></td>
+				</tr>
+				<tr>
+				<td>user_lv</td>
+					<td><input type="radio" name="user_lv" value="1">일반 사용자 <input
+						type="radio" name="user_lv" value="2">강사 </td>
 				</tr>
 				<tr>
 					<td>BIRTHDAY</td>
