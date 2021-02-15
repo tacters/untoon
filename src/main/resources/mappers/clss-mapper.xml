@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="clssMapper">
+
+	<resultMap id="clssResultSet" type="Clss">
+		<id property="cid" column="CID"/>
+		<result property="clss_title" column="CLSS_TITLE"/>
+		<result property="clss_price" column="CLSS_PRICE"/>
+		<result property="clss_registration" column="CLSS_REGISTRATION"/>
+		<result property="clss_update" column="CLSS_UPDATE"/>
+		<result property="clss_category" column="CLSS_CATEGORY"/>
+		<result property="clss_content" column="CLSS_CONTENT"/>
+		<result property="clss_oneday" column="CLSS_ONEDAY"/>
+		<result property="clss_times" column="CLSS_TIMES"/>
+		<result property="clss_start" column="CLSS_START"/>
+		<result property="clss_end" column="CLSS_END"/>
+		<result property="clss_duration" column="CLSS_DURATION"/>
+		<result property="clss_min" column="CLSS_MIN"/>
+		<result property="clss_max" column="CLSS_MAX"/>
+		<result property="clss_enrolled" column="CLSS_ENROLLED"/>
+		<result property="clss_policy" column="CLSS_POLICY"/>
+		<result property="clss_status" column="CLSS_STATUS"/>
+		<result property="view_count" column="VIEW_COUNT"/>
+		<result property="tchr_id" column="TCHR_ID"/>
+		<result property="tchr_introduction" column="TCHR_INTRODUCTION"/>
+		<result property="tchr_profile" column="TCHR_PROFILE"/>
+	</resultMap>
+	
+	<select id="selectAll" resultMap="clssResultSet">
+		select * from clss
+		where tchr_id = #{ tchr_id }
+		order by cid desc
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
