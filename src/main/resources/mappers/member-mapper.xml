@@ -7,9 +7,12 @@
 	<result property="pwd" column="PWD"/>
 	<result property="name" column="NAME"/>
 	<result property="email" column="EMAIL"/>
+	<result property="email_cert" column="EMAIL"/>
 	<result property="nickname" column="NICKNAME"/>
-	<result property="uesr_lv" column="USER_LV"/>
+	<result property="user_lv" column="USER_LV"/>
 	<result property="tchr_upload" column="TCHR_UPLOAD"/>
+	<result property="tchr_cert" column="TCHR_UPLOAD"/>
+	<result property="loginok" column="TCHR_UPLOAD"/>
 	<result property="birthday" column="BIRTHDATY"/>
 	<result property="gender" column="GENDER"/>
 	<result property="phone" column="PHONE"/>
@@ -23,7 +26,7 @@
   	SELECT *
   	  FROM MEMBER
   	 WHERE ID=#{id}
-  	   AND M_STATUS='Y'
+  	   AND M_STATUS='Y' 
   	</select>
 
 	<insert id="insertMember" parameterType="Member" >
@@ -43,7 +46,7 @@
     
     <update id="updateMember" parameterType="Member">
     	UPDATE MEMBER
-    	   SET EMAILE=#{email}
+    	   SET EMAIL=#{email}
     	     , PWD=#{pwd}
     	     , PHONE=#{phone}
     	     , UPDATE_DATE= sysdate

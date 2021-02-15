@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.untoon.member.model.service.MemberService;
@@ -36,6 +36,26 @@ public class MemberController {
 		  //로그인시 추가 
 		  private Logger logger = LoggerFactory.getLogger(MemberController.class);
 		 
+	//로그인 	  
+	@RequestMapping(value="login.do", method=RequestMethod.POST)
+	public String memberLogin(@ModelAttribute Member m , Model model) {
+		Member loginUser = mService.loginMember(m);
+	
+		System.out.println("loginUser" + loginUser);
+		System.out.println("Member" + m);
+		
+		if(loginUser != null && bcryptPasswordEncoder.matches(m.getPwd(), loginUser.getPwd())) {
+			model.addAttribute("loginUser", loginUser);
+			
+			return "redirect:home.do";
+			
+			
+		}else {
+			model.addAttribute("msg", "로그인 실패");
+			return "common/errorPage";
+		}
+	}
+	
 		
 	//로그인 페이지로 이동
 	@RequestMapping("loginpage.do")

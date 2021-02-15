@@ -35,20 +35,19 @@
 	<section class="login-form">
 		<h1>LOGIN</h1>
 		<c:if test="${ empty sessionScope.loginUser }">
-		<!-- <form action="login.do" method="post"> -->
+		<form action="login.do" method="post"> 
 			<div class="login-area">
 				<input type="text" name="id" required>
 				<label for="id">USER ID</label>
 			</div>
 			<div class="login-area">
-				<input type="password" name="id" required>
+				<input type="password" name="pwd" required>
 				<label for="pw">PASSWORD</label>
 			</div>
 			<div class="btn-area">
-				<button id="btn" 
-					type="submit">LOGIN</button>
+				<button id="btn" type="submit">LOGIN</button>
 			</div>
-		<!-- </form> -->
+		</form> 
 		<div class="caption">
 			<a href="enrollView.do">회원가입</a>
 			<a href="#">아이디/비밀번호 찾기</a>
