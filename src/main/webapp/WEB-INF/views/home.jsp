@@ -342,9 +342,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<span class="edgtf-login-text">Join us</span>
 								</a>
 								</c:if>
-								<c:if test="${ !empty sessionScope.loginUser }">
-									<c:out value="${ loginUser.id }"/>
-								</c:if>
 							</div>
 							<div class="edgtf-add-listing-widget">
 								<a itemprop="url"

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.untoon.member.model.service.MemberService;
@@ -40,9 +41,17 @@ public class MemberController {
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
 	public String memberLogin(@ModelAttribute Member m , Model model) {
 		Member loginUser = mService.loginMember(m);
-	
+		String bcrypt = bcryptPasswordEncoder.encode(m.getPwd()); 
+		
+				
 		System.out.println("loginUser" + loginUser);
 		System.out.println("Member" + m);
+		System.out.println( bcryptPasswordEncoder.matches(m.getPwd(), loginUser.getPwd()));
+		
+		System.out.println(bcrypt.length()+","+m.getPwd().length());
+		System.out.println(loginUser.getPwd().length());
+		
+		logger.info("암호화 " + bcrypt +"글자수"+ m.getPwd().length());
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getPwd(), loginUser.getPwd())) {
 			model.addAttribute("loginUser", loginUser);
@@ -68,9 +77,13 @@ public class MemberController {
 	public String enrollView() {
 		return "member/memberInsertForm";
 	}
+	/*
+	 * @RequestMapping("adenrollView.do") public String adenrollView() { return
+	 * "member/memberAdInsertForm"; }
+	 */
 		
 	//회원가입
-	@RequestMapping("minsert.do")
+	@RequestMapping(value="minsert.do", method = RequestMethod.POST)
 	public String insertMember(@ModelAttribute Member m, Model model) {
 	
 		// 기존의 평문을 암호문으로 바꿔서 m객체에 담기

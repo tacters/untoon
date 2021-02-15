@@ -11,7 +11,7 @@
 <script src="jquery-3.5.1.min.js"></script>
 <script>
 		let id = $("#id");
-		let pw = $("#pw");
+		let pwd = $("#pwd");
 		let btn = $("#btn");
 		
 		$(btn).on("click", function(){
@@ -42,17 +42,28 @@
 			</div>
 			<div class="login-area">
 				<input type="password" name="pwd" required>
-				<label for="pw">PASSWORD</label>
+				<label for="pwd">PASSWORD</label>
 			</div>
 			<div class="btn-area">
 				<button id="btn" type="submit">LOGIN</button>
 			</div>
 		</form> 
 		<div class="caption">
+			<a href="adenrollView.do">강사회원가입</a>
 			<a href="enrollView.do">회원가입</a>
 			<a href="#">아이디/비밀번호 찾기</a>
 		</div>
 		</c:if>
+		<%-- <c:if test="${ !empty sessionScope.loginUser }">
+		<h3 align="center">
+				<c:out value="${ loginUser.name }님 환영합니다!!"/>
+				<c:url var="myInfo" value="myInfo.do"/>
+				<c:url var="logout" value="logout.do"/>
+				<button onclick="location.href='${myInfo}'">정보수정</button>
+				<button onclick="location.href='${logout}'">로그아웃</button>
+		</h3>
+			
+		</c:if> --%>
 	</section>
 	
 	
