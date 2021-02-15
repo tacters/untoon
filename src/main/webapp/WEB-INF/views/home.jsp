@@ -351,6 +351,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<span class="edgtf-alw-text">Add listing</span>
 								</a>
 							</div>
+														<div class="edgtf-add-listing-widget">
+								<a itemprop="url"
+									class="edgtf-add-listing-button edgtf-login-opener" href="classList.do">
+									<i class="edgtf-icon-font-awesome far fa-plus-square edgtf-alw-icon"></i>
+									<span class="edgtf-alw-text">가영이 테스트 classlist</span>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>

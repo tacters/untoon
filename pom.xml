@@ -229,6 +229,16 @@
 		</dependency>	
 		
 		
+		<!-- 가영이가 추가했어용
+			구글 : "프로젝트가 위치한 물리적 경로에 한글이 들어가있다보니 아래와 같은 오류가 발생하면서 log4j가 제대로 동작을 안하는것이다."
+			래서 이거 넣으면 된다고 해서 넣었더니 진짜 되용 -->
+		<dependency>
+    		<groupId>xerces</groupId>
+    		<artifactId>xercesImpl</artifactId>
+    		<version>2.9.1</version>
+		</dependency>
+		<!-- 요기까지 가영이가 한거에용 -->
+		
 	</dependencies>
 	
 
