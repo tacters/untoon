@@ -72,10 +72,11 @@
     		<param-name>encoding</param-name>
     		<param-value>UTF-8</param-value>
     	</init-param>
+    </filter>
     <!-- url로 어떤 요청이 오느냐에 따라서 해당 필터를 거쳐가게끔 할지 url-pattern을 작성 -->
     <filter-mapping>
     	<filter-name>encodingFilter</filter-name>
     	<url-pattern>*.do</url-pattern>
     </filter-mapping>
-    </filter>	
+
 </web-app>

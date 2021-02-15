@@ -41,17 +41,19 @@ public class MemberController {
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
 	public String memberLogin(@ModelAttribute Member m , Model model) {
 		Member loginUser = mService.loginMember(m);
-		String bcrypt = bcryptPasswordEncoder.encode(m.getPwd()); 
 		
-				
-		System.out.println("loginUser" + loginUser);
-		System.out.println("Member" + m);
-		System.out.println( bcryptPasswordEncoder.matches(m.getPwd(), loginUser.getPwd()));
 		
-		System.out.println(bcrypt.length()+","+m.getPwd().length());
-		System.out.println(loginUser.getPwd().length());
-		
-		logger.info("암호화 " + bcrypt +"글자수"+ m.getPwd().length());
+		/*
+		 * String bcrypt = bcryptPasswordEncoder.encode(m.getPwd()); 
+		 * System.out.println("loginUser" + loginUser); System.out.println("Member" +
+		 * m); System.out.println( bcryptPasswordEncoder.matches(m.getPwd(),
+		 * loginUser.getPwd()));
+		 * 
+		 * System.out.println(bcrypt.length()+","+m.getPwd().length());
+		 * System.out.println(loginUser.getPwd().length());
+		 * 
+		 * logger.info("암호화 " + bcrypt +"글자수"+ m.getPwd().length());
+		 */
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(m.getPwd(), loginUser.getPwd())) {
 			model.addAttribute("loginUser", loginUser);
