@@ -20,12 +20,15 @@ public class MemberDao {
 		return (Member)sqlSession.selectOne("memberMapper.loginMember", m);
 		
 	}
-
-	public int insertMember(Member m) {
+	
+	 public int insertMember(Member m) {
 	
 		return sqlSession.insert("memberMapper.insertMember", m);
 	}
-	
+	// 강사 회원가입
+	public int insertTeMember(Member m) {
+		return sqlSession.insert("memberMapper.insertTeMember", m);
+	}
 
 	public int updateMember(Member m) {
 		
@@ -46,6 +49,8 @@ public class MemberDao {
 		
 		return sqlSession.selectOne("memberMapper.nicknameCheck", nickname);
 	}
+
+	
 
 
 

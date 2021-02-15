@@ -44,6 +44,15 @@
 	    </if>  -->
     </insert>  	   
     
+    <insert id="insertTeMember" parameterType="Member">
+    INSERT
+	  INTO MEMBER
+		<!-- <if test="user_lv == 1">  -->
+			VALUES ( #{id}, #{pwd}, #{name}, #{email}, default, #{nickname} 
+		   		   , default ,default, default, default, #{birthday}, #{gender}
+		           , #{phone}, sysdate, sysdate, default, #{bank_acct})
+    </insert>
+    
     <update id="updateMember" parameterType="Member">
     	UPDATE MEMBER
     	   SET EMAIL=#{email}

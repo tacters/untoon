@@ -26,7 +26,7 @@ span.error {
 	<h1 align="center">강사 회원가입</h1>
 
 	<div class="outer" align="center">
-		<form action="minsert.do" method="post" id="joinForm">
+		<form action="mTeinsert.do" method="post" id="joinForm">
 			<table width="500" cellspacing="5">
 				<tr>
 					<td width="150">ID</td>
@@ -80,6 +80,11 @@ span.error {
 					<td>PHONE</td>
 					<td><input type="tel" name="phone"></td>
 				</tr>
+				
+				<tr>
+					<td>BANK ACCOUNT</td>
+					<td><input type="tel" name="bank_acct"></td>
+				</tr>
 
 				<!-- jQuery와 Postcodify를 로딩한다. -->
 				<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
@@ -101,55 +106,29 @@ span.error {
 		<br> <br> <a href="home.do">시작 페이지로 이동</a>
 	</div>
 
-	<script type="text/javascript">
-		function validate(){
-			// 아이디 중복체크 여부
-			if($("#idDuplicateCheck").val() == 0){
-				alert("사용가능한 아이디를 입력해주세요.");
-				$("#userId").focus();
-				return false;
-			}else{
-				return true;
-			}
+	<script type="text/javascript">	
+	function dupIdCheck(){
+		   $.ajax({
+		      url: "idCheck.do",
+		      type: "post",
+		      data: {userid : $("#id").val() },
+		      success: function(data){
+		         //처리결과를 문자열로 받음
+		         console.log("success : " + data);
+		         if(data == "ok"){
+		            alert("사용 가능한 아이디입니다.");
+		            $("#pwd").focus();
+		         }else{
+		            alert("이미 사용중인 아이디입니다.\n다시 입력하세요.");
+		            $("#id").select();
+		         }
+		      },
+		      error: function(jqXHR, textstatus, errorthrown){
+		         //에러 발생시 구동되는 콜백함수임
+		         console.log("error : " + jqXHR + ", " + textstatus 
+		               + ", " + errorthrown);
+		      }
+		   });
 		}
-		
-		$(function(){
-			$("#userId").on("keyup",function(){
-				var userId = $(this).val();
-				
-				if(userId.length < 5){
-					$(".guide").hide();
-					$("#idDuplicateCheck").val(0);
-					
-					return;
-				}
-				
-				$.ajax({
-					url:"idCheck.do",
-					data:{id:userId},
-					type:"post",
-					success:function(data){
-						console.log(data);
-						
-						if(data == "ok"){
-							$(".error").hide();
-							$(".ok").show();
-							$("#idDuplicateCheck").val(1);
-						}else{
-							$(".ok").hide();
-							$(".error").show();
-							$("#idDuplicateCheck").val(0);
-						}
-						
-					},error:function(jqxhr,textStatus,errorThrown){
-						console.log("ajax 처리 실패");
-						
-						console.log(jqxhr);
-						console.log(textStatus);
-						console.log(errorThrown);
-					}
-				});
-			});
-		});
 	</script>
 </html>

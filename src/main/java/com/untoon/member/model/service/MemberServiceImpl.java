@@ -28,6 +28,12 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
+	@Override
+	public int insertTeMember(Member m) {
+		int result = mDao.insertTeMember(m);
+		return result;
+	}
+	
 
 	@Override
 	public int updateMember(Member m) {

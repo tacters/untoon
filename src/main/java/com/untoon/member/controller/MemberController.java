@@ -79,10 +79,12 @@ public class MemberController {
 	public String enrollView() {
 		return "member/memberInsertForm";
 	}
-	/*
-	 * @RequestMapping("adenrollView.do") public String adenrollView() { return
-	 * "member/memberAdInsertForm"; }
-	 */
+	//강사 회원가입페이지로 이동
+	@RequestMapping("teenrollView.do") 
+	public String adenrollView() { 
+		return "member/memberTeInsertForm"; 
+   }
+	 
 		
 	//회원가입
 	@RequestMapping(value="minsert.do", method = RequestMethod.POST)
@@ -103,7 +105,26 @@ public class MemberController {
 			model.addAttribute("msg", "회원가입 실패");
 			return "common/errorPage";
 		}
-	}
-}
-	
+	}	
+	//강사 회원가입
+		@RequestMapping(value="mTeinsert.do", method = RequestMethod.POST)
+		public String insertAdMember(@ModelAttribute Member m, Model model) {
 		
+			// 기존의 평문을 암호문으로 바꿔서 m객체에 담기
+			String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
+			
+			//setter를 통해서 Member객체의 pwd 변경
+			m.setPwd(encPwd);
+		  
+			//회원가입 서비스 호출
+			int result = mService.insertTeMember(m);
+			
+			if(result >0 ) {
+				return "redirect:home.do";
+			}else {
+				model.addAttribute("msg", "회원가입 실패");
+				return "common/errorPage";
+			}
+
+		}
+	}

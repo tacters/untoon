@@ -2,6 +2,16 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap');
 
+.0215css
+{
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+		rgba(0, 0, 0, 0.5)), url(/untoon/resources/images/drop.jpg);
+	height: 100vh;
+	background-position: center;
+    background-size: cover;
+}
+
+
 * {margin:0; padding:0; box-sizing: border-box;}
 body {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -9,21 +19,28 @@ body {
 	justify-content:center;
 	align-items:center;
 	height:100vh;
-	background:url("https://pixabay.com/get/g195cfcc88baa27596e1bcbf7216de2716ec566763ba91cfd6cc728ae9647fdc5ab027e29815f0dbfdeb1596ff5f4fb6c_1920.jpg") no-repeat center;
+	background-image:url(/untoon/resources/images/drop.jpg);
+	background-position:center;
 	background-size:cover;
 }
 body::before{
 	content:"";
 	position: absolute; z-index:1;
 	top:0; right:0; bottom:0; left:0;
-	background-color:rgba(0,0,0,0);
+	background-color:rgba(0,0,0,.5);
+	background-image:url(/untoon/resources/images/drop.jpg);
+	background-position:center;
+	background-size:cover;
 }
 .login-form{position: relative; z-index:2;}
+
 .login-form h1{
-	font-size:32px; color:#fff;
+	font-size:32px; 
+	color:#4770a8;
 	text-align:center;
 	margin-bottom: 60px;
 }
+
 .login-area {
 	width: 400px; position:relative;
 	margin-top:	20px;
@@ -35,12 +52,12 @@ body::before{
 	background-color:transparent;
 	border:none;
 	border-bottom:1px solid #999;
-	font-size:18px; color:#fff;
+	font-size:18px; color:#a08080;
 	outline:none;
 }
 .login-area label{
 	position:absolute; left:10px; top:15px;
-	font-size: 18px; color:#999;
+	font-size: 18px; color:#020c1f;
 	transition: all .5s ease;
 }
 .login-area label.warning{
@@ -76,7 +93,7 @@ body::before{
 	text-align: center;
 }
 .caption a{
-	font-size:15px; color:#999;
+	font-size:15px; color:#020c1f;
 	text-decoration: none;
 }
 

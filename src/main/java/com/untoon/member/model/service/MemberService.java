@@ -8,6 +8,8 @@ public interface MemberService {
 	
 	int insertMember(Member m);
 	
+	int insertTeMember(Member m);
+	
 	int updateMember(Member m);
 	
 	int deleteMember(String id);
@@ -15,4 +17,6 @@ public interface MemberService {
 	int idCheck(String id);
 	
 	int nicknameCheck(String nickname);
+
+	
 }
