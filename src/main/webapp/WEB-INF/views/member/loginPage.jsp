@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Login Page</title>
+<title>UNTOON 언투온택터즈</title>
 <link rel="stylesheet"
 	href="${ pageContext.request.contextPath }/resources/css/member/style.css"
 	media="all" />

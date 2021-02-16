@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강사 회원가입</title>
+<title>UNTOON 언투온택터즈</title>
 </head>
 <style>
 span.guide {
