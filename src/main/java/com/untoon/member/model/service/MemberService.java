@@ -8,7 +8,7 @@ public interface MemberService {
 	
 	int insertMember(Member m);
 	
-	int insertTeMember(Member m);
+	/* int insertTeMember(Member m); */
 	
 	int updateMember(Member m);
 	
