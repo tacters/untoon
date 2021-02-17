@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
+<title>UNTOON 언투온택터즈</title>
+
 <meta property="og:url" content="https://urbango.qodeinteractive.com" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="UrbanGo" />
@@ -17,7 +18,7 @@
 <link rel="profile" href="https://gmpg.org/xfn/11" />
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,user-scalable=yes">
-<title>UrbanGo &#8211; Directory and Listing WordPress Theme</title>
+
 <style type="text/css" data-type="vc_shortcodes-custom-css">
 .vc_custom_1533890452168 {
 	padding-top: 85px !important;
@@ -100,30 +101,25 @@ img.wp-smiley, img.emoji {
 }
 </style>
 <link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/home/b153a.css"
-	media="all" />
+	href="${pageContext.request.contextPath}/resources/css/home/b153a.css"	media="all" />
 <link rel='stylesheet' id='rabbit_css-css'
-	href="${ pageContext.request.contextPath }/resources/css/home/rbt-modules.css"
-	type='text/css' media='all' />
+	href="${pageContext.request.contextPath}/resources/css/home/rbt-modules.css"	type='text/css' media='all' />
 <link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/home/c138f.css"
-	media="all" />
+	href="${pageContext.request.contextPath}/resources/css/home/c138f.css"	media="all" />
 <style id='rs-plugin-settings-inline-css' type='text/css'>
 #rs-demo-id {
 	
 }
 </style>
 <link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/home/9b7b5.css"
-	media="all" />
+	href="${pageContext.request.contextPath}/resources/css/home/9b7b5.css"	media="all" />
 <style id='woocommerce-inline-inline-css' type='text/css'>
 .woocommerce form .form-row .required {
 	visibility: visible;
 }
 </style>
 <link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/home/8e8ad.css"
-	media="all" />
+	href="${pageContext.request.contextPath}/resources/css/home/8e8ad.css"	media="all" />
 <style id='urbango-edge-woo-inline-css' type='text/css'>
 .page-id-31 .edgtf-content .edgtf-content-inner>.edgtf-container>.edgtf-container-inner,
 	.page-id-31 .edgtf-content .edgtf-content-inner>.edgtf-full-width>.edgtf-full-width-inner
@@ -164,28 +160,28 @@ img.wp-smiley, img.emoji {
 }
 </style>
 <link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/home/ebd5f.css"
-	media="all" />
+	href="${pageContext.request.contextPath}/resources/css/home/ebd5f.css"	media="all" />
 <link rel='stylesheet' id='urbango-edge-google-fonts-css'
 	href='https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400%2C500%2C600%2C700%7CMontserrat%3A300%2C400%2C500%2C600%2C700&#038;subset=latin-ext&#038;ver=1.0.0'
 	type='text/css' media='all' />
 
 <link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/home/e7b8b.css"
+	href="${pageContext.request.contextPath}/resources/css/home/e7b8b.css"
 	media="all" />
-<script type="text/javascript"
-	src="${ pageContext.request.contextPath }/resources/js/home/jquery-3.5.1.min.js"></script>
 <script type='text/javascript'
-	src='${ pageContext.request.contextPath }/resources/js/home/jquery.themepunch.tools.min.js'
+	src='https://urbango.qodeinteractive.com/wp-includes/js/jquery/jquery.js'
+	id='jquery-core-js'></script>
+<script type='text/javascript'
+	src='https://urbango.qodeinteractive.com/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js'
 	id='tp-tools-js'></script>
 <script type='text/javascript'
-	src='${ pageContext.request.contextPath }/resources/js/home/jquery.themepunch.revolution.min.js'
+	src='https://urbango.qodeinteractive.com/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js'
 	id='revmin-js'></script>
 <script type='text/javascript'
-	src='${ pageContext.request.contextPath }/resources/js/home/platform.js'
+	src='https://apis.google.com/js/platform.js'
 	id='urbango-membership-google-plus-api-js'></script>
 <script type='text/javascript'
-	src='${ pageContext.request.contextPath }/resources/js/home/query.blockUI.min.js'
+	src='https://urbango.qodeinteractive.com/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js'
 	id='jquery-blockui-js'></script>
 <script type='text/javascript' id='wc-add-to-cart-js-extra'>
 /* <![CDATA[ */
@@ -193,13 +189,13 @@ var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_ur
 /* ]]> */
 </script>
 <script type='text/javascript'
-	src='${ pageContext.request.contextPath }/resources/js/home/add-to-cart.min.js'
+	src='https://urbango.qodeinteractive.com/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js'
 	id='wc-add-to-cart-js'></script>
 <script type='text/javascript'
-	src='${ pageContext.request.contextPath }/resources/js/home/gtm4wp-form-move-tracker.js'
+	src='https://urbango.qodeinteractive.com/wp-content/plugins/duracelltomi-google-tag-manager/js/gtm4wp-form-move-tracker.js'
 	id='gtm4wp-form-move-tracker-js'></script>
 <script type='text/javascript'
-	src='${ pageContext.request.contextPath }/resources/js/home/woocommerce-add-to-cart.js'
+	src='https://urbango.qodeinteractive.com/wp-content/plugins/js_composer/assets/js/vendors/woocommerce-add-to-cart.js'
 	id='vc_woocommerce-add-to-cart-js-js'></script>
 <link rel="https://api.w.org/"
 	href="https://urbango.qodeinteractive.com/wp-json/" />
@@ -242,32 +238,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="generator"
 	content="Powered by Slider Revolution 5.4.8 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
 <link rel="icon"
-	href="https://urbango.qodeinteractive.com/wp-content/uploads/2018/09/cropped-favicon-img-32x32.png"
+	href="${pageContext.request.contextPath}/resources/images/home/icons/favicon-32x32.png"
 	sizes="32x32" />
 <link rel="icon"
-	href="https://urbango.qodeinteractive.com/wp-content/uploads/2018/09/cropped-favicon-img-192x192.png"
+	href="${pageContext.request.contextPath}/resources/images/home/icons/favicon-192x192.png"
 	sizes="192x192" />
 <link rel="apple-touch-icon"
-	href="https://urbango.qodeinteractive.com/wp-content/uploads/2018/09/cropped-favicon-img-180x180.png" />
+	href="${pageContext.request.contextPath}/resources/images/home/icons/favicon-180x180.png" />
 <meta name="msapplication-TileImage"
-	content="https://urbango.qodeinteractive.com/wp-content/uploads/2018/09/cropped-favicon-img-270x270.png" />
-<script type="text/javascript">
-					function setREVStartSize(e){									
+	href="${pageContext.request.contextPath}/resources/images/home/icons/favicon-270x270.png" />
+<script type="text/javascript">function setREVStartSize(e){									
 						try{ e.c=jQuery(e.c);var i=jQuery(window).width(),t=9999,r=0,n=0,l=0,f=0,s=0,h=0;
-							if(e.responsiveLevels&&(jQuery.each(e.responsiveLevels,function(e,f){
-								f>i&&(t=r=f,l=e),i>f&&f>r&&(r=f,n=e)
-								}),
-								t>r&&(l=n)),f=e.gridheight[l]||e.gridheight[0]||e.gridheight,s=e.gridwidth[l]||e.gridwidth[0]||e.gridwidth,h=i/s,h=h>1?1:h,f=Math.round(h*f),
-										"fullscreen"==e.sliderLayout){var u=(e.c.width(),jQuery(window).height());
-										if(void 0!=e.fullScreenOffsetContainer){var c=e.fullScreenOffsetContainer.split(",");
-										if (c) jQuery.each(c,function(e,i){
-											u=jQuery(i).length>0?u-jQuery(i).outerHeight(!0):u}),
-											e.fullScreenOffset.split("%").length>1&&void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0?u-=jQuery(window).height()*parseInt(e.fullScreenOffset,0)/100:void
-													0!=e.fullScreenOffset&&e.fullScreenOffset.length>0&&(u-=parseInt(e.fullScreenOffset,0)
-															)}
-										f=u
-										}else 
-											void 0!=e.minHeight&&f<e.minHeight&&(f=e.minHeight);e.c.closest(".rev_slider_wrapper").css({height:f})
+							if(e.responsiveLevels&&(jQuery.each(e.responsiveLevels,function(e,f){f>i&&(t=r=f,l=e),i>f&&f>r&&(r=f,n=e)}),t>r&&(l=n)),f=e.gridheight[l]||e.gridheight[0]||e.gridheight,s=e.gridwidth[l]||e.gridwidth[0]||e.gridwidth,h=i/s,h=h>1?1:h,f=Math.round(h*f),"fullscreen"==e.sliderLayout){
+								var u=(e.c.width(),jQuery(window).height());if(void 0!=e.fullScreenOffsetContainer){
+									var c=e.fullScreenOffsetContainer.split(",");if (c) jQuery.each(c,function(e,i){
+										u=jQuery(i).length>0?u-jQuery(i).outerHeight(!0):u
+												}),e.fullScreenOffset.split("%").length>1&&void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0?u-=jQuery(window).height()*parseInt(e.fullScreenOffset,0)/100:void 
+														0!=e.fullScreenOffset&&e.fullScreenOffset.length>0&&(u-=parseInt(e.fullScreenOffset,0)
+																)}f=u
+																}else void 0!=e.minHeight&&f<e.minHeight&&(f=e.minHeight);e.c.closest(".rev_slider_wrapper").css({height:f})					
 						}catch(d){console.log("Failure at Presize of Slider:"+d)}						
 					};</script>
 <style type="text/css" id="wp-custom-css">
@@ -291,72 +280,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 		<div class="edgtf-wrapper-inner">
 			<div class="edgtf-top-bar edgtf-light">
 				<div class="edgtf-vertical-align-containers">
-					<div class="edgtf-position-left">
-						<div class="edgtf-position-left-inner">
-							<div id="text-2" class="widget widget_text edgtf-top-bar-widget">
-								<div class="textwidget">
-									<p>Follow us</p>
-								</div>
-							</div>
-							<div
-								class="widget edgtf-social-icons-group-widget text-align-left">
-								<a class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-									style="margin: 0 7px;"
-									href="https://www.facebook.com/QodeInteractive/"
-									target="_blank"> <span
-									class="edgtf-social-icon-widget fab fa-facebook-f"></span>
-								</a> <a class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-									style="margin: 0 7px;"
-									href="https://www.instagram.com/qodeinteractive/"
-									target="_blank"> <span
-									class="edgtf-social-icon-widget fab fa-instagram"></span>
-								</a> <a class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-									style="margin: 0 7px;" href="https://www.tripadvisor.com/"
-									target="_blank"> <span
-									class="edgtf-social-icon-widget fab fa-tripadvisor"></span>
-								</a> <a class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-									style="margin: 0 7px;"
-									href="https://www.youtube.com/QodeInteractiveVideos"
-									target="_blank"> <span
-									class="edgtf-social-icon-widget fab fa-youtube"></span>
-								</a> <a class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-									style="margin: 0 7px;" href="https://vimeo.com/"
-									target="_blank"> <span
-									class="edgtf-social-icon-widget fab fa-vimeo-v"></span>
-								</a> <a class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-									style="margin: 0 7px;"
-									href="https://www.pinterest.com/qodeinteractive/"
-									target="_blank"> <span
-									class="edgtf-social-icon-widget fab fa-pinterest-p"></span>
-								</a>
-							</div>
-						</div>
-					</div>
 					<div class="edgtf-position-right">
 						<div class="edgtf-position-right-inner">
-							<div
-								class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
+							<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
 								<c:if test="${ empty sessionScope.loginUser }">
-									<a href="loginpage.do" class="edgtf-login-opener"> 
-									<i class="edgtf-icon-font-awesome far fa-user edgtf-logged-in-icon"></i>
-									<span class="edgtf-login-text">Join us</span>
-								</a>
+									<c:url var="loginpage" value="/loginpage.do"/>
+									<a href='${ loginpage }' title="log in">로그인</a>
+									<%-- <button onclick="location.href='${ loginpage }'" title="log in"><span class="edgtf-login-text">로그인</span></button> --%>
 								</c:if>
 							</div>
-							<div class="edgtf-add-listing-widget">
-								<a itemprop="url"
-									class="edgtf-add-listing-button edgtf-login-opener" href="#">
-									<i
-									class="edgtf-icon-font-awesome far fa-plus-square edgtf-alw-icon"></i>
-									<span class="edgtf-alw-text">Add listing</span>
-								</a>
+							<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
+								<c:if test="${ empty sessionScope.loginUser }">
+									<c:url var="enrollview" value="/enrollView.do"/>
+									<a href='${ enrollview }' title="enroll">회원가입</a>
+								</c:if>
 							</div>
-														<div class="edgtf-add-listing-widget">
-								<a itemprop="url"
-									class="edgtf-add-listing-button edgtf-login-opener" href="classList.do">
-									<i class="edgtf-icon-font-awesome far fa-plus-square edgtf-alw-icon"></i>
-									<span class="edgtf-alw-text">가영이 테스트 classlist</span>
-								</a>
+							<div class="widget edgtf-login-register-widget">
+									<c:url var="clssList" value="/clssList.do"/>
+									<a href='${ clssList }' title="clssList"> CLASS LIST TEST</a>
 							</div>
 						</div>
 					</div>
@@ -374,6 +315,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					</form>
 				</div>
 			</div>
+			
 			<header class="edgtf-page-header">
 				<div class="edgtf-menu-area edgtf-menu-right">
 					<div class="edgtf-vertical-align-containers">
@@ -383,12 +325,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<a itemprop="url" href="https://urbango.qodeinteractive.com/"
 										style="height: 41px;"> <img itemprop="image"
 										class="edgtf-normal-logo"
-										src="https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/img/logo.png"
+										src="${pageContext.request.contextPath}/resources/images/home/logo.png"
 										alt="logo" /> <img itemprop="image" class="edgtf-dark-logo"
-										src="https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/img/logo.png"
+										src="${pageContext.request.contextPath}/resources/images/home/logo.png"
 										alt="dark logo" /> <img itemprop="image"
 										class="edgtf-light-logo"
-										src="https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/img/logo_white.png"
+										src="${pageContext.request.contextPath}/resources/images/home/logo_white.png"
 										alt="light logo" />
 									</a>
 								</div>
@@ -1092,12 +1034,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 										<a itemprop="url" href="https://urbango.qodeinteractive.com/"
 											style="height: 41px;"> <img itemprop="image"
 											class="edgtf-normal-logo"
-											src="https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/img/logo.png"
+											src="${pageContext.request.contextPath}/resources/images/home/logo.png"
 											alt="logo" /> <img itemprop="image" class="edgtf-dark-logo"
-											src="https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/img/logo.png"
+											src="${pageContext.request.contextPath}/resources/images/home/logo.png"
 											alt="dark logo" /> <img itemprop="image"
 											class="edgtf-light-logo"
-											src="https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/img/logo_white.png"
+											src="${pageContext.request.contextPath}/resources/images/home/logo_white.png"
 											alt="light logo" />
 										</a>
 									</div>
@@ -1858,7 +1800,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 												<a itemprop="url"
 													href="https://urbango.qodeinteractive.com/"
 													style="height: 41px"> <img itemprop="image"
-													src="https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/img/logo.png"
+													src="${pageContext.request.contextPath}/resources/images/home/logo.png"
 													alt="Mobile Logo" />
 												</a>
 											</div>
@@ -2446,11 +2388,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					</form>
 				</div>
 			</header>
+
 			<a id='edgtf-back-to-top' href='#'> <span
 				class="edgtf-icon-stack"> <i
 					class="edgtf-icon-font-awesome fa fa-angle-up "></i>
 			</span>
 			</a>
+
 			<div class="edgtf-content" style="margin-top: -137px">
 				<div class="edgtf-content-inner">
 					<div class="edgtf-slider">
@@ -2476,7 +2420,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											data-param3="" data-param4="" data-param5="" data-param6=""
 											data-param7="" data-param8="" data-param9="" data-param10=""
 											data-description=""><img
-											src="https://urbango.qodeinteractive.com/wp-content/plugins/revslider/admin/assets/images/transparent.png"
+											src="${pageContext.request.contextPath}/resources/images/home/transparent.png"
 											alt="a" title="h1-slide-1" width="1920" height="1010"
 											data-bgposition="center center" data-bgfit="cover"
 											data-bgrepeat="no-repeat" data-bgparallax="off"
@@ -2496,7 +2440,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 												data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
 												style="z-index: 5;">
 												<img
-													src="https://urbango.qodeinteractive.com/wp-content/uploads/2018/08/h1-slide-1.jpg"
+													src="${pageContext.request.contextPath}/resources/images/home/h1-slide-1.png"
 													alt="a" data-ww="['1920px','1920px','1920px','1920px']"
 													data-hh="['1010px','1010px','1010px','1010px']"
 													width="1920" height="1010" data-no-retina>
@@ -2589,7 +2533,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											data-param3="" data-param4="" data-param5="" data-param6=""
 											data-param7="" data-param8="" data-param9="" data-param10=""
 											data-description=""><img
-											src="https://urbango.qodeinteractive.com/wp-content/plugins/revslider/admin/assets/images/transparent.png"
+											src="${pageContext.request.contextPath}/resources/images/home/transparent.png"
 											alt="a" title="h1-slide-1" width="1920" height="1010"
 											data-bgposition="center center" data-bgfit="cover"
 											data-bgrepeat="no-repeat" data-bgparallax="off"
@@ -2609,7 +2553,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 												data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
 												style="z-index: 5;">
 												<img
-													src="https://urbango.qodeinteractive.com/wp-content/uploads/2018/09/h1-slide-2.jpg"
+													src="${pageContext.request.contextPath}/resources/images/home/h1-slide-2.png"
 													alt="a" data-ww="['1920px','1920px','1920px','1920px']"
 													data-hh="['1010px','1010px','1010px','1010px']"
 													width="1920" height="1010" data-no-retina>
@@ -2704,7 +2648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											data-param3="" data-param4="" data-param5="" data-param6=""
 											data-param7="" data-param8="" data-param9="" data-param10=""
 											data-description=""><img
-											src="https://urbango.qodeinteractive.com/wp-content/plugins/revslider/admin/assets/images/transparent.png"
+											src="${pageContext.request.contextPath}/resources/images/home/transparent.png"
 											alt="a" title="h1-slide-1" width="1920" height="1010"
 											data-bgposition="center center" data-bgfit="cover"
 											data-bgrepeat="no-repeat" data-bgparallax="off"
@@ -2724,7 +2668,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 												data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
 												style="z-index: 5;">
 												<img
-													src="https://urbango.qodeinteractive.com/wp-content/uploads/2018/09/h1-slide-3.jpg"
+													src="${pageContext.request.contextPath}/resources/images/home/h1-slide-3.png"
 													alt="a" data-ww="['1920px','1920px','1920px','1920px']"
 													data-hh="['1010px','1010px','1010px','1010px']"
 													width="1920" height="1010" data-no-retina>
@@ -2819,7 +2763,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											data-param3="" data-param4="" data-param5="" data-param6=""
 											data-param7="" data-param8="" data-param9="" data-param10=""
 											data-description=""><img
-											src="https://urbango.qodeinteractive.com/wp-content/plugins/revslider/admin/assets/images/transparent.png"
+											src="${pageContext.request.contextPath}/resources/images/home/transparent.png"
 											alt="a" title="h1-slide-1" width="1920" height="1010"
 											data-bgposition="center center" data-bgfit="cover"
 											data-bgrepeat="no-repeat" data-bgparallax="off"
@@ -2839,7 +2783,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 												data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
 												style="z-index: 5;">
 												<img
-													src="https://urbango.qodeinteractive.com/wp-content/uploads/2018/09/h1-slide-4.jpg"
+													src="${pageContext.request.contextPath}/resources/images/home/h1-slide-4.png"
 													alt="a" data-ww="['1920px','1920px','1920px','1920px']"
 													data-hh="['1010px','1010px','1010px','1010px']"
 													width="1920" height="1010" data-no-retina>
@@ -2951,13 +2895,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 															<div class="edgtf-search-post-type-inner">
 																<div class="edgtf-post-type-search-field">
 																	<input type="search"
-																		placeholder="What are you looking for?" value=""
+																		placeholder="나만의 클래스를 찾자! ..." value=""
 																		name="s" title="Search for:" required />
 																</div>
 																<div class="edgtf-post-type-search-submit">
 																	<button type="submit">
-																		<i class="edgtf-icon-font-awesome fas fa-search "></i>
-																		<span class="edgtf-post-type-search-label">Search</span>
+																		<!-- <i class="edgtf-icon-font-awesome fas fa-search "></i> -->
+																		<span class="edgtf-post-type-search-label">렛츠겟잇~</span>
 																	</button>
 																</div>
 																<input type="hidden" name="post_type"
@@ -2986,7 +2930,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											data-textAlign="['inherit','inherit','inherit','inherit']"
 											data-paddingtop="[0,0,0,0]" data-paddingright="[,2,2,2]"
 											data-paddingbottom="[0,0,0,0]" data-paddingleft="[,2,2,2]"
-											style="z-index: 26; max-width: 107px; max-width: 107px; white-space: nowrap; font-size: 36px; line-height: 102px; font-weight: 500; color: #ffffff; letter-spacing: 0px; font-family: Shorelines Script;">explore
+											style="z-index: 26; max-width: 107px; max-width: 107px; white-space: nowrap; font-size: 36px; line-height: 102px; font-weight: 500; color: #ffffff; letter-spacing: 0px; font-family: Shorelines Script;">&nbsp; &nbsp; &nbsp; from <b>un</b>tact to <b>on</b>tact
 										</div>
 
 										<div class="tp-caption   tp-resizeme tp-static-layer"
@@ -3006,8 +2950,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											data-textAlign="['inherit','inherit','inherit','center']"
 											data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]"
 											data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-											style="z-index: 27; min-width: 686px; max-width: 686px; max-width: 286px; max-width: 286px; white-space: normal; font-size: 90px; line-height: 95px; font-weight: 600; color: #ffffff; letter-spacing: 0px; font-family: Montserrat;">Discover
-											the Best Spots</div>
+											style="z-index: 27; min-width: 686px; max-width: 686px; max-width: 286px; max-width: 286px; white-space: normal; font-size: 75px; line-height: 95px; font-weight: 600; color: #ffffff; letter-spacing: 0px; font-family: Montserrat;">지금 배우고 싶은<br>것은..?</div>
 
 										<div class="tp-caption   tp-resizeme tp-static-layer"
 											id="slider-1-layer-25"
@@ -3024,8 +2967,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											data-textAlign="['inherit','inherit','inherit','inherit']"
 											data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]"
 											data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-											style="z-index: 28; white-space: nowrap; font-size: 22px; line-height: 30px; font-weight: 500; color: #ffffff; letter-spacing: 0px; font-family: Montserrat;">Find
-											the best places by clicking below</div>
+											style="z-index: 28; white-space: nowrap; font-size: 22px; line-height: 30px; font-weight: 500; color: #ffffff; letter-spacing: 0px; font-family: Montserrat;">언투온에서 찾아보세요</div>
 									</div>
 									<script>var htmlDiv = document.getElementById("rs-plugin-settings-inline-css"); var htmlDivCss="";
 						if(htmlDiv) {
@@ -3160,7 +3102,7 @@ var revapi1,
 					}
 					</script>
 								<script>
-					var htmlDivCss = unescape(".urbango-navigation.tparrows%20%7B%0A%20%20%20%20background%3A%20transparent%3B%0A%20%20%20%20width%3A%2040px%3B%0A%20%20%20%20height%3A%2040px%3B%0A%7D%0A%0A.urbango-navigation.tparrows%3Abefore%20%7B%0A%09display%3A%20none%20%21important%3B%0A%7D%0A%0A.urbango-navigation.tparrows.tp-leftarrow%20.edgtf-nav-arrow%2C%20%0A.urbango-navigation.tparrows.tp-rightarrow%20.edgtf-nav-arrow%20%7B%0A%20%20%20%20position%3A%20relative%3B%0A%20%20%20%20height%3A%20100%25%3B%0A%20%20%20%20width%3A%20100%25%3B%0A%20%20%20%20display%3A%20inline-block%3B%0A%20%20%20%20vertical-align%3A%20middle%3B%0A%20%20%20%20color%3A%20%23fff%3B%0A%20%20%20%20font-size%3A%2040px%3B%0A%20%20%20%20line-height%3A%201%3B%0A%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20-webkit-transition%3A%20color%20.3s%20ease%3B%0A%20%20%20%20transition%3A%20color%20.3s%20ease%3B%0A%7D%0A%0A.urbango-navigation.tparrows.tp-leftarrow%20.edgtf-nav-arrow%3Ahover%2C%20%0A.urbango-navigation.tparrows.tp-rightarrow%20.edgtf-nav-arrow%3Ahover%20%7B%0A%09color%3A%20%23ff3a54%3B%0A%7D%0A%0A.urbango-navigation.tparrows.tp-leftarrow%20.edgtf-nav-arrow%3Abefore%2C%20%0A.urbango-navigation.tparrows.tp-rightarrow%20.edgtf-nav-arrow%3Abefore%20%7B%0A%20%20%09display%3A%20inline-block%3B%0A%20%20%20%09vertical-align%3A%20top%3B%0A%20%20%20%09font-family%3A%20%22ElegantIcons%22%20%21important%3B%20%0A%20%20%09font-style%3A%20normal%20%21important%3B%0A%20%20%09font-weight%3A%20normal%20%21important%3B%0A%20%20%09font-variant%3A%20normal%20%21important%3B%0A%20%20%20%09text-transform%3A%20none%20%21important%3B%0A%20%20%20%09speak%3A%20none%3B%0A%20%20%20%09line-height%3A%20inherit%3B%0A%20%20%20%09-webkit-font-smoothing%3A%20antialiased%3B%0A%20%20%20%09-moz-osx-font-smoothing%3A%20grayscale%3B%0A%7D%0A.urbango-navigation.tparrows.tp-leftarrow%20.edgtf-nav-arrow%3Abefore%20%7B%0A%09content%3A%20%22%5C23%22%3B%0A%7D%0A.urbango-navigation.tparrows.tp-rightarrow%20.edgtf-nav-arrow%3Abefore%20%7B%0A%20%20%20%09%20content%3A%20%22%5C24%22%3B%0A%7D%0A");
+					var htmlDivCss = unescape(".urbango-navigation.tparrows%20%7B%0A%20%20%20%20background%3A%20transparent%3B%0A%20%20%20%20width%3A%2040px%3B%0A%20%20%20%20height%3A%2040px%3B%0A%7D%0A%0A.urbango-navigation.tparrows%3Abefore%20%7B%0A%09display%3A%20none%20%21important%3B%0A%7D%0A%0A.urbango-navigation.tparrows.tp-leftarrow%20.edgtf-nav-arrow%2C%20%0A.urbango-navigation.tparrows.tp-rightarrow%20.edgtf-nav-arrow%20%7B%0A%20%20%20%20position%3A%20relative%3B%0A%20%20%20%20height%3A%20100%25%3B%0A%20%20%20%20width%3A%20100%25%3B%0A%20%20%20%20display%3A%20inline-block%3B%0A%20%20%20%20vertical-align%3A%20middle%3B%0A%20%20%20%20color%3A%20%23fff%3B%0A%20%20%20%20font-size%3A%2040px%3B%0A%20%20%20%20line-height%3A%201%3B%0A%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20-webkit-transition%3A%20color%20.3s%20ease%3B%0A%20%20%20%20transition%3A%20color%20.3s%20ease%3B%0A%7D%0A%0A.urbango-navigation.tparrows.tp-leftarrow%20.edgtf-nav-arrow%3Ahover%2C%20%0A.urbango-navigation.tparrows.tp-rightarrow%20.edgtf-nav-arrow%3Ahover%20%7B%0A%09color%3A%20%232392BD%3B%0A%7D%0A%0A.urbango-navigation.tparrows.tp-leftarrow%20.edgtf-nav-arrow%3Abefore%2C%20%0A.urbango-navigation.tparrows.tp-rightarrow%20.edgtf-nav-arrow%3Abefore%20%7B%0A%20%20%09display%3A%20inline-block%3B%0A%20%20%20%09vertical-align%3A%20top%3B%0A%20%20%20%09font-family%3A%20%22ElegantIcons%22%20%21important%3B%20%0A%20%20%09font-style%3A%20normal%20%21important%3B%0A%20%20%09font-weight%3A%20normal%20%21important%3B%0A%20%20%09font-variant%3A%20normal%20%21important%3B%0A%20%20%20%09text-transform%3A%20none%20%21important%3B%0A%20%20%20%09speak%3A%20none%3B%0A%20%20%20%09line-height%3A%20inherit%3B%0A%20%20%20%09-webkit-font-smoothing%3A%20antialiased%3B%0A%20%20%20%09-moz-osx-font-smoothing%3A%20grayscale%3B%0A%7D%0A.urbango-navigation.tparrows.tp-leftarrow%20.edgtf-nav-arrow%3Abefore%20%7B%0A%09content%3A%20%22%5C23%22%3B%0A%7D%0A.urbango-navigation.tparrows.tp-rightarrow%20.edgtf-nav-arrow%3Abefore%20%7B%0A%20%20%20%09%20content%3A%20%22%5C24%22%3B%0A%7D%0A");
 					var htmlDiv = document.getElementById('rs-plugin-settings-inline-css');
 					if(htmlDiv) {
 						htmlDiv.innerHTML = htmlDiv.innerHTML + htmlDivCss;
@@ -3499,8 +3441,8 @@ var revapi1,
 														class="edgtf-section-title-holder   edgtf-st-position-center">
 														<div class="edgtf-st-inner">
 															<span class="edgtf-st-subtitle"
-																style="margin-bottom: -7px"> discover </span>
-															<h2 class="edgtf-st-title">Most Popular Categories</h2>
+																style="margin-bottom: -7px"> 언투온의 </span>
+															<h2 class="edgtf-st-title">실시간 TRENDING 클래스</h2>
 														</div>
 													</div>
 												</div>
@@ -3725,8 +3667,8 @@ var revapi1,
 																class="edgtf-section-title-holder   edgtf-st-position-center">
 																<div class="edgtf-st-inner">
 																	<span class="edgtf-st-subtitle"
-																		style="margin-bottom: -7px"> find out </span>
-																	<h2 class="edgtf-st-title">How It Works</h2>
+																		style="margin-bottom: -7px"> 택터즈 커뮤니티를 위한</span>
+																	<h2 class="edgtf-st-title"> UNTOON 언투온  사용법~</h2>
 																</div>
 															</div>
 															<div class="vc_empty_space" style="height: 27px">
@@ -3744,11 +3686,8 @@ var revapi1,
 																					class="attachment-full size-full" alt="a"
 																					loading="lazy" />
 																			</div>
-																			<h4 class="edgtf-pi-title">Choose a Category</h4>
-																			<p class="edgtf-pi-text" style="margin-top: 16px">Select
-																				a category that best suits your interest. Use
-																				filters to customize your search and to find exactly
-																				what you want.</p>
+																			<h4 class="edgtf-pi-title">이렇게 시작해보세요!</h4>
+																			<p class="edgtf-pi-text" style="margin-top: 16px">듣고싶은 클래스, 배우고싶은 취미! 검색해서 클래스를 찾아보시거나 목록을 분야별로 둘러본후 상세보기로 들어가서 원한다면 ""수강신청" 누르면 결제페이지로 넘어갑니다!</p>
 																		</div>
 																	</div>
 																	<div class="edgtf-process-item edgtf-item-space ">
@@ -3760,11 +3699,9 @@ var revapi1,
 																					class="attachment-full size-full" alt="a"
 																					loading="lazy" />
 																			</div>
-																			<h4 class="edgtf-pi-title">Find What You Want</h4>
-																			<p class="edgtf-pi-text" style="margin-top: 16px">Once
-																				you’ve settled on a business, learn more about it,
-																				read reviews and find its location so that you can
-																				reach it in no time!</p>
+																			<h4 class="edgtf-pi-title">클래스 시청!</h4>
+																			<p class="edgtf-pi-text" style="margin-top: 16px">구매하신 아이디로 로그인한 상태로 클래스 상세보기 들어가세요. (간혹 SNS를 통한 소셜로그인 방법이 혼동하시는 분들이 있어요!~~) 
+																																							클래스별로 그리고 강사마다 수강 방법이 다를 수도 있어요 (예: Zoom, Youtube, AfreekaTv, Twitch 등).</p>
 																		</div>
 																	</div>
 																	<div class="edgtf-process-item edgtf-item-space ">
@@ -3778,11 +3715,8 @@ var revapi1,
 																					srcset="https://urbango.qodeinteractive.com/wp-content/uploads/2018/10/h1-process-img-3.png 288w, https://urbango.qodeinteractive.com/wp-content/uploads/2018/10/h1-process-img-3-150x150.png 150w, https://urbango.qodeinteractive.com/wp-content/uploads/2018/10/h1-process-img-3-100x100.png 100w"
 																					sizes="(max-width: 288px) 100vw, 288px" />
 																			</div>
-																			<h4 class="edgtf-pi-title">Go Out &amp; Explore</h4>
-																			<p class="edgtf-pi-text" style="margin-top: 16px">The
-																				only thing left to do now is to go out, explore and
-																				have fun! Meet new friends and experience the city
-																				like a true local!</p>
+																			<h4 class="edgtf-pi-title">택터즈 여러분들의 소중한 후기 & 문의!</h4>
+																			<p class="edgtf-pi-text" style="margin-top: 16px">모든 클래스 상세보기 페이지에 후기 & 문의 기능이 있습니다! 특정한 클래스에 관한 문의는 그 클래스 상세보기 페이지에서 "문의" 탭을 누르면 로그인 하신 상태에서 강사님께 문의 할 수가 있습니다. "후기"탭도 로그인한 상태에서 가능하며, 수강완료가 되면 후기를 달 수 있습니다.</p>
 																		</div>
 																	</div>
 																</div>
@@ -3794,7 +3728,7 @@ var revapi1,
 										</div>
 									</div>
 									<div
-										data-parallax-bg-image="https://urbango.qodeinteractive.com/wp-content/uploads/2018/08/h1-parallax-1.jpg"
+										data-parallax-bg-image="${pageContext.request.contextPath}/resources/images/home/h1-parallax-1.jpg"
 										data-parallax-bg-speed="1"
 										class="vc_row wpb_row vc_row-fluid edgtf-parallax-row-holder">
 										<div class="wpb_column vc_column_container vc_col-sm-12">
@@ -3850,8 +3784,8 @@ var revapi1,
 																			data-paddingright="[0,0,0,0]"
 																			data-paddingbottom="[0,0,0,0]"
 																			data-paddingleft="[0,0,0,0]"
-																			style="z-index: 5; min-width: 604px; max-width: 604px; white-space: normal; font-size: 60px; line-height: 70px; font-weight: 600; color: #ffffff; letter-spacing: 0px; font-family: Montserrat;">Visit
-																			the Best Cafes Restaurants & Bars</div>
+																			style="z-index: 5; min-width: 604px; max-width: 604px; white-space: normal; font-size: 90px; line-height: 70px; font-weight: 600; color: #000; letter-spacing: 0px; font-family: Montserrat;">
+																			택터즈님에게 추천하는 오픈예정 클래스!</div>
 
 																		<div class="tp-caption   tp-resizeme"
 																			id="slide-5-layer-3"
@@ -3912,7 +3846,7 @@ var revapi1,
 																			data-paddingbottom="[0,0,0,0]"
 																			data-paddingleft="[0,0,0,0]" style="z-index: 8;">
 																			<img
-																				src="https://urbango.qodeinteractive.com/wp-content/uploads/2018/10/h1-slide-2-img-2.png"
+																				src="${pageContext.request.contextPath}/resources/images/home/h1-slide-2-img-2.png"
 																				alt="t" data-ww="['354px','354px','285px','235px']"
 																				data-hh="['348px','348px','280','231']" width="354"
 																				height="348" data-no-retina>
@@ -3933,7 +3867,7 @@ var revapi1,
 																			data-paddingbottom="[0,0,0,0]"
 																			data-paddingleft="[0,0,0,0]" style="z-index: 9;">
 																			<img
-																				src="https://urbango.qodeinteractive.com/wp-content/uploads/2018/10/h1-slide-2-img-3.png"
+																				src="${pageContext.request.contextPath}/resources/images/home/h1-slide-2-img-3.png"
 																				alt="t" data-ww="['295px','295px','225px','175px']"
 																				data-hh="['206px','206px','157','122']" width="295"
 																				height="206" data-no-retina>
@@ -4029,8 +3963,7 @@ var revapi2,
 											</div>
 										</div>
 									</div>
-									<div
-										class="edgtf-row-grid-section-wrapper edgtf-content-aligment-left">
+									<%-- <div class="edgtf-row-grid-section-wrapper edgtf-content-aligment-left">
 										<div class="edgtf-row-grid-section">
 											<div class="vc_row wpb_row vc_row-fluid">
 												<div class="wpb_column vc_column_container vc_col-sm-12">
@@ -4059,7 +3992,7 @@ var revapi2,
 																data-pagination-type=no-pagination
 																data-hide-active-filter=yes data-max-num-pages=1
 																data-next-page=2>
-																<div class="edgtf-listing-list-items-part">
+																<!-- <div class="edgtf-listing-list-items-part"> -->
 																	<div class="edgtf-ll-inner edgtf-outer-space  clearfix">
 																		<article
 																			class="edgtf-ll-item edgtf-item-space post-650 listing-item type-listing-item status-publish has-post-thumbnail hentry listing-category-all-inclusive listing-category-coworking listing-tag-modern listing-tag-office listing-tag-startup listing-location-new-york listing-location-upper-west-side listing-amenity-air-conditioned listing-amenity-free-parking listing-amenity-free-wi-fi listing-amenity-kitchen listing-amenity-open-24-7 listing-amenity-personal-lockers listing-amenity-recreation-room listing-amenity-wheelchair-accessible"
@@ -4754,7 +4687,7 @@ var revapi2,
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> --%>
 									<div
 										class="edgtf-row-grid-section-wrapper edgtf-content-aligment-center">
 										<div class="edgtf-row-grid-section">
@@ -4778,7 +4711,7 @@ var revapi2,
 											</div>
 										</div>
 									</div>
-									<div class="vc_row wpb_row vc_row-fluid"
+<%-- 									<div class="vc_row wpb_row vc_row-fluid"
 										style="background-color: #f7f7f7">
 										<div class="wpb_column vc_column_container vc_col-sm-12">
 											<div class="vc_column-inner">
@@ -4997,7 +4930,7 @@ var revapi3,
 									</div>
 									<div
 										class="edgtf-row-grid-section-wrapper edgtf-parallax-row-holder edgtf-content-aligment-center"
-										data-parallax-bg-image=https://urbango.qodeinteractive.com/wp-content/uploads/2018/08/h1-parallax-2.jpg
+										data-parallax-bg-image="${pageContext.request.contextPath}/resources/images/home/h1-parallax-2.jpg"
 										data-parallax-bg-speed=1>
 										<div class="edgtf-row-grid-section">
 											<div
@@ -5411,13 +5344,14 @@ var revapi3,
 											</div>
 										</div>
 									</div>
-								</div>
+ --%>								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<footer class="edgtf-page-footer ">
+
+ 			<footer class="edgtf-page-footer ">
 				<div class="edgtf-footer-top-holder">
 					<div class="edgtf-footer-top-inner edgtf-grid">
 						<div
@@ -5427,21 +5361,19 @@ var revapi3,
 									class="widget edgtf-footer-column-1 widget_media_image">
 									<a href="https://urbango.qodeinteractive.com/"><img
 										width="111" height="43"
-										src="https://urbango.qodeinteractive.com/wp-content/uploads/2018/10/logo-footer-img.png"
+										src="${pageContext.request.contextPath}/resources/images/home/logo.png"
 										class="image wp-image-1839  attachment-full size-full" alt="a"
 										loading="lazy" style="max-width: 100%; height: auto;" /></a>
 								</div>
 								<div class="widget edgtf-custom-font-widget">
 									<p class="edgtf-custom-font-holder  edgtf-cf-3957  "
 										style="margin: 10px 50px 0 0" data-item-class="edgtf-cf-3957">
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-										do eiusmod temporeum dicpartem scripserit. doctus appetere.</p>
+										언택트를 넘어 소비자들의 간접적 경험을 심어줄 수 있는 미디어 체험을 추구하는 "On-tact" 온택트 플랫폼을 "Un to On 언투온"이 제공합니다.</p>
 								</div>
 							</div>
 							<div class="edgtf-column-content edgtf-grid-col-3">
 								<div class="widget edgtf-category-list-widget">
-									<h5 class="edgtf-widget-title" style="margin-bottom: 16px">Popular
-										Categories</h5>
+									<h5 class="edgtf-widget-title" style="margin-bottom: 16px"> 인기순 클래스 카테고리 </h5>
 									<div
 										class="edgtf-category-list-holder edgtf-grid-list edgtf-disable-bottom-space edgtf-one-columns edgtf-tiny-space">
 										<div class="edgtf-cl-inner edgtf-outer-space clearfix">
@@ -5514,23 +5446,6 @@ var revapi3,
 														href="https://urbango.qodeinteractive.com/listing-category/tours/"></a>
 												</div>
 											</article>
-											<article class="edgtf-cl-item edgtf-item-space">
-												<div class="edgtf-cl-item-inner">
-													<div class="edgtf-cl-image">
-														<img itemprop="image" width="800" height="600"
-															src="https://urbango.qodeinteractive.com/wp-content/plugins/urbango-listing/assets/img/featured_image.jpg"
-															alt="Featured Image" />
-													</div>
-													<div class="edgtf-cl-content">
-														<p itemprop="name" class="edgtf-cl-title entry-title">
-															<a itemprop="url"
-																href="https://urbango.qodeinteractive.com/listing-category/sightseeing/">Sightseeing</a>
-														</p>
-													</div>
-													<a itemprop="url" class="edgtf-cl-link"
-														href="https://urbango.qodeinteractive.com/listing-category/sightseeing/"></a>
-												</div>
-											</article>
 										</div>
 									</div>
 								</div>
@@ -5538,16 +5453,17 @@ var revapi3,
 							<div class="edgtf-column-content edgtf-grid-col-3">
 								<div id="text-4"
 									class="widget edgtf-footer-column-3 widget_text">
-									<h5 class="edgtf-widget-title">Newsletter</h5>
+									<h5 class="edgtf-widget-title">UNTOON 언투온</h5>
 									<div class="textwidget">
 										<p>
 											<a
-												href="https://www.google.com/maps/place/1879+Madison+Ave,+New+York,+NY+10035,+USA/@40.8032081,-73.9440031,17z/data=!3m1!4b1!4m13!1m7!3m6!1s0x89c24fa5d33f083b:0xc80b8f06e177fe62!2sNew+York,+NY,+USA!3b1!8m2!3d40.7127753!4d-74.0059728!3m4!1s0x89c2f60954835559:0xad0c841dffeb9b3c!8m2!3d40.8032081!4d-73.9418144"
-												target="_blank" rel="noopener noreferrer">1879 Madison
-												Ave New York, US</a><br /> <a
-												href="/cdn-cgi/l/email-protection#782d0a1a19163f173809171c1d11160c1d0a191b0c110e1d561b1715">
-												<span class="__cf_email__"
-												data-cfemail="194c6b7b78775e765968767d7c70776d7c6b787a6d706f7c377a7674">[email&#160;protected]</span>
+												href="https://www.google.com/maps/place/ICT%EC%9D%B8%EC%9E%AC%EA%B0%9C%EB%B0%9C%EC%9B%90/@37.5548407,126.9205661,15z/data=!4m5!3m4!1s0x0:0xa1bd0b6d813b1eda!8m2!3d37.5548407!4d126.9205661"
+												target="_blank" rel="noopener noreferrer">서울본점 서울시 마포구 양화로 127, 첨단빌딩 7층</a><br />
+												대표전화 : 02-739-7235 | 팩스 : 02-733-3460
+												<!--  <a
+												href="/cdn-cgi/l/email-protection#c194b3a3a0af86ae81b0aea5a4a8afb5a4b3a0a2b5a8b7a4efa2aeac"> -->
+											<!-- 	<span class="__cf_email__"
+												data-cfemail="5d082f3f3c331a321d2c323938343329382f3c3e29342b38733e3230">[email&#160;protected]</span> -->
 											</a>
 										</p>
 									</div>
@@ -5557,7 +5473,7 @@ var revapi3,
 										dir="ltr">
 										<div class="screen-reader-response" role="alert"
 											aria-live="polite"></div>
-										<form action="/#wpcf7-f5-o1" method="post"
+										<!-- <form action="/#wpcf7-f5-o1" method="post"
 											class="wpcf7-form init cf7_custom_style_2"
 											novalidate="novalidate">
 											<div style="display: none;">
@@ -5579,36 +5495,24 @@ var revapi3,
 											</div>
 											<div class="wpcf7-response-output" role="alert"
 												aria-hidden="true"></div>
-										</form>
+										</form> -->
 									</div>
 								</div>
 							</div>
 							<div class="edgtf-column-content edgtf-grid-col-3">
 								<div id="nav_menu-3"
 									class="widget edgtf-footer-column-4 widget_nav_menu">
-									<h5 class="edgtf-widget-title">Links</h5>
+									<h5 class="edgtf-widget-title">이용약관</h5>
 									<div class="menu-custom-links-i-container">
 										<ul id="menu-custom-links-i" class="menu">
 											<li id="menu-item-1198"
-												class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1198"><a
-												href="https://urbango.qodeinteractive.com/how-it-works/">How
-													It Works</a></li>
+												class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1198">
+												주식회사 UNTOON 언투온은 전자상거래 등에서의 소비자보호에 관한 법률에 따른 통신판매업과 통신판매중개업을 영위하고 있습니다. 주식회사 UNTOON 언투온은 통신판매중개자로서 중개하는 통신판매에 관하여서는 통신판매의 당사자가 아니므로 어떠한 책임도 부담하지 아니합니다.
+												</li>
 											<li id="menu-item-1200"
-												class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1200"><a
-												href="https://urbango.qodeinteractive.com/get-to-know-us/">Get
-													to know us</a></li>
-											<li id="menu-item-54"
-												class="menu-item menu-item-type-post_type menu-item-object-page menu-item-54"><a
-												href="https://urbango.qodeinteractive.com/pricing-package/">Pricing
-													Packages</a></li>
-											<li id="menu-item-55"
-												class="menu-item menu-item-type-post_type menu-item-object-page menu-item-55"><a
-												href="https://urbango.qodeinteractive.com/user-dashboard/">User
-													Dashboard</a></li>
-											<li id="menu-item-1199"
-												class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1199"><a
-												href="https://urbango.qodeinteractive.com/contact-us/">Contact
-													Us</a></li>
+												class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1200">
+												
+												</li>
 										</ul>
 									</div>
 								</div>
@@ -5624,274 +5528,30 @@ var revapi3,
 									class="widget edgtf-footer-bottom-column-1 widget_text">
 									<div class="textwidget">
 										<p>
-											Copyright @ <a href="https://qodeinteractive.com/"
-												target="_blank" rel="nofollow noopener noreferrer">Qode
-												Interactive 2018</a>
+											Copyright © <a href="https://qodeinteractive.com/"
+												target="_blank" rel="nofollow noopener noreferrer">UNTOON 언투온 2021</a>
 										</p>
 									</div>
-								</div>
-							</div>
-							<div class="edgtf-grid-col-6">
-								<div
-									class="widget edgtf-social-icons-group-widget text-align-left">
-									<a class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-										style="margin: 0 14px 0 0;"
-										href="https://www.facebook.com/QodeInteractive/"
-										target="_blank"> <span
-										class="edgtf-social-icon-widget fab fa-facebook-f"></span>
-									</a> <a
-										class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-										style="margin: 0 14px 0 0;"
-										href="https://www.instagram.com/qodeinteractive/"
-										target="_blank"> <span
-										class="edgtf-social-icon-widget fab fa-instagram"></span>
-									</a> <a
-										class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-										style="margin: 0 14px 0 0;"
-										href="https://www.tripadvisor.com/" target="_blank"> <span
-										class="edgtf-social-icon-widget fab fa-tripadvisor"></span>
-									</a> <a
-										class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-										style="margin: 0 14px 0 0;"
-										href="https://www.youtube.com/QodeInteractiveVideos"
-										target="_blank"> <span
-										class="edgtf-social-icon-widget fab fa-youtube"></span>
-									</a> <a
-										class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-										style="margin: 0 14px 0 0;" href="https://vimeo.com/"
-										target="_blank"> <span
-										class="edgtf-social-icon-widget fab fa-vimeo-v"></span>
-									</a> <a
-										class="edgtf-social-icon-widget-holder edgtf-icon-has-hover"
-										style="margin: 0 14px 0 0;"
-										href="https://www.pinterest.com/qodeinteractive/"
-										target="_blank"> <span
-										class="edgtf-social-icon-widget fab fa-pinterest-p"></span>
-									</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</footer>
-			<div class="edgtf-tooltip-holder edgtf-login">
-				<div class="edgtf-tooltip-inner  edgtf-top-right">
-					<span aria-hidden="true"
-						class="edgtf-icon-font-elegant icon_info_alt "></span>
-					<h6 class="edgtf-tooltip-title">Login or Register</h6>
-					<a class="edgtf-tooltip-close" href="#"><span
-						aria-hidden="true" class="edgtf-icon-font-elegant icon_close "></span></a>
-				</div>
-			</div>
-			<div class="edgtf-tooltip-holder edgtf-search">
-				<div class="edgtf-tooltip-inner  edgtf-bottom-left">
-					<span aria-hidden="true"
-						class="edgtf-icon-font-elegant icon_info_alt "></span>
-					<h6 class="edgtf-tooltip-title">Custom Listing Search</h6>
-					<a class="edgtf-tooltip-close" href="#"><span
-						aria-hidden="true" class="edgtf-icon-font-elegant icon_close "></span></a>
-				</div>
-			</div>
-			<div class="edgtf-tooltip-holder edgtf-category">
-				<div class="edgtf-tooltip-inner  edgtf-bottom-right">
-					<span aria-hidden="true"
-						class="edgtf-icon-font-elegant icon_info_alt "></span>
-					<h6 class="edgtf-tooltip-title">Featured Categories</h6>
-					<a class="edgtf-tooltip-close" href="#"><span
-						aria-hidden="true" class="edgtf-icon-font-elegant icon_close "></span></a>
-				</div>
-			</div>
-			<div class="edgtf-tooltip-holder edgtf-process">
-				<div class="edgtf-tooltip-inner  edgtf-bottom-right">
-					<span aria-hidden="true"
-						class="edgtf-icon-font-elegant icon_info_alt "></span>
-					<h6 class="edgtf-tooltip-title">Discover &amp; Connect</h6>
-					<a class="edgtf-tooltip-close" href="#"><span
-						aria-hidden="true" class="edgtf-icon-font-elegant icon_close "></span></a>
-				</div>
-			</div>
-			<div class="edgtf-tooltip-holder edgtf-list">
-				<div class="edgtf-tooltip-inner  edgtf-bottom-left">
-					<span aria-hidden="true"
-						class="edgtf-icon-font-elegant icon_info_alt "></span>
-					<h6 class="edgtf-tooltip-title">Listing Items</h6>
-					<a class="edgtf-tooltip-close" href="#"><span
-						aria-hidden="true" class="edgtf-icon-font-elegant icon_close "></span></a>
-				</div>
-			</div>
-			<div class="edgtf-tooltip-holder edgtf-location">
-				<div class="edgtf-tooltip-inner  edgtf-bottom-left">
-					<span aria-hidden="true"
-						class="edgtf-icon-font-elegant icon_info_alt "></span>
-					<h6 class="edgtf-tooltip-title">Featured Locations</h6>
-					<a class="edgtf-tooltip-close" href="#"><span
-						aria-hidden="true" class="edgtf-icon-font-elegant icon_close "></span></a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="rbt-toolbar" data-theme="UrbanGo" data-featured=""
-		data-button-position="60%" data-button-horizontal="right"
-		data-button-alt="no"></div>
-	<div class="edgtf-login-register-holder">
-		<div class="edgtf-login-register-content">
-			<div class="edgtf-login-content-inner">
-				<div class="edgtf-wp-section-holder edgtf-wp-login-holder">
-					<div class="edgtf-login-register-close">
-						<span aria-hidden="true"
-							class="edgtf-icon-font-elegant icon_close "></span>
-					</div>
-					<h3 class="edgtf-wp-section-title edgtf-wp-login-title">Login</h3>
-					<div class="edgtf-social-login-holder">
-						<form method="post" class="edgtf-login-form">
-							<fieldset>
-								<div>
-									<input type="text" name="user_login_name" id="user_login_name"
-										placeholder="User Name" value="" required pattern=".{3,}"
-										title="Three or more characters" />
-								</div>
-								<div>
-									<input type="password" name="user_login_password"
-										id="user_login_password" placeholder="Password" value=""
-										required />
-								</div>
-								<div class="edgtf-remember-holder clearfix">
-									<span class="edgtf-login-remember"> <input
-										name="rememberme" value="forever" id="rememberme"
-										type="checkbox" /> <label for="rememberme"
-										class="edgtf-checbox-label">Keep me sign in</label>
-									</span> <a href="#" class="edgtf-login-action-btn"
-										data-el="#edgtf-reset-pass-content"
-										data-title="Forgot Password?">Lost Your password?</a>
-								</div>
-								<div class="edgtf-wp-section-button edgtf-login-button-holder">
-									<button type="submit"
-										class="edgtf-btn edgtf-btn-medium edgtf-btn-solid">
-										<span class="edgtf-btn-text">Login</span>
-									</button>
-									<input type="hidden" id="edgtf-login-security"
-										name="edgtf-login-security" value="c38792b576" /><input
-										type="hidden" name="_wp_http_referer" value="/" />
-								</div>
-								<input type="hidden" name="redirect" id="redirect" value="">
-							</fieldset>
-						</form>
-						<p class="edgtf-wp-section-notice">
-							<span>Not a member?</span> <a class="edgtf-wp-register-button"
-								href="#">Register here</a>
-						</p>
-						<div class="edgtf-login-form-social-login">
-							<p class="edgtf-login-social-title">For faster login connect
-								with your Social Network</p>
-							<div class="edgtf-login-social-networks">
-								<form class="edgtf-facebook-login-holder">
-									<input type="hidden" id="edgtf_nonce_facebook_login_2089811443"
-										name="edgtf_nonce_facebook_login_2089811443"
-										value="7cc89bccf7" /><input type="hidden"
-										name="_wp_http_referer" value="/" />
-									<button type="submit"
-										style="color: #fff; background-color: #3b5998; border-color: #3b5998"
-										class="edgtf-btn edgtf-btn-medium edgtf-btn-solid edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color edgtf-btn-icon edgtf-facebook-login"
-										data-hover-color="#fff" data-hover-bg-color="#4363A5"
-										data-hover-border-color="#4363A5">
-										<i class="edgtf-icon-font-awesome fab fa-facebook-f "></i> <span
-											class="edgtf-btn-text"></span>
-									</button>
-								</form>
-								<form class="edgtf-google-login-holder">
-									<input type="hidden" id="edgtf_nonce_google_login_741134147"
-										name="edgtf_nonce_google_login_741134147" value="ea2c19a958" /><input
-										type="hidden" name="_wp_http_referer" value="/" />
-									<button type="submit"
-										style="color: #fff; background-color: #dd4b39; border-color: #dd4b39"
-										class="edgtf-btn edgtf-btn-medium edgtf-btn-solid edgtf-btn-custom-hover-bg edgtf-btn-custom-border-hover edgtf-btn-custom-hover-color edgtf-btn-icon edgtf-google-login"
-										data-hover-color="#fff" data-hover-bg-color="#e24f3c"
-										data-hover-border-color="#e24f3c">
-										<i class="edgtf-icon-font-awesome fab fa-google-plus-g "></i>
-										<span class="edgtf-btn-text"></span>
-									</button>
-								</form>
-							</div>
-						</div>
-						<div class="edgtf-membership-response-holder clearfix"></div>
-						<script data-cfasync="false"
-							src='${ pageContext.request.contextPath }/resources/js/home/email-decode.min.js'></script>
-							<script type="text/template" class="edgtf-membership-response-template">
-<%-- 					<div class="edgtf-membership-response <%= messageClass %> ">
-						<div class="edgtf-membership-response-message">
-							<p><%= message %></p>
-						</div>
-					</div> --%>
-				</script></div> </div>
-</div>
-<div class="edgtf-register-content-inner">
-<div class="edgtf-wp-section-holder edgtf-wp-register-holder">
-<div class="edgtf-login-register-close">
-<span aria-hidden="true" class="edgtf-icon-font-elegant icon_close "></span> </div>
-<h3 class="edgtf-wp-section-title edgtf-wp-register-title">Register</h3>
-<div class="edgtf-social-register-holder">
-<form method="post" class="edgtf-register-form">
-<fieldset>
-<div>
-<input type="text" name="user_register_name" id="user_register_name" placeholder="User Name" value="" required pattern=".{3,}" title="Three or more characters" />
-</div>
-<div>
-<input type="email" name="user_register_email" id="user_register_email" placeholder="Email" value="" required />
-</div>
-<div>
-<input type="password" name="user_register_password" id="user_register_password" placeholder="Password" value="" required />
-</div>
-<div>
-<input type="password" name="user_register_confirm_password" id="user_register_confirm_password" placeholder="Repeat Password" value="" required />
-</div>
-<input type="hidden" id="user_register_role" name="user_register_role" value="owner">
-<div class="edgtf-wp-section-button edgtf-register-button-holder">
-<button type="submit" class="edgtf-btn edgtf-btn-medium edgtf-btn-solid"> <span class="edgtf-btn-text">Register</span></button><input type="hidden" id="edgtf-register-security" name="edgtf-register-security" value="eda66d137b" /><input type="hidden" name="_wp_http_referer" value="/" /> </div>
-</fieldset>
-</form>
-<p class="edgtf-wp-section-notice">
-<span>Have an account?</span>
-<a class="edgtf-wp-login-button" href="#">Log in</a>
-</p>
-<div class="edgtf-membership-response-holder clearfix"></div><script type="text/template" class="edgtf-membership-response-template">
-<%-- 					<div class="edgtf-membership-response <%= messageClass %> ">
-						<div class="edgtf-membership-response-message">
-							<p><%= message %></p>
-						</div>
-					</div> --%>
-				</script></div> </div>
-</div>
-<div class="edgtf-forgot-pass-content-inner">
-<div class="edgtf-wp-section-holder edgtf-wp-forgot-pass-holder">
-<div class="edgtf-login-register-close">
-<span aria-hidden="true" class="edgtf-icon-font-elegant icon_close "></span> </div>
-<div class="edgtf-social-reset-password-holder">
-<form action="https://urbango.qodeinteractive.com/wp-login.php?action=lostpassword" method="post" id="edgtf-lost-password-form" class="edgtf-reset-pass-form">
-<div>
-<input type="text" name="user_reset_password_login" class="edgtf-input-field" id="user_reset_password_login" placeholder="Username or Email Address *" value="" size="20" required>
-</div>
-<div class="edgtf-reset-password-button-holder">
-<button type="submit" class="edgtf-btn edgtf-btn-medium edgtf-btn-solid"> <span class="edgtf-btn-text">GET NEW PASSWORD</span></button> </div>
-</form>
-<div class="edgtf-membership-response-holder clearfix"></div><script type="text/template" class="edgtf-membership-response-template">
-<%-- 					<div class="edgtf-membership-response <%= messageClass %> ">
-						<div class="edgtf-membership-response-message">
-							<p><%= message %></p>
-						</div>
-					</div> --%>
-				</script></div> </div>
-</div>
-</div>
-</div>
 
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5T772QJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
- <script type="text/javascript">
+ 		</div>
+	</div>
+			<noscript>
+				<iframe
+					src="https://www.googletagmanager.com/ns.html?id=GTM-5T772QJ"
+					height="0" width="0" style="display: none; visibility: hidden"></iframe>
+			</noscript>
+			<script type="text/javascript">
 		var c = document.body.className;
-		c = c.replace(/woocommerce-no-js/, '
-							woocommerce-js');
-		document.body.className=c;</script>
-						<script type="text/javascript">
+		c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+		document.body.className = c;
+	</script>
+			<script type="text/javascript">
 				function revslider_showDoubleJqueryError(sliderID) {
 					var errorMessage = "Revolution Slider Error: You have some jquery.js library include that comes after the revolution files js include.";
 					errorMessage += "<br> This includes make eliminates the revolution slider libraries, and make it not work.";
@@ -5901,163 +5561,166 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						jQuery(sliderID).show().html(errorMessage);
 				}
 			</script>
-						<script type='text/javascript' id='contact-form-7-js-extra'>
+			<script type='text/javascript' id='contact-form-7-js-extra'>
 /* <![CDATA[ */
 var wpcf7 = {"apiSettings":{"root":"https:\/\/urbango.qodeinteractive.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"cached":"1"};
 /* ]]> */
 </script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/scripts.js'
-							id='contact-form-7-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/rbt-modules.js'
-							id='rabbit_js-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/jquery.appear.js'
-							id='appear-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/tooltip.js'
-							id='urbango-tooltip-script-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/nouislider.min.js'
-							id='jquery-nouislider-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/underscore.min.js'
-							id='underscore-js'></script>
-						<script type='text/javascript' id='urbango-edge-modules-js-extra'>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/contact-form-7/includes/js/scripts.js'
+				id='contact-form-7-js'></script>
+			<script type='text/javascript'
+				src='https://export.qodethemes.com/_toolbar/assets/js/rbt-modules.js?ver=5.5.1'
+				id='rabbit_js-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/jquery.appear.js'
+				id='appear-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/tooltip/assets/js/tooltip.js'
+				id='urbango-tooltip-script-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/urbango-listing/assets/js/plugins/noUiSlider/nouislider.min.js'
+				id='jquery-nouislider-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-includes/js/underscore.min.js'
+				id='underscore-js'></script>
+			<script type='text/javascript' id='urbango-edge-modules-js-extra'>
 /* <![CDATA[ */
 var edgtfGlobalVars = {"vars":{"edgtfAddForAdminBar":0,"edgtfElementAppearAmount":-100,"edgtfAjaxUrl":"https:\/\/urbango.qodeinteractive.com\/wp-admin\/admin-ajax.php","sliderNavPrevArrow":"arrow_left","sliderNavNextArrow":"arrow_right","ppExpand":"Expand the image","ppNext":"Next","ppPrev":"Previous","ppClose":"Close","edgtfStickyHeaderHeight":70,"edgtfStickyHeaderTransparencyHeight":70,"edgtfTopBarHeight":47,"edgtfLogoAreaHeight":0,"edgtfMenuAreaHeight":137,"edgtfMobileHeaderHeight":50}};
 var edgtfPerPageVars = {"vars":{"edgtfMobileHeaderHeight":50,"edgtfStickyScrollAmount":1150,"edgtfHeaderTransparencyHeight":0,"edgtfHeaderVerticalWidth":0}};
 var edgtfMapsVars = {"global":{"mapStyle":[{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f3f3f3"}]},{"featureType":"landscape.natural.landcover","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"landscape.natural.landcover","elementType":"geometry.fill","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"visibility":"on"},{"color":"#d2f9bc"},{"saturation":"-19"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#c0e4f3"},{"visibility":"on"}]}],"scrollable":false,"draggable":true,"streetViewControl":true,"zoomControl":true,"mapTypeControl":true}};
 /* ]]> */
 </script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/modules.min.js'
-							id='urbango-edge-modules-js'></script>
-						<script type='text/javascript'
-							src='//maps.googleapis.com/maps/api/js?key=AIzaSyBZ25fXifK0PIPIEVrO_yS82ug2bonahy8&#038;libraries=geometry%2Cplaces&#038;ver=5.5.1'
-							id='urbango-edge-google-map-api-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/listing.min.js'
-							id='urbango-listing-script-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/core.min.js'
-							id='jquery-ui-core-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/widget.min.js'
-							id='jquery-ui-widget-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/tabs.min.js'
-							id='jquery-ui-tabs-js'></script>
-						<script type='text/javascript'
-							id='urbango-membership-script-js-extra'>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules.min.js'
+				id='urbango-edge-modules-js'></script>
+			<script type='text/javascript'
+				src='//maps.googleapis.com/maps/api/js?key=AIzaSyBZ25fXifK0PIPIEVrO_yS82ug2bonahy8&#038;libraries=geometry%2Cplaces&#038;ver=5.5.1'
+				id='urbango-edge-google-map-api-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/urbango-listing/assets/js/listing.min.js'
+				id='urbango-listing-script-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-includes/js/jquery/ui/core.min.js'
+				id='jquery-ui-core-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-includes/js/jquery/ui/widget.min.js'
+				id='jquery-ui-widget-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-includes/js/jquery/ui/tabs.min.js'
+				id='jquery-ui-tabs-js'></script>
+			<script type='text/javascript'
+				id='urbango-membership-script-js-extra'>
 /* <![CDATA[ */
 var edgtfSocialLoginVars = {"social":{"facebookAppId":"252428822124435","googleClientId":"181660587975-7l6hvoor0vf0o4h6h3abrunmq3bbkqqf.apps.googleusercontent.com"}};
 /* ]]> */
 </script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/membership.min.js'
-							id='urbango-membership-script-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/js.cookie.min.js'
-							id='js-cookie-js'></script>
-						<script type='text/javascript' id='woocommerce-js-extra'>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/urbango-membership/assets/js/membership.min.js'
+				id='urbango-membership-script-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js'
+				id='js-cookie-js'></script>
+			<script type='text/javascript' id='woocommerce-js-extra'>
 /* <![CDATA[ */
 var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
 /* ]]> */
 </script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/woocommerce.min.js'
-							id='woocommerce-js'></script>
-						<script type='text/javascript' id='wc-cart-fragments-js-extra'>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js'
+				id='woocommerce-js'></script>
+			<script type='text/javascript' id='wc-cart-fragments-js-extra'>
 /* <![CDATA[ */
 var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_6a5229ac9c8b4c3f806d9382cd1492a5","fragment_name":"wc_fragments_6a5229ac9c8b4c3f806d9382cd1492a5"};
 /* ]]> */
 </script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/cart-fragments.min.js'
-							id='wc-cart-fragments-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/accordion.min.js'
-							id='jquery-ui-accordion-js'></script>
-						<script type='text/javascript' id='mediaelement-core-js-before'>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js'
+				id='wc-cart-fragments-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-includes/js/jquery/ui/accordion.min.js'
+				id='jquery-ui-accordion-js'></script>
+			<script type='text/javascript' id='mediaelement-core-js-before'>
 var mejsL10n = {"language":"en","strings":{"mejs.download-file":"Download File","mejs.install-flash":"You are using a browser that does not have Flash player enabled or installed. Please turn on your Flash player plugin or download the latest version from https:\/\/get.adobe.com\/flashplayer\/","mejs.fullscreen":"Fullscreen","mejs.play":"Play","mejs.pause":"Pause","mejs.time-slider":"Time Slider","mejs.time-help-text":"Use Left\/Right Arrow keys to advance one second, Up\/Down arrows to advance ten seconds.","mejs.live-broadcast":"Live Broadcast","mejs.volume-help-text":"Use Up\/Down Arrow keys to increase or decrease volume.","mejs.unmute":"Unmute","mejs.mute":"Mute","mejs.volume-slider":"Volume Slider","mejs.video-player":"Video Player","mejs.audio-player":"Audio Player","mejs.captions-subtitles":"Captions\/Subtitles","mejs.captions-chapters":"Chapters","mejs.none":"None","mejs.afrikaans":"Afrikaans","mejs.albanian":"Albanian","mejs.arabic":"Arabic","mejs.belarusian":"Belarusian","mejs.bulgarian":"Bulgarian","mejs.catalan":"Catalan","mejs.chinese":"Chinese","mejs.chinese-simplified":"Chinese (Simplified)","mejs.chinese-traditional":"Chinese (Traditional)","mejs.croatian":"Croatian","mejs.czech":"Czech","mejs.danish":"Danish","mejs.dutch":"Dutch","mejs.english":"English","mejs.estonian":"Estonian","mejs.filipino":"Filipino","mejs.finnish":"Finnish","mejs.french":"French","mejs.galician":"Galician","mejs.german":"German","mejs.greek":"Greek","mejs.haitian-creole":"Haitian Creole","mejs.hebrew":"Hebrew","mejs.hindi":"Hindi","mejs.hungarian":"Hungarian","mejs.icelandic":"Icelandic","mejs.indonesian":"Indonesian","mejs.irish":"Irish","mejs.italian":"Italian","mejs.japanese":"Japanese","mejs.korean":"Korean","mejs.latvian":"Latvian","mejs.lithuanian":"Lithuanian","mejs.macedonian":"Macedonian","mejs.malay":"Malay","mejs.maltese":"Maltese","mejs.norwegian":"Norwegian","mejs.persian":"Persian","mejs.polish":"Polish","mejs.portuguese":"Portuguese","mejs.romanian":"Romanian","mejs.russian":"Russian","mejs.serbian":"Serbian","mejs.slovak":"Slovak","mejs.slovenian":"Slovenian","mejs.spanish":"Spanish","mejs.swahili":"Swahili","mejs.swedish":"Swedish","mejs.tagalog":"Tagalog","mejs.thai":"Thai","mejs.turkish":"Turkish","mejs.ukrainian":"Ukrainian","mejs.vietnamese":"Vietnamese","mejs.welsh":"Welsh","mejs.yiddish":"Yiddish"}};
 </script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/mediaelement-and-player.min.js'
-							id='mediaelement-core-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/mediaelement-migrate.min.js'
-							id='mediaelement-migrate-js'></script>
-						<script type='text/javascript' id='mediaelement-js-extra'>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-includes/js/mediaelement/mediaelement-and-player.min.js'
+				id='mediaelement-core-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-includes/js/mediaelement/mediaelement-migrate.min.js'
+				id='mediaelement-migrate-js'></script>
+			<script type='text/javascript' id='mediaelement-js-extra'>
 /* <![CDATA[ */
 var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/","classPrefix":"mejs-","stretching":"responsive"};
 /* ]]> */
 </script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/wp-mediaelement.min.js'
-							id='wp-mediaelement-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/modernizr.min.js'
-							id='modernizr-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/hoverIntent.min.js'
-							id='hoverIntent-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/jquery.plugin.js'
-							id='jquery-plugin-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/owl.carousel.min.js'
-							id='owl-carousel-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/jquery.waypoints.min.js'
-							id='waypoints-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/perfect-scrollbar.jquery.min.js'
-							id='perfect-scrollbar-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/ScrollToPlugin.min.js'
-							id='ScrollToPlugin-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/parallax.min.js'
-							id='parallax-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/jquery.waitforimages.js'
-							id='waitforimages-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/jquery.prettyPhoto.js'
-							id='prettyphoto-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/jquery.easing.1.3.js'
-							id='jquery-easing-1.3-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/isotope.pkgd.min.js'
-							id='isotope-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/packery-mode.pkgd.min.js'
-							id='packery-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/jquery.countdown.min.js'
-							id='countdown-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/counter.js'
-							id='counter-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/absoluteCounter.min.js'
-							id='absoluteCounter-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/typed.js'
-							id='typed-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/select2.full.min.js'
-							id='select2-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/jquery.geocomplete.min.js'
-							id='geocomplete-js'></script>
-						<script type="text/javascript"
-							src="https://static.zdassets.com/ekr/snippet.js?key=af3078fd-a5ae-40da-bee0-e589b98c8603&#038;ver=5.5.1"
-							id="ze-snippet"></script>
-						<script type="text/javascript">
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-includes/js/mediaelement/wp-mediaelement.min.js'
+				id='wp-mediaelement-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/modernizr.min.js'
+				id='modernizr-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-includes/js/hoverIntent.min.js'
+				id='hoverIntent-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/jquery.plugin.js'
+				id='jquery-plugin-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/owl.carousel.min.js'
+				id='owl-carousel-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/jquery.waypoints.min.js'
+				id='waypoints-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/fluidvids.min.js'
+				id='fluidvids-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/perfect-scrollbar.jquery.min.js'
+				id='perfect-scrollbar-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/ScrollToPlugin.min.js'
+				id='ScrollToPlugin-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/parallax.min.js'
+				id='parallax-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/jquery.waitforimages.js'
+				id='waitforimages-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/jquery.prettyPhoto.js'
+				id='prettyphoto-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/jquery.easing.1.3.js'
+				id='jquery-easing-1.3-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/js_composer/assets/lib/bower/isotope/dist/isotope.pkgd.min.js'
+				id='isotope-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/packery-mode.pkgd.min.js'
+				id='packery-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/urbango-core/shortcodes/countdown/assets/js/plugins/jquery.countdown.min.js'
+				id='countdown-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/urbango-core/shortcodes/counter/assets/js/plugins/counter.js'
+				id='counter-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/urbango-core/shortcodes/counter/assets/js/plugins/absoluteCounter.min.js'
+				id='absoluteCounter-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/urbango-core/shortcodes/custom-font/assets/js/plugins/typed.js'
+				id='typed-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/woocommerce/assets/js/select2/select2.full.min.js'
+				id='select2-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/themes/urbango/assets/js/modules/plugins/jquery.geocomplete.min.js'
+				id='geocomplete-js'></script>
+			<script type="text/javascript"
+				src="https://static.zdassets.com/ekr/snippet.js?key=af3078fd-a5ae-40da-bee0-e589b98c8603&#038;ver=5.5.1"
+				id="ze-snippet"></script>
+			<script type="text/javascript">
 						zE(function(){
 							$zopim(function(){
 								var isChatEnabled = sessionStorage.getItem("qodeChatEnabled"),
@@ -6075,11 +5738,11 @@ var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/","classPr
 							});
 						});
 						</script>
-						<script type='text/javascript'
-							src='https://urbango.qodeinteractive.com/wp-includes/js/wp-embed.min.js'
-							id='wp-embed-js'></script>
-						<script type='text/javascript'
-							src='${ pageContext.request.contextPath }/resources/js/home/js_composer_front.min.js'
-							id='wpb_composer_front_js-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-includes/js/wp-embed.min.js'
+				id='wp-embed-js'></script>
+			<script type='text/javascript'
+				src='https://urbango.qodeinteractive.com/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js'
+				id='wpb_composer_front_js-js'></script>
 </body>
 </html>

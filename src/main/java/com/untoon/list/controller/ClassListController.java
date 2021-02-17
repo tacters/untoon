@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ClassListController {
 
 	// 공지사항 메뉴로 이동
-	@RequestMapping("classList.do")
+	@RequestMapping("clssList.do")
 	public String ClassList() {
-		return "classlist/list";
+		return "clssList/list";
 	}
 
 }
