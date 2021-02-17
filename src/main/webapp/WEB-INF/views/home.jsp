@@ -19,6 +19,21 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,user-scalable=yes">
 
+<!-- ▼ 챗봇css -->
+
+<!-- <style type="text/css">
+.gOSsct{
+    content: "" !important;
+    display: block !important;
+    flex-basis: initial !important;
+    width: 34px !important;
+    height: 34px !important;
+    background-image: url("../resources/images/chat.png") !important;
+    background-size: 163px !important;
+    background-position: 0px 0px !important;
+
+</style> -->
+<!-- ▲ 챗봇 css -->
 <style type="text/css" data-type="vc_shortcodes-custom-css">
 .vc_custom_1533890452168 {
 	padding-top: 85px !important;
@@ -5728,7 +5743,7 @@ var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/","classPr
 			<script type="text/javascript"
 				src="https://static.zdassets.com/ekr/snippet.js?key=af3078fd-a5ae-40da-bee0-e589b98c8603&#038;ver=5.5.1"
 				id="ze-snippet"></script>
-			<script type="text/javascript">
+	<script type="text/javascript">
 						zE(function(){
 							$zopim(function(){
 								var isChatEnabled = sessionStorage.getItem("qodeChatEnabled"),
@@ -5745,12 +5760,33 @@ var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/","classPr
 								}
 							});
 						});
-						</script>
-			<script type='text/javascript'
-				src='https://urbango.qodeinteractive.com/wp-includes/js/wp-embed.min.js'
-				id='wp-embed-js'></script>
-			<script type='text/javascript'
-				src='https://urbango.qodeinteractive.com/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js'
-				id='wpb_composer_front_js-js'></script>
+	</script>
+	
+	<script type='text/javascript'
+		src='https://urbango.qodeinteractive.com/wp-includes/js/wp-embed.min.js'
+		id='wp-embed-js'></script>
+	<script type='text/javascript'
+		src='https://urbango.qodeinteractive.com/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js'
+		id='wpb_composer_front_js-js'></script>
+	
+	<!-- 챗봇 -->
+	<!-- <div size="300" class="Screenstyled__Screen-sc-3ge3qf-0 gNcrUK"></div>
+	<div class="Launcherstyled__TextLauncher-oef45p-1 lbMRR">
+		<div
+			class="Launcherstyled__TextLauncherContent-oef45p-2 owjgw textLauncherContent">채팅
+			문의하기</div>
+		<div
+			class="Launcherstyled__TextLauncherIcon-oef45p-3 gOSsct textLauncherIcon">
+			<div data-ch-testid="badge" hidden=""
+				class="Badgestyled__Badge-sc-1ztqq4-0 Launcherstyled__Badge-oef45p-5 bZpFRQ">0</div>
+		</div>
+		<div
+			class="gOSsct">
+			<div data-ch-testid="badge" hidden=""
+				class="Badgestyled__Badge-sc-1ztqq4-0 Launcherstyled__Badge-oef45p-5 bZpFRQ">0</div>
+		</div>
+	</div> -->
+	
+	
 </body>
 </html>
