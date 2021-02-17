@@ -10,7 +10,7 @@ public class Member {
 		private String name;
 		private String email_cert;
 		private String nickname;
-		private int user_lv;
+		private String user_lv;
 		private String tchr_upload;
 		private String tchr_cert;
 		private String loginok;
@@ -26,7 +26,7 @@ public class Member {
 		public Member() {}
 
 
-		public Member(String id, String pwd, String email, String name, String email_cert, String nickname, int user_lv,
+		public Member(String id, String pwd, String email, String name, String email_cert, String nickname, String user_lv,
 				String tchr_upload, String tchr_cert, String loginok, String birthday, String gender, String phone,
 				Date enroll_date, Date update_date, String m_status, int bank_acct) {
 			super();
@@ -110,12 +110,12 @@ public class Member {
 		}
 
 
-		public int getUser_lv() {
+		public String getUser_lv() {
 			return user_lv;
 		}
 
 
-		public void setUser_lv(int user_lv) {
+		public void setUser_lv(String user_lv) {
 			this.user_lv = user_lv;
 		}
 

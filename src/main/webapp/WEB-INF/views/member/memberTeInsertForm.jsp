@@ -44,7 +44,7 @@ span.error {
 				</tr>
 				<tr>
 					<td>PASSWORD</td>
-					<td><input type="password" name="pwd" required></td>
+					<td><input type="password" id="pwd2" required></td>
 				</tr>
 				<tr>
 					<td>NAME</td>
