@@ -299,6 +299,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<c:url var="clssList" value="/clssList.do"/>
 									<a href='${ clssList }' title="clssList"> CLASS LIST TEST</a>
 							</div>
+							<div class="widget edgtf-login-register-widget">
+									<c:url var="myinfo" value="/myinfo.do"/>
+									<a href='${ myinfo }' title="myinfo"> MY PAGE 일반회원 로그인 TEST</a>
+							</div>
+							<div class="widget edgtf-login-register-widget">
+									<c:url var="tinfo" value="/tinfo.do"/>
+									<a href='${ tinfo }' title="tinfo"> MY PAGE 강사 로그인 TEST</a>
+							</div>
 						</div>
 					</div>
 				</div>
