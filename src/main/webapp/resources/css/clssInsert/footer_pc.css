@@ -1,0 +1,30 @@
+/*
+ * File: footer.css
+ * Author: 짠비
+*/
+footer{padding: 40px 0 135px;border-top: 1px solid #ccc;}
+footer .container{width: 1040px;}
+.f_top{margin-bottom: 5px;}
+.f_top > ul{display: flex;}
+.f_nav .depth1 .tit{padding: 0 110px 20px 0;font-weight: 500;font-size: 16px;letter-spacing: -0.4px;}
+.f_nav .taling_biz .tit{padding-right: 120px;}
+.f_nav .depth2 li{margin-bottom: 10px;line-height: 20px;color: #666;letter-spacing: -0.35px;}
+.f_nav .depth2 li:last-child{margin-bottom: 0;}
+.f_nav .depth2 .cs{margin-bottom: 15px;padding-left: 27px;color: #ff0041;background: url(https://front-img.taling.me/Content/app3/images/icon_cs.png) no-repeat left center/20px;cursor: pointer;}
+.f_nav .taling_cs p{margin-bottom: 5px;color: #111;}
+.f_nav .depth2 li p{line-height: 19px;letter-spacing: -0.35px;}
+.f_nav .depth2 b{text-decoration: underline;}
+
+.f_bottom::after{content: '';display: block;clear: both;}
+.f_bottom .f_info{float: left;}
+.f_bottom .f_info p{margin-bottom: 5px;font-size: 12px;line-height: 18px;color: #999;letter-spacing: -0.3px;}
+.f_bottom .f_info p:nth-child(2){margin-bottom: 10px;}
+.f_bottom .f_info p:last-child{margin-bottom: 0;}
+.f_bottom .f_sns{float: right;}
+.f_bottom .f_sns{width: 350px;margin-top: 32px;font-size: 0;}
+.f_bottom .f_sns li{display: inline-block;width: 35px;height: 35px;margin-left: 10px;cursor: pointer;}
+.f_bottom .f_sns li:first-child{margin-left: 0;}
+
+.btn_top_box{position: fixed;right: 0;bottom: 97px;z-index: 5;width: 100%;height: 0;}
+.btn_top_box .container{height: 68px;text-align: right;}
+.btn_top{display: inline-block;position: relative;right: -88px;width: 68px;height: 68px;background: url(//front-img.taling.me/Content/app3/images/btn/btn_top.png) no-repeat left center/68px;cursor: pointer;}

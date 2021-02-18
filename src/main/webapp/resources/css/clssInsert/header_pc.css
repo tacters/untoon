@@ -1,0 +1,97 @@
+/*
+ * File: header_pc.css
+ * Author: 짠비
+*/
+
+/* clearfix */
+#header .container::after,.hd_sch_box{content: '';display: block;clear: both;}
+
+#header{z-index: 999;width: 100%;}
+#header .hd_wrap{position:relative;padding: 28px 0 41px;}
+.hd_sub{border-bottom: 1px solid #eee;}
+.logo{position: absolute;top: 30px;width: 124px;transition: all 300ms ease;animation: spring 900ms ease forwards;will-change: transform;animation-delay: 1s;}
+.logo img{width: 94px;height: 57px;}
+
+.hd_left{float: left;margin-left: 124px;}
+.hd_left_cont{display: flex;align-items: center;height: 36px;}
+.home{font-size: 0;}
+.home li{display: inline-block;margin-left: 10px;padding: 0 8px;font-size: 14px;font-weight: bold;line-height: 19px;}
+.home li:first-child{margin-left: 0;}
+.home li:hover a,.home li a:visited{color: #111;}
+.home li a{display: flex;align-items: center;color: #111;}
+.home li span{padding-left: 1px;font-size: 13.5px;color: #111;}
+.home li::after{content: '';display: block;border-bottom: 2px solid transparent;}
+.home .act::after{background-color: #111;}
+
+.hd_sch_box{width: 225px;height: 26px;margin-left: 20px;margin-top: -5px;}
+.hd_sch_box::after{content: '';display: block;position: relative;width: 100%;height: 1px;background: #111;margin-top: -1px;}
+.hd_sch_box .inp{float: left;display: block;width: calc(100% - 30px);height: 26px;border: none;background-color: transparent;}
+.hd_sch_box .sch_btn{float: right;width: 30px;height: 26px;background:url(https://front-img.taling.me/Content/app3/images/icon_search.png) no-repeat center/12px;}
+
+.hd_right{float: right;}
+.gnb{display: flex;align-items: center;height: 36px;}
+.gnb>li{margin-left: 7px;padding: 0 8px;height: 21px;cursor: pointer;}
+.gnb>li:first-child{margin-left: 0;}
+.gnb>li:hover>a,.gnb>li:hover>p{font-weight: bold;}
+.gnb>li a,.gnb>li p{display: inline-block;font-size: 13px;line-height: 21px;color: #111;}
+
+.gnb .depth2{position: relative;padding-right: 5px;}
+.gnb .depth2 p{padding-right: 11px;background-image: url(https://front-img.taling.me/Content/app3/images/btn/icon_arrow_down_bold.png);background-repeat: no-repeat;background-position: right 57%;background-size: 7px 5px;cursor: pointer;}
+.gnb .depth2.act p{background-image: url(https://front-img.taling.me/Content/app3/images/btn/icon_arrow_up_bold.png);}
+.gnb .depth2 .gnb_list{display: none;position: absolute;right: 5px;z-index: 60;margin-top: 5px;}
+.gnb .depth2.act .gnb_list{display: block;}
+.gnb .my_page{height: 36px;padding-right: 0;}
+.gnb .my_page .gnb_list{right: 0;margin-top: 7px;}
+.gnb .profile_img{display: block;overflow: hidden;width: 36px;height: 36px;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;background-position: center;background-size: cover;}
+.has_gnb_other{padding: 16px 0;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.04);-moz-box-shadow: 0 2px 4px 0 rgba(0,0,0,0.04);box-shadow: 0 2px 4px 0 rgba(0,0,0,0.04);background-color: #fff;}
+.has_gnb_other li{color: #333;white-space: nowrap;}
+.has_gnb_other li a{display: block;padding: 0 20px;line-height: 34px;}
+.has_gnb_other li:hover{font-weight: bold;}
+.has_gnb_other li.gnb_line::after{content:'';display: block;width: calc(100% - 40px);height: 1px;margin: 5px 20px;background-color: #ededed;}
+
+.gnb .notify_ico > a::before,.gnb .notify_ico > p::before{content:"";display: inline-block;position: relative;left: -1px;bottom: 10px;width: 4px;height: 4px;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;background-color: #ff0041;}
+
+/* header white */
+.hd_white{position: absolute;}
+.hd_white .home li a, .hd_white .home li span, .hd_white .gnb>li>a, .hd_white .gnb>li>p, .hd_white .has_gnb_other li, .hd_white .hd_sch_box .inp {color: #fff;}
+.hd_white .home .act::after, .hd_white .hd_sch_box::after{background-color: #fff;}
+.hd_white .hd_sch_box .sch_btn{background-image: url(https://front-img.taling.me/Content/app3/images/icon_search_white.png);}
+.hd_white .gnb .depth2 p{background-image: url(https://front-img.taling.me/Content/app3/images/btn/icon_arrow_down_white.png);}
+.hd_white .gnb .depth2.act p{background-image: url(https://front-img.taling.me/Content/app3/images/btn/icon_arrow_up_white.png);}
+
+/* 로고 효과 */
+@keyframes spring {
+	0% { transform: scale3d(0.45,0.45,1); }
+	20% { transform: scale3d(1.1,1.1,1); }
+	40% { transform: scale3d(0.98,0.98,1); }
+	60% { transform: scale3d(1.05,1.05,1); }
+	80% { transform: scale3d(1.01,1.01,1); }
+	100% { transform: scale3d(1,1,1); }
+}
+
+/* 띠배너 */
+.top_bnr{position: relative;width: 100%;background: #fff;}
+.top_bnr .line_color{position: absolute;left: 0;bottom: 0;width: 100%;height: 35px;}
+.top_bnr .container{position: relative;}
+.top_bnr .event_page{display: flex;align-items: flex-end;height: 55px;padding-top: 20px;}
+.top_bnr .bnr_title{flex: none;width: 49px;margin: 5px 257px 6px 3px;}
+.top_bnr .bnr_img{position: absolute;left: 127px;bottom: 0;width: 104px;}
+.top_bnr .bnr_text{flex: 1;margin-right: 121px;font-weight: bold;font-size: 16px;line-height: 35px;}
+.top_bnr .bnr_close{position: absolute;right: 8px;bottom: 0;width: 113px;height: 35px;line-height: 35px;text-align: left;font-size: 12px;color: #fff;background: url(https://front-img.taling.me/Content/app3/images/b2b_banner/bnr_close@2x.png) no-repeat right center/8px;}
+
+/* b2b 페이지용 띠배너 */
+.b2b_bnr .event_page{align-items: center;padding-top: 0;}
+.b2b_bnr .bnr_title{margin: 0 24.711% 0 0;}
+.b2b_bnr .bnr_img{left: 12.211%;}
+.b2b_bnr .bnr_text{line-height: 20px;}
+.b2b_bnr .bnr_close{bottom: 10px;color: #ccc;background-image: url(https://front-img.taling.me/Content/app3/images/b2b_banner/bnr_close_gray.png);}
+@media screen and (max-width: 1024px) {
+	.b2b_bnr .container{width: 100%;}
+}
+
+/* 약관 팝업 */
+.notice_cont .top_tit {font-weight: 500;}
+.notice_cont .btn_link {display: inline-block;margin-bottom: 20px;}
+.notice_cont .inp_chkbox {color: #333;letter-spacing: 0;}
+.notice_cont .inp_chkbox::before {content: '';display: inline-block;width: 16px;height: 16px;margin: 0 5px 3px 0;vertical-align: middle;background: url(https://front-img.taling.me/Content/app3/images/btn/ic_checkbox.png) no-repeat center/16px;}
+.notice_cont .inp_label:checked + label::before {background-image: url(https://front-img.taling.me/Content/app3/images/btn/ic_checkbox_on.png);}
