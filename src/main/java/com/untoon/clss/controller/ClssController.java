@@ -30,4 +30,10 @@ public class ClssController {
 		}
 	}
 	
+	// 공지사항 메뉴로 이동
+	@RequestMapping("myInfo.do")
+	public String ClassList() {
+		return "member/myPage";
+	}
+	
 }
