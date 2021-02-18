@@ -15,7 +15,8 @@ import com.untoon.member.model.vo.Member;
 import com.untoon.pay.model.service.PayService;
 import com.untoon.pay.model.vo.Pay;
 
-@Controller
+@Controller   
+
 public class PayController {
 	
 	@Autowired
