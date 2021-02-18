@@ -1,0 +1,95 @@
+/*div{border:1px solid black;}*/
+.head_cont{color:#fff;text-align:center;background-size:cover;background-position:center;background-image:url('../../images/insertTeacher.png')}
+.head_cont .inbox{padding:395px 0 109px 0;}
+.head_cont .inbox h1{font-size:46px;font-weight:500;letter-spacing:-2.3px;margin:30px 0 40px 0;}
+.head_cont .inbox p{font-size:16px;letter-spacing:-0.4px;line-height:1.5;}
+.head_cont .inbox .button{background:#ff005a;color:#fff;width:250px;box-sizing:border-box;padding:20px;border-radius:4px;box-shadow: 7.1px 7.1px 10px 0 rgba(0, 0, 0, 0.15);margin:67px auto 0 auto;font-size:18px;font-weight:500;line-height:1.33;letter-spacing:-0.5px;}
+.head_cont .inbox .button:hover{cursor:pointer;background:#c80046;}
+.how_box{padding-top:100px;background:#fff;text-align:center;padding-bottom:430px;}
+.how_box .title{position:absolute;left:0;right:0;color:#222;font-size:30px;font-weight:500;letter-spacing:-0.8px;line-height:0.8;z-index:10}
+.how_box .title_bar{margin:-5px auto 0 auto;background:#ff005a;width:299px;height:15px;opacity:0.2;margin-left:10px;display:inline-block;margin-top:19px;}
+.how_box .flows{width:900px;margin:0 auto;display:flex;margin-top:110px;}
+.how_box .flows .flow{width:255px;}
+.how_box .flows .bar{width:80px;padding-top:157px;}
+.how_box .flows .flow .top1{height:150px;}
+.how_box .flows .flow .step{color:rgba(153, 153, 153, 0.99);font-size:16px;font-weight:bold;line-height:1.5;letter-spacing:-0.4px;margin-top:25px;padding:10px 0;}
+.how_box .flows .flow .top2{color:#333;font-size:20px;font-weight:500;line-height:1.2;letter-spacing:-0.5px;}
+.how_box .flows .flow .top3{margin-top:20px;font-size:16px;color:#666;letter-spacing:-0.4px;line-height:1.5}
+.how_box2{padding:520px 0 150px 0;background-image:url('https://front-img.taling.me/Content/Images/cont/manual_bg01.png')}
+.how_box2 .title{color:#fff}
+.how_box2 .title_bar{background:#000}
+.how_box2 .vdo{width:1100px;position:absolute;background:#f1f1f1;padding:50px;border-radius: 10px; box-shadow: 0px 10px 0 0 rgba(0, 0, 0, 0.15);height:700px;left:0;right:0;margin:0 auto;margin-top:-870px;box-sizing:border-box;
+}
+.how_box2 .slides{width:1480px;margin:20px auto 0 auto;}
+.how_box2 .slides .carousel-control-next{right:-30px}
+.how_box2 .slides .carousel-control-prev{left:-20px;}
+.how_box2 .slides .carousel-item{height:200px;padding:40px 0 0 40px;}
+.how_box2 .slides .carousel-item .left{float:left;width:20%;box-sizing:border-box;}
+.how_box2 .slides .carousel-item .left .pf{width:200px;height:200px;border-radius:50%;background-size:cover;background-position:center;}
+.how_box2 .slides .carousel-item .left .bgpf{position:absolute;z-index:-10;margin-left:-126px;margin-top:-30px;}
+.how_box2 .slides .carousel-item .right{float:left;width:80%;box-sizing:border-box;}
+.how_box2 .slides .carousel-inner{margin:0 auto;width:80%}
+.how_box2 .slides .carousel-item .left .name{color:#fff;font-size:20px;line-height:1.5;letter-spacing:-0.4px;padding-top:24px}
+.how_box2 .slides .carousel-item .left .name span{font-size:16px;}
+.how_box2 .slides .carousel-item .right .triangle-border{padding:30px 30px 30px 50px;width:850px;height:275px;text-align:left;}
+.how_box2 .slides .carousel-item .right .triangle-border span{font-size:35px;color:#333366;font-weight:500;line-height:1.25;letter-spacing:-2px;}
+.how_box2 .slides .carousel-item .right .triangle-border font{color:rgba(102, 102, 102, 0.8);font-size:16px;margin-top:33px;line-height:1.5}
+.how_box2 .slides  .carousel-control-prev-icon{height:50px;background-image:url('https://front-img.taling.me/Content/Images/cont/btn_tutor_prev.png');}
+.how_box2 .slides  .carousel-control-next-icon{height:50px;background-image:url('https://front-img.taling.me/Content/Images/cont/btn_tutor_next.png');}
+/*.how_box2 .slides .carousel-indicators{bottom:-105px;}*/
+
+.triangle-border{position: relative;margin: 1em 0 3em;border: 5px solid #fff;color: #333;background: #fff;border-radius: 10px;}
+.triangle-border.left{margin-left: 30px;}
+.triangle-border::before{content:"";position: absolute;border-style: solid;display: block;width: 0;}
+.triangle-border.left::before {top: 70px;bottom: auto;left: -30px;border-width: 15px 30px 15px 0;border-color: transparent #fff;}
+.triangle-border::after {content:"";position: absolute;border-style: solid;display: block;width: 0;}
+.triangle-border.left::after {top: 76px;bottom: auto;left: -21px;border-width: 9px 21px 9px 0;border-color: transparent #fff;}
+
+.how_box2 .slides .carousel-indicators li{width:12px;height:12px;border-radius:50%;border:1px solid #fff;background:none;}
+.how_box2 .slides .carousel-indicators li.active{background:#fff}
+.how_box3{padding-bottom:100px}
+.how_box3 .qnas{text-align:left;margin:0 auto; margin-top:100px;border-top:1px solid #888;width:1100px;}
+.how_box3 .qnas .qna{overflow:hidden;}
+.how_box3 .qnas .qna .head{padding:30px 60px;color:#222;font-size:20px;font-weight:500;letter-spacing:-0.5px;line-height:1.2;border-bottom:1px solid #f1f1f1;}
+.how_box3 .qnas .qna .head img{display:inline;float:right;cursor:pointer;}
+.how_box3 .qnas .qna .text{padding:30px 60px;background:#f1f1f1;font-size:16px;line-height:1.5;letter-spacing:-0.4px;color:#333;}
+.how_box3 .qnas .qna .text b, .how_box3 .qnas .qna .head b{position:absolute;margin-left:-30px;font-size:22px;color:#ff005a}
+.how_box3 .qnas .qna .text span{color:#ff005a}
+.fixone{width:300px;position:fixed;bottom:0;right:20px;}
+.fixone:hover{cursor:pointer;opacity:0.8}
+/*모바일 서비스 소개*/
+.mhead{text-align:center;background-image:url('https://front-img.taling.me/Content/Images/cont/img_m_introduce_top.png');background-size:cover;background-position:center;color:#fff;padding:40px 0;}
+.mhead .regib{background:#ff005a;padding:12px 39px;font-weight:300;border-radius:3px;box-shadow: 7.1px 7.1px 10px 0 rgba(0, 0, 0, 0.25);border: solid 2px #ff035c;display:inline-block;font-size:17px;margin-top:20px;color:#fff}
+.mhead h1{letter-spacing:-2.8px;font-weight:500;line-height:1.3;font-size:30px;}
+.mhow_box{padding:60px 0 0 0;}
+.mhow_box .flows{display:initial;}
+.mhow_box .flows .flow{margin:20px auto;padding-bottom:30px;border-bottom:1px solid #eee}
+.mhow_box .flows .flow .top1{margin-top:20px;}
+.mhow_box .title{font-size:22px;}
+.mhow_box .title_bar{width:217px;height:10px;margin-top:16px;}
+.mhow_box2{padding:40px;background-image:url('https://front-img.taling.me/Content/Images/cont/m_manual_bg01.png');background-size:cover;background-position:center;font-size:22px;}
+
+.mhow_box2 .slides{width:80%}
+
+.mhow_box2 .scrollerBox li{padding:10px;box-sizing:border-box}
+.mhow_box2 .slides .carousel-indicators{bottom:0}
+.mhow_box2 .slides .carousel-item .right .triangle-border{width:20%;}
+.mhow_box2 .slides .carousel-item .left{float:initial;}
+.mhow_box2 .scrollerBox{margin-top:30px;}
+.mhow_box2 .scrollerBox .pf{width:120px;height:120px;background:yellow;border-radius:50%;margin:0 auto;background-size:cover;background-position:center;}
+.mhow_box2 .scrollerBox .name{color:rgba(255, 255, 255, 0.8);font-size:14px;line-height:1.4;margin-top:10px;}
+.mhow_box2 .scrollerBox .triangle-border{text-align:left;line-height:0.7;padding:25px;height:275px;box-sizing:border-box;box-shadow:7.1px 7.1px 10px 0 rgba(0, 0, 0, 0.25);}
+.mhow_box2 .scrollerBox .triangle-border span{color:#333366;font-size:20px;font-weight:500;line-height:1.3}
+.mhow_box2 .scrollerBox .triangle-border font{color:rgba(102, 102, 102, 0.8);font-size:13px;line-height:1.2}
+.mhow_box2 .scrollerBox .triangle-border.top:after{right:146px;}
+.mhow_box2 .scrollerBox .triangle-border.top:before{right:140px;
+    border-color: #fff transparent;}
+.mhow_box.how_box3 .qnas{margin-top:50px;width:100%}
+.mhow_box.how_box3 .qnas .qna .head{font-size:16px;padding:20px 60px;font-weight:bold;padding-right:15px;}
+.mhow_box.how_box3 .qnas .qna .head b{font-size:18px;font-weight:500;margin-top:-2px;}
+.mhow_box.how_box3 .qnas .qna .text b{font-size:18px;font-weight:500;margin-top:-2px;}
+.mhow_box.how_box3 .qnas .qna .text{padding:25px;padding-left:60px;color:#9d9c9c
+;font-size:14px;}
+body{font-family: 'Noto Sans KR';}
+.slides .carousel{height:385px;overflow:hidden;}
+body, div, table, ul, li, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, p{font-family: 'Noto Sans KR' !important;}
