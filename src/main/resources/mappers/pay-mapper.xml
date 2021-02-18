@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="payMapper">
+
+	<resultMap id="payResultSet" type="Pay">
+		<id property="payno" column="PAYNO"/>
+		<result property="pid" column="PID"/>
+		<result property="cid" column="CID"/>
+		<result property="paydate" column="PAYDATE"/>
+		<result property="method" column="METHOD"/>
+		<result property="pstatus" column="PSTATUS"/>
+	</resultMap>
+	
+	<select id="payList" resultMap="payResultSet">
+		select * from pay
+		order by payno asc
+	</select>
+	
+	<select id="detailPay" parameterType="_int" resultMap="payResultSet">
+		select * from pay
+		where payno = #{payno}
+	</select>
+	
+	<select id="selectMyPay" parameterType="string" resultMap="payResultSet">
+		select * from pay 
+		where pid = #{pid}
+	</select>
+	
+	<select id="MyPayDetail" parameterType="_int" resultMap="payResultSet">
+		select * from pay 
+		where payno = #{payno}
+	</select>
+	
+	<insert id="insertPay" parameterType="Pay">
+		insert into pay
+		values (seq_payno.nextval, #{pid}, #{cid}, default, #{method}, default )
+	</insert>
+	
+	<update id="updatePay" parameterType="Pay">
+		update pay
+		set pstatus = #{pstatus}
+		where payno = #{payno}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
