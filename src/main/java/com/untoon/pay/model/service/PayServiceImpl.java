@@ -15,38 +15,38 @@ public class PayServiceImpl implements PayService{
 	
 	@Override
 	public ArrayList<Pay> payList() {
-		
-		return null;
+		return payDao.payList();
 	}
 
 	@Override
 	public Pay detailPay(int payno) {
 		// TODO Auto-generated method stub
-		return null;
+		return payDao.detailPay(payno);
 	}
+	
 
 	@Override
 	public ArrayList<Pay> selectMyPay() {
 		// TODO Auto-generated method stub
-		return null;
+		return payDao.selectMyPay();
 	}
 
 	@Override
 	public Pay detailMyPay(int payno) {
 		// TODO Auto-generated method stub
-		return null;
+		return payDao.detailMyPay(payno);
 	}
 
 	@Override
 	public int insertPay(Pay pay) {
 		// TODO Auto-generated method stub
-		return 0;
+		return payDao.insertPay(pay);
 	}
 
 	@Override
 	public int updatePay(Pay pay) {
 		// TODO Auto-generated method stub
-		return 0;
+		return payDao.updatePay(pay);
 	}
 	
 	
