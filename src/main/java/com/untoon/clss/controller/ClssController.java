@@ -17,9 +17,9 @@ public class ClssController {
 	
 	// 강사 클래스 목록조회
 	@RequestMapping("tclss.do")
-	public String tClssList(Model model) {
+	public String tClssListMethod(Model model) {
 		
-		ArrayList<Clss> list = cService.selectAll();
+		ArrayList<Clss> list = cService.tClssListMethod();
 		
 		if(list.size() > 0) {
 			model.addAttribute("list",list);

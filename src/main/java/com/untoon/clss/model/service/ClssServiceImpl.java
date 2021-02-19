@@ -14,7 +14,7 @@ public class ClssServiceImpl implements ClssService{
 	private ClssDao cDao;
 
 	@Override
-	public ArrayList<Clss> selectAll() {	// 강사 리스트 조회용
+	public ArrayList<Clss> tClssListMethod() {	// 강사 리스트 조회용
 		return cDao.selectList();
 	}
 
