@@ -27,9 +27,9 @@
 	</resultMap>
 	
 	<select id="selectAll" resultMap="clssResultSet">
-		select * from clss
-		<!-- where tchr_id = #{ tchr_id } -->
-		order by cid desc
+		select * from cm
+		where tchr_id = #{ tchr_id }
+		
 	</select>
 	
 	<select id="selectClss" parameterType="_int" resultMap="clssResultSet">

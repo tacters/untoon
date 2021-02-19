@@ -74,10 +74,10 @@ public class MemberController {
     }
     
 	//강사 마이페이지(나중에 지워야함)
-	@RequestMapping("teacherInfo.do")
-	public String teacherInfoView() {
-		return "teacher/teacherPage";
-	}
+//	@RequestMapping("tInfo.do")
+//	public String teacherInfoView() {
+//		return "teacher/teacherPage";
+//	}
 	
 		
 	//로그인 페이지로 이동

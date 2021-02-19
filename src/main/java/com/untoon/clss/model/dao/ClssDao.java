@@ -16,7 +16,7 @@ public class ClssDao {
 	
 	public ClssDao() {}
 	
-	public ArrayList<Clss> selectList() {
+	public ArrayList<Clss> tClssList() {
 		List<Clss> list = sqlSession.selectList("clssMapper.selectAll");
 		 
 		return (ArrayList<Clss>)list;
