@@ -33,7 +33,7 @@
 	
 	<insert id="insertPay" parameterType="Pay">
 		insert into pay
-		values (seq_payno.nextval, #{pid}, #{cid}, default, #{method}, default )
+		values (seq_payno.nextval, #{pid}, #{cid}, default, #{method}, 1 )
 	</insert>
 	
 	<update id="updatePay" parameterType="Pay">
