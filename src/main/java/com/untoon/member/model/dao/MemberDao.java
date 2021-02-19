@@ -53,6 +53,11 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.nicknameCheck", nickname);
 	}
 
+	public int emailCheck(String email) {
+		
+		return sqlSession.selectOne("memberMapper.emailCheck", email);
+	}
+
 	
 
 
