@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.untoon.member.model.service.MemberService;
 import com.untoon.member.model.vo.Member;
@@ -65,6 +66,17 @@ public class MemberController {
 			model.addAttribute("msg", "로그인 실패");
 			return "common/errorPage";
 		}
+	}
+	
+	//로그아웃
+	@RequestMapping("logout.do")
+	public String logout(SessionStatus status) {
+		// 로그아웃을 처리를 위해서 커맨드 객체로 세션의 상태를 관리할 수있는 SessionStatus 객체가 필요하다.
+		
+		// 세션의 상태를 확정지어주는 메소드 호출
+		status.setComplete();
+		
+		return "redirect:home.do";
 	}
 	
 	//사용자 마이페이지 보내기

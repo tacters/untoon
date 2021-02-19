@@ -1,7 +1,12 @@
-<%@ page session="false"%>
+<%-- <%@ page session="false"%> --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<!-- 네이버 아이디로 로그인 -->
+<%@ page import="java.net.URLEncoder"%>
+<%@ page import="java.security.SecureRandom"%>
+<%@ page import="java.math.BigInteger"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,6 +37,20 @@
 </script>
 </head>
 <body>
+
+		<!-- 네이버로 로그인 -->
+		<%
+			String clientId = "tnz4Oa6fZlcpvi3HDP0F";//애플리케이션 클라이언트 아이디값";
+			String redirectURI = URLEncoder.encode("http://localhost:8745/untoon/loginpage.do", "UTF-8");
+			SecureRandom random = new SecureRandom();
+			String state = new BigInteger(130, random).toString();
+			String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+			apiURL += "&client_id=" + clientId;
+			apiURL += "&redirect_uri=" + redirectURI;
+			apiURL += "&state=" + state;
+			session.setAttribute("state", state);
+		%>
+
 	<header class="0215css">
 		<c:set var="contextPath"
 			value="${ pageContext.servletContext.contextPath }"
@@ -58,18 +77,26 @@
 					<a href="#">아이디/비밀번호 찾기</a>
 				</div>
 			</c:if>
-			<%-- <c:if test="${ !empty sessionScope.loginUser }">
-		<h3 align="center">
-				<c:out value="${ loginUser.name }님 환영합니다!!"/>
+			<br>
+			
+			<c:if test="${ empty sessionScope.loginUser }">
+				<a href="<%=apiURL%>"><img height="50" src="https://static.nid.naver.com/oauth/big_g.PNG"/></a>
+			</c:if>
+			
+			<c:if test="${ !empty sessionScope.loginUser }">
+					<h3 align="center">
+				<c:out value="${ loginUser.name }님 보고싶었습니다."/>
 				<c:url var="myInfo" value="myInfo.do"/>
 				<c:url var="logout" value="logout.do"/>
 				<button onclick="location.href='${myInfo}'">정보수정</button>
 				<button onclick="location.href='${logout}'">로그아웃</button>
 		</h3>
 			
-		</c:if> --%>
+		</c:if> 
+		
+		
+		
 		</section>
 	</header>
-
 </body>
 </html>
