@@ -28,8 +28,13 @@
 	
 	<select id="selectAll" resultMap="clssResultSet">
 		select * from clss
-		where tchr_id = #{ tchr_id }
+		<!-- where tchr_id = #{ tchr_id } -->
 		order by cid desc
+	</select>
+	
+	<select id="selectClss" parameterType="_int" resultMap="clssResultSet">
+		select * from clss
+		where cid = #{ cid }
 	</select>
 </mapper>
 
