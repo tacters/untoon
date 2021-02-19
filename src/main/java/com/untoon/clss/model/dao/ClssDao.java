@@ -30,5 +30,11 @@ public class ClssDao {
 		return sqlSession.selectOne("clssMapper.selectClss", cid);
 	}
 
+	public ArrayList<Clss> clssList() {
+		List<Clss> list = sqlSession.selectList("clssMapper.clssList");
+		
+		return (ArrayList<Clss>)list;
+	}
+
 
 }

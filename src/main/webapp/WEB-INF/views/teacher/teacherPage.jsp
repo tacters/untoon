@@ -14,6 +14,7 @@
 
 <a href="tclist.do">나의 클래스 보기</a>
 <a href="tinsert.do">새 클래스 등록하기</a>
+<a href="clist.do">전체 클래스 리스트 조회하기</a>
 
 </body>
 </html>

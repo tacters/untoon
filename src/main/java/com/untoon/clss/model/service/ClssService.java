@@ -13,5 +13,7 @@ public interface ClssService {
 
 	Clss selectTclss(int cid);	// 클래스 상세보기
 
+	ArrayList<Clss> clssList();
+
 }
 

@@ -34,6 +34,10 @@
 		where id = #{ id} 
 	</select>
 	
+	<select id="clssList" resultMap="clssResultSet">
+		select * from clss
+	</select>
+	
 	<select id="selectClss" parameterType="_int" resultMap="clssResultSet">
 		select * from clss
 		where cid = #{ cid }

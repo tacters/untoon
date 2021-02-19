@@ -27,5 +27,11 @@ public class ClssServiceImpl implements ClssService{
 		return cDao.selectOne(cid);
 	}
 
+	// 사용자 클래스 전체조회
+	@Override
+	public ArrayList<Clss> clssList() {
+		return cDao.clssList();
+	}
+
 
 }

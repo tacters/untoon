@@ -19,22 +19,23 @@ public class ClssController {
 	@Autowired
 	private ClssService cService;
 
-//	// 강사 클래스 목록조회
-//	@RequestMapping("tclist.do")
-//	public String tClssListMethod(Model model) {
-//		
-//		ArrayList<Clss> list = cService.tClssList();
-//		
-//		if(list.size() > 0) {
-//			System.out.println("목록있음");
-//			model.addAttribute("list",list);
-//			return "clss/teacherPage";
-//		}else {
-//			System.out.println("목록없음");
-//			model.addAttribute("msg", "강의 목록 조회 실패");
-//			return "common/errorPage";
-//		}
-//	}
+	// 사용자 클래스 목록조회
+	@RequestMapping("clist.do")
+	public String clssListMethod(Model model) {
+		
+		ArrayList<Clss> list = cService.clssList();
+		
+		System.out.println(list);
+		if(list.size() > 0) {
+			System.out.println("목록있음");
+			model.addAttribute("list",list);
+			return "clss/clssListView";
+		}else {
+			System.out.println("목록없음");
+			model.addAttribute("msg", "강의 목록 조회 실패");
+			return "common/errorPage";
+		}
+	}
 
 	// 강사 클래스 목록조회
 	@RequestMapping("tclist.do")
