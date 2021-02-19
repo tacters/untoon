@@ -2,11 +2,14 @@ package com.untoon.clss.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.untoon.clss.model.dao.ClssDao;
 import com.untoon.clss.model.vo.Clss;
+import com.untoon.member.model.vo.Member;
 
 @Service("clssService")
 public class ClssServiceImpl implements ClssService{
@@ -14,8 +17,21 @@ public class ClssServiceImpl implements ClssService{
 	private ClssDao cDao;
 
 	@Override
-	public ArrayList<Clss> selectAll() {	// 강사 리스트 조회용
-		return cDao.selectList();
+	public ArrayList<Clss> tClssList(Member loginUser) {	// 강사 리스트 조회용
+		return cDao.tClssList(loginUser);
 	}
+
+	// 강사 클래스 상세보기
+	@Override
+	public Clss selectTclss(int cid) {
+		return cDao.selectOne(cid);
+	}
+
+	// 사용자 클래스 전체조회
+	@Override
+	public ArrayList<Clss> clssList() {
+		return cDao.clssList();
+	}
+
 
 }
