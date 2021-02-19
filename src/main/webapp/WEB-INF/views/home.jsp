@@ -300,8 +300,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<a href='${ clssList }' title="clssList"> CLASS LIST TEST</a>
 							</div>
 							<div class="widget edgtf-login-register-widget">
-									<c:url var="myinfo" value="/myinfo.do"/>
-									<a href='${ myinfo }' title="myinfo"> MY PAGE 일반회원 로그인 TEST</a>
+									<c:url var="myInfo" value="/myInfo.do"/>
+									<a href='${ myInfo }' title="myInfo"> MY PAGE 일반회원 로그인 TEST</a>
 							</div>
 							<div class="widget edgtf-login-register-widget">
 									<c:url var="tinfo" value="/tinfo.do"/>
