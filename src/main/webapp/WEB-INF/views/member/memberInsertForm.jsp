@@ -52,7 +52,11 @@ span.error {
 				</tr>
 				<tr>
 					<td>EMAIL</td>
-					<td><input type="email" name="email" required></td>
+					<td>
+						<input type="email" name="email" required>&nbsp;
+						<button type="submit" id="email">이메일 인증</button>
+					</td>
+					
 				</tr>
 				<!-- <tr>
 					<td>EMAIL NUMBER </td>
@@ -107,7 +111,7 @@ span.error {
 	</div>
 
 	<script type="text/javascript">	
-	function dupIdCheck(){
+	function idDuplicateCheck(){
 		   $.ajax({
 		      url: "idCheck.do",
 		      type: "post",
@@ -130,5 +134,22 @@ span.error {
 		      }
 		   });
 		}
+	
+	//  email관련 ajax  
+	function email(){
+		$.ajax({
+			url: "emailNum.do",
+			type: "post",
+			data: {email : $("#email").val() },
+			success: function(data){
+				console.log("success :" + data);
+			  error: function(jqXHR, textstatus, errorthrown){
+			         //에러 발생시 구동되는 콜백함수임
+			         console.log("error : " + jqXHR + ", " + textstatus 
+			               + ", " + errorthrown);
+			      }
+		});
+	}
+	// ▲ email ajax
 	</script>
 </html>

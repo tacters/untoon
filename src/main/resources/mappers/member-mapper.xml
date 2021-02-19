@@ -81,6 +81,13 @@
     	 FROM MEMBER
     	WHERE NICKNAME=#{nickname}
     </select>
+    
+    <select id="emailCheck" parameterType="String" resultType="_int">
+    	SELECT
+    		COUNT(*)
+    	 FROM MEMBER
+    	WHERE EMAIL=#{email} 	
+    </select>
 </mapper>
 
 

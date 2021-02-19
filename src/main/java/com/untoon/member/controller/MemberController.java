@@ -2,6 +2,8 @@ package com.untoon.member.controller;
 
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.untoon.member.model.service.MemberService;
@@ -28,14 +30,12 @@ public class MemberController {
 		@Autowired
 		private MemberService mService;
 		
-		
-		  //암호화 처리(spring-security에 bean등록 후) 후 작성
+		//암호화 처리(spring-security에 bean등록 후) 후 작성
+		@Autowired 
+		private BCryptPasswordEncoder bcryptPasswordEncoder;
 		  
-		  @Autowired 
-		  private BCryptPasswordEncoder bcryptPasswordEncoder;
-		  
-		  //로그인시 추가 
-		  private Logger logger = LoggerFactory.getLogger(MemberController.class);
+		//로그인시 추가 
+		private Logger logger = LoggerFactory.getLogger(MemberController.class);
 		 
 	//로그인 	  
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
@@ -67,6 +67,12 @@ public class MemberController {
 		}
 	}
 	
+	//사용자 마이페이지 보내기
+    @RequestMapping("myInfo.do")
+    public String myInfoView() {
+       return "member/myPage";
+    }
+	
 		
 	//로그인 페이지로 이동
 	@RequestMapping("loginpage.do")
@@ -89,14 +95,14 @@ public class MemberController {
 		
 	//회원가입
 	@RequestMapping(value="minsert.do", method = RequestMethod.POST)
-	public String insertMember(@ModelAttribute Member m, Model model) {
+	public String insertMember(@ModelAttribute Member m, Model model,
+								HttpServletRequest request) {
 	
 		// 기존의 평문을 암호문으로 바꿔서 m객체에 담기
 		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
 		
 		//setter를 통해서 Member객체의 pwd 변경
 		m.setPwd(encPwd);
-	  
 		//회원가입 서비스 호출
 		int result = mService.insertMember(m);
 		
@@ -107,21 +113,22 @@ public class MemberController {
 			return "common/errorPage";
 		}
 	}	
-	/*
-	 * //강사 회원가입
-	 * 
-	 * @RequestMapping(value="mTeinsert.do", method = RequestMethod.POST) public
-	 * String insertAdMember(@ModelAttribute Member m, Model model) {
-	 * 
-	 * // 기존의 평문을 암호문으로 바꿔서 m객체에 담기 String encPwd =
-	 * bcryptPasswordEncoder.encode(m.getPwd());
-	 * 
-	 * //setter를 통해서 Member객체의 pwd 변경 m.setPwd(encPwd);
-	 * 
-	 * //회원가입 서비스 호출 int result = mService.insertTeMember(m);
-	 * 
-	 * if(result >0 ) { return "redirect:home.do"; }else { model.addAttribute("msg",
-	 * "회원가입 실패"); return "common/errorPage"; }
-	 * 
-	 * }
-	 */	}
+	//아이디 중복 확인
+	@ResponseBody
+	@RequestMapping("idCheck.do")
+	public String idCheck(String id) {
+		int result = mService.idCheck(id);
+		
+		if(result>0) {
+			return "fail";
+		}else {
+			return "ok";
+		}
+	}
+	
+}
+
+
+
+
+
