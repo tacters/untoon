@@ -37,16 +37,18 @@ public class ClssController {
 //	}
 
 	// 강사 클래스 목록조회
-	@RequestMapping("tInfo.do")
+	@RequestMapping("tclist.do")
 	public String tClssListMethod(Model model, HttpSession session) {
 
-		ArrayList<Clss> list = cService.tClssList();
-		System.out.println(list);
 		Member loginUser = (Member) session.getAttribute("loginUser");
-		if (list.size() > 0 && loginUser != null && loginUser.getUser_lv().equals("T")) {
+		ArrayList<Clss> list = cService.tClssList(loginUser);
+		System.out.println(list);
+//		Member loginUser = (Member) session.getAttribute("loginUser");
+		System.out.println(loginUser);
+		if (list.size() > 0 && loginUser != null) {
 			System.out.println("목록있음");
 			model.addAttribute("list", list);
-			return "clss/teacherPage";
+			return "teacher/teacherClssListView";
 		} else {
 			System.out.println("목록없음");
 			model.addAttribute("msg", "강의 목록 조회 실패");

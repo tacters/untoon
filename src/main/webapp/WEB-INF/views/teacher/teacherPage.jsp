@@ -10,33 +10,10 @@
 </head>
 <body>
 
-<table align="center" border="1" width="700" cellspacing="0">
-<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th>
-<th>첨부파일</th></tr>
-<c:forEach items="${ requestScope.list }" var="c">
-<tr>
-   <td align="center">${ c.cid }</td>
-   <td>   
-   <c:url var="tdt" value="/tcdetail.do">
-      <%-- <c:param name="page" value="${ currentPage }"/> --%>
-      <c:param name="cid" value="${ c.cid }" />
-   </c:url>
-   <a href="${ tdt }">${ c.clss_title }</a>
-   </td>
-   <td align="center">${ c.tchr_id }</td>
-   <td align="center">
- <%--      <c:if test="${ !empty b.original_filename }">
-      ◎
-      </c:if>
-      <c:if test="${ empty b.original_filename }">
-      &nbsp;
-      </c:if> --%>
-      ${ c.clss_update }
-   </td>
-   <td>${ c.view_count }</td>
-</tr>
-</c:forEach>
-</table>
+<h1>강사 마이페이지 입니다.</h1>
+
+<a href="tclist.do">나의 클래스 보기</a>
+<a href="tinsert.do">새 클래스 등록하기</a>
 
 </body>
 </html>

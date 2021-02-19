@@ -26,10 +26,12 @@
 		<result property="tchr_profile" column="TCHR_PROFILE"/>
 	</resultMap>
 	
-	<select id="selectAll" resultMap="clssResultSet">
+	<select id="tClssList" resultMap="clssResultSet">
+		<!-- SELECT * FROM MEMBER
+		LEFT JOIN CLSS ON(CLSS.TCHR_ID = MEMBER.ID)
+		where id = #{ id } -->
 		select * from cm
-		where tchr_id = #{ tchr_id }
-		
+		where id = #{ id} 
 	</select>
 	
 	<select id="selectClss" parameterType="_int" resultMap="clssResultSet">
