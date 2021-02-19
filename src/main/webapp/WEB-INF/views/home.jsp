@@ -304,8 +304,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<a href='${ myInfo }' title="myInfo"> MY PAGE 일반회원 로그인 TEST</a>
 							</div>
 							<div class="widget edgtf-login-register-widget">
-									<c:url var="tinfo" value="/tinfo.do"/>
-									<a href='${ tinfo }' title="tinfo"> MY PAGE 강사 로그인 TEST</a>
+									<c:url var="tInfo" value="/tInfo.do"/>
+									<a href='${ tInfo }' title="tInfo"> MY PAGE 강사 로그인 TEST</a>
 							</div>
 						</div>
 					</div>

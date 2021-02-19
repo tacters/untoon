@@ -35,11 +35,12 @@ public class ClssController {
 		}
 	}
 	
-	//강사 마이페이지(나중에 지워야함)
-	@RequestMapping("teacherInfo.do")
-	public String teacherInfoView() {
-		return "teacher/teacherPage";
-	}
+	/*
+	 * //강사 마이페이지(나중에 지워야함)
+	 * 
+	 * @RequestMapping("teacherInfo.do") public String teacherInfoView() { return
+	 * "teacher/teacherPage"; }
+	 */
 	
 	//강사 클래스등록 페이지로 이동
 	@RequestMapping("cupmove.do")
