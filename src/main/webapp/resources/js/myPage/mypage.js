@@ -5025,7 +5025,7 @@ var Mypage = (function () {
         html += '<td class="edit-membership-td">';
         html += '<div class="edit-membership-phone">';
         html += '<div class="input-wrap">';
-        html += '<input type="tel" class="input edit-prifle-phone1" value="' + MyProfile.userinfo.user_phone.substring(0, 3) + '" maxlength="3" />';
+        html += '<input type="tel" class="input edit-prifle-phone1" value="' + MyProfile.userinfo.user_phone.substring(0, 3) + '" maxlength="15" />';
         html += '</div>';
         html += '<div class="input-wrap">';
         html += '<input type="tel" class="input edit-prifle-phone2" value="' + MyProfile.userinfo.user_phone.substring(3, 7) + '" maxlength="4" />';

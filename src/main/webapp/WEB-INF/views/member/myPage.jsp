@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -171,7 +172,7 @@ $(function(){
 
 </script>
 </head>
-<body onload="함수이름">
+<body>
 
 	<!-- 마이페이지 시작 -->
 	<div class="wrap" id="wrap">
@@ -179,10 +180,12 @@ $(function(){
 			<div class="my-summary-wrap">
 				<div class="profile-wrap">
 					<div class="profile-thumb-wrap">
-						<!-- <img src="../static/img/bg-add-thumb.png" onError="this.src='../static/img/bg-add-thumb.png'" class="thumb-profile" alt="프로필사진" /> -->
+						<img src="../../resources/images/myPage/bg-add-thumb.png" class="thumb-profile" alt="프로필사진" />
+						
 					</div>
 					<div class="profile-info-wrap">
-						안녕하세요.
+						안녕하세요.<br>
+						${ loginUser.name }님
 						<div class="profile-name cut-txt"></div>
 						<!--a href="javascript:;" title="프로필 사진 편집" class="btn-profile-thumb">프로필 사진 편집</a-->
 						<label for="upload" class="btn-profile-thumb">프로필 사진 편집</label>
@@ -322,9 +325,15 @@ $(function(){
 				         </colgroup>
 				         <tbody>
 				         <tr>
+				         <th class="edit-membership-th2">이름</th>
+				         <td class="edit-membership-td">
+				        	<input class="edit-membership-td" type="text" value="${ loginUser.name }" name="name" readonly>
+				         </td>
+				         </tr>
+				         <tr>
 				         <th class="edit-membership-th">닉네임</th>
 				         <td class="edit-membership-td">
-				         <div class="input-wrap"><input type="text" class="input edit-nickname" value="el태그넣기" /></div>
+				         <div class="input-wrap"><input type="text" class="input edit-nickname" value="${ loginUser.nickname }" readonly/></div>
 				         </td>
 				         </tr>
 				         </tbody>
@@ -340,7 +349,7 @@ $(function(){
 				         <tr>
 				         <th class="edit-membership-th2">이메일</th>
 				         <td class="edit-membership-td">
-				         ()el태그 써서 가져오기)
+				         <input class="edit-membership-td" type="text" value="${ loginUser.email }" name="email">
 				         </td>
 				         </tr>
 				         <tr>
@@ -348,14 +357,18 @@ $(function(){
 				         <td class="edit-membership-td">
 				         <div class="edit-membership-phone">
 				         <div class="input-wrap">
-				         <input type="tel" class="input edit-prifle-phone1" value=" 요부분 " maxlength="3" />
+				         <input type="tel" class="input auth-number" name="phone" value="${ loginUser.phone }"/>
+				         <%-- <input type="tel" class="input edit-prifle-phone1" name="phone" value="${fn:substring(cellPhone,0,3) }" maxlength="3"/> --%>
+				         
+				         <!-- <input type="tel" class="input edit-prifle-phone1" value="' + MyProfile.userinfo.user_phone.substring(0, 3) + '" maxlength="3" />'; -->
+				        
 				         </div>
-				         <div class="input-wrap">
+				        <!--  <div class="input-wrap">
 				         <input type="tel" class="input edit-prifle-phone2" value=" 이 value값 " maxlength="4" />
 				         </div>
 				         <div class="input-wrap">
 				         <input type="tel" class="input edit-prifle-phone3" value=" 수정해야함 " maxlength="4" />
-				         </div>
+				         </div> -->
 				        	<!-- if (MyProfile.userinfo.user_phone_verify == "Y") {
 				             <a href="#link" title="인증" class="btn-edit-membership-phone phone-auth-btn">인증 완료</a>
 				             </div>
@@ -390,7 +403,7 @@ $(function(){
 				         </tbody>
 				         </table>
 				         </div>
-				         <div class="edit-membership edit-membership-border">
+				         <%--<di v class="edit-membership edit-membership-border">
 				         <table class="table-edit-membership">
 				         <colgroup>
 				         <col class="col-membership01" />
@@ -400,16 +413,16 @@ $(function(){
 				         <tr>
 				         <th class="edit-membership-th2">이름</th>
 				         <td class="edit-membership-td">
-				        	(el태그로 이름 가져오기)
+				        	<input class="edit-membership-td" type="text" value="${ loginUser.name }" name="name" readonly>
 				         </td>
 				         </tr>
 				         <tr>
 				         <th class="edit-membership-th2">생년월일</th>
 				         <td class="edit-membership-td">
-				
+							<input class="edit-membership-bitrhday" type="text" value="${ loginUser.birthday }">
 				
 				             <div class="edit-membership-bitrhday">
-				             <div class="input-wrap"><input type="text" class="input edit-birth-year" />value 에</div>년
+				             <div class="input-wrap"><input type="text" class="input edit-birth-year" value="${ loginUser.birthday }"/></div>년
 				             <div class="input-wrap"><input type="text" class="input edit-birth-month" />값 가져오기</div>월
 				             <div class="input-wrap"><input type="text" class="input edit-birth-day" />~~~</div>일
 				             </div>
@@ -418,9 +431,10 @@ $(function(){
 				         </tr>
 				         </tbody>
 				         </table>
-				         </div>
+				         </div> --%>
+				         <br><br>
 				         <div class="edit-membership-btn">
-				         <a href="#link" title="수정완료" class="btn-edit-membership edit-profile-btn">수정완료<-링크수정해야함</a>
+				         <a href="mupdate.do" title="수정완료" class="btn-edit-membership edit-profile-btn">수정완료<-링크수정해야함</a>
 				         </div>
 				         </div>
 				</section>
