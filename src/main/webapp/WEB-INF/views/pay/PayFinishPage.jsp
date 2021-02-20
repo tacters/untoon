@@ -9,11 +9,11 @@
 
 </head>
 <body>
-<h1> 결제가 완료되었습니다.</h1>
+<h1> 결제가 완료되었습니다. </h1>
 <hr>
 <h3>주문정보</h3>
 <p>${ clss.clss_title }</p> <br>
-<p>${ clss.tchr_id }</p> &nbsp; &nbsp; <p>${clss.clss_start} ~ ${clss.clss_end}</p>
+<p>${ clss.tchr_id }</p> &nbsp; &nbsp; &nbsp; <p>${clss.clss_start} ~ ${clss.clss_end}</p>
 <hr>
 <h3>고객 정보</h3>
 <p><label>고객명 : <input type="text" name="name" value="${loginUser.name}"></label></p>
