@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,23 +11,30 @@
 </head>
 <body>
 
-<table align="center" width="500" border="1" cellspacing="0" cellpadding="1">
-<tr><th>번호</th><th>제목</th><th>첨부파일</th><th>시작날짜</th></tr>
+<table align="center" border="1" width="700" cellspacing="0">
+<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th>
+<th>첨부파일</th></tr>
 <c:forEach items="${ requestScope.list }" var="c">
 <tr>
-	<td align="center">${ c.cid }</td>
-	<c:url value="cdetail.do" var="und">
-		<c:param name="nid" value="${ c.cid }"/>
-	</c:url>
-	<td align="center"><a href="${ und }">${ c.clss_title }</a></td>
-	<%-- <td align="center">${ c.nwriter }</td> --%>
-	<%-- <td align="center">
-		<c:if test="${ !empty n.file_path }">◎</c:if>
-		<c:if test="${ empty n.file_path }">&nbsp;</c:if>
-	</td> --%>
-	<td align="center">
-		<fmt:formatDate value="${c.clss_start }" pattern="yyyy-MM-dd"/>
-	</td>
+   <td align="center">${ c.cid }</td>
+   <td>   
+   <c:url var="tdt" value="/tcdetail.do">
+      <%-- <c:param name="page" value="${ currentPage }"/> --%>
+      <c:param name="cid" value="${ c.cid }" />
+   </c:url>
+   <a href="${ tdt }">${ c.clss_title }</a>
+   </td>
+   <td align="center">${ c.tchr_id }</td>
+   <td align="center">
+ <%--      <c:if test="${ !empty b.original_filename }">
+      ◎
+      </c:if>
+      <c:if test="${ empty b.original_filename }">
+      &nbsp;
+      </c:if> --%>
+      ${ c.clss_update }
+   </td>
+   <td>${ c.view_count }</td>
 </tr>
 </c:forEach>
 </table>
