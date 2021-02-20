@@ -83,16 +83,14 @@ public class PayController {
 			}	
 		}
 	
-	// 결제목록 추가하기 
+	// 결제목록 추가하기(결제가 완료되었다고 페이지에 뜨고  → 마이페이지 결제목록에서 새로운 결제 내역이 추가된다.) 
 		@RequestMapping("pinsert.do")
-		public String insertPay(Pay pay, Model model, int payno) {
+		public String insertPay(Pay pay, Model model) {
 			if(payService.insertPay(pay) > 0) {
-				ArrayList<Pay> list =payService.selectMyPay(payno)
-				model.addAttribute("msg", "결제주문 성공");
+				model.addAttribute("msg", "결제가 완료되었습니다.");
 				return "pay/PayFinishPage";
-				
 			} else {
-				model.attribute("msg", "결제주문등록 실패 ");
+				model.addAttribute("msg", "결제가 실패되었습니다. ");
 				return "common/errorPage";
 			
 			}
@@ -100,11 +98,11 @@ public class PayController {
 	// 결제목록 결제상태(결제승인여부) 업데이트
 		@RequestMapping("pupdate.do")
 		public String updatePay(Pay pay, Model model) {
-			if(payService.insertPay(pay) > 0)
+			if(payService.updatePay(pay) > 0) {
 				return "pay/MyPayPageDetail";
 			} else {
-				model.attribute("msg", "결제업데이트 실패 ");
+				model.addAttribute("msg", "결제업데이트 실패 ");
 				return "common/errorPage";
-				
 			}	
-} 
+		} 
+}
