@@ -10,7 +10,7 @@ function main(){
 	return "home.do";
 };
 </script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="/untoon/resources/js/jquery-3.5.1.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 //전자결제대행사 = Payment Gateway (PG)
@@ -21,7 +21,7 @@ function main(){
 IMP.init()호출은 최초 1회 이루어져야하며, 페이지 로딩 단계에서 미리 호출해두시면 보다 효율적입니다.
 */
 var IMP = window.IMP; // 생략가능
-IMP.init('imp59263885'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+IMP.init('TC0ONETIME'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 /*
 결제 창을 띄워야 하는 페이지에서 아래의 IMP.request_pay({파라메터}) 함수를 호출합니다.
 결제에 필요한 아래의 파라메터만 입력하고 함수를 실행하면 관리자 페이지에서 선택한 PG사의 결제 창이 실행됩니다.

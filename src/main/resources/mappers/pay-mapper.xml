@@ -26,12 +26,12 @@
 		where pid = #{pid}
 	</select>
 	
-	<select id="MyPayDetail" parameterType="_int" resultMap="payResultSet">
+	<select id="MyPayDetail" parameterType="_int" resultMap="payResultSet"> <!-- where 조건에 쓸때는 매개변수가 있으므로 파라매터 타입을 쓰지만 where 조건에 쓰는 컬럼이 없을 때는 매개변수가 없으므로 파라매터 타입을 쓸 필요가 없다. -->
 		select * from pay 
 		where payno = #{payno}
 	</select>
 	
-	<insert id="insertPay" parameterType="Pay">
+	<insert id="insertPay" parameterType="Pay"> <!-- 추가할 때 제목 내용 날짜 등등 컬럼값이 많으므로 컬럼값이 여러개 일때는 pay 객체에 담아서 전달하므로 파라매터타입이 pay이다. -->
 		insert into pay
 		values (seq_payno.nextval, #{pid}, #{cid}, default, #{method}, 1 )
 	</insert>
