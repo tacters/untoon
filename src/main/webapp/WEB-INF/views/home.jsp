@@ -316,8 +316,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<a href='${ menubar }' title="menubar"> menubar</a>
 							</div>
 							<div class="widget edgtf-login-register-widget">
-									<c:url var="adlist" value="/adlist.do"/>
-									<a href='${ adlist }' title="adlist"> pay 관리자 목록조회</a>
+									<c:url var="plist" value="/plist.do"/>
+									<a href='${ plist }' title="plist"> pay 관리자 목록조회</a>
 							</div>
 							<div class="widget edgtf-login-register-widget">
                            <c:url var="terms" value="/terms.do"/>
