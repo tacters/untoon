@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 
 <title>UNTOON 언투온택터즈</title>
@@ -276,6 +276,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body
 	class="home page-template page-template-full-width page-template-full-width-php page page-id-31 urbango-core-1.0 edgtf-social-login-1.0 woocommerce-no-js urbango-listing-1.0 urbango-ver-1.0 edgtf-smooth-page-transitions edgtf-smooth-page-transitions-fadeout edgtf-grid-1300 edgtf-content-is-behind-header edgtf-wide-dropdown-menu-content-in-grid edgtf-light-header edgtf-sticky-header-on-scroll-down-up edgtf-dropdown-default edgtf-header-standard edgtf-menu-area-shadow-disable edgtf-menu-area-in-grid-shadow-disable edgtf-menu-area-border-disable edgtf-menu-area-in-grid-border-disable edgtf-logo-area-border-disable edgtf-logo-area-in-grid-border-disable edgtf-woocommerce-columns-3 edgtf-woo-normal-space edgtf-woo-pl-info-below-image edgtf-woo-single-thumb-below-image edgtf-woo-single-has-pretty-photo edgtf-default-mobile-header edgtf-sticky-up-mobile-header edgtf-header-top-enabled edgtf-slide-from-header-bottom wpb-js-composer js-comp-ver-6.0.5 vc_responsive"
 	itemscope itemtype="http://schema.org/WebPage">
+	
+<c:import url="common/menubar.jsp"/>
+		
+		
 	<div class="edgtf-wrapper">
 		<div class="edgtf-wrapper-inner">
 			<div class="edgtf-top-bar edgtf-light">
@@ -307,6 +311,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<c:url var="tInfo" value="/tInfo.do"/>
 									<a href='${ tInfo }' title="tInfo"> MY PAGE 강사 로그인 TEST</a>
 							</div>
+							<div class="widget edgtf-login-register-widget">
+									<c:url var="menubar" value="/menubar.do"/>
+									<a href='${ menubar }' title="menubar"> menubar</a>
+							</div>
+							<div class="widget edgtf-login-register-widget">
+									<c:url var="adlist" value="/adlist.do"/>
+									<a href='${ adlist }' title="adlist"> pay 관리자 목록조회</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -330,7 +342,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						<div class="edgtf-position-left">
 							<div class="edgtf-position-left-inner">
 								<div class="edgtf-logo-wrapper">
-									<a itemprop="url" href="https://urbango.qodeinteractive.com/"
+									<a itemprop="url" href="${pageContext.request.contextPath}/tcdetail.do"
 										style="height: 41px;"> <img itemprop="image"
 										class="edgtf-normal-logo"
 										src="${pageContext.request.contextPath}/resources/images/home/logo.png"
@@ -350,393 +362,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<ul id="menu-main-menu-navigation" class="clearfix">
 										<li id="nav-menu-item-36"
 											class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-31 current_page_item edgtf-active-item narrow"><a
-											href="https://urbango.qodeinteractive.com/" class=" current "><span
+											href="${pageContext.request.contextPath}/" class=" current "><span
 												class="item_outer"><span class="item_text">Home</span></span></a></li>
 										<li id="nav-menu-item-1168"
-											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub narrow"><a
-											href="#" class=""><span class="item_outer"><span
-													class="item_text">Pages</span><i
-													class="edgtf-menu-arrow fa fa-angle-down"></i></span></a>
-											<div class="second">
+											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub narrow">
+											<c:if test="${ empty sessionScope.loginUser }">
+												<c:url var="loginpage" value="/loginpage.do"/>
+												<a href='${ loginpage }' title="log in"><span class="item_outer"><span class="item_text">로그인</span></span></a>
+												<%-- <button onclick="location.href='${ loginpage }'" title="log in"><span class="edgtf-login-text">로그인</span></button> --%>
+											</c:if>
+										<div class="second">
 												<div class="inner">
 													<ul>
-														<li id="nav-menu-item-1167"
-															class="menu-item menu-item-type-post_type menu-item-object-page "><a
-															href="https://urbango.qodeinteractive.com/get-to-know-us/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Get to know us</span></span></a></li>
-														<li id="nav-menu-item-1165"
-															class="menu-item menu-item-type-post_type menu-item-object-page "><a
-															href="https://urbango.qodeinteractive.com/how-it-works/"
-															class=""><span class="item_outer"><span
-																	class="item_text">How It Works</span></span></a></li>
 														<li id="nav-menu-item-1166"
 															class="menu-item menu-item-type-post_type menu-item-object-page "><a
 															href="https://urbango.qodeinteractive.com/contact-us/"
 															class=""><span class="item_outer"><span
 																	class="item_text">Contact Us</span></span></a></li>
-														<li id="nav-menu-item-1787"
-															class="menu-item menu-item-type-post_type menu-item-object-page "><a
-															href="https://urbango.qodeinteractive.com/our-top-authors/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Our Top Authors<i
-																		class="edgtf-menu-featured-icon fa fa-star"></i></span></span></a></li>
 														<li id="nav-menu-item-1726"
-															class="menu-item menu-item-type-custom menu-item-object-custom "><a
-															href="https://urbango.qodeinteractive.com/404" class=""><span
-																class="item_outer"><span class="item_text">404
-																		Error Page</span></span></a></li>
-													</ul>
-												</div>
-											</div></li>
-										<li id="nav-menu-item-40"
-											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub narrow"><a
-											href="#" class=" no_link" onclick="JavaScript: return false;"><span
-												class="item_outer"><span class="item_text">Listings</span><i
-													class="edgtf-menu-arrow fa fa-angle-down"></i></span></a>
-											<div class="second">
-												<div class="inner">
-													<ul>
-														<li id="nav-menu-item-1474"
-															class="menu-item menu-item-type-custom menu-item-object-custom "><a
-															href="https://urbango.qodeinteractive.com/listing-item/the-aeon-hall/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Listing Item<i
-																		class="edgtf-menu-featured-icon fa fa-star"></i></span></span></a></li>
-														<li id="nav-menu-item-140"
-															class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a
-															href="#" class=" no_link"
-															onclick="JavaScript: return false;"><span
-																class="item_outer"><span class="item_text">By
-																		Location</span></span></a>
-															<ul>
-																<li id="nav-menu-item-138"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/chelsea/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Chelsea<i
-																				class="edgtf-menu-featured-icon fa fa-star"></i></span></span></a></li>
-																<li id="nav-menu-item-135"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/soho/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">SoHo</span></span></a></li>
-																<li id="nav-menu-item-136"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/tribeca/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">TriBeCa</span></span></a></li>
-																<li id="nav-menu-item-130"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/harlem/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Harlem</span></span></a></li>
-																<li id="nav-menu-item-127"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/midtown/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Midtown</span></span></a></li>
-																<li id="nav-menu-item-133"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/east-village/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">East Village</span></span></a></li>
-																<li id="nav-menu-item-132"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/little-italy/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Little Italy</span></span></a></li>
-																<li id="nav-menu-item-129"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/greenwich-village/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Greenwich Village</span></span></a></li>
-																<li id="nav-menu-item-128"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/financial-district/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Financial District</span></span></a></li>
-																<li id="nav-menu-item-137"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/flatiron-district/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Flatiron District</span></span></a></li>
-																<li id="nav-menu-item-139"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/upper-east-side/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Upper East Side</span></span></a></li>
-																<li id="nav-menu-item-131"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-location "><a
-																	href="https://urbango.qodeinteractive.com/listing-location/upper-west-side/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Upper West Side</span></span></a></li>
-															</ul></li>
-														<li id="nav-menu-item-122"
-															class="menu-item menu-item-type-taxonomy menu-item-object-listing-category menu-item-has-children sub"><a
-															href="https://urbango.qodeinteractive.com/listing-category/culture/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Culture</span></span></a>
-															<ul>
-																<li id="nav-menu-item-149"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/art-gallery/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Art Gallery</span></span></a></li>
-																<li id="nav-menu-item-150"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/exhibition/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Exhibition</span></span></a></li>
-																<li id="nav-menu-item-151"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/lectures/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Lectures</span></span></a></li>
-																<li id="nav-menu-item-152"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/performances/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Performances</span></span></a></li>
-															</ul></li>
-														<li id="nav-menu-item-117"
-															class="menu-item menu-item-type-taxonomy menu-item-object-listing-category menu-item-has-children sub"><a
-															href="https://urbango.qodeinteractive.com/listing-category/cuisine/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Cuisine</span></span></a>
-															<ul>
-																<li id="nav-menu-item-118"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/asian/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Asian</span></span></a></li>
-																<li id="nav-menu-item-119"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/cafe/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Café</span></span></a></li>
-																<li id="nav-menu-item-120"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/italian/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Italian</span></span></a></li>
-																<li id="nav-menu-item-121"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/catering/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Catering</span></span></a></li>
-															</ul></li>
-														<li id="nav-menu-item-123"
-															class="menu-item menu-item-type-taxonomy menu-item-object-listing-category menu-item-has-children sub"><a
-															href="https://urbango.qodeinteractive.com/listing-category/nightlife/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Nightlife</span></span></a>
-															<ul>
-																<li id="nav-menu-item-153"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/bars/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Bars</span></span></a></li>
-																<li id="nav-menu-item-154"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/clubs/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Clubs</span></span></a></li>
-																<li id="nav-menu-item-155"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/live-music/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Live Music</span></span></a></li>
-																<li id="nav-menu-item-156"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/private-parties/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Private Parties</span></span></a></li>
-															</ul></li>
-														<li id="nav-menu-item-116"
-															class="menu-item menu-item-type-taxonomy menu-item-object-listing-category menu-item-has-children sub"><a
-															href="https://urbango.qodeinteractive.com/listing-category/coworking/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Coworking</span></span></a>
-															<ul>
-																<li id="nav-menu-item-145"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/all-inclusive/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">All Inclusive</span></span></a></li>
-																<li id="nav-menu-item-146"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/hot-desking/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Hot Desking</span></span></a></li>
-																<li id="nav-menu-item-147"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/conference-space/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Conference Space</span></span></a></li>
-																<li id="nav-menu-item-148"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/shared-space/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Shared Space</span></span></a></li>
-															</ul></li>
-														<li id="nav-menu-item-125"
-															class="menu-item menu-item-type-taxonomy menu-item-object-listing-category menu-item-has-children sub"><a
-															href="https://urbango.qodeinteractive.com/listing-category/tours/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Tours</span></span></a>
-															<ul>
-																<li id="nav-menu-item-161"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/camping/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Camping</span></span></a></li>
-																<li id="nav-menu-item-162"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/city-tours/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">City Tours</span></span></a></li>
-																<li id="nav-menu-item-163"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/trekking/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Trekking</span></span></a></li>
-																<li id="nav-menu-item-164"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/sightseeing/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Sightseeing</span></span></a></li>
-															</ul></li>
-														<li id="nav-menu-item-124"
-															class="menu-item menu-item-type-taxonomy menu-item-object-listing-category menu-item-has-children sub"><a
-															href="https://urbango.qodeinteractive.com/listing-category/shopping/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Shopping</span></span></a>
-															<ul>
-																<li id="nav-menu-item-157"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/arts-crafts/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Arts &#038; Crafts</span></span></a></li>
-																<li id="nav-menu-item-158"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/malls/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Malls</span></span></a></li>
-																<li id="nav-menu-item-159"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/markets/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Markets</span></span></a></li>
-																<li id="nav-menu-item-160"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/vintage-stores/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Vintage Stores</span></span></a></li>
-															</ul></li>
-														<li id="nav-menu-item-115"
-															class="menu-item menu-item-type-taxonomy menu-item-object-listing-category menu-item-has-children sub"><a
-															href="https://urbango.qodeinteractive.com/listing-category/beauty/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Beauty</span></span></a>
-															<ul>
-																<li id="nav-menu-item-141"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/cosmetics-shop/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Cosmetics Shop</span></span></a></li>
-																<li id="nav-menu-item-142"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/hair-salons/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Hair Salons</span></span></a></li>
-																<li id="nav-menu-item-143"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/manicure/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Manicure</span></span></a></li>
-																<li id="nav-menu-item-144"
-																	class="menu-item menu-item-type-taxonomy menu-item-object-listing-category "><a
-																	href="https://urbango.qodeinteractive.com/listing-category/wellness/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Wellness</span></span></a></li>
-															</ul></li>
-													</ul>
-												</div>
-											</div></li>
-										<li id="nav-menu-item-42"
-											class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a
-											href="https://urbango.qodeinteractive.com/pricing-package/"
-											class=""><span class="item_outer"><span
-													class="item_text">Pricing</span></span></a></li>
-										<li id="nav-menu-item-37"
-											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub narrow"><a
-											href="#" class=" no_link" onclick="JavaScript: return false;"><span
-												class="item_outer"><span class="item_text">Blog</span><i
-													class="edgtf-menu-arrow fa fa-angle-down"></i></span></a>
-											<div class="second">
-												<div class="inner">
-													<ul>
-														<li id="nav-menu-item-413"
-															class="menu-item menu-item-type-post_type menu-item-object-page "><a
-															href="https://urbango.qodeinteractive.com/blog/right-sidebar/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Right Sidebar</span></span></a></li>
-														<li id="nav-menu-item-412"
-															class="menu-item menu-item-type-post_type menu-item-object-page "><a
-															href="https://urbango.qodeinteractive.com/blog/left-sidebar/"
-															class=""><span class="item_outer"><span
-																	class="item_text">Left Sidebar</span></span></a></li>
-														<li id="nav-menu-item-411"
-															class="menu-item menu-item-type-post_type menu-item-object-page "><a
-															href="https://urbango.qodeinteractive.com/blog/no-sidebar/"
-															class=""><span class="item_outer"><span
-																	class="item_text">No Sidebar</span></span></a></li>
-														<li id="nav-menu-item-414"
-															class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a
-															href="#" class=" no_link"
-															onclick="JavaScript: return false;"><span
-																class="item_outer"><span class="item_text">Post
-																		Types</span></span></a>
-															<ul>
-																<li id="nav-menu-item-415"
-																	class="menu-item menu-item-type-post_type menu-item-object-post "><a
-																	href="https://urbango.qodeinteractive.com/delicious-coffee/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Standard</span></span></a></li>
-																<li id="nav-menu-item-416"
-																	class="menu-item menu-item-type-post_type menu-item-object-post "><a
-																	href="https://urbango.qodeinteractive.com/theory-and-practice/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Gallery</span></span></a></li>
-																<li id="nav-menu-item-418"
-																	class="menu-item menu-item-type-post_type menu-item-object-post "><a
-																	href="https://urbango.qodeinteractive.com/best-of-the-web/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Link</span></span></a></li>
-																<li id="nav-menu-item-417"
-																	class="menu-item menu-item-type-post_type menu-item-object-post "><a
-																	href="https://urbango.qodeinteractive.com/world-traveler/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Quote</span></span></a></li>
-																<li id="nav-menu-item-419"
-																	class="menu-item menu-item-type-post_type menu-item-object-post "><a
-																	href="https://urbango.qodeinteractive.com/truly-creative/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Audio</span></span></a></li>
-																<li id="nav-menu-item-420"
-																	class="menu-item menu-item-type-post_type menu-item-object-post "><a
-																	href="https://urbango.qodeinteractive.com/providing-the-vision/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Video</span></span></a></li>
-															</ul></li>
+															class="menu-item menu-item-type-custom menu-item-object-custom ">
+																	<c:url var="errorpage" value="/errorpage.do"/>
+																	<a href='${ errorpage }' title="errorpage"><span
+																class="item_outer"><span class="item_text"> 404 에러페이지 </span></span></a>
+															</li>
 													</ul>
 												</div>
 											</div></li>
 										<li id="nav-menu-item-38"
 											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub narrow"><a
 											href="#" class=" no_link" onclick="JavaScript: return false;"><span
-												class="item_outer"><span class="item_text">Shop</span><i
+												class="item_outer"><span class="item_text">Class List</span><i
 													class="edgtf-menu-arrow fa fa-angle-down"></i></span></a>
 											<div class="second">
 												<div class="inner">
@@ -800,199 +455,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 													</ul>
 												</div>
 											</div></li>
-										<li id="nav-menu-item-39"
-											class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children  has_sub wide"><a
-											href="#" class=" no_link" onclick="JavaScript: return false;"><span
-												class="item_outer"><span class="item_text">Elements</span><i
-													class="edgtf-menu-arrow fa fa-angle-down"></i></span></a>
-											<div class="second">
-												<div class="inner">
-													<ul>
-														<li id="nav-menu-item-1447"
-															class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a
-															href="#" class=" no_link"
-															onclick="JavaScript: return false;"><span
-																class="item_outer"><span class="item_text">Features</span></span></a>
-															<ul>
-																<li id="nav-menu-item-1421"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/category-list/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Category List</span></span></a></li>
-																<li id="nav-menu-item-1433"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/listing-list/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Listing List</span></span></a></li>
-																<li id="nav-menu-item-1434"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/listing-packages/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Listing Packages</span></span></a></li>
-																<li id="nav-menu-item-1437"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/location-list/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Location List</span></span></a></li>
-																<li id="nav-menu-item-1436"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/location-banner/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Location Banner</span></span></a></li>
-																<li id="nav-menu-item-1438"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/map-with-listings/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Map With Listings</span></span></a></li>
-																<li id="nav-menu-item-1422"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/category-tabs/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Category Tabs</span></span></a></li>
-																<li id="nav-menu-item-1435"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/listing-search/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Listing Search<i
-																				class="edgtf-menu-featured-icon fa fa-star"></i></span></span></a></li>
-																<li id="nav-menu-item-1417"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/author-list/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Author List</span></span></a></li>
-															</ul></li>
-														<li id="nav-menu-item-1448"
-															class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a
-															href="#" class=" no_link"
-															onclick="JavaScript: return false;"><span
-																class="item_outer"><span class="item_text">Classic</span></span></a>
-															<ul>
-																<li id="nav-menu-item-1416"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/accordions/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Accordions</span></span></a></li>
-																<li id="nav-menu-item-1445"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/tabs/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Tabs</span></span></a></li>
-																<li id="nav-menu-item-1420"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/buttons/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Buttons</span></span></a></li>
-																<li id="nav-menu-item-1431"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/icon-with-text/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Icon With Text</span></span></a></li>
-																<li id="nav-menu-item-1424"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/contact-form/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Contact Form</span></span></a></li>
-																<li id="nav-menu-item-1429"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/google-maps/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Google Maps</span></span></a></li>
-																<li id="nav-menu-item-1439"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/parallax-section/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Parallax Section</span></span></a></li>
-															</ul></li>
-														<li id="nav-menu-item-1449"
-															class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a
-															href="#" class=" no_link"
-															onclick="JavaScript: return false;"><span
-																class="item_outer"><span class="item_text">Infographic</span></span></a>
-															<ul>
-																<li id="nav-menu-item-1446"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/testimonials/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Testimonials</span></span></a></li>
-																<li id="nav-menu-item-1441"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/progress-bar/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Progress Bar</span></span></a></li>
-																<li id="nav-menu-item-1426"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/counters/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Counters</span></span></a></li>
-																<li id="nav-menu-item-1425"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/countdown/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Countdown</span></span></a></li>
-																<li id="nav-menu-item-1432"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/image-gallery/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Image Gallery</span></span></a></li>
-																<li id="nav-menu-item-1419"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/blog-list/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Blog List</span></span></a></li>
-																<li id="nav-menu-item-1444"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/shop-list/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Shop List</span></span></a></li>
-															</ul></li>
-														<li id="nav-menu-item-1450"
-															class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children sub"><a
-															href="#" class=" no_link"
-															onclick="JavaScript: return false;"><span
-																class="item_outer"><span class="item_text">Typography</span></span></a>
-															<ul>
-																<li id="nav-menu-item-1430"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/headings/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Headings</span></span></a></li>
-																<li id="nav-menu-item-1423"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/columns/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Columns</span></span></a></li>
-																<li id="nav-menu-item-1442"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/section-title/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Section Title</span></span></a></li>
-																<li id="nav-menu-item-1418"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/blockquote/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Blockquote</span></span></a></li>
-																<li id="nav-menu-item-1428"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/dropcaps-highlights/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Dropcaps &#038; Highlights</span></span></a></li>
-																<li id="nav-menu-item-1443"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/separators/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Separators</span></span></a></li>
-																<li id="nav-menu-item-1427"
-																	class="menu-item menu-item-type-post_type menu-item-object-page "><a
-																	href="https://urbango.qodeinteractive.com/elements/custom-fonts/"
-																	class=""><span class="item_outer"><span
-																			class="item_text">Custom Fonts</span></span></a></li>
-															</ul></li>
-													</ul>
-												</div>
-											</div></li>
-									</ul>
+										</ul>
 								</nav>
-								<div class="edgtf-wishlist-dropdown-holder edgtf-wd-no-items">
+<!-- 								<div class="edgtf-wishlist-dropdown-holder edgtf-wd-no-items">
 									<div class="edgtf-wd-inner">
 										<a itemprop="url" href="#" class="edgtf-wd-link"> <span
 											class="edgtf-wd-link-inner"> <i
@@ -1004,24 +469,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											<div class="edgtf-wd-items"></div>
 										</div>
 									</div>
-								</div>
-								<div class="edgtf-shopping-cart-holder">
-									<div class="edgtf-shopping-cart-inner">
-										<a itemprop="url"
-											class="edgtf-header-cart edgtf-header-cart-icon-pack"
-											href="https://urbango.qodeinteractive.com/cart/"> <span
-											class="edgtf-cart-icon"> <i
-												class="edgtf-icon-font-awesome fas fa-shopping-basket "></i>
-												<span class="edgtf-cart-number">0</span>
-										</span>
-										</a>
-										<div class="edgtf-shopping-cart-dropdown">
-											<ul>
-												<li class="edgtf-empty-cart">No products in the cart.</li>
-											</ul>
-										</div>
-									</div>
-								</div>
+								</div> -->
 								<a
 									class="edgtf-search-opener edgtf-icon-has-hover edgtf-search-opener-icon-pack"
 									href="javascript:void(0)"> <span
@@ -3198,7 +2646,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Beauty</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/beauty/"></a>
+																				href="${pageContext.request.contextPath}/tclist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -3239,7 +2687,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Coworking</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/coworking/"></a>
+																				href="${pageContext.request.contextPath}/tclist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -3270,7 +2718,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Cuisine</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/cuisine/"></a>
+																				href="${pageContext.request.contextPath}/tclist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -3310,7 +2758,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Culture</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/culture/"></a>
+																				href="${pageContext.request.contextPath}/tclist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -3352,7 +2800,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Nightlife</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/nightlife/"></a>
+																				href="${pageContext.request.contextPath}/tclist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -3401,7 +2849,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Shopping</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/shopping/"></a>
+																				href="${pageContext.request.contextPath}/tclist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -3429,7 +2877,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Tours</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/tours/"></a>
+																				href="${pageContext.request.contextPath}/tclist.do"></a>
 																		</div>
 																	</div>
 																</div>
@@ -3488,7 +2936,7 @@ var revapi1,
 																					ipsum dolor sit amet</p>
 																			</div>
 																			<a itemprop="url" class="edgtf-cl-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/private-parties/"></a>
+																				href="${pageContext.request.contextPath}/tcdetail.do"></a>
 																		</div>
 																	</article>
 																	<article class="edgtf-cl-item edgtf-item-space">
@@ -3512,7 +2960,7 @@ var revapi1,
 																					ipsum dolor sit amet</p>
 																			</div>
 																			<a itemprop="url" class="edgtf-cl-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/live-music/"></a>
+																				href="${pageContext.request.contextPath}/tcdetail.do"></a>
 																		</div>
 																	</article>
 																	<article class="edgtf-cl-item edgtf-item-space">
@@ -3535,7 +2983,7 @@ var revapi1,
 																					ipsum dolor sit amet</p>
 																			</div>
 																			<a itemprop="url" class="edgtf-cl-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/cuisine/"></a>
+																				href="${pageContext.request.contextPath}/tcdetail.do"></a>
 																		</div>
 																	</article>
 																	<article class="edgtf-cl-item edgtf-item-space">
@@ -3558,7 +3006,7 @@ var revapi1,
 																					ipsum dolor sit amet</p>
 																			</div>
 																			<a itemprop="url" class="edgtf-cl-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/coworking/"></a>
+																				href="${pageContext.request.contextPath}/tcdetail.do"></a>
 																		</div>
 																	</article>
 																	<article class="edgtf-cl-item edgtf-item-space">
@@ -3581,7 +3029,7 @@ var revapi1,
 																					ipsum dolor sit amet</p>
 																			</div>
 																			<a itemprop="url" class="edgtf-cl-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/catering/"></a>
+																				href="${pageContext.request.contextPath}/tcdetail.do"></a>
 																		</div>
 																	</article>
 																	<article class="edgtf-cl-item edgtf-item-space">
@@ -3604,7 +3052,7 @@ var revapi1,
 																					ipsum dolor sit amet</p>
 																			</div>
 																			<a itemprop="url" class="edgtf-cl-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/cafe/"></a>
+																				href="${pageContext.request.contextPath}/tcdetail.do"></a>
 																		</div>
 																	</article>
 																	<article class="edgtf-cl-item edgtf-item-space">
@@ -3627,7 +3075,7 @@ var revapi1,
 																					ipsum dolor sit amet</p>
 																			</div>
 																			<a itemprop="url" class="edgtf-cl-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/bars/"></a>
+																				href="${pageContext.request.contextPath}/tcdetail.do"></a>
 																		</div>
 																	</article>
 																	<article class="edgtf-cl-item edgtf-item-space">
@@ -3651,7 +3099,7 @@ var revapi1,
 																					ipsum dolor sit amet</p>
 																			</div>
 																			<a itemprop="url" class="edgtf-cl-link"
-																				href="https://urbango.qodeinteractive.com/listing-category/art-gallery/"></a>
+																				href="${pageContext.request.contextPath}/tcdetail.do"></a>
 																		</div>
 																	</article>
 																</div>
@@ -5359,7 +4807,7 @@ var revapi3,
 				</div>
 			</div>
 
- 			<footer class="edgtf-page-footer ">
+ <%-- 			<footer class="edgtf-page-footer ">
 				<div class="edgtf-footer-top-holder">
 					<div class="edgtf-footer-top-inner edgtf-grid">
 						<div
@@ -5546,7 +4994,7 @@ var revapi3,
 					</div>
 				</div>
 			</footer>
-
+ --%>
  		</div>
 	</div>
 			<noscript>
@@ -5752,5 +5200,15 @@ var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/","classPr
 			<script type='text/javascript'
 				src='https://urbango.qodeinteractive.com/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js'
 				id='wpb_composer_front_js-js'></script>
+
+
+
+<footer>
+<c:import url="common/footer.jsp"/>
+</footer>
 </body>
+
 </html>
+
+
+
