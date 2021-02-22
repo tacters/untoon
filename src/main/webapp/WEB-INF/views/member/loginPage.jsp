@@ -8,7 +8,7 @@
 <%@ page import="java.security.SecureRandom"%>
 <%@ page import="java.math.BigInteger"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>UNTOON 언투온택터즈</title>
@@ -82,6 +82,15 @@
 			<c:if test="${ empty sessionScope.loginUser }">
 				<a href="<%=apiURL%>"><img height="50" src="https://static.nid.naver.com/oauth/big_g.PNG"/></a>
 			</c:if>
+			
+			<!-- 네이버 로그인시  -->
+			<%-- <c:if test="${ !empty sessionScope.loginUser }">
+				<pre th:text="${session.currentUser}"></pre>
+				<a th:href="${'/naver/getProfile?accessToken=' + session.currentAT}">GetUser's Profile</a>
+				<a th:href="${'/naver/refreshToken?refreshToken=' + session.currentRT}">RefreshToken</a>
+				<a th:href="${'/naver/deleteToken?accessToken=' + session.currentAT}">DeleteToken</a>
+				<a href="/naver/invalidate">로그아웃 (Invalidate Session)</a>
+			</c:if> --%>
 			
 			<c:if test="${ !empty sessionScope.loginUser }">
 					<h3 align="center">

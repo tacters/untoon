@@ -2,8 +2,10 @@ package com.untoon.member.controller;
 
 
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -40,10 +43,14 @@ public class MemberController {
 		 
 	//로그인 	  
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
-	public String memberLogin(@ModelAttribute Member m , Model model) {
+	public String memberLogin(@ModelAttribute Member m , Model  model) {
 		Member loginUser = mService.loginMember(m);
 		
-		
+		/*
+		 * //네이버로 로그인 SNSLogin snsLogin = new SNSLogin(naverSns);
+		 * model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
+		 */
+			
 		/*
 		 * String bcrypt = bcryptPasswordEncoder.encode(m.getPwd()); 
 		 * System.out.println("loginUser" + loginUser); System.out.println("Member" +
@@ -67,6 +74,23 @@ public class MemberController {
 			return "common/errorPage";
 		}
 	}
+	
+	
+	/*
+	 * //네이버 로그인
+	 * 
+	 * @RequestMapping(value="naverLogin.do{service}", method= { RequestMethod.GET,
+	 * RequestMethod.POST}) public String snsLoginCallback(Model model,
+	 * 
+	 * @RequestParam String code) throws Exception{ SnsValue sns = null;
+	 * if(StringUtils.equals("naver",service)) sns = naverSns;
+	 * 
+	 * //1. code를 이용해서 acces_token받기 //2. access_token을 이용해서 사용자 profile 정보 가져오기
+	 * SNSLogin snsLogin = new SNSLogin(sns); Member snsMember =
+	 * snsLogin.getUserProfile(code);
+	 * 
+	 * return "loginResult"; }
+	 */
 	
 	//로그아웃
 	@RequestMapping("logout.do")

@@ -41,4 +41,23 @@
 	</interceptor>
 	</interceptors>
 	
+	<!-- naverLogin -->
+	<!-- <beans:bean id="naverClientID" class="java.lang.String">
+		<beans:constructor-arg value="tnz4Oa6fZlcpvi3HDP0F" />
+	</beans:bean>
+	<beans:bean id="naverClientSecret" class="java.lang.String">
+		<beans:constructor-arg value="0WYBTjL1P1" />
+	</beans:bean>
+	<beans:bean id="naverRedirectUrl" class="java.lang.String">
+		<beans:constructor-arg value="http://localhost:8745/untoon" />
+	</beans:bean>
+
+	<beans:bean id="naverSns" class="com.untoon.auth.SnsValue">
+		<beans:constructor-arg value="naver" />
+		<beans:constructor-arg ref="naverClientID" />
+		<beans:constructor-arg ref="naverClientSecret" />
+		<beans:constructor-arg ref="naverRedirectUrl" />
+	</beans:bean> -->
+	
+	
 </beans:beans>
