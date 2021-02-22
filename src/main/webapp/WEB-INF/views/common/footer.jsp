@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -164,7 +165,11 @@
 							<div class="edgtf-column-content edgtf-grid-col-3">
 								<div id="nav_menu-3"
 									class="widget edgtf-footer-column-4 widget_nav_menu">
-									<h5 class="edgtf-widget-title">이용약관</h5>
+									<h5 class="edgtf-widget-title">
+									<c:url var="terms" value="/terms.do"/>
+									<a href='${ terms }' title="terms">
+										이용약관</a><button onclick="window.location.href='${pageContext.request.contextPath}/terms.do'"><i>이용약관 보러가기</i></button>									
+									</h5>
 									<div class="menu-custom-links-i-container">
 										<ul id="menu-custom-links-i" class="menu">
 											<li id="menu-item-1198"

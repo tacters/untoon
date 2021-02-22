@@ -52,7 +52,7 @@
 														
 							<!-- STUDENT 로그인-->
 							<c:if test="${sessionScope.loginUser.user_lv eq 'S'}">
-								<c:out value="${ loginUser.name }님은 오늘도 화이팅~!"/>&nbsp; &nbsp; &nbsp;
+								<c:out value="${ loginUser.nickname }님은 오늘도 화이팅~!"/>&nbsp; &nbsp; &nbsp;
 								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
 											<c:url var="clssList" value="/clssList.do" />
 											<a href='${ clssList }' title="clssList">클래스 찾기</a>
@@ -73,7 +73,7 @@
 							
 							<!-- TEACHER 로그인-->
 							<c:if test="${sessionScope.loginUser.user_lv eq 'T'}">
-								<c:out value="재능많은 ${ loginUser.name } 강사님은 오늘도 화이팅~!"/>&nbsp; &nbsp; &nbsp;
+								<c:out value="재능많은 ${ loginUser.nickname } 강사님은 오늘도 화이팅~!"/>&nbsp; &nbsp; &nbsp;
 								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
 											<c:url var="tinsert" value="/tinsert.do" />
 											<a href='${ tinsert }' title="tinsert">클래스 등록하기</a>
@@ -83,8 +83,8 @@
 									<a href='${ myInfo }' title="myInfo">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->
 								</div>
 								<div class="widget edgtf-login-register-widget">
-									<c:url var="pmselect" value="/pmselect.do" />
-									<a href='${ pmselect }' title="pmselect">마이 클래스</a> <!-- selectMyPay(): 결제+수강신청 완료된 내역 리스트 조회 페이지  -->
+									<c:url var="tclist" value="/tclist.do" />
+									<a href='${ tclist }' title="tclist">마이 클래스</a> <!-- selectMyPay(): 결제+수강신청 완료된 내역 리스트 조회 페이지  -->
 								</div>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="logout" value="/logout.do" />
@@ -94,7 +94,7 @@
 							
 							<!-- ADMIN 로그인-->
 							<c:if test="${sessionScope.loginUser.user_lv eq 'A'}">
-								<c:out value="${ loginUser.name }님은 관리하시느라 수고 많으세용 ㅠㅜ~!"/>&nbsp; &nbsp; &nbsp;
+								<c:out value="${ loginUser.nickname }님은 관리하시느라 수고 많으세용 ㅠㅜ~!"/>&nbsp; &nbsp; &nbsp;
 								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
 											<c:url var="adnclist" value="/adnclist.do" />
 											<a href='${ adnclist }' title="adnclist">클래스 인증하기</a> <!-- 관리자 미승인 클래스 목록보기 -->
@@ -105,7 +105,7 @@
 								</div>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="plist" value="/plist.do" />
-									<a href='${ plist }' title="plist">마이 클래스</a> <!-- 결제내역 목록 조회하기(관리자) -->
+									<a href='${ plist }' title="plist">전체 결제내역</a> <!-- 결제내역 목록 조회하기(관리자) -->
 								</div>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="logout" value="/logout.do" />
