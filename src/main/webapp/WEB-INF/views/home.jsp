@@ -277,7 +277,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	class="home page-template page-template-full-width page-template-full-width-php page page-id-31 urbango-core-1.0 edgtf-social-login-1.0 woocommerce-no-js urbango-listing-1.0 urbango-ver-1.0 edgtf-smooth-page-transitions edgtf-smooth-page-transitions-fadeout edgtf-grid-1300 edgtf-content-is-behind-header edgtf-wide-dropdown-menu-content-in-grid edgtf-light-header edgtf-sticky-header-on-scroll-down-up edgtf-dropdown-default edgtf-header-standard edgtf-menu-area-shadow-disable edgtf-menu-area-in-grid-shadow-disable edgtf-menu-area-border-disable edgtf-menu-area-in-grid-border-disable edgtf-logo-area-border-disable edgtf-logo-area-in-grid-border-disable edgtf-woocommerce-columns-3 edgtf-woo-normal-space edgtf-woo-pl-info-below-image edgtf-woo-single-thumb-below-image edgtf-woo-single-has-pretty-photo edgtf-default-mobile-header edgtf-sticky-up-mobile-header edgtf-header-top-enabled edgtf-slide-from-header-bottom wpb-js-composer js-comp-ver-6.0.5 vc_responsive"
 	itemscope itemtype="http://schema.org/WebPage">
 	
-<c:import url="common/menubar.jsp"/>
+<%-- <c:import url="common/menubar.jsp"/> --%>
 		
 		
 	<div class="edgtf-wrapper">
@@ -300,7 +300,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 								</c:if>
 							</div>
 							<div class="widget edgtf-login-register-widget">
-									<c:url var="clssList" value="/clssList.do"/>
+									<c:url var="clssList" value="/clist.do"/>
 									<a href='${ clssList }' title="clssList"> CLASS LIST TEST</a>
 							</div>
 							<div class="widget edgtf-login-register-widget">
@@ -316,9 +316,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<a href='${ menubar }' title="menubar"> menubar</a>
 							</div>
 							<div class="widget edgtf-login-register-widget">
-									<c:url var="adlist" value="/adlist.do"/>
-									<a href='${ adlist }' title="adlist"> pay 관리자 목록조회</a>
+									<c:url var="plist" value="/plist.do"/>
+									<a href='${ plist }' title="plist"> pay 관리자 목록조회</a>
 							</div>
+							<div class="widget edgtf-login-register-widget">
+                           <c:url var="terms" value="/terms.do"/>
+                           <a href='${ terms }' title="terms"> 이용약관</a>
+                     </div>
 						</div>
 					</div>
 				</div>
