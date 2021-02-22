@@ -307,6 +307,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<c:url var="tInfo" value="/tInfo.do"/>
 									<a href='${ tInfo }' title="tInfo"> MY PAGE 강사 로그인 TEST</a>
 							</div>
+							<div class="widget edgtf-login-register-widget">
+									<c:url var="terms" value="/terms.do"/>
+									<a href='${ terms }' title="terms"> 이용약관</a>
+							</div>
 						</div>
 					</div>
 				</div>
