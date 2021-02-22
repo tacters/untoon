@@ -10,7 +10,6 @@
 		<result property="clss_update" column="CLSS_UPDATE"/>
 		<result property="clss_category" column="CLSS_CATEGORY"/>
 		<result property="clss_content" column="CLSS_CONTENT"/>
-		<result property="clss_oneday" column="CLSS_ONEDAY"/>
 		<result property="clss_times" column="CLSS_TIMES"/>
 		<result property="clss_start" column="CLSS_START"/>
 		<result property="clss_end" column="CLSS_END"/>
@@ -21,6 +20,9 @@
 		<result property="clss_policy" column="CLSS_POLICY"/>
 		<result property="clss_status" column="CLSS_STATUS"/>
 		<result property="view_count" column="VIEW_COUNT"/>
+		<result property="clss_original_filename" column="CLSS_ORIGINAL_FILENAME"/>
+		<result property="clss_rename_filename" column="CLSS_RENAME_FILENAME"/>
+		<result property="clss_rename_filename" column="CLSS_RENAME_FILENAME"/>
 		<result property="tchr_id" column="TCHR_ID"/>
 		<result property="tchr_introduction" column="TCHR_INTRODUCTION"/>
 		<result property="tchr_profile" column="TCHR_PROFILE"/>
@@ -30,7 +32,7 @@
 		<!-- SELECT * FROM MEMBER
 		LEFT JOIN CLSS ON(CLSS.TCHR_ID = MEMBER.ID)
 		where id = #{ id } -->
-		select * from cm
+		select * from clss
 		where id = #{ id} 
 	</select>
 	
@@ -38,10 +40,73 @@
 		select * from clss
 	</select>
 	
+	<select id="selectTClss" parameterType="_int" resultMap="clssResultSet">
+		select * from clss
+		where tchr_id = #{ tchr_id }
+	</select>
+	
 	<select id="selectClss" parameterType="_int" resultMap="clssResultSet">
 		select * from clss
 		where cid = #{ cid }
 	</select>
+	
+	<select id="adminNlist" resultMap="clssResultSet">
+		select cid, clss_title, tchr_id
+		from clss
+		join member using on (tchr_id=id)
+		where clss_status=1
+		
+	</select>
+
+	<select id="adminYlist" resultMap="clssResultSet">
+		select cid, clss_title, tchr_id
+		from clss
+		join member using on (tchr_id=id)
+		where clss_status=2
+	</select>
+	
+	<select id="adminEndList" resultMap="clssResultSet">
+		<![CDATA[
+		select cid, clss_title, tchr_id
+		from clss
+		join member using on (tchr_id=id)
+		where clss_end < sysdate
+		]]>
+	</select>
+	
+	<select id="adminSelectClss" resultMap="clssResultSet">
+		select * 
+		from clss
+		where cid=#{cid}
+	</select>
+	
+	<!-- 사용자 마이페이지에 본인 클래스 내용 불러오기 -->
+    <select id="myClssList" resultMap="clssResultSet">
+    	select clss_title, clss_start, clss_end, id
+		from clss
+		join pay using (cid)
+		join member using on (pid=id)
+		where id=#{id}
+    </select>
+    
+    <update id="addViewCount" parameterType="_int">
+    	update clss
+    	set view_count = view_count + 1
+    	where cid = #{cid}
+    </update>
+    
+    <insert id="insertTclss" parameterType="Clss">
+    	insert into clss
+    	values (
+    		seq_cid.nextval, #{clss_title}, #{clss_price}, default, default, #{clss_category}, #{clss_content},
+    		#{clss_times}, #{clss_start}, #{clss_end}, #{clss_duration}, #{clss_min}, #{clss_max}, DEFAULT, DEFAULT,DEFAULT,
+    		DEFAULT,
+    		#{clss_original_filename}, default, #{clss_url},
+    		#{tchr_id}, #{tchr_introduction}, #{tchr_profile}
+    	)
+    </insert>
+    
+    
 </mapper>
 
 

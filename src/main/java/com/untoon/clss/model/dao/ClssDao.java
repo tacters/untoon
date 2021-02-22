@@ -16,25 +16,72 @@ import com.untoon.member.model.vo.Member;
 public class ClssDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	public ClssDao() {}
-	
+
+	public ClssDao() {
+	}
+
+	// 강사 본인 클래스 목록 불러오기
 	public ArrayList<Clss> tClssList(Member loginUser) {
 		List<Clss> list = sqlSession.selectList("clssMapper.tClssList", loginUser);
-		 
-		return (ArrayList<Clss>)list;
+
+		return (ArrayList<Clss>) list;
 	}
 
 	// 강사 클래스 상세보기
 	public Clss selectOne(int cid) {
+		return sqlSession.selectOne("clssMapper.selectTClss", cid);
+	}
+
+	// 사용자 클래스 전체보기
+	public ArrayList<Clss> clssList() {
+		List<Clss> list = sqlSession.selectList("clssMapper.clssList");
+
+		return (ArrayList<Clss>) list;
+	}
+
+	// 사용자 클래스 상세보기
+	public Clss selectClss(int cid) {
 		return sqlSession.selectOne("clssMapper.selectClss", cid);
 	}
 
-	public ArrayList<Clss> clssList() {
-		List<Clss> list = sqlSession.selectList("clssMapper.clssList");
+	// 관리자 미승인 클래스 목록조회
+	public ArrayList<Clss> adminNlist() {
+		List<Clss> list = sqlSession.selectList("clssMapper.adminNlist");
 		
-		return (ArrayList<Clss>)list;
+		return (ArrayList<Clss>) list;
 	}
 
+	// 관리자 승인 클래스 목록조회
+	public ArrayList<Clss> adminYList() {
+		List<Clss> list = sqlSession.selectList("clssMapper.adminYlist");
+
+		return (ArrayList<Clss>) list;
+	}
+
+	// 관리자 기간 지난 클래스 목록조회
+	public ArrayList<Clss> adminEndList() {
+		List<Clss> list = sqlSession.selectList("clssMapper.adminEndList");
+
+		return (ArrayList<Clss>) list;
+	}
+
+	// 관리자 클래스 상세보기
+	public Clss adminSelectClss(int cid) {
+		return sqlSession.selectOne("clssMapper.adminSelectClss", cid);
+	}
+
+	// 사용자 마이페이지에 본인 클래스 내용 불러오기
+	public ArrayList<Clss> myClssList(Member loginUser) {
+		List<Clss> myList = sqlSession.selectList("clssrMapper.myClssList", loginUser);
+		return (ArrayList<Clss>) myList;
+	}
+
+	public int addViewCount(int cid) {
+		return sqlSession.update("clssMapper.addViewCount", cid);
+	}
+
+	public int insertTclss(Clss clss) {
+		return sqlSession.insert("clssMapper.insertTclss",clss);
+	}
 
 }
