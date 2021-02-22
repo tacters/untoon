@@ -277,9 +277,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	class="home page-template page-template-full-width page-template-full-width-php page page-id-31 urbango-core-1.0 edgtf-social-login-1.0 woocommerce-no-js urbango-listing-1.0 urbango-ver-1.0 edgtf-smooth-page-transitions edgtf-smooth-page-transitions-fadeout edgtf-grid-1300 edgtf-content-is-behind-header edgtf-wide-dropdown-menu-content-in-grid edgtf-light-header edgtf-sticky-header-on-scroll-down-up edgtf-dropdown-default edgtf-header-standard edgtf-menu-area-shadow-disable edgtf-menu-area-in-grid-shadow-disable edgtf-menu-area-border-disable edgtf-menu-area-in-grid-border-disable edgtf-logo-area-border-disable edgtf-logo-area-in-grid-border-disable edgtf-woocommerce-columns-3 edgtf-woo-normal-space edgtf-woo-pl-info-below-image edgtf-woo-single-thumb-below-image edgtf-woo-single-has-pretty-photo edgtf-default-mobile-header edgtf-sticky-up-mobile-header edgtf-header-top-enabled edgtf-slide-from-header-bottom wpb-js-composer js-comp-ver-6.0.5 vc_responsive"
 	itemscope itemtype="http://schema.org/WebPage">
 	
-<%-- <c:import url="common/menubar.jsp"/> --%>
+<c:import url="common/menubar.jsp"/>
 		
-		
+	<%-- 	
 	<div class="edgtf-wrapper">
 		<div class="edgtf-wrapper-inner">
 			<div class="edgtf-top-bar edgtf-light">
@@ -290,7 +290,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 								<c:if test="${ empty sessionScope.loginUser }">
 									<c:url var="loginpage" value="/loginpage.do"/>
 									<a href='${ loginpage }' title="log in">로그인</a>
-									<%-- <button onclick="location.href='${ loginpage }'" title="log in"><span class="edgtf-login-text">로그인</span></button> --%>
+									<button onclick="location.href='${ loginpage }'" title="log in"><span class="edgtf-login-text">로그인</span></button>
 								</c:if>
 							</div>
 							<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
@@ -338,9 +338,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						</div>
 					</form>
 				</div>
-			</div>
+			</div> --%>
 			
-			<header class="edgtf-page-header">
+<%-- 			<header class="edgtf-page-header">
 				<div class="edgtf-menu-area edgtf-menu-right">
 					<div class="edgtf-vertical-align-containers">
 						<div class="edgtf-position-left">
@@ -373,7 +373,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											<c:if test="${ empty sessionScope.loginUser }">
 												<c:url var="loginpage" value="/loginpage.do"/>
 												<a href='${ loginpage }' title="log in"><span class="item_outer"><span class="item_text">로그인</span></span></a>
-												<%-- <button onclick="location.href='${ loginpage }'" title="log in"><span class="edgtf-login-text">로그인</span></button> --%>
+												<button onclick="location.href='${ loginpage }'" title="log in"><span class="edgtf-login-text">로그인</span></button>
 											</c:if>
 										<div class="second">
 												<div class="inner">
@@ -1248,7 +1248,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 					</form>
 				</div>
 			</header>
-			<header class="edgtf-mobile-header">
+ --%>
+ 			<header class="edgtf-mobile-header">
 				<div class="edgtf-mobile-header-inner">
 					<div class="edgtf-mobile-header-holder">
 						<div class="edgtf-grid">
@@ -1258,7 +1259,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 										<div class="edgtf-position-left-inner">
 											<div class="edgtf-mobile-logo-wrapper">
 												<a itemprop="url"
-													href="https://urbango.qodeinteractive.com/"
+													href="${pageContext.request.contextPath}/"
 													style="height: 41px"> <img itemprop="image"
 													src="${pageContext.request.contextPath}/resources/images/home/logo.png"
 													alt="Mobile Logo" />
@@ -2390,7 +2391,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											data-textAlign="['inherit','inherit','inherit','inherit']"
 											data-paddingtop="[0,0,0,0]" data-paddingright="[,2,2,2]"
 											data-paddingbottom="[0,0,0,0]" data-paddingleft="[,2,2,2]"
-											style="z-index: 26; max-width: 107px; max-width: 107px; white-space: nowrap; font-size: 36px; line-height: 102px; font-weight: 500; color: #ffffff; letter-spacing: 0px; font-family: Shorelines Script;">&nbsp; &nbsp; &nbsp; from <b>un</b>tact to <b>on</b>tact
+											style="z-index: 26; max-width: 107px; max-width: 107px; white-space: nowrap; font-size: 36px; line-height: 102px; font-weight: 500; color: #ffffff; letter-spacing: 0px; font-family: Shorelines Script;">
+											<br><br><br> <!-- &nbsp; &nbsp; &nbsp; from <b>un</b>tact to <b>on</b>tact -->
 										</div>
 
 										<div class="tp-caption   tp-resizeme tp-static-layer"
@@ -2410,12 +2412,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											data-textAlign="['inherit','inherit','inherit','center']"
 											data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]"
 											data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-											style="z-index: 27; min-width: 686px; max-width: 686px; max-width: 286px; max-width: 286px; white-space: normal; font-size: 75px; line-height: 95px; font-weight: 600; color: #ffffff; letter-spacing: 0px; font-family: Montserrat;">지금 배우고 싶은<br>것은..?</div>
+											style="z-index: 27; min-width: 686px; max-width: 686px; max-width: 286px; max-width: 286px; white-space: normal; font-size: 75px; line-height: 95px; font-weight: 600; color: #ffffff; letter-spacing: 0px; font-family: Montserrat;">
+											지금 배우고 싶은<br>것은..?</div>
 
 										<div class="tp-caption   tp-resizeme tp-static-layer"
 											id="slider-1-layer-25"
 											data-x="['center','center','center','center']"
-											data-hoffset="['-440','-358','-127','-2']"
+											data-hoffset="['-520','-358','-127','-2']"
 											data-y="['middle','middle','middle','middle']"
 											data-voffset="['110','61','85','208']"
 											data-fontsize="['22','20','18','16']"
