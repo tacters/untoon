@@ -11,7 +11,6 @@ public class Clss {
 	private Date clss_update;
 	private String clss_category;
 	private String clss_content;
-	private String clss_oneday;
 	private int clss_times;
 	private Date clss_start;
 	private Date clss_end;
@@ -22,17 +21,20 @@ public class Clss {
 	private String clss_policy;
 	private int clss_status;
 	private int view_count;
+	private String clss_original_filename;
+	private String clss_rename_filename;
+	private String clss_url;
 	private String tchr_id;
 	private String tchr_introduction;
 	private String tchr_profile;
-
-	public Clss() {
-	}
+	
+	public Clss() {}
 
 	public Clss(int cid, String clss_title, int clss_price, Date clss_registration, Date clss_update,
-			String clss_category, String clss_content, String clss_oneday, int clss_times, Date clss_start,
-			Date clss_end, int clss_duration, int clss_min, int clss_max, int clss_enrolled, String clss_policy,
-			int clss_status, int view_count, String tchr_id, String tchr_introduction, String tchr_profile) {
+			String clss_category, String clss_content, int clss_times, Date clss_start, Date clss_end,
+			int clss_duration, int clss_min, int clss_max, int clss_enrolled, String clss_policy, int clss_status,
+			int view_count, String clss_original_filename, String clss_rename_filename, String clss_url, String tchr_id,
+			String tchr_introduction, String tchr_profile) {
 		super();
 		this.cid = cid;
 		this.clss_title = clss_title;
@@ -41,7 +43,6 @@ public class Clss {
 		this.clss_update = clss_update;
 		this.clss_category = clss_category;
 		this.clss_content = clss_content;
-		this.clss_oneday = clss_oneday;
 		this.clss_times = clss_times;
 		this.clss_start = clss_start;
 		this.clss_end = clss_end;
@@ -52,6 +53,9 @@ public class Clss {
 		this.clss_policy = clss_policy;
 		this.clss_status = clss_status;
 		this.view_count = view_count;
+		this.clss_original_filename = clss_original_filename;
+		this.clss_rename_filename = clss_rename_filename;
+		this.clss_url = clss_url;
 		this.tchr_id = tchr_id;
 		this.tchr_introduction = tchr_introduction;
 		this.tchr_profile = tchr_profile;
@@ -111,14 +115,6 @@ public class Clss {
 
 	public void setClss_content(String clss_content) {
 		this.clss_content = clss_content;
-	}
-
-	public String getClss_oneday() {
-		return clss_oneday;
-	}
-
-	public void setClss_oneday(String clss_oneday) {
-		this.clss_oneday = clss_oneday;
 	}
 
 	public int getClss_times() {
@@ -201,6 +197,30 @@ public class Clss {
 		this.view_count = view_count;
 	}
 
+	public String getClss_original_filename() {
+		return clss_original_filename;
+	}
+
+	public void setClss_original_filename(String clss_original_filename) {
+		this.clss_original_filename = clss_original_filename;
+	}
+
+	public String getClss_rename_filename() {
+		return clss_rename_filename;
+	}
+
+	public void setClss_rename_filename(String clss_rename_filename) {
+		this.clss_rename_filename = clss_rename_filename;
+	}
+
+	public String getClss_url() {
+		return clss_url;
+	}
+
+	public void setClss_url(String clss_url) {
+		this.clss_url = clss_url;
+	}
+
 	public String getTchr_id() {
 		return tchr_id;
 	}
@@ -229,14 +249,19 @@ public class Clss {
 	public String toString() {
 		return "Clss [cid=" + cid + ", clss_title=" + clss_title + ", clss_price=" + clss_price + ", clss_registration="
 				+ clss_registration + ", clss_update=" + clss_update + ", clss_category=" + clss_category
-				+ ", clss_content=" + clss_content + ", clss_oneday=" + clss_oneday + ", clss_times=" + clss_times
-				+ ", clss_start=" + clss_start + ", clss_end=" + clss_end + ", clss_duration=" + clss_duration
-				+ ", clss_min=" + clss_min + ", clss_max=" + clss_max + ", clss_enrolled=" + clss_enrolled
-				+ ", clss_policy=" + clss_policy + ", clss_status=" + clss_status + ", view_count=" + view_count
+				+ ", clss_content=" + clss_content + ", clss_times=" + clss_times + ", clss_start=" + clss_start
+				+ ", clss_end=" + clss_end + ", clss_duration=" + clss_duration + ", clss_min=" + clss_min
+				+ ", clss_max=" + clss_max + ", clss_enrolled=" + clss_enrolled + ", clss_policy=" + clss_policy
+				+ ", clss_status=" + clss_status + ", view_count=" + view_count + ", clss_original_filename="
+				+ clss_original_filename + ", clss_rename_filename=" + clss_rename_filename + ", clss_url=" + clss_url
 				+ ", tchr_id=" + tchr_id + ", tchr_introduction=" + tchr_introduction + ", tchr_profile=" + tchr_profile
 				+ "]";
 	}
+
+	
+
 	
 	
+
 
 }

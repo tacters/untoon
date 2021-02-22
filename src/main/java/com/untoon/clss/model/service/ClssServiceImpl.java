@@ -12,12 +12,12 @@ import com.untoon.clss.model.vo.Clss;
 import com.untoon.member.model.vo.Member;
 
 @Service("clssService")
-public class ClssServiceImpl implements ClssService{
+public class ClssServiceImpl implements ClssService {
 	@Autowired
 	private ClssDao cDao;
 
 	@Override
-	public ArrayList<Clss> tClssList(Member loginUser) {	// 강사 리스트 조회용
+	public ArrayList<Clss> tClssList(Member loginUser) { // 강사 리스트 조회용
 		return cDao.tClssList(loginUser);
 	}
 
@@ -32,6 +32,55 @@ public class ClssServiceImpl implements ClssService{
 	public ArrayList<Clss> clssList() {
 		return cDao.clssList();
 	}
+
+	// 사용자 클래스 상세보기
+	@Override
+	public Clss selectClss(int cid) {
+		return cDao.selectClss(cid);
+	}
+
+	// 관리자 미승인 클래스 목록조회
+	@Override
+	public ArrayList<Clss> adminNlist() {
+		return cDao.adminNlist();
+	}
+
+	// 관리자 승인 클래스 목록조회
+	@Override
+	public ArrayList<Clss> adminYList() {
+		return cDao.adminYList();
+	}
+
+	// 관리자 기간 지난 클래스 목록조회
+	@Override
+	public ArrayList<Clss> adminEndList() {
+		return cDao.adminEndList();
+	}
+
+	// 관리자 클래스 상세보기
+	@Override
+	public Clss adminSelectClss(int cid) {
+		return cDao.adminSelectClss(cid);
+	}
+
+	// 사용자 마이페이지에 본인 클래스 내용 불러오기
+	@Override
+	public ArrayList<Clss> myClssList(Member loginUser) {
+		return cDao.myClssList(loginUser);
+	}
+
+	@Override
+	public int addViewCount(int cid) {
+		return cDao.addViewCount(cid);
+	}
+
+	@Override
+	public int insertTclss(Clss clss) {
+		return cDao.insertTclss(clss);
+	}
+
+
+
 
 
 }

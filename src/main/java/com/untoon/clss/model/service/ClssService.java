@@ -11,9 +11,25 @@ public interface ClssService {
 
 	ArrayList<Clss> tClssList(Member loginUser);	// 강사 강의 목록 조회용
 
-	Clss selectTclss(int cid);	// 클래스 상세보기
+	Clss selectTclss(int cid);	// 강사 클래스 상세보기
 
-	ArrayList<Clss> clssList();
+	ArrayList<Clss> clssList();		// 사용자 클래스 전체조회
+
+	Clss selectClss(int cid);	// 사용자 클래스 상세보기
+
+	ArrayList<Clss> adminNlist();	// 관리자 미승인 클래스 목록조회
+
+	ArrayList<Clss> adminYList();	// 관리자 승인 클래스 목록조회
+
+	ArrayList<Clss> adminEndList();	// 관리자 기간 지난 클래스 목록조회
+
+	Clss adminSelectClss(int cid);	// 관리자 클래스 상세보기
+
+	ArrayList<Clss> myClssList(Member loginUser);	// 사용자 마이페이지에 본인 클래스 내용 불러오기
+
+	int addViewCount(int cid);
+
+	int insertTclss(Clss clss);
 
 }
 
