@@ -18,7 +18,7 @@
 <tr>
    <td align="center">${ c.cid }</td>
    <td>   
-   <c:url var="tdt" value="/tcdetail.do">
+   <c:url var="tdt" value="/cdetail.do">
       <%-- <c:param name="page" value="${ currentPage }"/> --%>
       <c:param name="cid" value="${ c.cid }" />
    </c:url>
