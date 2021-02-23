@@ -7,9 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>UNTOON 언투온택터즈</title>
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
 
 <table align="center" border="1" width="700" cellspacing="0">
 <tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th>
@@ -18,7 +19,7 @@
 <tr>
    <td align="center">${ c.cid }</td>
    <td>   
-   <c:url var="tdt" value="/tcdetail.do">
+   <c:url var="tdt" value="/cdetail.do">
       <%-- <c:param name="page" value="${ currentPage }"/> --%>
       <c:param name="cid" value="${ c.cid }" />
    </c:url>
@@ -38,6 +39,6 @@
 </tr>
 </c:forEach>
 </table>
-
+<footer><c:import url="../common/footer.jsp"/></footer>
 </body>
 </html>
