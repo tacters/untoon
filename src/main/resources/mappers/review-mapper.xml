@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reviewMapper">
+
+	<resultMap type="Review" id="resultReview">
+		<id column="rid" property="rid" />
+		<id column="cid" property="cid" />
+		<result column="rwriter" property="rwriter" />
+		<result column="rcontent" property="rcontent" />
+		<result column="r_create_date" property="r_create_date" />
+		<result column="r_modify_date" property="br_modify_date" />
+		<result column="r_status" property="r_status" />
+		<result column="ofile_r" property="ofile_r" />
+		<result column="rfile_r" property="rfile_r" />
+	</resultMap>
+
+<!-- <, >, & 들어가면 사용하기 <![CDATA[ 쿼리문장 ]]>  -->
+
+	<select id="selectList" parameterType="com.untoon.review.model.vo.ReviewPage" 
+	resultMap="resultReview">
+		<![CDATA[
+		SELECT *
+		FROM (SELECT ROWNUM RNUM, RID, RWRITER, RCONTENT, 
+		                    R_CREATE_DATE, R_MODIFY_DATE, R_STATUS,
+		                    OFILE_R, RFILE_R
+		            FROM (SELECT * FROM REVIEW 
+		                       WHERE R_STATUS = 'Y'
+		                       ORDER BY RID DESC))
+		WHERE RNUM >= #{ startRow } AND RNUM <= #{ endRow }
+		]]>
+	</select>
+
+	<insert id="insertReview" parameterType="Review">
+		INSERT INTO REVIEW
+		<if test="original_filename != null">
+		VALUES (
+				seq_bid.nextval, #{ btitle }, #{ bwriter }, #{ bcontent }, 
+				#{ original_filename }, #{ rename_filename }, 
+				default, sysdate, sysdate, default
+				)
+		</if>
+		<if test="original_filename == null">
+		VALUES (
+				seq_bid.nextval, #{ btitle }, #{ bwriter }, #{ bcontent }, 
+				null, null, default, sysdate, sysdate, default
+				)
+		</if>
+	</insert>
+	
+</mapper>
+

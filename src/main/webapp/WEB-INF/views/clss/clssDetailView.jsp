@@ -97,7 +97,7 @@ body, html {
 </c:if>
 
 <c:if test="${sessionScope.loginUser.user_lv eq 'T'}">
-	<h1> ◈ ${clss.cid} ◈ 클래스 인증 대기 </h1>
+	<h1 style="text-align: center;"> ◈ &nbsp; # ${clss.cid} &nbsp; ◈ 클래스 인증 대기 </h1>
 	<div style="margin: auto; border: 1px solid #2392bd; padding: 10px;">
 					<button class="admin_lv" onclick="location.href='${ tcupdate }'"> 수정하기 </button>
 	</div>
