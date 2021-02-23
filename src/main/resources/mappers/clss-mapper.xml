@@ -32,7 +32,9 @@
 		<!-- SELECT * FROM MEMBER
 		LEFT JOIN CLSS ON(CLSS.TCHR_ID = MEMBER.ID)
 		where id = #{ id } -->
-		select * from clss
+		select * 
+		from clss
+		join member on (id=tchr_id)
 		where id = #{ id} 
 	</select>
 	
@@ -50,28 +52,41 @@
 		where cid = #{ cid }
 	</select>
 	
+	<!-- 기간 안지나고 미승인클래스 -->
 	<select id="adminNlist" resultMap="clssResultSet">
-		select cid, clss_title, tchr_id
+		<![CDATA[
+		select cid, clss_title, clss_status, clss_start, clss_end
 		from clss
-		join member using on (tchr_id=id)
-		where clss_status=1
-		
+		join member on (tchr_id=id)
+		where clss_end > sysdate
+		and clss_status=1
+		]]>
 	</select>
 
+	<!-- 승인된 클래스 -->
 	<select id="adminYlist" resultMap="clssResultSet">
-		select cid, clss_title, tchr_id
+		select *
 		from clss
-		join member using on (tchr_id=id)
+		join member on (tchr_id=id)
 		where clss_status=2
 	</select>
 	
+	<!-- 기간지난 클래스 -->
 	<select id="adminEndList" resultMap="clssResultSet">
 		<![CDATA[
-		select cid, clss_title, tchr_id
+		select *
 		from clss
-		join member using on (tchr_id=id)
+		join member on (tchr_id=id)
 		where clss_end < sysdate
 		]]>
+	</select>
+	
+	<!-- 승인거부한클래스 -->
+	<select id="adminRlist" resultMap="clssResultSet">
+		select *
+		from clss
+		join member on (tchr_id=id)
+		where clss_status = 3
 	</select>
 	
 	<select id="adminSelectClss" resultMap="clssResultSet">
@@ -81,13 +96,14 @@
 	</select>
 	
 	<!-- 사용자 마이페이지에 본인 클래스 내용 불러오기 -->
-    <select id="myClssList" resultMap="clssResultSet">
-    	select clss_title, clss_start, clss_end, id
+    <select id="myClssList" parameterType="string" resultMap="clssResultSet">
+    	select *
 		from clss
 		join pay using (cid)
-		join member using on (pid=id)
-		where id=#{id}
+		where pid=#{id}
+		and pstatus =2
     </select>
+    
     
     <update id="addViewCount" parameterType="_int">
     	update clss
@@ -105,6 +121,28 @@
     		#{tchr_id}, #{tchr_introduction}, #{tchr_profile}
     	)
     </insert>
+    
+    <!-- 관리자 클래스 승인 -->
+    <update id="approveClss" parameterType="_int">
+    	update clss
+    	set
+    	clss_status = 2
+    	where cid = #{cid}
+    </update>
+    
+    <!-- 관리자 클래스 거부 -->
+    <update id="denyClss">
+    	update clss
+    	set
+    	clss_status = 3
+    	where cid = #{cid}
+    </update>
+    
+    <!-- 관리자 삭제하기 -->
+    <delete id="adminDeleteClss">
+    	delete from clss
+    	where cid = #{cid}
+    </delete>
     
     
 </mapper>
