@@ -103,12 +103,6 @@ public class MemberController {
 		return "redirect:home.do";
 	}
 	
-	//사용자 마이페이지 보내기
-    @RequestMapping("myInfo.do")
-    public String myInfoView() {
-       return "member/myPage";
-    }
-    
 	//강사 마이페이지(나중에 지워야함)
 	@RequestMapping("tInfo.do")
 	public String teacherInfoView() {
@@ -127,6 +121,19 @@ public class MemberController {
 	public String enrollView() {
 		return "member/memberInsertForm";
 	}
+	
+	//마이페이지로 이동
+	@RequestMapping("myInfo.do")
+	public String myInfo() {
+		return "member/myPageheader";
+	}
+	
+	//회원수정페이지로 이동
+	@RequestMapping("myUpdateView.do")
+	public String myUpdateView() {
+		return "member/myInfoView";
+	}
+	
 	/*
 	 * //강사 회원가입페이지로 이동
 	 * 
@@ -169,6 +176,25 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping("mupdate.do")
+	public String memberUpdate(@ModelAttribute Member m, Model model) {
+		System.out.println("Member :" + m);
+		
+		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
+		
+		// setter를 통해서 Member객체의 pwd를 변경
+		m.setPwd(encPwd);
+		
+		int result = mService.updateMember(m);
+		
+		if(result > 0) {
+			model.addAttribute("loginUser", m);
+			return "redirect:hom.do";
+		}else {
+			model.addAttribute("msg","회원정보 수정 실패!");
+			return "common/errorPage";
+		}
+	}
 }
 
 
