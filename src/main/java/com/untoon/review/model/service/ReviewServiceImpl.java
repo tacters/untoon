@@ -13,8 +13,8 @@ public class ReviewServiceImpl implements ReviewService {
 	private ReviewDao reviewDao;
 	
 	@Override
-	public ArrayList<Review> selectReviewList(int currentPage, int limit) {
-		return reviewDao.selectList(currentPage, limit);
+	public ArrayList<Review> selectReviewList(int currentPage, int limit, int cid) {
+		return reviewDao.selectList(currentPage, limit, cid);
 	}
 
 	@Override

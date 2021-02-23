@@ -21,13 +21,15 @@ public class ReviewDao {
 	 * @param limit
 	 * @return
 	 */
-	public ArrayList<Review> selectList(int currentPage, int limit) {
+	public ArrayList<Review> selectList(int currentPage, int limit, int cid) {
 				
 		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
 		int startRow = (currentPage -1) * limit -1;
 		int endRow = startRow + limit -1;
 		
-		List<Review> list = sqlSession.selectList("reviewMapper.selectList", new ReviewPage(startRow, endRow));
+		//ReviewPage() constructor 생성자 안에다가 cid 읽을 수 있게 함
+		List<Review> list = sqlSession.selectList("reviewMapper.selectList", new ReviewPage(startRow, endRow, cid));
+		
 		return (ArrayList<Review>)list;
 		
 	}
@@ -50,7 +52,7 @@ public class ReviewDao {
 	}
 
 	public int deleteReview(int rid) {
-		return sqlSession.update("reviewMapper.updateReview", rid);
+		return sqlSession.update("reviewMapper.deleteReview", rid);
 	}
 
 }
