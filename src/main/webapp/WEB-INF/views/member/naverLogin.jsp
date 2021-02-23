@@ -81,7 +81,7 @@
 	<br>
 	<br>  
 	<div align="center">
-		<form action="/nongbu/NaverLogin" method="post">
+		<form action="naverLogin.do" method="post">
 			<input type="hidden" name="token" value="<%= tokenStr %>">
 			<input type="submit" value="네이버 아이디로 로그인하기">
 		</form>
