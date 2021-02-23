@@ -10,11 +10,13 @@
 		<typeAlias type="com.untoon.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.untoon.clss.model.vo.Clss" alias="Clss"/>
 		<typeAlias type="com.untoon.pay.model.vo.Pay" alias="Pay"/>
+		<typeAlias type="com.untoon.review.model.vo.Review" alias="Review"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/clss-mapper.xml"/>
 		<mapper resource="mappers/pay-mapper.xml"/>
+		<mapper resource="mappers/review-mapper.xml"/>
 	</mappers>
 </configuration>
