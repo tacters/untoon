@@ -22,18 +22,15 @@ public class PayController {
 	
 	//관리자가 전체 결제 목록 보기 요청 할 때 
 	@RequestMapping("plist.do")
-	public String payList(Model model, HttpSession session) {
-		
+	public String payList(Model model) {
 		ArrayList<Pay> list = payService.payList();
-		Member loginUser = (Member) session.getAttribute("loginUser");
-		if(list.size() > 0 && loginUser != null && loginUser.getUser_lv().equals("A")) {
+		if(list.size() > 0) {
 			model.addAttribute("list", list);
 			return "pay/AdminPayList";
 		} else {
 			model.addAttribute("msg", "결제내역 목록을 조회할 수 없습니다.");
 			return "common/errorPage";
-		}
-	}
+		}}
 	
 	//관리자가 결제목록 상세보기 할 때 
 	@RequestMapping("pdetail.do")
@@ -48,16 +45,17 @@ public class PayController {
 		} else {
 			model.addAttribute("msg", payno + "번 결제내역 상세보기를 할 수 없습니다.");
 			return "common/errorPage";
-		}	
-	}
-	
+		}}
 	//사용자가 마이페이지에서 결제내역 목록을 조회할 때 
 	@RequestMapping("pmselect.do")
-	public String selectMyPay(Model model, HttpSession session) {
-		
-		ArrayList<Pay> list = payService.selectMyPay();
+	public String selectMyPay(HttpSession session, Model model) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
-		if(list.size() > 0 && loginUser != null && loginUser.getUser_lv().equals("S")) {
+		String id = loginUser.getId();
+		System.out.println(id);
+		ArrayList<Pay> list = payService.selectMyPay(id);
+		System.out.println("list : " + list );
+		
+		if(list.size() > 0) {
 			model.addAttribute("list", list);
 			return "pay/MyPagePayList";
 		} else {
@@ -65,7 +63,6 @@ public class PayController {
 			return "common/errorPage";
 		}
 	}
- 
 	//사용자가 마이페이지에서 결제목록 상세보기 할 때 
 		@RequestMapping("pmdetail.do")
 		public String detailMyPay(@RequestParam("payno") int payno, Model model,

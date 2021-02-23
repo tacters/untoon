@@ -27,9 +27,10 @@ public class PayDao {
 		return sqlSession.selectOne("payMapper.detailPay", payno);
 	}
 
-	public ArrayList<Pay> selectMyPay() {
-		List<Pay> mlist = sqlSession.selectList("payMapper.selectMyPay");
-		return (ArrayList<Pay>)mlist;
+	
+	public ArrayList<Pay> selectMyPay(String id) {
+		List<Pay> list = sqlSession.selectList("payMapper.selectMyPay", id);
+		return (ArrayList<Pay>)list;
 	}
 
 	public Pay detailMyPay(int payno) {

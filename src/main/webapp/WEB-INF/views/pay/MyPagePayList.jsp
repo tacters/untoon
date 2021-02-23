@@ -10,5 +10,6 @@
 </head>
 <body>
 <h1 align="center"> 사용자 마이페이지 결제목록 보기 </h1>
+
 </body>
 </html>

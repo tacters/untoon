@@ -26,9 +26,9 @@ public class PayServiceImpl implements PayService{
 	
 
 	@Override
-	public ArrayList<Pay> selectMyPay() {
+	public ArrayList<Pay> selectMyPay(String id) {
 		// TODO Auto-generated method stub
-		return payDao.selectMyPay();
+		return payDao.selectMyPay(id);
 	}
 
 	@Override
