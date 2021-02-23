@@ -9,6 +9,6 @@
 <title>UNTOON 언투온택터즈</title>
 </head>
 <body>
-<h1 align="center"> 관리자용 결제목록 보기 </h1>
+<h1 align="center"> 사용자 마이페이지 결제목록 보기 </h1>
 </body>
 </html>
