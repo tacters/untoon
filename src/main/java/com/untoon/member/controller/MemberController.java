@@ -154,6 +154,7 @@ public class MemberController {
 			model.addAttribute("msg", "회원가입 실패");
 			return "common/errorPage";
 		}
+		
 	}	
 	//아이디 중복 확인
 	@ResponseBody
