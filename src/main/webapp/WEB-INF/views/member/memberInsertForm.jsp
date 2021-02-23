@@ -109,7 +109,7 @@ span.error {
 		</form>
 		<br> <br> <a href="home.do">홈 페이지로 이동</a>
 	</div>
-
+</body>
 	<script type="text/javascript">	
 	function idDuplicateCheck(){
 		   $.ajax({
@@ -147,7 +147,7 @@ span.error {
 			         //에러 발생시 구동되는 콜백함수임
 			         console.log("error : " + jqXHR + ", " + textstatus 
 			               + ", " + errorthrown);
-			      }
+			  }    
 		});
 	}
 	// ▲ email ajax

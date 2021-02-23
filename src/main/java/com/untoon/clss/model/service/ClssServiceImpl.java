@@ -65,8 +65,8 @@ public class ClssServiceImpl implements ClssService {
 
 	// 사용자 마이페이지에 본인 클래스 내용 불러오기
 	@Override
-	public ArrayList<Clss> myClssList(Member loginUser) {
-		return cDao.myClssList(loginUser);
+	public ArrayList<Clss> myClssList(String id) {
+		return cDao.myClssList(id);
 	}
 
 	@Override
@@ -74,10 +74,37 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.addViewCount(cid);
 	}
 
+	// 강사 클래스 등록하기
 	@Override
 	public int insertTclss(Clss clss) {
 		return cDao.insertTclss(clss);
 	}
+
+	//관리자 클래스 승인하기
+	@Override
+	public int adminApproveClss(int cid) {
+		return cDao.adminApproveClss(cid);
+	}
+
+	//관리자 클래스 거부하기
+	@Override
+	public int adminDenyClss(int cid) {
+		return cDao.adminDenyClss(cid);
+	}
+
+	//관리자 승인거부 클래스 목록조회
+	@Override
+	public ArrayList<Clss> adminRlist() {
+		return cDao.adminRlist();
+	}
+
+	// 관리자 클래스 삭제하기
+	@Override
+	public int adminDeleteClss(int cid) {
+		return cDao.adminDeleteClss(cid);
+	}
+
+
 
 
 

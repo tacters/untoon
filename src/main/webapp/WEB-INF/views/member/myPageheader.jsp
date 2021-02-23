@@ -105,16 +105,18 @@
 				<li><a href="#" id="#" title="내 클래스 관리" class="#">내 클래스 관리</a> 
 					<ul>
 						<li><a href="#" id="#" class="#">수업 목록</a></li>
-							<%-- <c:url var="pmselect" value="/pmselect.do"/>
-						<li><a href='${ pmselect }' title="pmselect">결제내역</a></li> --%>
+							<c:url var="pmselect" value="/pmselect.do"/>
+						<li><a href='${ pmselect }' title="pmselect">결제내역</a></li>
 							
 					</ul>
 				</li>
 				<li><a href="#" id="#" title="내 정보 관리" class="#">내 정보 관리</a>
 					<ul>
-						<li><a href="#" id="#" class="#">회원정보 수정</a></li>
+							<c:url var="myUpdateView" value="myUpdateView.do"/>
+						<li><a href="${ myUpdateView }">회원정보 수정</a>
+						</li>
+						
 						<li><a href="#" id="#" class="#">회원정보 탈퇴</a></li>
-						<li><a href="#" id="#" class="#">비밀번호 변경</a></li>
 			   		</ul>
 			   </li>
 			   	<li><a href="#" id="#" title="내 활동 내역" class="#">내 활동 내역</a>

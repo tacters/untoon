@@ -193,6 +193,23 @@ public class ClssController {
 			return "common/errorPage";
 		}
 	}
+	
+	// 관리자 승인거부 클래스 목록조회
+		@RequestMapping("adrclist.do")
+		public String adminRlist(Model model) {
+			ArrayList<Clss> list = cService.adminRlist();
+
+			System.out.println(list);
+			if (list.size() > 0) {
+				System.out.println("목록있음");
+				model.addAttribute("list", list);
+				return "admin/adminRlistView"; 
+			} else {
+				System.out.println("목록없음");
+				model.addAttribute("msg", "강의 목록 조회 실패");
+				return "common/errorPage";
+			}
+		}
 
 	// 관리자 기간 지난 클래스 목록조회
 	@RequestMapping("adendclist.do")
@@ -226,40 +243,68 @@ public class ClssController {
 			return "common/errorPage";
 		}
 	}
+	
+	//관리자 클래스 승인하기
+	@RequestMapping("approve.do")
+	public String adminApproveClss(@RequestParam("cid") int cid, Model model) {
+		
+		int result = cService.adminApproveClss(cid);
+		System.out.println(result);
+		
+		if(result > 0) {
+			return "redirect:adnclist.do";
+		}else {
+			model.addAttribute("msg", cid + "번 클래스 승인 실패");
+			return "common/errorPage";
+		}
+	}
+	
+	//관리자 클래스 거부하기
+	@RequestMapping("deny.do")
+	public String adminDenyClss(@RequestParam("cid") int cid, Model model) {
+		
+		int result = cService.adminDenyClss(cid);
+		System.out.println(result);
+		
+		if(result > 0) {
+			return "redirect:adnclist.do";
+		}else {
+			model.addAttribute("msg", cid + "번 클래스 승인 실패");
+			return "common/errorPage";
+		}
+	}
+	
+	// 관리자 클래스 삭제하기
+	@RequestMapping("adcdelete.do")
+	public String adminDelectClss(Model model, @RequestParam("cid") int cid) {
+		if(cService.adminDeleteClss(cid) > 0) {
+			return "redirect:adrclist.do";
+		}else {
+			model.addAttribute("msg","클래스 삭제 실패");
+			return "common/errorPage";
+		}
+	}
+	
 
-	// 사용자 마이페이지에 본인 클래스 내용 불러오기
-		@RequestMapping(value="mclss.do", method=RequestMethod.POST)
-		@ResponseBody
-		public String myClssList(HttpSession session, Model model) throws UnsupportedEncodingException {
+	// 사용자 마이페이지에 본인 클래스 목록 불러오기
+		@RequestMapping("mclss.do")
+		public String myClssList(HttpSession session, Model model) {
 			Member loginUser = (Member)session.getAttribute("loginUser");
-			System.out.println(loginUser);
-			// 내가 쓴 글 조회하고
-			ArrayList<Clss> myList = cService.myClssList(loginUser);
-			System.out.println(myList);
-			//전송용 json 객체
-			JSONObject sendJson = new JSONObject();
-			// list 옮길 json 배열 준비
-			JSONArray jarr = new JSONArray();
+//			Member loginUser = (Member)session.getAttribute("id");
+//			String id = (String)session.getAttribute("id");
+			String id = loginUser.getId();
+			System.out.println(id);
+			ArrayList<Clss> myList = cService.myClssList(id);
+			System.out.println("myList : " + myList);
 			
-			// list 를 jarr 로 옮기기(복사)
-			for(Clss clss : myList) {
-				//clss 필드값 저장할 json객체 생성
-				JSONObject job = new JSONObject();
-				
-				job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
-				job.put("tchr_id", clss.getTchr_id());
-//				 job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8")); 
-				// 날짜형식의 데이터를 json객체에 담을 떈, String형으로 변환해서 담아줘야함
-				job.put("clss_start", clss.getClss_start().toString());
-				job.put("clss_end", clss.getClss_end().toString());
-				
-				jarr.add(job);
+			if(myList.size() > 0) {
+				System.out.println("값o");
+				model.addAttribute("myList", myList);
+				return "member/myClssListView";
+			}else {
+				model.addAttribute("msg", "나의 클래스 조회 실패");
+				return "common/errorPage";
 			}
-			
-			// 전송용 json 객체에 jarr 담음
-			sendJson.put("myList", jarr);
-			
-			return sendJson.toJSONString();
 		}
 
 }

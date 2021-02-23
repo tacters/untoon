@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -2653,7 +2652,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Beauty</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/tclist.do"></a>
+																				href="${pageContext.request.contextPath}/clist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -2694,7 +2693,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Coworking</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/tclist.do"></a>
+																				href="${pageContext.request.contextPath}/clist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -2725,7 +2724,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Cuisine</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/tclist.do"></a>
+																				href="${pageContext.request.contextPath}/clist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -2765,7 +2764,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Culture</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/tclist.do"></a>
+																				href="${pageContext.request.contextPath}/clist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -2807,7 +2806,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Nightlife</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/tclist.do"></a>
+																				href="${pageContext.request.contextPath}/clist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -2856,7 +2855,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Shopping</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/tclist.do"></a>
+																				href="${pageContext.request.contextPath}/clist.do"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -2884,7 +2883,7 @@ var revapi1,
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Tours</p>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/tclist.do"></a>
+																				href="${pageContext.request.contextPath}/clist.do"></a>
 																		</div>
 																	</div>
 																</div>

@@ -64,6 +64,13 @@ public class ClssDao {
 
 		return (ArrayList<Clss>) list;
 	}
+	
+	//관리자 승인거부 클래스 목록조회
+	public ArrayList<Clss> adminRlist() {
+		List<Clss> list = sqlSession.selectList("clssMapper.adminRlist");
+		
+		return (ArrayList<Clss>)list;
+	}
 
 	// 관리자 클래스 상세보기
 	public Clss adminSelectClss(int cid) {
@@ -71,8 +78,8 @@ public class ClssDao {
 	}
 
 	// 사용자 마이페이지에 본인 클래스 내용 불러오기
-	public ArrayList<Clss> myClssList(Member loginUser) {
-		List<Clss> myList = sqlSession.selectList("clssrMapper.myClssList", loginUser);
+	public ArrayList<Clss> myClssList(String id) {
+		List<Clss> myList = sqlSession.selectList("clssMapper.myClssList", id);
 		return (ArrayList<Clss>) myList;
 	}
 
@@ -83,5 +90,22 @@ public class ClssDao {
 	public int insertTclss(Clss clss) {
 		return sqlSession.insert("clssMapper.insertTclss",clss);
 	}
+
+	//관리자 클래스 승인하기
+	public int adminApproveClss(int cid) {
+		return sqlSession.update("clssMapper.approveClss",cid);
+	}
+
+	//관리자 클래스 거부하기
+	public int adminDenyClss(int cid) {
+		return sqlSession.update("clssMapper.denyClss",cid);
+	}
+
+	// 관리자 클래스 삭제하기
+	public int adminDeleteClss(int cid) {
+		return sqlSession.delete("clssMapper.adminDeleteClss", cid);
+	}
+
+
 
 }
