@@ -7,7 +7,7 @@
 	<result property="pwd" column="PWD"/>
 	<result property="name" column="NAME"/>
 	<result property="email" column="EMAIL"/>
-	<result property="email_cert" column="EMAIL"/>
+	<result property="email_cert" column="EMAIL_CERT"/>
 	<result property="nickname" column="NICKNAME"/>
 	<result property="user_lv" column="USER_LV"/>
 	<result property="tchr_upload" column="TCHR_UPLOAD"/>
