@@ -76,6 +76,33 @@ body, html {
 <body>	
 <c:import url="../common/menubar.jsp"/>
 
+<!-- 기능 매핑 -->
+	<c:url var="approve" value="/approve.do"/>
+	<c:url var="deny" value="/deny.do"/>
+	<c:url var="adcdelete" value="/adcdelete.do"/>
+	<c:url var="pay" value="/pinsert.do"/>
+
+<c:if test="${sessionScope.loginUser.user_lv eq 'A'}">
+	<h1> ◈ ${clss.cid} ◈ 클래스 인증 대기 </h1>
+	<div style="margin: auto; border: 1px solid #2392bd; padding: 10px;">
+	
+					<button class="admin_lv" onclick="location.href='${ approve }'"> 승인하기 </button>
+					&nbsp; &nbsp; 
+					<button class="admin_lv" onclick="location.href='${ deny }'"> 거부하기 </button>
+					&nbsp; &nbsp; 
+					<button class="admin_lv" onclick="location.href='${ adcdelete }'"> 삭제하기 </button>
+					&nbsp; &nbsp; 
+					<button class="admin_lv" onclick="location.href='${ tcupdate }'"> 수정하기 </button>
+	</div>
+</c:if>
+
+<c:if test="${sessionScope.loginUser.user_lv eq 'T'}">
+	<h1> ◈ ${clss.cid} ◈ 클래스 인증 대기 </h1>
+	<div style="margin: auto; border: 1px solid #2392bd; padding: 10px;">
+					<button class="admin_lv" onclick="location.href='${ tcupdate }'"> 수정하기 </button>
+	</div>
+</c:if>
+
 <script type="text/javascript">
 	//		${clss.cid}
 	//		
@@ -106,8 +133,6 @@ body, html {
 
 <iframe id="embedLink" width="560" height="315" src="about:blank"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-
-
 
 
 <div id="sideIntro" class="topGrid">
@@ -145,7 +170,6 @@ body, html {
 				<button class="btn-pay" onclick="checkPayer();">결제하기</button>
 			</c:if>
 			<c:if test="${sessionScope.loginUser.user_lv eq 'S'}">
-			<c:url var="pay" value="/pinsert.do"/>
 				<button class="btn-pay" onclick="location.href='${ pay }'">결제하기</button>
 			</c:if>		
 		</c:if>
