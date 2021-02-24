@@ -96,26 +96,35 @@ body, html {
 <body>	
 <c:import url="../common/menubar.jsp"/>
 
+<form action="deny.do">
+<input type="hidden" name="cid" value="${clss.cid}">
 
 
 <c:if test="${sessionScope.loginUser.user_lv eq 'A'}">
 	<h1> ◈ ${clss.cid} ◈ 클래스 인증 대기 </h1>
 	<div style="margin: auto; border: 1px solid #2392bd; padding: 10px;">
 	
+					<c:url var="approve" value="/approve.do" >
+						<c:param name="cid" value="${ clss.cid }"/>
+					</c:url>
 					<button class="admin_lv" onclick="location.href='${ approve }'"> 승인하기 </button>
 					&nbsp; &nbsp; 
-					<button class="admin_lv" onclick="location.href='${ deny }'"> 거부하기 </button>
-					&nbsp; &nbsp; 
+					<c:url var="refuse" value="/refuse.do" >
+						<c:param name="cid" value="${ clss.cid }"/>
+					</c:url>
+					<c:url var="adcdelete" value="/adcdelete.do">
+						<c:param name="cid" value="${ clss.cid }"/>
+					</c:url>
 					<button class="admin_lv" onclick="location.href='${ adcdelete }'"> 삭제하기 </button>
 					&nbsp; &nbsp; 
 					<button class="admin_lv" onclick="location.href='${ tcupdate }'"> 수정하기 </button>
 	</div>
 </c:if>
 
-<c:if test="${sessionScope.loginUser.user_lv eq 'T'}">
+<c:if test="${sessionScope.loginUser.user_lv eq 'T' and clss.clss_status eq 3 }">
 	<h1 style="text-align: center;"> ◈ &nbsp; # ${clss.cid} &nbsp; ◈ 클래스 인증 대기 </h1>
 	<div style="margin: auto; border: 1px solid #2392bd; padding: 10px;">
-					<button class="admin_lv" onclick="location.href='${ tcupdate }'"> 수정하기 </button>
+		${ clss.clss_comment }
 	</div>
 </c:if>
 
@@ -264,10 +273,17 @@ body, html {
 		</div>
 
 </div>
+<c:if test="${sessionScope.loginUser.user_lv eq 'A'}">
+	<c:if test="${ clss.clss_status lt 3 }">
+	<textarea cols="100" rows="10" name="clss_comment"></textarea>
+	<input type="submit" value="거부하기">
+	&nbsp; &nbsp; 
+	</c:if>
+</c:if>
 
 
 
-
+</form>
 <footer><c:import url="../common/footer.jsp"/></footer>
 </body>
 

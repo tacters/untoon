@@ -97,13 +97,18 @@ public class ClssDao {
 	}
 
 	//관리자 클래스 거부하기
-	public int adminDenyClss(int cid) {
+	public int adminDenyClss(int cid, String clss_comment) {
 		return sqlSession.update("clssMapper.denyClss",cid);
 	}
 
 	// 관리자 클래스 삭제하기
 	public int adminDeleteClss(int cid) {
 		return sqlSession.delete("clssMapper.adminDeleteClss", cid);
+	}
+
+	//관리자 클래스 거부하기
+	public int adminDenyClss(Clss clss) {
+		return sqlSession.update("clssMapper.denyClss", clss);
 	}
 
 
