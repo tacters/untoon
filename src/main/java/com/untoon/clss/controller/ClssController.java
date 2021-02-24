@@ -58,7 +58,7 @@ public class ClssController {
 		if (clss != null) {
 			System.out.println("값있음");
 			model.addAttribute("clss", clss);
-			return "clss/clssDetailView.jsp";
+			return "clss/clssDetailView";
 		} else {
 			System.out.println("값없음");
 			model.addAttribute("msg", "강사 상세보기 실패");

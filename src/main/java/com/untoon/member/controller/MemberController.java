@@ -134,6 +134,12 @@ public class MemberController {
 		return "member/myInfoView";
 	}
 	
+	//회원 탈퇴페이지로 이동
+	@RequestMapping("myDeleteView.do")
+	public String myDeleteView() {
+		return "member/myDeleteView";
+	}
+	
 	/*
 	 * //강사 회원가입페이지로 이동
 	 * 
@@ -189,11 +195,26 @@ public class MemberController {
 		
 		if(result > 0) {
 			model.addAttribute("loginUser", m);
-			return "redirect:hom.do";
+			return "redirect:home.do";
 		}else {
 			model.addAttribute("msg","회원정보 수정 실패!");
 			return "common/errorPage";
 		}
+	}
+	@RequestMapping("mdelete.do")
+	public String memeberDelete(SessionStatus status,
+								@RequestParam("id") String id,
+								Model model) {
+		
+		int result = mService.deleteMember(id);
+		
+		if(result > 0) {
+			return "redirect:logout.do";
+		}else {
+			model.addAttribute("msg", "회원 탈퇴 실패");
+			return "common/errorPage";
+		}
+		
 	}
 }
 

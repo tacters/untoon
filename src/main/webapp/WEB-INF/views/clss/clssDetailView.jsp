@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!-- 기능 매핑 -->
+	<c:url var="approve" value="/approve.do"/>
+	<c:url var="deny" value="/deny.do"/>
+	<c:url var="adcdelete" value="/adcdelete.do"/>
+	<c:url var="pay" value="/pinsert.do"/>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +38,19 @@
   left-margin: 10%;
   width: 100%;
   }
+  
+  .btn-pay {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.btn-pay:hover {
+  background-color: #008CBA;
+  color: white;
+  transition-duration: 1s;
+}
+  
 </style>
 
 <style type="text/css"> /* div id= tabArea */
@@ -76,11 +96,7 @@ body, html {
 <body>	
 <c:import url="../common/menubar.jsp"/>
 
-<!-- 기능 매핑 -->
-	<c:url var="approve" value="/approve.do"/>
-	<c:url var="deny" value="/deny.do"/>
-	<c:url var="adcdelete" value="/adcdelete.do"/>
-	<c:url var="pay" value="/pinsert.do"/>
+
 
 <c:if test="${sessionScope.loginUser.user_lv eq 'A'}">
 	<h1> ◈ ${clss.cid} ◈ 클래스 인증 대기 </h1>
@@ -221,6 +237,12 @@ body, html {
 		<!-- 클래스 후기  -->
 		<div id="2-review" class="tabcontent">
 		<h3 style="text-align: center; color: #fff;"> 후기 </h3>
+		
+		<c:url var="rlist" value="/rlist.do">
+				<c:param name="page" value="1" />
+		</c:url>
+		
+		<a href='${ rlist }' title="review list 후기 조회하기"> 후기 조회 해보자~~~ </a>
 		
 		</div>
 		

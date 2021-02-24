@@ -75,5 +75,10 @@
 		WHERE RID= #{RID}
 	</update>
 	
+	<select id="getListCount" resultType="_int">
+			SELECT COUNT(*) FROM REVIEW
+	</select>
+	
 </mapper>
+
 
