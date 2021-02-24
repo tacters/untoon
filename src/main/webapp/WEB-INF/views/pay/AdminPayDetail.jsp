@@ -9,6 +9,9 @@
 <title>UNTOON 언투온택터즈</title>
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
 
+
+<footer><c:import url="../common/footer.jsp"/></footer>
 </body>
 </html>

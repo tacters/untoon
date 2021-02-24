@@ -20,7 +20,7 @@ public class PayServiceImpl implements PayService{
 	}
 
 	@Override
-	public Pay detailPay(int payno) {
+	public PayClss detailPay(int payno) {
 		// TODO Auto-generated method stub
 		return payDao.detailPay(payno);
 	}
@@ -33,7 +33,7 @@ public class PayServiceImpl implements PayService{
 	}
 
 	@Override
-	public Pay detailMyPay(int payno) {
+	public PayClss detailMyPay(int payno) {
 		// TODO Auto-generated method stub
 		return payDao.detailMyPay(payno);
 	}

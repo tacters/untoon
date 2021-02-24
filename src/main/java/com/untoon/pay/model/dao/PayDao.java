@@ -23,7 +23,7 @@ public class PayDao {
 		return (ArrayList<PayClss>)list;
 	}
 
-	public Pay detailPay(int payno) {
+	public PayClss detailPay(int payno) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("payMapper.detailPay", payno);
 	}
@@ -34,8 +34,7 @@ public class PayDao {
 		return (ArrayList<PayClss>)list;
 	}
 
-	public Pay detailMyPay(int payno) {
-		// TODO Auto-generated method stub
+	public PayClss detailMyPay(int payno) {
 		return sqlSession.selectOne("payMapper.detailMyPay", payno);
 	}
 

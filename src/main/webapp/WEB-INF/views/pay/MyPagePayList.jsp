@@ -10,6 +10,9 @@
 <script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/jquery-3.5.1.min.js"></script>
 </head>
 <body>
+
+<c:import url="../common/menubar.jsp"/>
+
 <h2 align="left"> ${ loginUser.name }님의 결제목록 보기 </h2>
 <table align="center" border="1" width="900" cellspacing="0">
 <tr><th>결제 번호</th><th>클래스 제목</th><th>강사</th><th>결제 금액</th><th>결제상태</th></tr>
@@ -37,6 +40,7 @@
 </c:forEach>
 </table>
 
+<footer><c:import url="../common/footer.jsp"/></footer>
 
 </body>
 </html>

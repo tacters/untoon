@@ -9,6 +9,9 @@
 
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
+
+
 <h1> 결제가 완료되었습니다. </h1>
 <hr>
 <h3>주문정보</h3>
@@ -20,5 +23,8 @@
 <p><label>연락처 : <input type="tel" name="phone" value="${loginUser.phone}"></label></p>
 <hr>
 <p>총 상품 금액 : ${ clss.clss_price }</p>
+
+<footer><c:import url="../common/footer.jsp"/></footer>
+
 </body>
 </html>

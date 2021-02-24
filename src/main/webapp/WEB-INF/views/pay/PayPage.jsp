@@ -55,6 +55,9 @@ IMP.request_pay({
 </script>
 </head>
 <body>
+
+<c:import url="../common/menubar.jsp"/>
+
 <h1> 결제하기 </h1>
 <form action="pinsert.do" post="post">
 <h3>주문정보</h3>
@@ -67,8 +70,9 @@ IMP.request_pay({
 <hr>
 <p>총 결제한 금액 : ${ clss.clss_price }</p>
 <button onclick="main();">메인으로 돌아가기 </button>
-
 </form>
+
+<footer><c:import url="../common/footer.jsp"/></footer>
 
 </body>
 </html>

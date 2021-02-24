@@ -36,12 +36,10 @@ public class PayController {
 	
 	//관리자가 결제목록 상세보기 할 때 
 	@RequestMapping("pdetail.do")
-	public String detailPay(@RequestParam("payno") int payno, Model model,
-				HttpSession session) {
-		Pay pay = payService.detailPay(payno);
+	public String detailPay(@RequestParam("payno") int payno, Model model) {
+		PayClss pay = payService.detailPay(payno);
 			
-		Member loginUser = (Member) session.getAttribute("loginUser");
-		if (pay !=null && loginUser != null && loginUser.getUser_lv().equals("A")){
+		if (pay !=null){
 			model.addAttribute("pay", pay);
 			return "pay/AdminPayDetail";
 		} else {
@@ -67,12 +65,11 @@ public class PayController {
 	}
 	//사용자가 마이페이지에서 결제목록 상세보기 할 때 
 		@RequestMapping("pmdetail.do")
-		public String detailMyPay(@RequestParam("payno") int payno, Model model,
-					HttpSession session) {
-			Pay pay = payService.detailPay(payno);
+		public String detailMyPay(@RequestParam("payno") int payno, Model model) {
+			PayClss pay = payService.detailMyPay(payno);
+				System.out.println("pay : " + pay);
 				
-			Member loginUser = (Member) session.getAttribute("loginUser");
-			if (pay !=null && loginUser != null && loginUser.getUser_lv().equals("S")){
+			if (pay !=null ){
 				model.addAttribute("pay", pay);
 				return "pay/MyPagePayDetail";
 			} else {

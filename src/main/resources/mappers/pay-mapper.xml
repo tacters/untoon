@@ -29,8 +29,9 @@
 		order by payno asc
 	</select>
 	
-	<select id="detailPay" parameterType="_int" resultMap="payResultSet">
+	<select id="detailPay" parameterType="_int" resultMap="payclssResultSet">
 		select * from pay
+		join clss using (cid)
 		where payno = #{payno}
 	</select>
 	
@@ -40,8 +41,9 @@
 		where pid = #{id}
 	</select>
 	
-	<select id="MyPayDetail" parameterType="_int" resultMap="payResultSet"> <!-- where 조건에 쓸때는 매개변수가 있으므로 파라매터 타입을 쓰지만 where 조건에 쓰는 컬럼이 없을 때는 매개변수가 없으므로 파라매터 타입을 쓸 필요가 없다. -->
+	<select id="detailMyPay" parameterType="_int" resultMap="payclssResultSet"> <!-- where 조건에 쓸때는 매개변수가 있으므로 파라매터 타입을 쓰지만 where 조건에 쓰는 컬럼이 없을 때는 매개변수가 없으므로 파라매터 타입을 쓸 필요가 없다. -->
 		select * from pay 
+		join clss using (cid)
 		where payno = #{payno}
 	</select>
 	
