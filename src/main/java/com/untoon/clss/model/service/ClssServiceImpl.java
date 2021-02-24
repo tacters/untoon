@@ -86,11 +86,6 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.adminApproveClss(cid);
 	}
 
-	//관리자 클래스 거부하기
-	@Override
-	public int adminDenyClss(int cid) {
-		return cDao.adminDenyClss(cid);
-	}
 
 	//관리자 승인거부 클래스 목록조회
 	@Override
@@ -102,6 +97,12 @@ public class ClssServiceImpl implements ClssService {
 	@Override
 	public int adminDeleteClss(int cid) {
 		return cDao.adminDeleteClss(cid);
+	}
+
+	//관리자 클래스 거부하기
+	@Override
+	public int adminDenyClss(Clss clss) {
+		return cDao.adminDenyClss(clss);
 	}
 
 

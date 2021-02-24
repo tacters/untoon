@@ -23,6 +23,7 @@
 		<result property="clss_original_filename" column="CLSS_ORIGINAL_FILENAME"/>
 		<result property="clss_rename_filename" column="CLSS_RENAME_FILENAME"/>
 		<result property="clss_rename_filename" column="CLSS_RENAME_FILENAME"/>
+		<result property="clss_comment" column="CLSS_COMMENT"/>
 		<result property="tchr_id" column="TCHR_ID"/>
 		<result property="tchr_introduction" column="TCHR_INTRODUCTION"/>
 		<result property="tchr_profile" column="TCHR_PROFILE"/>
@@ -44,7 +45,7 @@
 	
 	<select id="selectTClss" parameterType="_int" resultMap="clssResultSet">
 		select * from clss
-		where tchr_id = #{ tchr_id }
+		where cid = #{ cid }
 	</select>
 	
 	<select id="selectClss" parameterType="_int" resultMap="clssResultSet">
@@ -118,7 +119,7 @@
     		#{clss_times}, #{clss_start}, #{clss_end}, #{clss_duration}, #{clss_min}, #{clss_max}, DEFAULT, DEFAULT,DEFAULT,
     		DEFAULT,
     		#{clss_original_filename}, default, #{clss_url},
-    		#{tchr_id}, #{tchr_introduction}, #{tchr_profile}
+    		#{tchr_id}, #{tchr_introduction}, #{tchr_profile}, default
     	)
     </insert>
     
@@ -134,7 +135,8 @@
     <update id="denyClss">
     	update clss
     	set
-    	clss_status = 3
+    	clss_status = 3,
+    	clss_comment = #{clss_comment}
     	where cid = #{cid}
     </update>
     

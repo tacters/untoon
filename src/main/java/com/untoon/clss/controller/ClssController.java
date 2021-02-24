@@ -87,12 +87,14 @@ public class ClssController {
 		}
 	}
 
-	/*
-	 * //강사 마이페이지(나중에 지워야함)
-	 * 
-	 * @RequestMapping("teacherInfo.do") public String teacherInfoView() { return
-	 * "teacher/teacherPage"; }
-	 */
+	
+	  //강사 마이페이지(나중에 지워야함)
+	  
+	@RequestMapping("teacherInfo.do")
+	public String teacherInfoView() {
+	    return "teacher/teacherPage"; 
+	}
+	 
 
 	// 강사 클래스등록 페이지로 이동
 	@RequestMapping("tinsert.do")
@@ -152,7 +154,7 @@ public class ClssController {
 		if (clss != null) {
 			System.out.println("값있음");
 			model.addAttribute("clss", clss);
-			return "clss/teacherDetailView";
+			return "clss/clssDetailView";
 		} else {
 			System.out.println("값없음");
 			model.addAttribute("msg", "강사 상세보기 실패");
@@ -237,7 +239,7 @@ public class ClssController {
 		if (clss != null) {
 			System.out.println("조회성공");
 			model.addAttribute("clss", clss);
-			return "admin/adminClssDetailView";
+			return "clss/clssDetailView";
 		} else {
 			model.addAttribute("msg", cid + "번 클래스 조회 실패");
 			return "common/errorPage";
@@ -260,16 +262,32 @@ public class ClssController {
 	}
 	
 	//관리자 클래스 거부하기
+//	@RequestMapping("deny.do")
+//	public String adminDenyClss(@RequestParam("cid") int cid, Model model) {
+//		
+//		int result = cService.adminDenyClss(cid);
+//		System.out.println(result);
+//		
+//		if(result > 0) {
+//			return "redirect:adnclist.do";
+//		}else {
+//			model.addAttribute("msg", cid + "번 클래스 승인 실패");
+//			return "common/errorPage";
+//		}
+//	}
 	@RequestMapping("deny.do")
-	public String adminDenyClss(@RequestParam("cid") int cid, Model model) {
+	public String adminDenyClss(Clss clss, Model model
+			) {
 		
-		int result = cService.adminDenyClss(cid);
-		System.out.println(result);
+		System.out.println(clss);
 		
-		if(result > 0) {
+		if(cService.adminDenyClss(clss) > 0) {
+			System.out.println("값o");
+			System.out.println(clss);
 			return "redirect:adnclist.do";
 		}else {
-			model.addAttribute("msg", cid + "번 클래스 승인 실패");
+			System.out.println("값x");
+			model.addAttribute("msg", "클래스 승인 실패");
 			return "common/errorPage";
 		}
 	}

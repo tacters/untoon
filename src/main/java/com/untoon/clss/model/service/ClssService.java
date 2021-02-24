@@ -33,11 +33,12 @@ public interface ClssService {
 
 	int adminApproveClss(int cid);	//관리자 클래스 승인하기
 
-	int adminDenyClss(int cid);	//관리자 클래스 거부하기
 
 	ArrayList<Clss> adminRlist();	//관리자 승인거부 클래스 목록조회
 
 	int adminDeleteClss(int cid);	// 관리자 클래스 삭제하기
+
+	int adminDenyClss(Clss clss);	//관리자 클래스 거부하기
 
 
 }

@@ -287,8 +287,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											<a href='${ tinsert }' title="tinsert">클래스 등록하기</a>
 								</div>
 								<div class="widget edgtf-login-register-widget">
-									<c:url var="myInfo" value="/myInfo.do" />
-									<a href='${ myInfo }' title="myInfo">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->
+									<c:url var="tInfo" value="/teacherInfo.do" />
+									<a href='${ tInfo }' title="tInfo">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->
 								</div>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="tclist" value="/tclist.do" />
@@ -302,10 +302,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 							
 							<!-- ADMIN 로그인-->
 							<c:if test="${sessionScope.loginUser.user_lv eq 'A'}">
-								<c:out value="${ loginUser.nickname }님은 관리하시느라 수고 많으세용 ㅠㅜ~!"/>&nbsp; &nbsp; &nbsp;
+								<c:out value="${ loginUser.name }님은 관리하시느라 수고 많으세용 ㅠㅜ~!"/>&nbsp; &nbsp; &nbsp;
 								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
 											<c:url var="adnclist" value="/adnclist.do" />
-											<a href='${ adnclist }' title="adnclist">클래스 인증하기</a> <!-- 관리자 미승인 클래스 목록보기 -->
+											<a href='${ adnclist }' title="adnclist">미승인 클래스 </a> <!-- 관리자 미승인 클래스 목록보기 -->
+								</div>
+								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
+											<c:url var="adclist" value="/adclist.do" />
+											<a href='${ adclist }' title="adclist">승인클래스</a> <!-- 관리자 승인 클래스 목록보기 -->
+								</div>
+								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
+											<c:url var="adendclist" value="/adendclist.do" />
+											<a href='${ adendclist }' title="adendclist">기간지난 클래스</a> <!-- 관리자 기간지난 클래스 목록보기 -->
+								</div>
+								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
+											<c:url var="adrclist" value="/adrclist.do" />
+											<a href='${ adrclist }' title="adrclist">승인거부 클래스</a> <!-- 관리자 기간지난 클래스 목록보기 -->
 								</div>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="myInfo" value="/myInfo.do" />
