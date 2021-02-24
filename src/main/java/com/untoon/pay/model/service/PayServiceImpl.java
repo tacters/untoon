@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.untoon.pay.model.dao.PayDao;
 import com.untoon.pay.model.vo.Pay;
+import com.untoon.pay.model.vo.PayClss;
 
 @Service("payService")
 public class PayServiceImpl implements PayService{
@@ -26,7 +27,7 @@ public class PayServiceImpl implements PayService{
 	
 
 	@Override
-	public ArrayList<Pay> selectMyPay(String id) {
+	public ArrayList<PayClss> selectMyPay(String id) {
 		// TODO Auto-generated method stub
 		return payDao.selectMyPay(id);
 	}

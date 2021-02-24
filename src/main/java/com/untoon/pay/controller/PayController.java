@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.untoon.member.model.vo.Member;
 import com.untoon.pay.model.service.PayService;
 import com.untoon.pay.model.vo.Pay;
+import com.untoon.pay.model.vo.PayClss;
 
 @Controller
 public class PayController {
@@ -52,7 +53,7 @@ public class PayController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		String id = loginUser.getId();
 		System.out.println(id);
-		ArrayList<Pay> list = payService.selectMyPay(id);
+		ArrayList<PayClss> list = payService.selectMyPay(id);
 		System.out.println("list : " + list );
 		
 		if(list.size() > 0) {

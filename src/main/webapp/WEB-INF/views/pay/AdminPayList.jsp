@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1 align="center"> 관리자용 결제목록 보기 </h1>
-<br>
+
 
 </body>
 </html>

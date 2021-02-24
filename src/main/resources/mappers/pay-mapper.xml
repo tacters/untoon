@@ -11,6 +11,18 @@
 		<result property="pstatus" column="PSTATUS"/>
 	</resultMap>
 	
+	<resultMap id="payclssResultSet" type="PayClss">
+		<id property="payno" column="PAYNO"/>
+		<result property="pid" column="PID"/>
+		<result property="cid" column="CID"/>
+		<result property="paydate" column="PAYDATE"/>
+		<result property="method" column="METHOD"/>
+		<result property="pstatus" column="PSTATUS"/>
+		<result property="clss_title" column="CLSS_TITLE"/>
+		<result property="tchr_id" column="TCHR_ID"/>
+		<result property="clss_price" column="CLSS_PRICE"/>
+	</resultMap>
+	
 	<select id="payList" resultMap="payResultSet">
 		select * from pay
 		order by payno asc
@@ -21,8 +33,9 @@
 		where payno = #{payno}
 	</select>
 	
-	<select id="selectMyPay" parameterType="string" resultMap="payResultSet">
+	<select id="selectMyPay" parameterType="string" resultMap="payclssResultSet">
 		select * from pay
+		join clss using (cid)
 		where pid = #{id}
 	</select>
 	

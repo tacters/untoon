@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.untoon.pay.model.vo.Pay;
+import com.untoon.pay.model.vo.PayClss;
 
 @Repository("payDao")
 public class PayDao {
@@ -28,9 +29,9 @@ public class PayDao {
 	}
 
 	
-	public ArrayList<Pay> selectMyPay(String id) {
-		List<Pay> list = sqlSession.selectList("payMapper.selectMyPay", id);
-		return (ArrayList<Pay>)list;
+	public ArrayList<PayClss> selectMyPay(String id) {
+		List<PayClss> list = sqlSession.selectList("payMapper.selectMyPay", id);
+		return (ArrayList<PayClss>)list;
 	}
 
 	public Pay detailMyPay(int payno) {
