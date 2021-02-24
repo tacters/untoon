@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -85,9 +86,10 @@
 					</c:choose>
 				</tr>
 				<tr>
-					<td>나이 :</td>
+					<td>생일 :</td>
+						<fmt:parseDate value="${ loginUser.birthday }" var ="b" pattern="yyMMdd"/>
 					<td>
-						<input type="text" name="birthday" value="${ loginUser.birthday }">
+						<fmt:formatDate value="${ b }" pattern="yyyy년-MM월-dd일"/>
 					</td>
 				</tr>
 				<tr>
