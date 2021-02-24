@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reviewMapper">
+
+	<resultMap type="Review" id="resultReview">
+		<id column="rid" property="rid" />
+		<id column="cid" property="cid" />
+		<result column="rwriter" property="rwriter" />
+		<result column="rcontent" property="rcontent" />
+		<result column="r_create_date" property="r_create_date" />
+		<result column="r_modify_date" property="br_modify_date" />
+		<result column="r_status" property="r_status" />
+		<result column="ofile_r" property="ofile_r" />
+		<result column="rfile_r" property="rfile_r" />
+	</resultMap>
+
+<!-- <, >, & 들어가면 사용하기 <![CDATA[ 쿼리문장 ]]>  -->
+
+	<select id="selectList" parameterType="com.untoon.review.model.vo.ReviewPage" 
+	resultMap="resultReview">
+		<!-- 밑에 select 쿼리문안에 #{cid}는 ReviewDao의 selectList() 안에서 가져오는 값임-->
+		<![CDATA[
+		SELECT *
+		FROM (SELECT ROWNUM RNUM, RID, #{ cid }, RWRITER, RCONTENT, 
+		                    R_CREATE_DATE, R_MODIFY_DATE, R_STATUS,
+		                    OFILE_R, RFILE_R
+		            FROM (SELECT * FROM REVIEW 
+		                       WHERE R_STATUS = 'Y'
+		                       ORDER BY RID DESC))
+		WHERE RNUM >= #{ startRow } AND RNUM <= #{ endRow }
+		]]>
+	</select>
+
+	<insert id="insertReview" parameterType="Review">
+		INSERT INTO REVIEW
+		<if test="OFILE_R != null">
+		VALUES (
+				seq_rid.nextval, #{ cid },#{ rwriter }, #{ rcontent }, 
+				sysdate, sysdate, default,
+				#{ OFILE_R }, #{ RFILE_R }
+				)
+		</if>
+		<if test="OFILE_R == null">
+		VALUES (
+				seq_bid.nextval, #{ cid },#{ rwriter }, #{ rcontent }, 
+				sysdate, sysdate, default,
+				null, null
+				)
+		</if>
+	</insert>
+	
+	<update id="updateReview" parameterType="Review">
+	<!-- 후기에서 수정 가능한 것들: rcontent, 수정날짜, ofile, rfile -->
+	UPDATE REVIEW
+		SET 
+			   RCONTENT = #{ rcontent }, 
+			   R_MODIFY_DATE = sysdate
+			   <if test="OFILE_R == null">
+			   , OFILE_R = null,
+			   RFILE_R = null
+			   </if>
+			   <if test="OFILE_R != null">
+			   , OFILE_R = #{ ofile_r },
+			   OFILE_R = #{ rfile_r }
+			   </if>
+			where rid = #{ rid }
+			and r_status = 'Y'
+	</update>
+	
+	<update id="deleteReview" parameterType="_int">
+	UPDATE REVIEW
+		SET
+				R_STATUS='N',
+				R_MODIFY_DATE=SYSDATE
+		WHERE RID= #{RID}
+	</update>
+	
+	<select id="getListCount" resultType="_int">
+			SELECT COUNT(*) FROM REVIEW
+	</select>
+	
+</mapper>
+
+
