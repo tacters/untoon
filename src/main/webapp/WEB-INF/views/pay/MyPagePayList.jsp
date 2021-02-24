@@ -23,7 +23,7 @@
 	<a href="${ pmd }">${ m.clss_title }</a> 
 	</td>
 	<td align ="center">${ m.tchr_id }</td>
-	<td align="center">${ m.clss_price }</td>
+	<td align="center">${ m.clss_price } 원</td>
 	<td align="center">
 	<c:if test="${ m.pstatus eq 2 }">
 		결제완료

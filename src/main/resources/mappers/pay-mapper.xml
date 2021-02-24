@@ -23,8 +23,9 @@
 		<result property="clss_price" column="CLSS_PRICE"/>
 	</resultMap>
 	
-	<select id="payList" resultMap="payResultSet">
+	<select id="payList" resultMap="payclssResultSet">
 		select * from pay
+		join clss using (cid)
 		order by payno asc
 	</select>
 	

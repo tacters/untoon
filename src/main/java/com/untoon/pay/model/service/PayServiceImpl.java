@@ -15,7 +15,7 @@ public class PayServiceImpl implements PayService{
 	private PayDao payDao;
 	
 	@Override
-	public ArrayList<Pay> payList() {
+	public ArrayList<PayClss> payList() {
 		return payDao.payList();
 	}
 

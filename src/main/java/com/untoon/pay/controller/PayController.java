@@ -24,7 +24,8 @@ public class PayController {
 	//관리자가 전체 결제 목록 보기 요청 할 때 
 	@RequestMapping("plist.do")
 	public String payList(Model model) {
-		ArrayList<Pay> list = payService.payList();
+		ArrayList<PayClss> list = payService.payList();
+		System.out.println("list : " + list );
 		if(list.size() > 0) {
 			model.addAttribute("list", list);
 			return "pay/AdminPayList";

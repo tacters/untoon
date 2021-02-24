@@ -18,9 +18,9 @@ public class PayDao {
 	
 	public PayDao() {}
 	
-	public ArrayList<Pay> payList() {
-		List<Pay> list = sqlSession.selectList("payMapper.payList");
-		return (ArrayList<Pay>)list;
+	public ArrayList<PayClss> payList() {
+		List<PayClss> list = sqlSession.selectList("payMapper.payList");
+		return (ArrayList<PayClss>)list;
 	}
 
 	public Pay detailPay(int payno) {
