@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="../member/myPageheader.jsp"/>
 <h2>${ loginUser.name }님의 클래스 관리</h2>
 <table align="center" border="1" width="700" cellspacing="0">
 <tr><th>클래스 번호</th><th>클래스 제목</th><th>강사</th><th>강의 시작 날짜</th><th>강의 끝나는 날짜</th>
@@ -17,7 +18,6 @@
    <td align="center">${ m.cid }</td>
    <td>   
    <c:url var="tdt" value="/tcdetail.do">
-      <%-- <c:param name="page" value="${ currentPage }"/> --%>
       <c:param name="cid" value="${ m.cid }" />
    </c:url>
    <a href="${ tdt }">${ m.clss_title }</a>

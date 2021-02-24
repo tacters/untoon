@@ -104,7 +104,7 @@
 			<ul class="navi">
 				<li><a href="#" id="#" title="내 클래스 관리" class="#">내 클래스 관리</a> 
 					<ul>
-						<li><a href="#" id="#" class="#">수업 목록</a></li>
+						<li><a href="mclss.do" id="#" class="#">수업 목록</a></li>
 							<c:url var="pmselect" value="/pmselect.do"/>
 						<li><a href='${ pmselect }' title="pmselect">결제내역</a></li>
 							
