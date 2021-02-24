@@ -13,7 +13,7 @@
 	<result property="tchr_upload" column="TCHR_UPLOAD"/>
 	<result property="tchr_cert" column="TCHR_UPLOAD"/>
 	<result property="loginok" column="TCHR_UPLOAD"/>
-	<result property="birthday" column="BIRTHDATY"/>
+	<result property="birthday" column="BIRTHDAY"/>
 	<result property="gender" column="GENDER"/>
 	<result property="phone" column="PHONE"/>
 	<result property="enroll_date" column="ENROLL_DATE"/>
