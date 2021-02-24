@@ -253,11 +253,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<c:url var="enrollview" value="/enrollView.do" />
 									<a href='${ enrollview }' title="enroll">회원가입</a>
 							</div>
-							<div
-								class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
-									<c:url var="tenrollview" value="/tenrollview.do" />
-									<a href='${ tenrollview }' title="tenroll">강사회원가입</a>
-							</div>
 						</c:if>
 						
 						<!-- LOGGED IN 로그인 되어있을 때의 메뉴-->
