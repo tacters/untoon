@@ -98,18 +98,23 @@ public class PayController {
 }
 	// 결제목록 결제상태(결제승인여부) 업데이트
 		@RequestMapping("pupdate.do")
-		public String updatePay(Pay pay, Model model, HttpSession session) {
-			int p = payService.updatePay(pay);
-			Member loginUser = (Member) session.getAttribute("loginUser");
+		public String updatePay(@RequestParam("payno") int payno, Model model, HttpSession session) {
+			int p = payService.updatePay(payno);
+			System.out.println("p : " + p);
 			
-			if(p > 0 && loginUser !=null && loginUser.getUser_lv().equals("S")) {
+			Member loginUser = (Member) session.getAttribute("loginUser");
+			String id = loginUser.getId();
+			System.out.println(id);
+			ArrayList<PayClss> list = payService.selectMyPay(id);
+			System.out.println("list : " + list );
+			
+			if(p > 0 ) {
 				model.addAttribute("msg", "결제가 취소되었습니다.");
-				return "pay/MyPayPageDetail";
-			}else if(p > 0 && loginUser !=null && loginUser.getUser_lv().equals("A")) {
-				return "pay/AdminPayDetail";
+				model.addAttribute("list", list);
+				return "pay/MyPagePayList";
 			}
 			else {
-				model.addAttribute("msg", "결제업데이트가 실패되었습니다. ");
+				model.addAttribute("msg", "결제취소가 실패되었습니다. ");
 				return "common/errorPage";
 			}	
 		} 

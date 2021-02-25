@@ -25,7 +25,7 @@
 	<c:url var="pd" value="/pdetail.do">
 		<c:param name="payno" value="${ m.payno }"/>
 	 	</c:url>
-	<a href="${ pmd }">${ m.clss_title }</a> 
+	<a href="${ pd }">${ m.clss_title }</a> 
 	</td>
 	<td align ="center">${ m.tchr_id }</td>
 	<td align="center">${ m.clss_price }원</td>

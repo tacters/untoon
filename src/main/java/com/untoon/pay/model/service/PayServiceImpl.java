@@ -45,9 +45,9 @@ public class PayServiceImpl implements PayService{
 	}
 
 	@Override
-	public int updatePay(Pay pay) {
+	public int updatePay(int payno) {
 		// TODO Auto-generated method stub
-		return payDao.updatePay(pay);
+		return payDao.updatePay(payno);
 	}
 	
 	
