@@ -21,14 +21,20 @@ public class Member {
 		private Date update_date;
 		private String m_status;
 		private int bank_acct;
+		private String avatar;
+		private String rename_avatar;
+		private String bank;
+		private String original_resume;
+		private String rename_resume;
 		
 		
 		public Member() {}
 
 
-		public Member(String id, String pwd, String email, String name, String email_cert, String nickname, String user_lv,
-				String tchr_upload, String tchr_cert, String loginok, String birthday, String gender, String phone,
-				Date enroll_date, Date update_date, String m_status, int bank_acct) {
+		public Member(String id, String pwd, String email, String name, String email_cert, String nickname,
+				String user_lv, String tchr_upload, String tchr_cert, String loginok, String birthday, String gender,
+				String phone, Date enroll_date, Date update_date, String m_status, int bank_acct, String avatar,
+				String rename_avatar, String bank, String original_resume, String rename_resume) {
 			super();
 			this.id = id;
 			this.pwd = pwd;
@@ -47,6 +53,11 @@ public class Member {
 			this.update_date = update_date;
 			this.m_status = m_status;
 			this.bank_acct = bank_acct;
+			this.avatar = avatar;
+			this.rename_avatar = rename_avatar;
+			this.bank = bank;
+			this.original_resume = original_resume;
+			this.rename_resume = rename_resume;
 		}
 
 
@@ -220,15 +231,69 @@ public class Member {
 		}
 
 
+		public String getAvatar() {
+			return avatar;
+		}
+
+
+		public void setAvatar(String avatar) {
+			this.avatar = avatar;
+		}
+
+
+		public String getRename_avatar() {
+			return rename_avatar;
+		}
+
+
+		public void setRename_avatar(String rename_avatar) {
+			this.rename_avatar = rename_avatar;
+		}
+
+
+		public String getBank() {
+			return bank;
+		}
+
+
+		public void setBank(String bank) {
+			this.bank = bank;
+		}
+
+
+		public String getOriginal_resume() {
+			return original_resume;
+		}
+
+
+		public void setOriginal_resume(String original_resume) {
+			this.original_resume = original_resume;
+		}
+
+
+		public String getRename_resume() {
+			return rename_resume;
+		}
+
+
+		public void setRename_resume(String rename_resume) {
+			this.rename_resume = rename_resume;
+		}
+
+
 		@Override
 		public String toString() {
 			return "Member [id=" + id + ", pwd=" + pwd + ", email=" + email + ", name=" + name + ", email_cert="
 					+ email_cert + ", nickname=" + nickname + ", user_lv=" + user_lv + ", tchr_upload=" + tchr_upload
 					+ ", tchr_cert=" + tchr_cert + ", loginok=" + loginok + ", birthday=" + birthday + ", gender="
 					+ gender + ", phone=" + phone + ", enroll_date=" + enroll_date + ", update_date=" + update_date
-					+ ", m_status=" + m_status + ", bank_acct=" + bank_acct + "]";
+					+ ", m_status=" + m_status + ", bank_acct=" + bank_acct + ", avatar=" + avatar + ", rename_avatar="
+					+ rename_avatar + ", bank=" + bank + ", original_resume=" + original_resume + ", rename_resume="
+					+ rename_resume + "]";
 		}
+
 		
+
 		
 		
 	}

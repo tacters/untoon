@@ -21,12 +21,31 @@ span.error {
 	color: red;
 }
 </style>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/jquery-3.5.1.min.js"></script>
+<script>
+$(function(){
+   showDiv();
+   
+   $("input[name=user_lv]").on("change", function(){ //on으로 이벤트 설정가능 "change"이벤트일때 function()을 실행해라
+            showDiv(); // = radio버튼상태가 바뀔때 showDiv를 실행해라
+   });       
+});
+
+function showDiv(){
+	if($("input[name=user_lv]").eq(0).is(":checked")){
+	   $(".insertTeacher").css("display","none");
+	}
+	if($("input[name=user_lv]").eq(1).is(":checked")){
+	   $(".insertTeacher").css("display","block");
+	}
+}
+</script>
 <body>
 
 	<h1 align="center">회원가입</h1>
 
 	<div class="outer" align="center">
-		<form action="minsert.do" method="post" id="joinForm">
+		<form action="minsert.do" method="post" id="joinForm" enctype="multipart/form-data">
 			<table width="500" cellspacing="5">
 				<tr>
 					<td width="150">ID</td>
@@ -58,22 +77,18 @@ span.error {
 					</td>
 					
 				</tr>
-				<!-- <tr>
-					<td>EMAIL NUMBER </td>
-					<td><input type="email" name="email2" required></td>
-				</tr> -->
 				<tr>
 					<td>NICKNAME</td>
 					<td><input type="text" name="nickname" required></td>
 				</tr>
 				<tr>
 				<td>user_lv</td>
-					<td><input type="radio" name="user_lv" value="S">일반 사용자 <input
+					<td><input type="radio" name="user_lv" value="S" checked>일반 사용자 <input
 						type="radio" name="user_lv" value="T">강사 </td>
 				</tr>
 				<tr>
 					<td>BIRTHDAY</td>
-					<td><input type="text" name="birthday" required></td>
+					<td><input type="text" name="birthday" placeholder="-빼고 입력해주세요" required></td>
 				</tr>
 				<tr>
 					<td>GENDER</td>
@@ -84,11 +99,30 @@ span.error {
 					<td>PHONE</td>
 					<td><input type="tel" name="phone"></td>
 				</tr>
+				<tr>
+					<td>프로필 사진</td>
+					<td><input type="file" name="afile"></td>
+				</tr>
+				<tr class="insertTeacher" rowspan="2">
+					<td>계좌번호</td>
+					<td>
+						<select name="bank">
+							<option value="null">은행을 선택해 주세요</option>
+							<option value="국민">국민</option>
+							<option value="농협">농협</option>
+							<option value="기업">기업</option>
+							<option value="신한">신한</option>
+							<option value="우리">우리</option>
+							<option value="하나">하나</option>
+						</select>
+						<input type="text" name="bank_accp" placeholder="-빼고 입력해주세요">
+					</td>
+				</tr>
+				<tr class="insertTeacher">
+					<td>이력서</td>
+					<td><input type="file" name="rfile"></td>
+				</tr>
 				
-				<!-- <tr>
-					<td>BANK ACCOUNT</td>
-					<td><input type="tel" name="bank_acct"></td>
-				</tr> -->
 
 				<!-- jQuery와 Postcodify를 로딩한다. -->
 				<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
