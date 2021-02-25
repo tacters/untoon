@@ -248,7 +248,7 @@ public class ReviewController {
 							rev.put("rwriter", review.getRwriter());
 							rev.put("rcontent", URLEncoder.encode(review.getRcontent(), "utf-8"));
 							rev.put("r_create_date", review.getR_create_date().toString());
-							rev.put("cid", review.getCid());
+							rev.put("cid", cid); //review.getCid()
 							
 							// job 를 jarr 에 저장
 							jarr.add(rev);
@@ -276,8 +276,8 @@ public class ReviewController {
 							model.addAttribute("startPage", startPage);
 							model.addAttribute("endPage", endPage);
 
-							// return "review/reviewListView"; // 위치전송
-							return sendJson.toJSONString(); // jsonView 가 리턴됨
+							 return "review/reviewListView"; // 위치전송
+							//return sendJson.toJSONString(); // jsonView 가 리턴됨
 						} else {
 							model.addAttribute("msg", currentPage + "페이지 출력 목록 조회 실패.");
 							return "common/errorPage";
