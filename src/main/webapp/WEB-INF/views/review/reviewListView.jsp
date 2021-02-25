@@ -12,6 +12,7 @@
 <%-- 동작 요청 url --%>
 <c:url var="irf" value="/irfmove.do" /> <!-- 후기 작성 이동-->
 <c:url var="urf" value="/urfmove.do" /> <!-- 후기 수정 이동 -->
+<c:url var="rupdate" value = "/rupdate.do"/> <!-- 후기 수정 하기 -->
 <c:url var="rdelete" value="/rdelete.do" /> <!-- 후기 삭제 : 수정단계에서만 가능하게 하자-->
 <c:url var="rlist" value="/rlist.do" /> <!-- 후기 목록조회 -->
 
@@ -27,6 +28,61 @@
 function insertReview(){	
 	location.href = "${ irf }";
 }
+function reviewDelete(rid){
+	location.href="${pageContext.request.contextPath}/rdelete.do?rid=" + rid + "&rid=${ review.rid }";
+}
+
+$(function(){
+	// hideReplyForm(); 						댓글 숨기기용 EDIT THIS ONCE R_REPLY IS CREATED
+	
+	// jquery ajax 로 해당 <수업 클래스>에 대한 댓글 조회 요청
+	var rid = ${ clss.cid }; // 해당 <수업 클래스>의 번호를 전송함
+	var loginUser = "${ sessionScope.loginUser.id }";  //로그인한 회원 아이디 변수에 대입
+	
+	$.ajax({
+		url:"${pageContext.request.contextPath}/rlist.do",
+		type: "post",
+		data: { cid: clss.cid }, //cid가 clss에도 있고 review에도 있으니까 혹시나 해서 cid대신 clss.cid로 작성함
+		dataType:"json", //json객체 로 받아오겠다고 선언
+		success: function(data){
+			console.log("success:" + data); // 성공적으로 상세보고있는 <수업 클래스> 번호 보내짐
+			
+			//object ==> string
+			var jsonStr = JSON.stringify(data);
+			//string ==> json 
+			var json = JSON.parse(jsonStr);
+			
+			var values="";
+			for(var i in json.list){
+				//본인이 등록한 후기일 때는 수정/삭제 가능하게 됨
+				if(loginUser == json.list[i].rwriter){
+					values += "<tr><td>" + json.list[i].rwriter 
+					+ "</td><td>" +  json.list[i].r_create_date 
+					+ "</td></tr><tr><td colspan='2'>"
+					+ "<form action='rupdate.do' method='post'>"  //rupdate.do 에서 urfmove.do 으로 바꿈? 
+					+ "<input type='hidden' name='rid' value='" +  json.list[i].rid  + "'>"
+					+ "<input type-'hidden' name='cid' value='${ clss.cid }'>" 				//  <수업 클래스> 번호 
+					+ "<textarea name='rcontent'>"
+					+ decodeURIComponent(json.list[i].rcontent).replace(/\+/gi, " ") 
+					+ "</textarea><input type='submit' value='수정'></form>" 		// 수정하기
+					+ "<button onclick='reviewDelete(" + json.list[i].rid + ");'>삭제</button></td></tr>";	 	// 삭제하기
+				}else{  //본인 댓글이 아닐 때
+					values += "<tr><td>" + json.list[i].rwriter 
+					+ "</td><td>" +  json.list[i].r_create_date 
+					+ "</td></tr><tr><td colspan='2'>"
+					+ decodeURIComponent(json.list[i].rcontent).replace(/\+/gi, " ") 
+					+ "</td></tr>";	
+				}
+			} // for in
+			$("#rlistTbl").html($("rlistTbl").html()+values);		
+		},
+		error: function(jqXHR, textstatus, errorthrown){
+			console.log("error : " + jqXHR + ", " + textstatus + ", " 
+					+ errorthrown);
+		}
+	}); //ajax 후기 보여주기
+}); //jquery document ready
+
 </script>
 
 <style type="text/css">
@@ -80,6 +136,8 @@ function insertReview(){
 
 
 <%-- 목록 출력 --%>
+<table id="rlistTbl" align="center" cellspacing="0" cellpadding="5" border="1"></table>
+<%-- 
 <div style="align:center;padding:100px;">
 	<c:url var="rlist" value="/rlist.do" >
 			<c:param name="page" value="1" />
@@ -128,9 +186,8 @@ function insertReview(){
 	</tbody>
 </c:forEach>
 </table>
-
 <br>
-
+ --%>
 
 <%-- 현재 페이지가 1이 아니면 링크설정, 현재 1페이지이면 링크없음 --%>
 <c:if test="${ empty action}"> 	<%-- 페이징 처리 				[맨처음][이전] 숫자...........  [다음][맨끝]			--%>

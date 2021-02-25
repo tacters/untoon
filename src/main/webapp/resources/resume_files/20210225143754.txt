@@ -1,0 +1,77 @@
+TB_CLASS
+전체조회 selectList<class>
+상세보기 selectClass(cid)
+클래스 등록 insertClass(class)
+클래스 삭제 deleteClass(cid)
+클래스 수정 updateClass(cid)
+클래스 조회수 getListCount(cid)
+
+TB_MULTIPLE
+muti_id	         int
+cid	         int
+cid_order	         int
+multi_date	date
+multi_duration     int
+multi_enrolled	int
+
+
+
+CLSS 사용자
+- 목록 조회
+- 상세보기
+- CLSS 신청하기
+- CLSS 후기,댓글,문의
+
+
+CLSS 강사
+- CLSS 조회 (본인것만 가능)
+- CLSS 등록
+- CLSS 수정
+
+
+CLSS 관리자
+- CLSS 목록 조회
+- CLSS 승인 관리
+
+ArryaList<clss> selectList(clss) : clss (전체조회)
+selectclss(cid) : int (상세보기)
+insertclss(clss) : clss (클래스 등록)
+deleteclss(cid) : int (클래스 삭제)
+getclssCount() : int(조회수)
+updateclss(cid) : int (클래스 수정) 
+
+
+url 매핑
+
+사용자
+clist.do			사용자 클래스 목록조회
+cdetail.do		사용자 클래스 상세보기
+apply.do			사용자 클래스 신청하기 --> 결제페이지로
+
+강사
+tclist.do			강사 클래스 조회
+tcdetail.do		강사 클래스 상세보기
+tcinsert.do		강사 클래스 등록하기
+tcupdate.do		강사 클래스 수정하기(수업소개,강사소개만 변경가능)
+
+관리자
+adclist.do			관리자 클래스 목록보기 (미승인, 승인된 클래스, 승인거부한 클래스, 종료된 클래스)  --> db에 승인여부 하나 추가하기
+adcdetail.do		관리자 클래스 상세보기
+adcinsert.do		관리자 클래스 수정하기
+adcdelete.do		관리자 클래스 삭제하기 (기간 만료된 클래스, 승인거부한 클래스 에서만 가능하게)
+
+기간만료된 클래스목록	(clssListView
+미승인 클래스 목록		(clssListView
+승인 거부한 클래스 목록	(clssListView
+승인된 클래스 목록 	(clssListView)
+
+마이페이지에 결제취소할수 있게 --> 누르면 결제 취소페이지로
+db 클래스 상태 1,2,3으로 나누기
+클래스 인원수 , 중간에 가득차면 어떻게 막을건지
+
+1           2           3   default=1
+승인대기, 승인완료, 승인거부, 기간만료(뷰만들어서작업)
+
+
+
+

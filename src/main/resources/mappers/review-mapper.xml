@@ -8,7 +8,7 @@
 		<result column="rwriter" property="rwriter" />
 		<result column="rcontent" property="rcontent" />
 		<result column="r_create_date" property="r_create_date" />
-		<result column="r_modify_date" property="br_modify_date" />
+		<result column="r_modify_date" property="r_modify_date" />
 		<result column="r_status" property="r_status" />
 		<result column="ofile_r" property="ofile_r" />
 		<result column="rfile_r" property="rfile_r" />

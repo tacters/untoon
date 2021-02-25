@@ -22,7 +22,31 @@
    </c:url>
    <a href="${ tdt }">${ c.clss_title }</a>
    </td>
-   <td align="center">${ c.clss_status}</td>
+   
+   
+   
+   <c:set var="status" value="${ c.clss_status }"/>
+   <%-- <td align="center"><c:out value="${ c.clss_status }"/></td> --%>
+   
+   <c:choose>
+	   <c:when test="${ status eq 1 }">
+	   	<td align="center"><c:out value="승인 대기"/></td>
+	   </c:when>
+	   <c:when test="${ status eq 2 }">
+	   	<td align="center"><c:out value="승인"/></td>
+	   </c:when>
+	   <c:when test="${ status eq 3 }">
+	   	<td align="center"><c:out value="승인 거부"/></td>
+	   </c:when>
+	   <c:otherwise>
+	   	<td align="center"><c:out value="기간만료"/></td>
+	   </c:otherwise>
+	   
+   </c:choose>
+   
+   
+   
+   
    <td align="center">
       ${ c.clss_start }
    </td>

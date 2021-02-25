@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="qareplyMapper">
+	
+	<resultMap type="QaReply" id="resultQaReply">
+		<id column="qaid" property="qaid" />		
+		<result column="ref_qid" property="ref_qid" />
+		<result column="qacontent" property="qacontent" />	
+		<result column="qawriter" property="qawriter" />			
+		<result column="qa_create_date" property="qa_create_date" />
+		<result column="qa_modify_date" property="qa_modify_date" />
+		<result column="qa_status" property="qa_status" />
+	</resultMap>	
+
+	<select id="selectQaReply" parameterType="_int" resultMap="resultQaReply">
+		select * from QAREPLY
+		where qaid = #{ qaid }
+	</select>		
+	
+	<select id="selectQaReplyList" resultMap="resultQaReply" parameterType="_int">
+		SELECT * FROM QAREPLY 
+		WHERE QA_STATUS = 'Y' AND REF_QID = #{ ref_qid }
+		ORDER BY QAID ASC		
+	</select>
+	
+	<insert id="insertQaReply" parameterType="QaReply">
+		INSERT INTO QAREPLY			
+		VALUES (seq_qaid.nextval, #{ ref_qid }, #{ qacontent }, 
+				#{ qawriter }, sysdate, sysdate, default)		
+	</insert>
+	
+	<update id="updateQaReply" parameterType="QaReply">
+		UPDATE  QAREPLY
+				SET  QACONTENT = #{ qacontent },
+						QA_MODIFY_DATE = sysdate	   
+		  WHERE  QAID = #{ qaid }
+	</update>
+	
+	<update id="deleteQaReply" parameterType="_int">
+		UPDATE  QAREPLY
+				SET	QA_STATUS = 'N',
+		   				QA_MODIFY_DATE = sysdate
+		WHERE  QAID = #{ qaid }
+	</update>
+	
+
+
+</mapper>

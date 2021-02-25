@@ -20,6 +20,11 @@
 	<result property="update_date" column="UPDATE_DATE"/>
 	<result property="m_status" column="M_STATUS"/>
 	<result property="bank_acct" column="BANK_ACCT"/>
+	<result property="avatar" column="AVATAR"/>
+	<result property="rename_avatar" column="RENAME_AVATAR"/>
+	<result property="bank" column="BANK"/>
+	<result property="original_resume" column="ORIGINAL_RESUME"/>
+	<result property="rename_resume" column="RENAME_RESUME"/>
 </resultMap>
 
   	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
@@ -35,7 +40,9 @@
 		<!-- <if test="user_lv == 1">  -->
 			VALUES ( #{id}, #{pwd}, #{name}, #{email}, default, #{nickname} 
 		   		   , #{user_lv} ,default, default, default, #{birthday}, #{gender}
-		           , #{phone}, sysdate, sysdate, default, #{bank_acct})
+		           , #{phone}, sysdate, sysdate, default, #{bank_acct}, #{avatar}, #{rename_avatar}
+		           , #{bank}, #{original_resume}, #{rename_resume}
+		           )
 	<!--   </if>
 	    <if test="user_lv == 2">
 	    	VALUES ( #{id}, #{pwd}, #{name}, #{email}, default, #{nickname} 
