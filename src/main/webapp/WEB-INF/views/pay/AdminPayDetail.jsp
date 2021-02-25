@@ -49,7 +49,7 @@
 
 <c:url var="pli" value="/plist.do">
 </c:url>
-<a href="${ pli }">목록으로 돌아가기</a> 
+<p align="center"><a href="${ pli }">[목록 돌아가기]</a> </span>
 
 <footer><c:import url="../common/footer.jsp"/></footer>
 </body>

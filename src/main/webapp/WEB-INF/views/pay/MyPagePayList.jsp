@@ -12,7 +12,7 @@
 	$(function(){
 		var m = "${msg}";
 		// console.log(m);
-		if(m != null || m != "" || m.length != 0){
+		if(m != "" || m.length > 0){
 			alert(m);
 		}
 	});

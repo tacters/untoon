@@ -52,15 +52,15 @@
 <c:url var="pup" value="/pupdate.do">
 		<c:param name="payno" value="${ pay.payno }"/>
 </c:url>
-
-<div align="center" style="float:left"><a href="${ pup }">결체 취소하기</a></div> 
+<p align="center"><a href="${ pup }">[결체 취소하기]</a></p> 
 </c:if>
 
 <c:url var="pms" value="/pmselect.do">
 </c:url>
+<p align="center"><a href="${ pms }">[목록으로 돌아가기]</a></p> 
 
-<div align="center"><a href="${ pms }">목록으로 돌아가기</a></div> 
-<br style="clear:both">
+<!-- style="float:left"
+<br style="clear:both"> -->
 
 <footer><c:import url="../common/footer.jsp"/></footer>
 
