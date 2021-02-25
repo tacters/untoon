@@ -43,9 +43,9 @@ public class PayDao {
 		return sqlSession.insert("payMapper.insertPay", pay);
 	}
 
-	public int updatePay(Pay pay) {
+	public int updatePay(int payno) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("payMapper.updatePay", pay);
+		return sqlSession.update("payMapper.updatePay", payno);
 	}
 
 

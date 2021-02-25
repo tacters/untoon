@@ -25,7 +25,7 @@
 </tr>
 <tr>
 	<th>결제 금액</th>
-	<td>${ pay.clss_price }</td>
+	<td>${ pay.clss_price }원</td>
 </tr>
 <tr>
 	<th>결제한 날짜</th>
@@ -37,9 +37,30 @@
 </tr>
 <tr>
 	<th>결제 상태</th>
-	<td>${ pay.pstatus }</td>
+	<td>
+	<c:if test="${ pay.pstatus eq 2}">
+		결제완료
+	</c:if>
+	<c:if test="${ pay.pstatus eq 4}">
+		취소완료
+	</c:if>
+	</td>
 </tr>
 </table>
+
+<c:if test="${ pay.pstatus eq 2 }">
+<c:url var="pup" value="/pupdate.do">
+		<c:param name="payno" value="${ pay.payno }"/>
+</c:url>
+
+<div align="center" style="float:left"><a href="${ pup }">결체 취소하기</a></div> 
+</c:if>
+
+<c:url var="pms" value="/pmselect.do">
+</c:url>
+
+<div align="center"><a href="${ pms }">목록으로 돌아가기</a></div> 
+<br style="clear:both">
 
 <footer><c:import url="../common/footer.jsp"/></footer>
 

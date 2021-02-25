@@ -11,6 +11,6 @@ public interface PayService {
 	ArrayList<PayClss> selectMyPay(String id); //마이페이지에서 사용자가 결제내역보기
 	PayClss detailMyPay(int payno);
 	int insertPay(Pay pay);
-	int updatePay(Pay pay);
+	int updatePay(int payno);
 	
 }

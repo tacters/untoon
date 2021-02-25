@@ -52,9 +52,9 @@
 		values (seq_payno.nextval, #{pid}, #{cid}, default, #{method}, default )
 	</insert>
 	
-	<update id="updatePay" parameterType="Pay">
+	<update id="updatePay" parameterType="_int">
 		update pay
-		set pstatus = #{pstatus}
+		set pstatus = 4
 		where payno = #{payno}
 	</update>
 </mapper>
