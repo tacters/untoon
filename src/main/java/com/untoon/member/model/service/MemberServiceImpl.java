@@ -1,5 +1,7 @@
 package com.untoon.member.model.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,6 +63,13 @@ public class MemberServiceImpl implements MemberService {
 	public int emailCheck(String email) {
 		
 		return mDao.emailCheck(email);
+	}
+
+	//아이디 찾기
+	@Override
+	public String findId(String email) {
+		
+		return mDao.findId(email);
 	}
 
 

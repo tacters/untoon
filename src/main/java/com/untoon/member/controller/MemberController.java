@@ -2,11 +2,10 @@ package com.untoon.member.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.untoon.member.model.service.MemberService;
 import com.untoon.member.model.vo.Member;
@@ -136,7 +136,13 @@ public class MemberController {
 	public String myDeleteView() {
 		return "member/myDeleteView";
 	}
-
+	
+	//아이디 찾는 페이지로 이동
+	@RequestMapping("findidview.do")
+	public String idfidView() {
+		return "member/findIdView";
+	}
+	
 	// 회원가입
 	@RequestMapping(value = "minsert.do", method = RequestMethod.POST)
 	public String insertMember(@ModelAttribute Member m, Model model, HttpServletRequest request,
@@ -171,7 +177,7 @@ public class MemberController {
 				System.out.println(renameFileName);
 				m.setRename_avatar(renameFileName);
 			}
-		}
+		}	
 
 		// 이력서
 		// 업로드된 파일 저장 폴더 지정하기
@@ -283,4 +289,24 @@ public class MemberController {
 		}
 
 	}
+	
+	//아이디 찾기
+	@RequestMapping(value="findid.do", method=RequestMethod.POST)
+	public ModelAndView memberFindId(Model model,
+									@RequestParam("email") String email) {
+		 ModelAndView mav = new ModelAndView();
+		  String memberid = mService.findId(email);
+		  System.out.println(memberid);
+		  
+		  if(memberid != null) {
+		  mav.addObject("id", memberid);
+		  mav.setViewName("member/findIdForm");
+		 
+		  }else {
+			  mav.setViewName("common/errorPage");
+			  mav.addObject("msg", "이메일이 존재하지 않습니다.");
+			 
+		  }
+		  return mav;
+	 }
 }

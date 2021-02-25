@@ -88,7 +88,7 @@ function showDiv(){
 				</tr>
 				<tr>
 					<td>BIRTHDAY</td>
-					<td><input type="text" name="birthday" placeholder="-빼고 입력해주세요" required></td>
+					<td><input type="text" name="birthday" placeholder="주민번호 앞 6자리 입력하세요" required></td>
 				</tr>
 				<tr>
 					<td>GENDER</td>

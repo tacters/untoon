@@ -95,6 +95,14 @@
     	 FROM MEMBER
     	WHERE EMAIL=#{email} 	
     </select>
+    
+    <!-- 아이디 찾기 -->
+    <select id="findId" parameterType="String" resultType="String">
+    	SELECT ID
+    	  FROM MEMBER
+    	 WHERE EMAIL=#{email}
+     
+    </select>
 </mapper>
 
 
