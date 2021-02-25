@@ -145,7 +145,7 @@ public class MemberController {
 
 		// 프로필 사진
 		// 업로드된 파일 저장 폴더 지정하기
-		String saveAvatar = request.getSession().getServletContext().getRealPath("resources/avatar_files");
+		String saveAvatar = request.getSession().getServletContext().getRealPath("resources/images/profilePics");
 		System.out.println(afile);
 		System.out.println(rfile);
 		// 단, 첨부된 파일의 이름을 'yyyyMMddHHmmss.확장자' 형식으로 바꾸어 저장함
