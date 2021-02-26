@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.untoon.clss.model.service.ClssService;
+import com.untoon.clss.model.vo.Clss;
 import com.untoon.member.model.vo.Member;
 import com.untoon.pay.model.service.PayService;
 import com.untoon.pay.model.vo.Pay;
@@ -20,6 +22,25 @@ public class PayController {
 	
 	@Autowired
 	private PayService payService;
+	private ClssService cService;
+	
+	//클래스 상세정보 가져오기 ..그 중에서 필요한 정보들 호출할거야 뷰페이지(결제하는페이지)에서
+	@RequestMapping("paymove.do")
+	public String clssPayMove(@RequestParam("cid") int cid, HttpSession session, Model model) {
+		Clss clss = cService.selectClss(cid);
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		if(clss != null) {
+			System.out.println("값있음");
+			model.addAttribute("clss", clss);
+			return "pay/PayPage";
+		} else {
+			System.out.println("값없음");
+			model.addAttribute("msg", "구매 실패하였습니다.");
+			return "common/errorPage";
+		}
+	}
+	
 	
 	//관리자가 전체 결제 목록 보기 요청 할 때 
 	@RequestMapping("plist.do")
@@ -84,10 +105,10 @@ public class PayController {
 			int p = payService.insertPay(pay);
 			Member loginUser = (Member) session.getAttribute("loginUser");
 			
-			if(p > 0 && loginUser !=null && loginUser.getUser_lv().equals("S")) {
+			if(p > 0 && loginUser.getUser_lv().equals("S")) {
 				model.addAttribute("msg", "결제가 완료되었습니다.");
 				return "pay/PayFinishPage";
-			}else if(p > 0 && loginUser !=null && loginUser.getUser_lv().equals("A")) {
+			}else if(p > 0 && loginUser.getUser_lv().equals("A")) {
 				return "pay/AdminPayList";
 			
 			}else {
