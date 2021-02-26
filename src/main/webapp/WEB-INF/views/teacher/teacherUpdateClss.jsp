@@ -41,8 +41,8 @@ input[type=file] {
 </head> 
 <body>
 <c:import url="../common/menubar.jsp"/>
-	<form action="tcinsert.do" method="POST" id="frm-register-detail" enctype="multipart/form-data">
-	<input type="hidden" name="tchr_id" value="${ loginUser.id }">
+	<form action="tcupdate.do" method="POST" id="frm-register-detail" enctype="multipart/form-data">
+	<input type="hidden" name="cid" value="${ clss.cid }">
 		<div class="insertForm1">
 		<div class="tutor_cont">
 			<div class="dim" id="dim"></div>
@@ -139,24 +139,6 @@ input[type=file] {
 <!-- <form method="POST" id="frm-register-detail" enctype="multipart/form-data"> -->
 <div class="tutor_cont">
 
-		<div class="box">
-		<div class="title">수업카테고리<b class="pink">*</b></div>
-		<div class="cont">
-			<select class="basic len320" id="CateMain" name="clss_category">
-				<option>수업카테고리를 선택해 주세요</option>
-										<option value="커리어">커리어</option>
-												<option value="뷰티/헬스" >뷰티/헬스</option>
-												<option value="디자인/영상" >디자인/영상</option>
-												<option value="외국어" >외국어</option>
-												<option value="라이프" >라이프</option>
-												<option value="액티비티" >액티비티</option>
-												<option value="머니" >머니</option>
-												<option value="이벤트" >이벤트</option>
-												<option value="강사전자책" >강사전자책</option>
-												<option value="취미/공예" >취미/공예</option>
-									</select>
-		</div>
-	</div>
 	<div class="box" id="groupBox">
 		<div class="title">수업참여인원<b class="pink">*</b></div>
 		<div class="cont">
@@ -216,10 +198,6 @@ input[type=file] {
 	<div class="box">
 				<div class="title">가격/시간/횟수<b class="pink">*</b></div>
 		<div class="cont">
-			<div class="inner1" style="margin:0">
-				<div class="gray5 title">가격</div>
-				<input type="text" id="UnitPrice" name="clss_price" class="basic phone" placeholder="클래스 가격을 입력하세요"> 원
-			</div>
 				<div class="inner1">
 					<div class="gray5 title">1회당 수업시간</div>
 					<select class="basic len320" id="Time" name="clss_duration">
@@ -259,32 +237,6 @@ input[type=file] {
 				</div>
 		</div>
 	</div>
-		<div class="box">
-		<div class="title">총 수업가격<b class="pink"></b></div>
-		<div class="cont">
-			<div class="caution caution2" style="overflow:hidden">
-				<font><span id="calc-unit-price">0</span>원&nbsp;&nbsp;X&nbsp;&nbsp;<span id="calc-time">0</span>시간&nbsp;&nbsp;X&nbsp;&nbsp;<span id="calc-total-times">0</span>회</font>
-				<div class="rs">
-					총&nbsp;&nbsp;<font class="pink"><b><span id="calc-result">0</span></b>원</font><br>
-					연결수수료&nbsp;&nbsp;<b><span id="calc-fee">0</span></b>원
-				</div>
-			</div>
-			<div style="text-align:right;margin:20px 0;" class="pink">
-				<!--a href="#" class="pink"><img src="https://front-img.taling.me/Content/Images/tutor/Images/icon_info.png" style="margin-top:-2px">&nbsp;탈잉 수업과정 및 결제정책</a-->
-			</div>
-		
-			<div class="sample1">
-				<div class="arw">
-					<img class="button" src="https://front-img.taling.me/Content/Images/tutor/Images/icon_down.png" onclick="arwpaper(this)">
-					<img class="button" style="display:none"src="https://front-img.taling.me/Content/Images/tutor/Images/icon_up.png" onclick="arwpaper(this)">
-				</div>
-				<span>예시 이미지 및 화면보기</span>
-				<div class="ex">
-					<img src="https://front-img.taling.me/Content/Images/tutor/Images/img_example_03.png">
-				</div>
-			</div>
-		</div>
-		</div>
 	
 	<div class="box">
 		<div class="title">영상등록<br><br><span class="gray8">권장사항</span></div>
@@ -306,222 +258,19 @@ input[type=file] {
 		</div>
 	</div>
 
-	<!-- <div class="button_box">
-		<div class="next button prev" onclick="setMode(0);">임시저장</div>
-		<div class="next button on" onclick="setMode(1);">저장 후 다음단계 (2/4)</div>
-	</div> -->
-
 </div>
 
-<!-- <form method="POST" id="frm-register-detail" enctype="multipart/form-data"> -->
 <input type="hidden" id="Id" name="Id" value="32599">
 <div class="tutor_cont">
 	<div id="pay_pop" >
 		<iframe src="${ pageContext.request.contextPath }/clss/Register_pop">
 		</iframe>
 	</div>
-	<!-- <div class="button_box">
-		<a href="/Talent/Detail/32599" target="_blank"><div class="next button prev">미리보기</div></a>
-		<div class="next button on" onclick="setMode(0);">저장 후 다음단계 (3/4)</div>
-	</div> -->
 
 </div>
-<!-- </form> -->
-<!-- <script>
-	function setMode(val)
-	{
-		Mode = val;
-		$('#frm-register-detail').submit();
-	}
 
-	var isUploading = false;
-	 $('#frm-register-detail').submit(function (e) {
-        e.preventDefault();
-		
-		if($('#UnitPrice').val() == '' ){ alert('시간당 가격을 입력하세요');$('#UnitPrice').focus();return false;}
-		if($('#UnitPrice').val() == '0' ){ alert('0원으로 변경시 결제 취소됩니다.\n가격을 확인 바랍니다.');$('#UnitPrice').focus();return false;}
-		if($('#Time').val() == '0' ){ alert('1회 수업시간을 입력하세요');$('#Time').focus();return false;}
-		if($('#TotalTimes').val() == '0' ){ alert('총 수업횟수를 입력하세요');$('#TotalTimes').focus();return false;}
-		var unitPrice = Number($('#UnitPrice').val());
-		var time = Number($('#Time').val());
-		var totalTimes = Number($('#TotalTimes').val());
-		
-		var x = $('#UnitPrice').val();
-		if(x && x.length > 0) {
-			if(!$.isNumeric(x)) {
-				x = x.replace(/[^0-9]/g,"");
-			}
-			$('#UnitPrice').val(x);
-		}
-
-		var x = $('#TotalTimes').val();
-		if(x && x.length > 0) {
-			if(!$.isNumeric(x)) {
-				x = x.replace(/[^0-9]/g,"");
-			}
-			$('#TotalTimes').val(x);
-		}
-		/*
-		if(!Number.isInteger(unitPrice))
-		{
-			alert('숫자만 입력가능합니다');
-			return false;
-		}
-		if(!Number.isInteger(totalTimes))
-		{
-			alert('숫자만 입력가능합니다');
-			return false;
-		}
-		*/
-
-		if(isUploading) {
-			alert('업로드 중입니다. 잠시만 기다려 주세요');
-			return false;
-		}
-
-		var formData = new FormData(this);
-
-		isUploading = true;
-		$.ajax({
-			type: 'POST',
-			url: '/tutor/regiPrice_proc.php',
-			contentType: false,
-			data: formData,
-			processData: false,
-			success: function (response) {
-				isUploading = false;			   
-					alert('가격 등록이 완료되었습니다.');
-					
-					if(Mode == 1)
-					{
-						location.href="/tutor/regiClass/"+$('#Id').val();
-					}
-					else
-					{
-						location.href="/tutor/regiClass/"+$('#Id').val();
-					}
-			},
-			error: function(response) {
-				isUploading = false;
-			}
-		});
-		return false;
-	});
-
-	function formatMoney(val) {
-		if (val.length < 4)
-			return val;
-		return formatMoney(val.substring(0, val.length - 3)) + ',' + val.substring(val.length - 3, val.length);
-	}
-</script> -->
-<script>
-	updateCalculation();
-	function updateCalculation() { //다회차일때
-		
-		
-		var unitPrice = Number($('#UnitPrice').val());
-		var time = Number($('#Time').val());
-		var totalTimes = Number($('#TotalTimes').val());
-
-		var x = $('#TotalTimes').val();
-		if(x && x.length > 0) {
-			if(!$.isNumeric(x)) {
-				x = x.replace(/[^0-9]/g,"");
-			}
-			$('#TotalTimes').val(x);
-		}
-		/*
-		if(!Number.isInteger(totalTimes))
-		{
-			alert('숫자만 입력가능합니다');
-			return false;
-		}
-		*/
-		
-		$('#calc-unit-price').text(formatMoney(unitPrice.toString()));
-		$('#calc-time').text(time);
-		$('#calc-total-times').text(totalTimes);
-
-		$('#calc-result').text(formatMoney((unitPrice * time * totalTimes).toString()));
-		$('#calc-fee').text(formatMoney(unitPrice.toString()));
-		$('#calc-fee2').text(formatMoney(unitPrice.toString()) + '원');
-		$('#calc-fee3').text(formatMoney(unitPrice.toString()) + '원');
-		$('#calc-fee4').text(formatMoney(unitPrice.toString())+'원' );
-		$('#calc-fee5').text(formatMoney(unitPrice.toString()) + '원');
-
-		$('#calc-result2').text(formatMoney((unitPrice * time * totalTimes - unitPrice).toString()) + '원');
-	}
-	
-	$('#UnitPrice').change(updateCalculation);
-	$('#Time').change(updateCalculation);
-	$('#TotalTimes').change(updateCalculation);
-</script>
-
-<!-- Channel Plugin Scripts -->
-<script>
-var scrollTop=0;
-$('#custom-button-trigger, .cs').click(function(){
-	scrollTop= $(window).scrollTop();
-	$('#custom-button-1').click();
-});
- (function() {
-   var w = window;
-   if (w.ChannelIO) {
-     return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
-   }
-   var d = window.document;
-   var ch = function() {
-     ch.c(arguments);
-   };
-   ch.q = [];
-   ch.c = function(args) {
-     ch.q.push(args);
-   };
-   w.ChannelIO = ch;
-   function l() {
-     if (w.ChannelIOInitialized) {
-       return;
-     }
-     w.ChannelIOInitialized = true;
-     var s = document.createElement('script');
-     s.type = 'text/javascript';
-     s.async = true;
-     s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-     s.charset = 'UTF-8';
-     var x = document.getElementsByTagName('script')[0];
-     x.parentNode.insertBefore(s, x);
-   }
-   if (document.readyState === 'complete') {
-     l();
-   } else if (window.attachEvent) {
-     window.attachEvent('onload', l);
-   } else {
-     window.addEventListener('DOMContentLoaded', l, false);
-     window.addEventListener('load', l, false);
-   }
- })();
-  ChannelIO('boot', {
-   "pluginKey": "8fc98895-06a5-402d-8740-1cb9261ebc91",
-	"customLauncherSelector": "#custom-button-1",
-    "hideDefaultLauncher": true,
-	   "userId": "jaeyeun95@naver.com", //fill with user id
-	   "profile": {
-		 "name": "김재윤", //fill with user name
-		 "mobileNumber": "010-4763-5023", //fill with user phone number
-		 "CUSTOM_VALUE_1": "VALUE_1", //any other custom meta data
-		 "CUSTOM_VALUE_2": "VALUE_2"
-	   }
- });
-  ChannelIO('onHide', function() {
-	$(window).scrollTop(scrollTop);
-});
-</script>
-<!-- End Channel Plugin -->	
-
-</div>
 
 <!-- insert4 -->
-<!-- <form method="POST" id="frm-register-detail" enctype="multipart/form-data"> -->
 <input type="hidden" id="Id" name="Id" value="32599">
 <input type="hidden" id="Status" name="Status" value="0">
 <input type="hidden" id="Mode" name="Mode" value="">
@@ -692,18 +441,14 @@ $('#custom-button-trigger, .cs').click(function(){
 
 
 	<div class="button_box" style="width:680px">
-		<!-- <a href="/Talent/Detail/32599" target="_blank"><div class="next button prev">미리보기</div></a> -->
-		<!-- <div class="next button prev" onclick="setMode(0);">임시저장</div> -->
-				<!-- <div class="next button on" onclick="setMode(1);">최종 승인요청</div> -->
 				<input class="next button on" type="submit" value="최종승인요청">&nbsp;&nbsp;&nbsp;&nbsp;
 				<input class="next button prev" type="reset" value="작성취소">
-				
 			</div>
 		
 </div>
 </form>
+
+
 <footer><c:import url="../common/footer.jsp"/></footer>
-
-
 </body>
 </html>

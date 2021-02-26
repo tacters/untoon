@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.untoon.qa.model.service.QaReplyService;
+import com.untoon.qa.model.vo.QA;
 import com.untoon.qa.model.vo.QaReply;
 
 @Controller
@@ -24,8 +25,10 @@ public class QaReplyController {
 
 	@RequestMapping(value = "qainsert.do", method = RequestMethod.POST) // cid 도 추가?
 	public String insertQaReply(QaReply qaReply, Model model) {
+		
 		if (qaReplyService.insertQaReply(qaReply) > 0) {
-			return "redirect:cdetail.do?cid=" + qaReply.getRef_qid();
+			return "redirect:{ pageContext.request.contextPath }/clist.do";
+			//return "redirect:cdetail.do?cid=" + QA.getCid();		// QA private static int cid; 게터 세터 다 static으로 바꿔줬음
 		} else {
 			model.addAttribute("msg", qaReply.getRef_qid() + "번 글에 대한 댓글달기 실패.");
 			return "common/errorPage";

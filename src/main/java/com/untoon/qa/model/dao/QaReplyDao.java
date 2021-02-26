@@ -7,9 +7,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.untoon.qa.model.vo.QA;
 import com.untoon.qa.model.vo.QaReply;
 
-@Repository("replyDao")
+@Repository("qaReplyDao")
 public class QaReplyDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -18,7 +19,7 @@ public class QaReplyDao {
 	public int insertQaReply(QaReply qaReply) {
 		return sqlSession.insert("qareplyMapper.insertQaReply, qaReply");
 	}
-
+	
 	public int updateQaReply(QaReply qaReply) {
 		return sqlSession.update("qareplyMapper.updateQaReply, qaReply");
 	}

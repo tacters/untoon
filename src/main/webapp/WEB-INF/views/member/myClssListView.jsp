@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
 <c:import url="../member/myPageheader.jsp"/>
 <h2>${ loginUser.name }님의 클래스 관리</h2>
 <table align="center" border="1" width="700" cellspacing="0">
@@ -30,5 +31,7 @@
 </tr>
 </c:forEach>
 </table>
+
+<footer><c:import url="../common/footer.jsp"/></footer>
 </body>
 </html>

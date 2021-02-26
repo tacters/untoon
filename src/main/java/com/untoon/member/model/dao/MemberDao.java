@@ -1,5 +1,7 @@
 package com.untoon.member.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -56,6 +58,12 @@ public class MemberDao {
 	public int emailCheck(String email) {
 		
 		return sqlSession.selectOne("memberMapper.emailCheck", email);
+	}
+	
+	//아이디 찾기
+	public String findId(String email) {
+		
+		return sqlSession.selectOne("memberMapper.findId", email);
 	}
 
 	

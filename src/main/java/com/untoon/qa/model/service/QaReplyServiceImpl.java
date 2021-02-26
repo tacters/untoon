@@ -6,37 +6,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.untoon.qa.model.dao.QaReplyDao;
+import com.untoon.qa.model.vo.QA;
 import com.untoon.qa.model.vo.QaReply;
 
 @Service("qaReplyService")
 public class QaReplyServiceImpl implements QaReplyService {
 	
 	@Autowired
-	private QaReplyDao qareplyDao;
+	private QaReplyDao qaReplyDao;
 
 	@Override
 	public int insertQaReply(QaReply qaReply) {
-		return qareplyDao.insertQaReply(qaReply);
+		return qaReplyDao.insertQaReply(qaReply);
 	}
 
 	@Override
 	public int updateQaReply(QaReply qaReply) {
-		return qareplyDao.updateQaReply(qaReply);
+		return qaReplyDao.updateQaReply(qaReply);
 	}
 
 	@Override
 	public int deleteQaReply(int qaid) {
-		return qareplyDao.deleteQaReply(qaid);
+		return qaReplyDao.deleteQaReply(qaid);
 	}
 
 	@Override
 	public int selectQaReply(int qaid) {
-		return qareplyDao.selectQaReply(qaid);
+		return qaReplyDao.selectQaReply(qaid);
 	}
 	
 	@Override
 	public ArrayList<QaReply> selectQaReplyList(int ref_qid) {
-		return qareplyDao.selectQaReplyList(ref_qid);
+		return qaReplyDao.selectQaReplyList(ref_qid);
 	}
 
 }

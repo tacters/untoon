@@ -53,6 +53,28 @@
 		where cid = #{ cid }
 	</select>
 	
+	<!-- 강사 클래스 수정하기 -->
+	<update id="tUpdateClss">
+		update clss
+		set clss_title = #{clss_title},
+			clss_original_filename = #{clss_original_filename},
+			clss_rename_filename = #{clss_rename_filename},
+			clss_min = #{clss_min},
+			clss_max = #{clss_max},
+			clss_duration = #{clss_duration},
+			clss_times = #{clss_times},
+			clss_start = #{clss_start},
+			clss_end = #{clss_end},
+			clss_url = #{clss_url},
+			tchr_introduction = #{tchr_introduction},
+			clss_content = #{clss_content},
+			tchr_profile = #{tchr_profile},
+			clss_policy = #{clss_policy},
+			clss_update = sysdate,
+			clss_status = 1	
+		where cid = #{cid}
+	</update>
+	
 	<!-- 기간 안지나고 미승인클래스 -->
 	<select id="adminNlist" resultMap="clssResultSet">
 		<![CDATA[

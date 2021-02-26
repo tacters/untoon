@@ -88,7 +88,7 @@ function showDiv(){
 				</tr>
 				<tr>
 					<td>BIRTHDAY</td>
-					<td><input type="text" name="birthday" placeholder="-빼고 입력해주세요" required></td>
+					<td><input type="text" name="birthday" placeholder="주민번호 앞 6자리 입력하세요" required></td>
 				</tr>
 				<tr>
 					<td>GENDER</td>
@@ -97,7 +97,7 @@ function showDiv(){
 				</tr>
 				<tr>
 					<td>PHONE</td>
-					<td><input type="tel" name="phone"></td>
+					<td><input type="tel" name="phone" placeholder="-포함해서 입력해주세요"></td>
 				</tr>
 				<tr>
 					<td>프로필 사진</td>
@@ -143,6 +143,7 @@ function showDiv(){
 		</form>
 		<br> <br> <a href="home.do">홈 페이지로 이동</a>
 	</div>
+	<footer><c:import url="../common/footer.jsp"/></footer>
 </body>
 	<script type="text/javascript">	
 	function idDuplicateCheck(){

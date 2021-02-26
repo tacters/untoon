@@ -7,7 +7,10 @@
 	<c:url var="approve" value="/approve.do"/>
 	<c:url var="deny" value="/deny.do"/>
 	<c:url var="adcdelete" value="/adcdelete.do"/>
-	<c:url var="pay" value="/pinsert.do"/>
+	<c:url var="pay" value="/paymove.do"/>
+	<%-- <c:url var="qareplyinsert" value="/qainsert.do">
+		<c:param name="cid" value="${clss.cid }" />
+	</c:url> --%>
 	
 <!DOCTYPE html>
 <html>
@@ -45,6 +48,9 @@
   .tbl{
   background-color:#E0F5FF;border-color:#E0F5FF;color:#656565;text-align:center;vertical-align:center;
   }
+ .tbl_reply{
+ background-color:#fff;border-color:#fff;color:#656565;text-align:center;vertical-align:center;
+ }
   
   .btn {
   background-color: white; 
@@ -147,14 +153,43 @@ body, html {
 </style>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
+function showQaForm(){
+	$("#qaDiv").css("display", "block");
+}
+function hideQaForm(){
+	$("#qaDiv").css("display", "none");
+}
+function qaDelete(qid){
+	location.href = "${ pageContext.request.contextPath }/qdelete.do?qid=" + qid + "&cid=${ clss.cid}";
+}
+function showQaReplyForm(){
+	$("#qaReplyDiv").css("display", "block");
+}
+function hideQaReplyForm(){
+	$("#qaReplyDiv").css("display", "none");
+}
+function qaReplyDelete(qaid){
+	location.href = "${ pageContext.request.contextPath }/qadelete.do?qaid=" + qaid + "&qid=${ qa.qid}";
+}
+function showQaListView(){
+	$("#qalistView").css("display", "none");
+}
+function hideQaListView(){
+	$("#qalistView").css("display", "none");
+}
+
+
 //jquery ajax 로 해당 < 수업 클래스 > 대한 문의 조회 요청
 //해당 < 수업 클래스 >의 번호를 전송함
 $(function(){
 	hideQaForm(); 
+	hideQaReplyForm(); // ADDED TO TEST "REPLY댓글 달기 기능"
+	hideQaListView(); // ADDED TO TEST "REPLY댓글 목록조회 기능"
 		
 	var clssCid = "${ clss.cid }";  //el 의 값을 변수에 대입
 	var loginUser = "${ sessionScope.loginUser.id }";  //로그인한 회원 아이디 변수에 대입
 	var teacher = "${clss.tchr_id}"; // 수업 강사님
+	var adminLv= "${ sessionScope.loginUser.user_lv }";
 	
 	$.ajax({
 		url: "${ pageContext.request.contextPath }/qlist.do",
@@ -178,17 +213,29 @@ $(function(){
 							+ "</td></tr><tr><td colspan='2'>"
 							+ "<form action='qupdate.do' method='post'>" 
 							+ "<input type='hidden' name='qid' value='" +  json.list[i].qid  + "'>"
-							+ "<input type-'hidden' name='clssCid' value='${clss.cid}'>" /* "+  json.list[i].cid  +" */
+							+ "<input type='hidden' name='cid' value='"+clssCid+"'>"
+							/* + "<input type='hidden' name='clssCid' value='${clss.cid}'>" */
 							+ "<textarea name='qcontent'>"
 							+ decodeURIComponent(json.list[i].qcontent).replace(/\+/gi, " ") 
-							+ "</textarea><input type='submit' value='수정'></form>"
-							+ "<button onclick='qaDelete(" + json.list[i].qid + ");'>삭제</button></td></tr>";
-					} else { //본인 아닐때
+							+ "</textarea><input type='submit' value='수정'></form>" 	// 원래 여기에 </form> 들어감
+							+ "<button onclick='qaDelete(" + json.list[i].qid + ");'>삭제</button>" //원래 여기에 </td></tr> 들어감
+							
+							/* for each문 안에다가 댓글달 수 있게 끔 */
+							+ "<button onclick='selfReply(" + json.list[i].qid + ");'>댓글달기</button></td></tr>";
+							
+					} else if (loginUser == teacher || adminLv == 'A' ) { //대상 강사또는 관리자일 때
 						values += "<tr><td>" + json.list[i].qwriter 
 						+ "</td><td>" +  json.list[i].q_modify_date 
 						+ "</td></tr><tr><td colspan='2'>"
 						+ decodeURIComponent(json.list[i].qcontent).replace(/\+/gi, " ") 
 						+ "</td></tr>";	
+						
+					} else { // 글작성자가 아니며, 대상 강사또는 관리자가 아닐 때
+						values += "<tr><td>" + json.list[i].qwriter 
+						+ "</td><td>" +  json.list[i].q_modify_date 
+						+ "</td></tr><tr><td colspan='2'>"
+						+ "<i style='color: gray'> 🔒 비공개 문의사항 🔒 </i>"
+						+ "</td></tr>";
 					}
 				}
 				$("#qlistTbl").html($("#qlistTbl").html() + values);
@@ -200,18 +247,74 @@ $(function(){
 		});// 문의 작성 수정/삭제 ajax
 });  //jquery document ready
 
-function qaDelete(qid){
-	location.href = "${ pageContext.request.contextPath }/qdelete.do?qid=" + qid + "&cid=${ clss.cid}";
-}
+function selfReply(qid){
+	showQaReplyForm();
+	showQaListView();
 
-function showQaForm(){
-	$("#qaDiv").css("display", "block");
-}
-function hideQaForm(){
-	$("#qaDiv").css("display", "none");
-}
+
+	//jquery ajax 로 해당 < 수업 클래스 > 대한 문의 *** 댓글 *** 조회 요청
+	//해당 < 수업 클래스 >의 *** 문의 *** 번호를 전송함
+
+	jQuery( function($) {
+		var qaQid = qid;  // selfReply(qid)의 매개변수 값 ( 위 ajax에 있던 json.list[i].qid )을 변수에 대입
+		var loginUser = "${ sessionScope.loginUser.id }";  //로그인한 회원 아이디 변수에 대입
+		var teacher = "${clss.tchr_id}"; // 수업 강사님
+		var adminLv= "${ sessionScope.loginUser.user_lv }";
+
+
+		$.ajax({
+			url: "${ pageContext.request.contextPath }/qalist.do",
+			type: "post",
+			data: { ref_qid: qaQid},  //전송값에 변수 사용 // 문의 id를 받아옴 (qid)
+			dataType: "json",
+			success: function(data){
+			console.log("success : " + data);
+		
+			//object ==> string
+			var jsonStr = JSON.stringify(data);
+			//string ==> json 
+			var json = JSON.parse(jsonStr);
+
+			var values = "";
+					for(var i in json.list){
+						// 본인이 등록한 후기 댓글일 때는 수정/삭제 가능
+						if(loginUser == json.list[i].qawriter){
+							values += "<tr><td>" + json.list[i].qawriter 
+								+ "</td><td>" +  json.list[i].q_modify_date 
+								+ "</td></tr><tr><td colspan='2'>"
+								+ "<form action='qaupdate.do' method='post'>" 
+								+ "<input type='hidden' name='qaid' value='" +  json.list[i].qaid  + "'>"
+								+ "<input type='hidden' name='ref_qid' value='"+ qaQid +"'>" 
+								+ "<textarea name='qacontent'>"
+								+ decodeURIComponent(json.list[i].qacontent).replace(/\+/gi, " ") 
+								+ "</textarea><input type='submit' value='수정'></form>"
+								+ "<button onclick='qaReplyDelete(" + json.list[i].qaid + ");'>삭제</button></td></tr>";
+						} else if ( loginUser == teacher || adminLv == 'A' ){ 
+							values += "<tr><td>" + json.list[i].qawriter 
+							+ "</td><td>" +  json.list[i].qa_modify_date 
+							+ "</td></tr><tr><td colspan='2'>"
+							+ decodeURIComponent(json.list[i].qacontent).replace(/\+/gi, " ") 
+							+ "</td></tr>";	
+						} else{ // 글작성자가 아니며, 대상 강사또는 관리자가 아닐 때
+							values += "<tr><td>" + json.list[i].qawriter 
+							+ "</td><td>" +  json.list[i].qa_modify_date 
+							+ "</td></tr><tr><td colspan='2'>"
+							+ "<i style='color: gray'> 🔒 비공개 문의사항 🔒 </i>"
+							+ "</td></tr>";	
+						}
+					}
+					$("#qalistTbl").html($("#qalistTbl").html() + values);
+				},
+			error: function(jqXHR, textstatus, errorthrown){
+				console.log("error : " + jqXHR + ", " + textstatus + ", " 
+					+ errorthrown);
+				}	
+			});// 문의 작성 수정/삭제 ajax
+	});  //jquery 
+
+	}; // END OF selfReply(qid)
+
 </script>
-
 </head>
 <body>	
 <c:import url="../common/menubar.jsp"/>
@@ -235,7 +338,16 @@ function hideQaForm(){
 					</c:url>
 					<button class="admin_lv" onclick="location.href='${ adcdelete }'"> 삭제하기 </button>
 					&nbsp; &nbsp; 
-					<button class="admin_lv" onclick="location.href='${ tcupdate }'"> 수정하기 </button>
+	</div>
+</c:if>
+<c:if test="${sessionScope.loginUser.user_lv eq 'T' and sessionScope.loginUser.id eq clss.tchr_id}">
+	<h1> ◈ 강사용 : ${clss.cid} ◈ 클래스 인증 대기 </h1>
+	<div style="margin: auto; border: 1px solid #2392bd; padding: 10px;">
+					<c:url var="tupmove" value="/tupmove.do" >
+						<c:param name="cid" value="${ clss.cid }"/>
+					</c:url>
+					<button class="teacher_lv" onclick="location.href='${ tupmove }'"> 수정하기 </button>
+					
 	</div>
 </c:if>
 
@@ -296,7 +408,7 @@ function hideQaForm(){
 					if ('${sessionScope.loginUser.user_lv}' == 'A'){
 						var rr = confirm("관리자계정에서 <결제하기>를 테스트 해봅니다.");
 						if(rr==true){
-						window.open("${pageContext.request.contextPath}/pinsert.do", "_self");
+						window.open("${pageContext.request.contextPath}/paymove.do", "_self");
 						} else {
 						window.open(url, "_self");
 					} 
@@ -308,9 +420,15 @@ function hideQaForm(){
 			<button class="btn" onclick="checkPayer();">결제하기</button>
 		</c:if>
 		<c:if test="${ !empty sessionScope.loginUser }">
-			<c:if test="${sessionScope.loginUser.user_lv eq 'T'}">
+			<%-- 강사는 자기가 가르치는 수업이면 결제 불가--%>
+			<c:if test="${sessionScope.loginUser.user_lv eq 'T' and sessionScope.loginUser.id eq clss.tchr_id}"> 
 				<button class="btn" onclick="confirm('강사계정에서 로그아웃 후, Student계정으로 로그인한 후 결제 하시기 바랍니다.')">결제하기</button>
 			</c:if>
+			<%-- 강사도 자기가 가르치는 수업이 아니면 결제 가능 --%>
+			<c:if test="${sessionScope.loginUser.user_lv eq 'T' and sessionScope.loginUser.id ne clss.tchr_id}"> 
+				<button class="btn" onclick="location.href='${ pay }'">결제하기</button>
+			</c:if>	
+			<%-- 관리자는 결제로 테스트삼아 넘어가짐 --%>
 			<c:if test="${sessionScope.loginUser.user_lv eq 'A'}">
 				<button class="btn" onclick="checkPayer();">결제하기</button>
 			</c:if>
@@ -392,7 +510,7 @@ function hideQaForm(){
 				<script type="text/javascript">
 						function goLogin(){
 							var txt;
-							var r = confirm("문의사항을 작성하려면 <일반 student> 계정으로 로그인한 후 결제 하시기 바랍니다.");
+							var r = confirm("문의사항을 작성하려면 <일반 student> 계정으로 로그인한 후 무의 작성하시기 바랍니다.");
 							if (r==true) {
 								var myWindow = window.open("${pageContext.request.contextPath}/loginpage.do", "_self");
 							} else {
@@ -400,18 +518,6 @@ function hideQaForm(){
 							}
 						}
 				</script>
-					<%-- 로그인한 상태이면서, 본인 글일때만 보여지게 함 --%>
-					<%-- <c:if test="${ !empty loginUser and loginUser.id eq qa.qwriter }">
-						<c:url var="qupdate" value="/qupdate.do">
-							<c:param name="cid" value="${clss.cid }" />
-						</c:url>
-						<a href="${ quv }">수정하기</a> &nbsp; &nbsp; 
-						<c:url var="qdelete" value="/qdelete.do">
-							<c:param name="bid" value="${ board.bid }" />		
-						</c:url>
-						<a href="${ bdl }">[글삭제]</a> &nbsp; &nbsp; 
-					</c:if>
-				 --%>
 				<%-- 문의 달기 폼 영역 --%>
 				<div id="qaDiv">
 				<form action="qinsert.do" method="post">
@@ -426,9 +532,9 @@ function hideQaForm(){
 							</div>	
 						</th>
 				<td><input type="text" name="qwriter" readonly value="${ sessionScope.loginUser.id }"></td></tr>
-				<tr><th>문 의 사 항</th><td><textarea name="qcontent" rows="5" cols="50"></textarea></td></tr>
+				<tr><th colspan="2"><textarea name="qcontent" rows="5" cols="50" placeholder="택터즈님의 궁굼한 문의사항은 요기에~"></textarea></th></tr>
 				<tr><th colspan="2">
-				<input type="submit" value="문의 등록"> &nbsp; 
+				<input type="submit" value="문의사항 등록"> &nbsp; 
 				<input type="reset" value="취소" onclick="hideQaForm(); return false;"> </th></tr>
 				</table>
 				</form>  
@@ -437,19 +543,77 @@ function hideQaForm(){
 				<%-- 문의 목록 표시 영역 --%>
 				<div id="qlistView" >
 				<table id="qlistTbl" class="tbl" align="center" cellspacing="0" cellpadding="5" border="1"></table>
+				
+						<%-- 댓글 --%>
+						<%-- 로그인한 사용자만 문의 *** 댓글 *** 작성가능 --%>
+							<c:if test="${ !empty sessionScope.loginUser }">
+								<div style="align:center; text-align:center;">
+									<button class="btn" onclick="showQaReplyForm();"> 댓글달기 </button>
+								</div>
+							</c:if>
+							<c:if test="${ empty sessionScope.loginUser }">
+								<div style="align:center; text-align:center;">
+									<button class="btn" onclick="goLogin();"> 댓글달기 </button>
+								</div>
+							</c:if>
+						<script type="text/javascript">
+								function goLogin(){
+									var txt;
+									var r = confirm("문의사항을 작성하려면 <일반 student> 계정으로 로그인한 후 댓글 달기 바랍니다.");
+									if (r==true) {
+										var myWindow = window.open("${pageContext.request.contextPath}/loginpage.do", "_self");
+									} else {
+										window.open(url, "_self");
+									}
+								}
+						</script>
+						<%-- 문의 ** 댓글 ** 달기 폼 영역 --%>
+						<div id="qaReplyDiv">
+							<form action="qainsert.do" method="post"> <!-- 원래는 action = "qainsert.do -->
+							<input type="hidden" name="qid" value="${ qa.qid }" >
+								<table align="center" width="500" border="1" cellspacing="0" cellpadding="5" class="tbl_reply">
+								<tr><th>
+											<div class="container-avatar"  class="tbl_reply">
+											  <img src="${pageContext.request.contextPath}/resources/images/profilePics/mds_profile.jpg" alt="Avatar" class="image-avatar" style="width:100%; align: center;">
+											  <div class="middle-avatar">
+											    <div class="text-avatar">${ sessionScope.loginUser.nickname}</div>
+											  </div>
+											</div>	
+										</th>
+								<td><input type="text" name="qawriter" readonly value="${ sessionScope.loginUser.id }"></td></tr>
+								<tr><th colspan="2">
+											<textarea name="qacontent" rows="5" cols="50" placeholder="택터즈님의 소중한 댓글은 요기에~"></textarea>
+										</th></tr>
+								<tr><th colspan="2">
+								<input type="submit" value="댓글 등록"> &nbsp; 
+								<input type="reset" value="취소" onclick="hideQaReplyForm(); return false;"> </th></tr>
+							</table>
+							</form>  
+						</div>	
+						
+						<%-- 문의 ** 댓글 ** 목록 표시 영역 --%>
+						<div id="qalistView" >
+						<table id="qalistTbl" class="tbl_reply" align="center" cellspacing="0" cellpadding="5" border="1"></table>
+						</div>
+						
 				</div>
 		
-		</div>
+		</div> <%-- END OF 문의 목록 / 작성 --%>
 		
 		<!-- 클래스 환불정책  -->
 		<div id="4-refund" class="tabcontent">
 		<h3 style="text-align: center; color: #fff;"> 환불정책 </h3>
+		
+		
+		
 		</div>
 		
-		<!-- 클래스 후기  -->
+		<!-- 강사소개  -->
 		<div id="5-teacher" class="tabcontent">
 		<h3 style="text-align: center; color: #fff;"> 강사소개 </h3>
-		   ${ clss.tchr_profile }<br><br>
+		   <input type="text"  value="${ clss.tchr_profile }">
+		   <textarea class="basic len980 hei190" id="TutorInfo" name="tchr_profile"></textarea>
+		   <br><br>
 		</div>
 
 </div>

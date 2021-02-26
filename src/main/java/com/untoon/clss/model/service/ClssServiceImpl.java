@@ -105,6 +105,12 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.adminDenyClss(clss);
 	}
 
+	// 강사 클래스 수정하기
+	@Override
+	public int tUpdateClss(Clss clss) {
+		return cDao.tUpdateClss(clss);
+	}
+
 
 
 

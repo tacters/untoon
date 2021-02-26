@@ -2,6 +2,7 @@ package com.untoon.qa.model.service;
 
 import java.util.ArrayList;
 
+import com.untoon.qa.model.vo.QA;
 import com.untoon.qa.model.vo.QaReply;
 
 public interface QaReplyService {

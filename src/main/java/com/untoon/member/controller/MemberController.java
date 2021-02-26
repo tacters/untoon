@@ -2,11 +2,10 @@ package com.untoon.member.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.untoon.member.model.service.MemberService;
 import com.untoon.member.model.vo.Member;
@@ -131,10 +131,28 @@ public class MemberController {
 		return "member/myInfoView";
 	}
 
+	// 강사 정보 변경 페이지로 이동(비밀번호 바꾸기, 휴대폰 번호바꾸기)
+	@RequestMapping("tup.do")
+	public String tupMethod() {
+		return "teacher/teacherUpdatePage";
+	}
+
 	// 회원 탈퇴페이지로 이동
 	@RequestMapping("myDeleteView.do")
 	public String myDeleteView() {
 		return "member/myDeleteView";
+	}
+
+	// 아이디 찾는 페이지로 이동
+	@RequestMapping("findidview.do")
+	public String idfindView() {
+		return "member/findIdView";
+	}
+	
+	//비밀번호 찾는 페이지로 이동
+	@RequestMapping("findpwdview.do")
+	public String pwdfindView() {
+		return "member/findPwdView";
 	}
 
 	// 회원가입
@@ -250,6 +268,31 @@ public class MemberController {
 		}
 	}
 
+	// 강사 개인정보 수정하기
+	@RequestMapping("tupdate.do")
+	public String tUpdate(@ModelAttribute Member m, Model model) {
+		System.out.println("Member : " + m);
+
+		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
+
+		// setter를 통해서 Member객체의 pwd를 변경
+		m.setPwd(encPwd);
+
+		int result = mService.updateMember(m);
+
+		System.out.println("CMember : " + m);
+
+		if (result > 0) {
+			System.out.println("성공");
+			model.addAttribute("loginUser", m);
+			return "redirect:tInfo.do";
+		} else {
+			model.addAttribute("msg", "회원 정보 수정 실패");
+			return "common/errorPage";
+		}
+	}
+
+	//정보 수정하기
 	@RequestMapping("mupdate.do")
 	public String memberUpdate(@ModelAttribute Member m, Model model) {
 		System.out.println("Member :" + m);
@@ -270,6 +313,7 @@ public class MemberController {
 		}
 	}
 
+	//탈퇴하기
 	@RequestMapping("mdelete.do")
 	public String memeberDelete(SessionStatus status, @RequestParam("id") String id, Model model) {
 
@@ -282,5 +326,24 @@ public class MemberController {
 			return "common/errorPage";
 		}
 
+	}
+
+	// 아이디 찾기
+	@RequestMapping(value = "findid.do", method = RequestMethod.POST)
+	public ModelAndView memberFindId(Model model, @RequestParam("email") String email) {
+		ModelAndView mav = new ModelAndView();
+		String memberid = mService.findId(email);
+		System.out.println(memberid);
+
+		if (memberid != null) {
+			mav.addObject("id", memberid);
+			mav.setViewName("member/findIdForm");
+
+		} else {
+			mav.setViewName("common/errorPage");
+			mav.addObject("msg", "이메일이 존재하지 않습니다.");
+
+		}
+		return mav;
 	}
 }

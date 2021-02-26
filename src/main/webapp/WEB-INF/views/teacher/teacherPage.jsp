@@ -9,13 +9,14 @@
 <title>UNTOON 언투온택터즈</title>
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
 
 <h1>강사 마이페이지 입니다.</h1>
 
 <a href="tclist.do">나의 클래스 보기</a>	<br>
 <a href="tinsert.do">새 클래스 등록하기</a>	<br>
 <a href="clist.do">전체 클래스 리스트 조회하기</a>	<br>
-<a href="">강사 개인정보 변경</a>
+<a href="tup.do">강사 개인정보 변경</a>
 
 </body>
 </html>

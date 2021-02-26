@@ -111,6 +111,10 @@ public class ClssDao {
 		return sqlSession.update("clssMapper.denyClss", clss);
 	}
 
+	public int tUpdateClss(Clss clss) {
+		return sqlSession.update("clssMapper.tUpdateClss", clss);
+	}
+
 
 
 }

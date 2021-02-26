@@ -1,5 +1,7 @@
 package com.untoon.member.model.service;
 
+import java.util.List;
+
 import com.untoon.member.model.vo.Member;
 
 public interface MemberService {
@@ -19,6 +21,9 @@ public interface MemberService {
 	int nicknameCheck(String nickname);
 
 	int emailCheck(String email);
+	
+	//아이디 찾기
+	String findId(String email);
 
 	
 }
