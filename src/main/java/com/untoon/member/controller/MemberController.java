@@ -145,8 +145,14 @@ public class MemberController {
 
 	// 아이디 찾는 페이지로 이동
 	@RequestMapping("findidview.do")
-	public String idfidView() {
+	public String idfindView() {
 		return "member/findIdView";
+	}
+	
+	//비밀번호 찾는 페이지로 이동
+	@RequestMapping("findpwdview.do")
+	public String pwdfindView() {
+		return "member/findPwdView";
 	}
 
 	// 회원가입
@@ -286,6 +292,7 @@ public class MemberController {
 		}
 	}
 
+	//정보 수정하기
 	@RequestMapping("mupdate.do")
 	public String memberUpdate(@ModelAttribute Member m, Model model) {
 		System.out.println("Member :" + m);
@@ -306,6 +313,7 @@ public class MemberController {
 		}
 	}
 
+	//탈퇴하기
 	@RequestMapping("mdelete.do")
 	public String memeberDelete(SessionStatus status, @RequestParam("id") String id, Model model) {
 

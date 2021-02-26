@@ -75,7 +75,7 @@
 					<!-- <a href="teenrollView.do">강사회원가입</a> -->
 					<a href="enrollView.do">회원가입</a> 
 					<a href="findidview.do">아이디 찾기</a> 
-					<a href="#">비밀번호 찾기</a>
+					<a href="findpwdview.do">비밀번호 찾기</a>
 				</div>
 			</c:if>
 			<br>
