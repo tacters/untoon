@@ -131,18 +131,24 @@ public class MemberController {
 		return "member/myInfoView";
 	}
 
+	// 강사 정보 변경 페이지로 이동(비밀번호 바꾸기, 휴대폰 번호바꾸기)
+	@RequestMapping("tup.do")
+	public String tupMethod() {
+		return "teacher/teacherUpdatePage";
+	}
+
 	// 회원 탈퇴페이지로 이동
 	@RequestMapping("myDeleteView.do")
 	public String myDeleteView() {
 		return "member/myDeleteView";
 	}
-	
-	//아이디 찾는 페이지로 이동
+
+	// 아이디 찾는 페이지로 이동
 	@RequestMapping("findidview.do")
 	public String idfidView() {
 		return "member/findIdView";
 	}
-	
+
 	// 회원가입
 	@RequestMapping(value = "minsert.do", method = RequestMethod.POST)
 	public String insertMember(@ModelAttribute Member m, Model model, HttpServletRequest request,
@@ -177,7 +183,7 @@ public class MemberController {
 				System.out.println(renameFileName);
 				m.setRename_avatar(renameFileName);
 			}
-		}	
+		}
 
 		// 이력서
 		// 업로드된 파일 저장 폴더 지정하기
@@ -256,6 +262,30 @@ public class MemberController {
 		}
 	}
 
+	// 강사 개인정보 수정하기
+	@RequestMapping("tupdate.do")
+	public String tUpdate(@ModelAttribute Member m, Model model) {
+		System.out.println("Member : " + m);
+
+		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
+
+		// setter를 통해서 Member객체의 pwd를 변경
+		m.setPwd(encPwd);
+
+		int result = mService.updateMember(m);
+
+		System.out.println("CMember : " + m);
+
+		if (result > 0) {
+			System.out.println("성공");
+			model.addAttribute("loginUser", m);
+			return "redirect:tInfo.do";
+		} else {
+			model.addAttribute("msg", "회원 정보 수정 실패");
+			return "common/errorPage";
+		}
+	}
+
 	@RequestMapping("mupdate.do")
 	public String memberUpdate(@ModelAttribute Member m, Model model) {
 		System.out.println("Member :" + m);
@@ -289,24 +319,23 @@ public class MemberController {
 		}
 
 	}
-	
-	//아이디 찾기
-	@RequestMapping(value="findid.do", method=RequestMethod.POST)
-	public ModelAndView memberFindId(Model model,
-									@RequestParam("email") String email) {
-		 ModelAndView mav = new ModelAndView();
-		  String memberid = mService.findId(email);
-		  System.out.println(memberid);
-		  
-		  if(memberid != null) {
-		  mav.addObject("id", memberid);
-		  mav.setViewName("member/findIdForm");
-		 
-		  }else {
-			  mav.setViewName("common/errorPage");
-			  mav.addObject("msg", "이메일이 존재하지 않습니다.");
-			 
-		  }
-		  return mav;
-	 }
+
+	// 아이디 찾기
+	@RequestMapping(value = "findid.do", method = RequestMethod.POST)
+	public ModelAndView memberFindId(Model model, @RequestParam("email") String email) {
+		ModelAndView mav = new ModelAndView();
+		String memberid = mService.findId(email);
+		System.out.println(memberid);
+
+		if (memberid != null) {
+			mav.addObject("id", memberid);
+			mav.setViewName("member/findIdForm");
+
+		} else {
+			mav.setViewName("common/errorPage");
+			mav.addObject("msg", "이메일이 존재하지 않습니다.");
+
+		}
+		return mav;
+	}
 }
