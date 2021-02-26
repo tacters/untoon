@@ -56,6 +56,6 @@
 </tr>
 </c:forEach>
 </table>
-
+<footer><c:import url="../common/footer.jsp"/></footer>
 </body>
 </html>

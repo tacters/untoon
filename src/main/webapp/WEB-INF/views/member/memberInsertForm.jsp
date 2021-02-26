@@ -143,6 +143,7 @@ function showDiv(){
 		</form>
 		<br> <br> <a href="home.do">홈 페이지로 이동</a>
 	</div>
+	<footer><c:import url="../common/footer.jsp"/></footer>
 </body>
 	<script type="text/javascript">	
 	function idDuplicateCheck(){
