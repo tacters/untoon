@@ -11,7 +11,10 @@
 		<typeAlias type="com.untoon.clss.model.vo.Clss" alias="Clss"/>
 		<typeAlias type="com.untoon.pay.model.vo.Pay" alias="Pay"/>
 		<typeAlias type="com.untoon.pay.model.vo.PayClss" alias="PayClss"/>
+		
 		<typeAlias type="com.untoon.review.model.vo.Review" alias="Review"/>
+		<typeAlias type="com.untoon.review.model.vo.ReviewReply" alias="ReviewReply"/>
+		
 		<typeAlias type="com.untoon.qa.model.vo.QA" alias="QA"/>
 		<typeAlias type="com.untoon.qa.model.vo.QaReply" alias="QaReply"/>
 	</typeAliases>
@@ -20,7 +23,10 @@
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/clss-mapper.xml"/>
 		<mapper resource="mappers/pay-mapper.xml"/>
+		
 		<mapper resource="mappers/review-mapper.xml"/>
+		<mapper resource="mappers/reviewreply-mapper.xml"/>
+		
 		<mapper resource="mappers/qa-mapper.xml"/>
 		<mapper resource="mappers/qareply-mapper.xml"/>
 	</mappers>

@@ -9,41 +9,35 @@ import com.untoon.review.model.dao.ReviewDao;
 import com.untoon.review.model.vo.Review;
 
 @Service("reviewService")
-public class ReviewServiceImpl implements ReviewService {
+public class ReviewServiceImpl implements ReviewService{
 	
 	@Autowired
-	private ReviewDao reviewDao;
-	
-	@Override
-	public ArrayList<Review> selectReviewList(int currentPage, int limit, int cid) {
-		return reviewDao.selectList(currentPage, limit, cid);
-	}
-
-	@Override
-	public Review selectReview(int rid) {
-		return reviewDao.selectReview(rid);
-	}
+	private ReviewDao rDao;
 
 	@Override
 	public int insertReview(Review review) {
-		return reviewDao.insertReview(review);
+		return rDao.insertReview(review);
 	}
 
 	@Override
 	public int updateReview(Review review) {
-		return reviewDao.updateReview(review);
+		return rDao.updateReview(review);
 	}
 
 	@Override
 	public int deleteReview(int rid) {
-		return reviewDao.deleteReview(rid);
+		return rDao.deleteReview(rid);
 	}
 	
 	@Override
-	public int getListCount() {
-		return reviewDao.getListCount();
+	public ArrayList<Review> selectReviewList(int cid) {
+		return rDao.selectReviewList(cid);
 	}
 
+	@Override
+	public Review selectReview(int rid) {
+		return rDao.selectReview(rid);
+	}
+	
+	
 }
-
-

@@ -44,7 +44,7 @@ public class QaController {
 	}
 	
 	@RequestMapping("qdelete.do")
-	public String replyDeleteMethod(@RequestParam("qid") int qid, 
+	public String deleteQa(@RequestParam("qid") int qid, 
 																@RequestParam("cid") int cid, Model model) {
 		if(qaService.deleteQa(qid) > 0) {
 					return "redirect: cdetail.do?cid=" + cid;
