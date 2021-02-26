@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
 <h1>강사 개인정보 수정 페이지</h1>
 <form action="tupdate.do" method="post" enctype="multipart/form-data">
 	<div class="outer" align="center">

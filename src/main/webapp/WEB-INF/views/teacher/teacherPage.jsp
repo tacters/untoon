@@ -9,6 +9,7 @@
 <title>UNTOON 언투온택터즈</title>
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
 
 <h1>강사 마이페이지 입니다.</h1>
 

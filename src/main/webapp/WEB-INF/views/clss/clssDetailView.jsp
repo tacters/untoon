@@ -338,7 +338,6 @@ function selfReply(qid){
 					</c:url>
 					<button class="admin_lv" onclick="location.href='${ adcdelete }'"> 삭제하기 </button>
 					&nbsp; &nbsp; 
-					<button class="admin_lv" onclick="location.href='${ tcupdate }'"> 수정하기 </button>
 	</div>
 </c:if>
 
@@ -596,7 +595,9 @@ function selfReply(qid){
 		<!-- 강사소개  -->
 		<div id="5-teacher" class="tabcontent">
 		<h3 style="text-align: center; color: #fff;"> 강사소개 </h3>
-		   ${ clss.tchr_profile }<br><br>
+		   <input type="text"  value="${ clss.tchr_profile }">
+		   <textarea class="basic len980 hei190" id="TutorInfo" name="tchr_profile"></textarea>
+		   <br><br>
 		</div>
 
 </div>
