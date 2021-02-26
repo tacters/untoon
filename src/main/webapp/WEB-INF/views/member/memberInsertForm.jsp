@@ -97,7 +97,7 @@ function showDiv(){
 				</tr>
 				<tr>
 					<td>PHONE</td>
-					<td><input type="tel" name="phone"></td>
+					<td><input type="tel" name="phone" placeholder="-포함해서 입력해주세요"></td>
 				</tr>
 				<tr>
 					<td>프로필 사진</td>

@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>강사 개인정보 수정 페이지</h1>
-<form action="tupdate.do" method="post">
+<form action="tupdate.do" method="post" enctype="multipart/form-data">
 	<div class="outer" align="center">
 			<table width="500" cellspacing="5">
 				<tr>
@@ -60,10 +60,32 @@
 				<tr>
 					<td>전화번호 : </td>
 					<td>
-						<input type="tel" name="phone"><br><br>
+						<input type="tel" name="phone" placeholder="-포함해서 입력해주세요"><br><br>
 					</td>
 				</tr>
-				
+				<tr>
+					<td>프로필 사진</td>
+					<td><input type="file" name="afile"></td>
+				</tr>
+				<tr class="insertTeacher" rowspan="2">
+					<td>계좌번호</td>
+					<td>
+						<select name="bank">
+							<option value="null">은행을 선택해 주세요</option>
+							<option value="국민">국민</option>
+							<option value="농협">농협</option>
+							<option value="기업">기업</option>
+							<option value="신한">신한</option>
+							<option value="우리">우리</option>
+							<option value="하나">하나</option>
+						</select>
+						<input type="text" name="bank_accp" placeholder="-빼고 입력해주세요">
+					</td>
+				</tr>
+				<tr class="insertTeacher">
+					<td>이력서</td>
+					<td><input type="file" name="rfile"></td>
+				</tr>
 				<tr>
 					<td colspan="2" align="center">
 						<button>수정하기</button>
