@@ -7,7 +7,7 @@
 	<c:url var="approve" value="/approve.do"/>
 	<c:url var="deny" value="/deny.do"/>
 	<c:url var="adcdelete" value="/adcdelete.do"/>
-	<c:url var="pay" value="/pinsert.do"/>
+	<c:url var="pay" value="/paymove.do"/>
 	<%-- <c:url var="qareplyinsert" value="/qainsert.do">
 		<c:param name="cid" value="${clss.cid }" />
 	</c:url> --%>
@@ -340,6 +340,16 @@ function selfReply(qid){
 					&nbsp; &nbsp; 
 	</div>
 </c:if>
+<c:if test="${sessionScope.loginUser.user_lv eq 'T' and sessionScope.loginUser.id eq clss.tchr_id}">
+	<h1> ◈ 강사용 : ${clss.cid} ◈ 클래스 인증 대기 </h1>
+	<div style="margin: auto; border: 1px solid #2392bd; padding: 10px;">
+					<c:url var="tupmove" value="/tupmove.do" >
+						<c:param name="cid" value="${ clss.cid }"/>
+					</c:url>
+					<button class="teacher_lv" onclick="location.href='${ tupmove }'"> 수정하기 </button>
+					
+	</div>
+</c:if>
 
 <c:if test="${sessionScope.loginUser.user_lv eq 'T' and clss.clss_status eq 3 }">
 	<h1 style="text-align: center;"> ◈ &nbsp; # ${clss.cid} &nbsp; ◈ 클래스 인증 대기 </h1>
@@ -398,7 +408,7 @@ function selfReply(qid){
 					if ('${sessionScope.loginUser.user_lv}' == 'A'){
 						var rr = confirm("관리자계정에서 <결제하기>를 테스트 해봅니다.");
 						if(rr==true){
-						window.open("${pageContext.request.contextPath}/pinsert.do", "_self");
+						window.open("${pageContext.request.contextPath}/paymove.do", "_self");
 						} else {
 						window.open(url, "_self");
 					} 
@@ -410,9 +420,15 @@ function selfReply(qid){
 			<button class="btn" onclick="checkPayer();">결제하기</button>
 		</c:if>
 		<c:if test="${ !empty sessionScope.loginUser }">
-			<c:if test="${sessionScope.loginUser.user_lv eq 'T'}">
+			<%-- 강사는 자기가 가르치는 수업이면 결제 불가--%>
+			<c:if test="${sessionScope.loginUser.user_lv eq 'T' and sessionScope.loginUser.id eq clss.tchr_id}"> 
 				<button class="btn" onclick="confirm('강사계정에서 로그아웃 후, Student계정으로 로그인한 후 결제 하시기 바랍니다.')">결제하기</button>
 			</c:if>
+			<%-- 강사도 자기가 가르치는 수업이 아니면 결제 가능 --%>
+			<c:if test="${sessionScope.loginUser.user_lv eq 'T' and sessionScope.loginUser.id ne clss.tchr_id}"> 
+				<button class="btn" onclick="location.href='${ pay }'">결제하기</button>
+			</c:if>	
+			<%-- 관리자는 결제로 테스트삼아 넘어가짐 --%>
 			<c:if test="${sessionScope.loginUser.user_lv eq 'A'}">
 				<button class="btn" onclick="checkPayer();">결제하기</button>
 			</c:if>
