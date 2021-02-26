@@ -7,7 +7,7 @@ public class QA implements java.io.Serializable {
 	private final static long serialVersionUID = 3333L;
 	
 	private int qid;
-	private int cid; // 참조 상세보기 <수업 클래스>
+	private static int cid; // 참조 상세보기 <수업 클래스>
 	private String qwriter;
 	private String qcontent;
 	private Date q_create_date;
@@ -36,7 +36,7 @@ public class QA implements java.io.Serializable {
 		this.qid = qid;
 	}
 
-	public int getCid() {
+	public static int getCid() {
 		return cid;
 	}
 

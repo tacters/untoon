@@ -13,31 +13,31 @@
 	</resultMap>	
 
 	<select id="selectQaReply" parameterType="_int" resultMap="resultQaReply">
-		select * from QAREPLY
+		select * from QA_REPLY
 		where qaid = #{ qaid }
 	</select>		
 	
 	<select id="selectQaReplyList" resultMap="resultQaReply" parameterType="_int">
-		SELECT * FROM QAREPLY 
+		SELECT * FROM QA_REPLY 
 		WHERE QA_STATUS = 'Y' AND REF_QID = #{ ref_qid }
 		ORDER BY QAID ASC		
 	</select>
 	
 	<insert id="insertQaReply" parameterType="QaReply">
-		INSERT INTO QAREPLY			
+		INSERT INTO QA_REPLY			
 		VALUES (seq_qaid.nextval, #{ ref_qid }, #{ qacontent }, 
 				#{ qawriter }, sysdate, sysdate, default)		
 	</insert>
 	
 	<update id="updateQaReply" parameterType="QaReply">
-		UPDATE  QAREPLY
+		UPDATE  QA_REPLY
 				SET  QACONTENT = #{ qacontent },
 						QA_MODIFY_DATE = sysdate	   
 		  WHERE  QAID = #{ qaid }
 	</update>
 	
 	<update id="deleteQaReply" parameterType="_int">
-		UPDATE  QAREPLY
+		UPDATE  QA_REPLY
 				SET	QA_STATUS = 'N',
 		   				QA_MODIFY_DATE = sysdate
 		WHERE  QAID = #{ qaid }
