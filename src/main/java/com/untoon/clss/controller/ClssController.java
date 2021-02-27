@@ -7,9 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.untoon.clss.model.service.ClssService;
 import com.untoon.clss.model.vo.Clss;
 import com.untoon.member.model.vo.Member;
+
+import net.sf.json.JSONArray;
 
 @Controller
 public class ClssController {
@@ -362,24 +364,55 @@ public class ClssController {
 	}
 
 	// 사용자 마이페이지에 본인 클래스 목록 불러오기
-	@RequestMapping("mclss.do")
-	public String myClssList(HttpSession session, Model model) {
+//	@RequestMapping(value="mclss.do", method = RequestMethod.POST)
+//	public String myClssList(HttpSession session, Model model) {
+//		Member loginUser = (Member) session.getAttribute("loginUser");
+////			Member loginUser = (Member)session.getAttribute("id");
+////			String id = (String)session.getAttribute("id");
+//		String id = loginUser.getId();
+//		System.out.println(id);
+//		ArrayList<Clss> myList = cService.myClssList(id);
+//		System.out.println("myList : " + myList);
+//
+//		if (myList.size() > 0) {
+//			System.out.println("값o");
+//			model.addAttribute("myList", myList);
+//			return "member/myClssListView";
+//		} else {
+//			model.addAttribute("msg", "나의 클래스 조회 실패");
+//			return "common/errorPage";
+//		}
+//	}
+	
+	@RequestMapping(value="mclss.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String myClssList(HttpServletResponse response, HttpSession session, Model model) throws UnsupportedEncodingException {
 		Member loginUser = (Member) session.getAttribute("loginUser");
-//			Member loginUser = (Member)session.getAttribute("id");
-//			String id = (String)session.getAttribute("id");
 		String id = loginUser.getId();
 		System.out.println(id);
 		ArrayList<Clss> myList = cService.myClssList(id);
-		System.out.println("myList : " + myList);
-
-		if (myList.size() > 0) {
-			System.out.println("값o");
-			model.addAttribute("myList", myList);
-			return "member/myClssListView";
-		} else {
-			model.addAttribute("msg", "나의 클래스 조회 실패");
-			return "common/errorPage";
+		
+		System.out.println(myList);
+		
+		JSONObject sendJson = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		
+		for (Clss clss : myList){
+			
+			JSONObject job = new JSONObject();
+			
+			job.put("cid", clss.getCid());
+			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
+			job.put("clss_start", clss.getClss_start().toString());
+			job.put("clss_end", clss.getClss_end().toString());
+			
+			jarr.add(job);
 		}
+		
+		sendJson.put("myList", jarr);
+		
+		return sendJson.toJSONString();
 	}
 
 }

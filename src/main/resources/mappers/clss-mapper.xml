@@ -124,7 +124,7 @@
 		from clss
 		join pay using (cid)
 		where pid=#{id}
-		and pstatus =2
+		and pstatus =4		<!-- pstatus 수정해야함 -->
     </select>
     
     

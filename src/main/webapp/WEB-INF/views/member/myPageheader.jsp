@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>UNTOON 언투온택터즈</title>
+<script type="text/javascript"
+	src="${ pageContext.request.contextPath }/resources/js/jquery-3.5.1.min.js"></script>
 <style type="text/css">
    #menu {
       width: 960px;
@@ -93,6 +95,41 @@
    
 
 </style>
+<script type="text/javascript">
+$(function(){
+	
+	$.ajax({
+		url : "${ pageContext.request.contextPath }/mclss.do",
+		type : "post",
+		dataType : "json",
+		success : function(data){
+			console.log("success : " + data);
+			
+			var jsonStr = JSON.stringify(data);
+			var json = JSON.parse(jsonStr);
+			
+			var values="";
+			for (var i in json.myList){
+				values += "<tr><td>"
+					+ json.myList[i].cid
+					+ "</td><td><a href='${ pageContext.request.contextPath }/cdetail.do?cid="
+					+ json.myList[i].cid
+					+ "'>"
+					+ decodeURIComponent(json.myList[i].clss_title)
+							.replace(/\+/gi, " ") /* 디코딩하면 공백이 +로 되기때문에  " " 공백으로 바꿔준다*/
+					+ "</a></td><td>" + json.myList[i].clss_start
+					+ "</td></tr>";
+			} //for in
+			
+			$("#myClss").html($("#myClss").html() + values);
+		},
+		error : function(jqXHR, textstatus, errorthrown) {
+			console.log("error : " + jqXHR + ", " + textstatus + ", "
+					+ errorthrown);
+		}
+	});
+});
+</script>
 </head>
 <body>
 <c:if test="${ !empty sessionScope.loginUser }">
@@ -131,5 +168,14 @@
 		
 			</div>
 	</c:if>
+	
+	<div>
+		<table align="center" border="1" width="700" cellspacing="0" id="myClss">
+			<!-- <tr><th>클래스 번호</th><th>클래스 제목</th><th>강사</th><th>강의 시작 날짜</th><th>강의 끝나는 날짜</th>
+			</tr> -->
+			<tr><th>클래스 번호</th><th>클래스 제목</th><th>강의 시작 날짜</th>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
