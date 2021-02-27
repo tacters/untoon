@@ -292,8 +292,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											<a href='${ tinsert }' title="tinsert">클래스 등록하기</a>
 								</div>
 								<div class="widget edgtf-login-register-widget">
-									<c:url var="tInfo" value="/teacherInfo.do" />
-									<a href='${ tInfo }' title="tInfo">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->
+									<c:url var="myInfo" value="/myInfo.do" />
+									<a href='${ myInfo }' title="myInfo">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->
 								</div>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="tclist" value="/tclist.do" />

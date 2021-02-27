@@ -22,11 +22,13 @@
 		<result property="view_count" column="VIEW_COUNT"/>
 		<result property="clss_original_filename" column="CLSS_ORIGINAL_FILENAME"/>
 		<result property="clss_rename_filename" column="CLSS_RENAME_FILENAME"/>
-		<result property="clss_rename_filename" column="CLSS_RENAME_FILENAME"/>
-		<result property="clss_comment" column="CLSS_COMMENT"/>
+		<result property="clss_url" column="CLSS_URL"/>
 		<result property="tchr_id" column="TCHR_ID"/>
 		<result property="tchr_introduction" column="TCHR_INTRODUCTION"/>
 		<result property="tchr_profile" column="TCHR_PROFILE"/>
+		<result property="clss_comment" column="CLSS_COMMENT"/>
+		<result property="clss_tags" column="CLSS_TAGS"/>
+		
 	</resultMap>
 	
 	<select id="tClssList" resultMap="clssResultSet">
@@ -140,8 +142,8 @@
     		seq_cid.nextval, #{clss_title}, #{clss_price}, default, default, #{clss_category}, #{clss_content},
     		#{clss_times}, #{clss_start}, #{clss_end}, #{clss_duration}, #{clss_min}, #{clss_max}, DEFAULT, DEFAULT,DEFAULT,
     		DEFAULT,
-    		#{clss_original_filename}, default, #{clss_url},
-    		#{tchr_id}, #{tchr_introduction}, #{tchr_profile}, default
+    		#{clss_original_filename}, #{clss_rename_filename}, #{clss_url},
+    		#{tchr_id}, #{tchr_introduction}, #{tchr_profile}, default, #{clss_tags}
     	)
     </insert>
     

@@ -117,7 +117,8 @@ $(function(){
 					+ "'>"
 					+ decodeURIComponent(json.myList[i].clss_title)
 							.replace(/\+/gi, " ") /* 디코딩하면 공백이 +로 되기때문에  " " 공백으로 바꿔준다*/
-					+ "</a></td><td>" + json.myList[i].clss_start
+					+ "</a></td><td>" + json.myList[i].tchr_id
+					+ "</td><td>" + json.myList[i].clss_start + "</td><td>" + json.myList[i].clss_end
 					+ "</td></tr>";
 			} //for in
 			
@@ -169,12 +170,56 @@ $(function(){
 			</div>
 	</c:if>
 	
+	<c:if test="${ !empty sessionScope.loginUser and sessionScope.loginUser.user_lv eq 'T' }">
+		<h3 style="text-align: center;">
+			안녕하세요.<br> ${ loginUser.name }님
+		</h3><hr/>
+		<br><br>
+		<div id="teacher_menu">
+			<ul class="navi">
+				<li><a href="#" id="#" title="내 클래스 관리" class="#">내 클래스 관리</a> 
+					<ul>
+						<li><a href="mclss.do" id="#" class="#">수업 목록</a></li>
+							<c:url var="pmselect" value="/pmselect.do"/>
+						<li><a href='${ pmselect }' title="pmselect">결제내역</a></li>
+							
+					</ul>
+				</li>
+				<li><a href="#" id="#" title="내 정보 관리" class="#">내 정보 관리</a>
+					<ul>
+							<c:url var="myUpdateView" value="myUpdateView.do"/>
+						<li><a href="${ myUpdateView }">회원정보 수정</a>
+						</li>
+							<c:url var="myDeleteView" value="myDeleteView.do"/>
+						<li><a href="${ myDeleteView }">회원정보 탈퇴</a></li>
+			   		</ul>
+			   </li>
+			   	<li><a href="#" id="#" title="내 활동 내역" class="#">내 활동 내역</a>
+					<ul>	
+						<li><a href="#" id="#" class="#">내가 쓴 댓글</a></li>
+						<li><a href="#" id="#" class="#">클래스 후기</a></li>
+						<li><a href="#" id="#" class="#">1:1문의</a></li>
+			  		</ul>
+			  	</li>
+			  	<li><a href="#" id="#" title="내 활동 내역" class="#">내가 등록한 클래스 관리하기</a>
+					<ul>	
+						<li><a href="#" id="#" class="#">내가 쓴 댓글</a></li>
+						<li><a href="#" id="#" class="#">클래스 후기</a></li>
+						<li><a href="#" id="#" class="#">1:1문의</a></li>
+			  		</ul>
+			  	</li>
+			 </ul>
+			  
+		
+			</div>
+	</c:if>
+	
 	<div>
 		<table align="center" border="1" width="700" cellspacing="0" id="myClss">
-			<!-- <tr><th>클래스 번호</th><th>클래스 제목</th><th>강사</th><th>강의 시작 날짜</th><th>강의 끝나는 날짜</th>
-			</tr> -->
-			<tr><th>클래스 번호</th><th>클래스 제목</th><th>강의 시작 날짜</th>
+			<tr><th>클래스 번호</th><th>클래스 제목</th><th>강사</th><th>강의 시작 날짜</th><th>강의 끝나는 날짜</th>
 			</tr>
+			<!-- <tr><th>클래스 번호</th><th>클래스 제목</th><th>강의 시작 날짜</th>
+			</tr> -->
 		</table>
 	</div>
 </body>

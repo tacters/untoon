@@ -163,6 +163,7 @@ input[type=file] {
 			<div class="inner2"  id="minmax">
 				<select class="basic len290" id="MinPerson" name="clss_min">
 					<option value="0">최소인원수</option>
+					 					 <option value="1" >1</option>
 					 					 <option value="2" >2</option>
 					 					 <option value="3" >3</option>
 					 					 <option value="4" >4</option>
@@ -186,7 +187,8 @@ input[type=file] {
 				 명 ~ 
 
 				<select class="basic len290" id="MaxPerson" name="clss_max">
-					<option value="">최대인원수</option>
+					<option value="0">최대인원수</option>
+										<option value="1" >1</option>
 										 <option value="2" >2</option>
 					 					 <option value="3" >3</option>
 					 					 <option value="4" >4</option>
@@ -259,32 +261,6 @@ input[type=file] {
 				</div>
 		</div>
 	</div>
-		<div class="box">
-		<div class="title">총 수업가격<b class="pink"></b></div>
-		<div class="cont">
-			<div class="caution caution2" style="overflow:hidden">
-				<font><span id="calc-unit-price">0</span>원&nbsp;&nbsp;X&nbsp;&nbsp;<span id="calc-time">0</span>시간&nbsp;&nbsp;X&nbsp;&nbsp;<span id="calc-total-times">0</span>회</font>
-				<div class="rs">
-					총&nbsp;&nbsp;<font class="pink"><b><span id="calc-result">0</span></b>원</font><br>
-					연결수수료&nbsp;&nbsp;<b><span id="calc-fee">0</span></b>원
-				</div>
-			</div>
-			<div style="text-align:right;margin:20px 0;" class="pink">
-				<!--a href="#" class="pink"><img src="https://front-img.taling.me/Content/Images/tutor/Images/icon_info.png" style="margin-top:-2px">&nbsp;탈잉 수업과정 및 결제정책</a-->
-			</div>
-		
-			<div class="sample1">
-				<div class="arw">
-					<img class="button" src="https://front-img.taling.me/Content/Images/tutor/Images/icon_down.png" onclick="arwpaper(this)">
-					<img class="button" style="display:none"src="https://front-img.taling.me/Content/Images/tutor/Images/icon_up.png" onclick="arwpaper(this)">
-				</div>
-				<span>예시 이미지 및 화면보기</span>
-				<div class="ex">
-					<img src="https://front-img.taling.me/Content/Images/tutor/Images/img_example_03.png">
-				</div>
-			</div>
-		</div>
-		</div>
 	
 	<div class="box">
 		<div class="title">영상등록<br><br><span class="gray8">권장사항</span></div>
@@ -314,7 +290,6 @@ input[type=file] {
 </div>
 
 <!-- <form method="POST" id="frm-register-detail" enctype="multipart/form-data"> -->
-<input type="hidden" id="Id" name="Id" value="32599">
 <div class="tutor_cont">
 	<div id="pay_pop" >
 		<iframe src="${ pageContext.request.contextPath }/clss/Register_pop">
@@ -521,11 +496,6 @@ $('#custom-button-trigger, .cs').click(function(){
 </div>
 
 <!-- insert4 -->
-<!-- <form method="POST" id="frm-register-detail" enctype="multipart/form-data"> -->
-<input type="hidden" id="Id" name="Id" value="32599">
-<input type="hidden" id="Status" name="Status" value="0">
-<input type="hidden" id="Mode" name="Mode" value="">
-<input type="hidden" id="CateMain" name="CateMain" value="2">
 <div class="tutor_cont">
 	<div class="box">
 		<div class="title">강사소개<b class="pink">*</b><br><br><span class="gray8">공백포함 200자 이상 권장</span></div>
@@ -594,7 +564,8 @@ $('#custom-button-trigger, .cs').click(function(){
 						var cont = $('#tag_place').val();
 						if(check_tag(cont))
 						{
-							$('#tag_box').prepend('<div class="tags"><span>'+$('#tag_place').val()+'</span><img src="/Tutor2/Content/btn-clse-13-13.png" onclick="del_tag(this)"><input class="tag_values" type="hidden" name="tags[]" value="'+$('#tag_place').val()+'"></div>');									
+							$('#tag_box').prepend('<div class="tags"><span>'+$('#tag_place').val()+'</span><img src="${ pageContext.request.contextPath }/resources/css/clssInsert/xbtn.png" onclick="del_tag(this)"><input class="tag_values" type="hidden" name="clss_tags" value="'+$('#tag_place').val()+'"></div>');									
+							/* $('#tag_box').prepend('<div class="tags"><span>'+$('#tag_place').val()+'</span><img src="${ pageContext.request.contextPath }/resources/css/clssInsert/xbtn.png" onclick="del_tag(this)"><input class="tag_values" type="hidden" name="tags[]" value="'+$('#tag_place').val()+'"></div>'); */
 						}
 						$('#tag_place').val('');
 					}
@@ -607,7 +578,7 @@ $('#custom-button-trigger, .cs').click(function(){
 
 					function check_tag(cont){
 						//alert($('.tag_box').find('.tag_values').size());
-						var num = $('.tag_box').find('.tag_values').size();
+						var num = $('.tags').length;
 						if(num==10)
 						{
 							alert('태그는 10개 까지 등록 가능합니다');
@@ -622,7 +593,7 @@ $('#custom-button-trigger, .cs').click(function(){
 						for(var i =0; i<num;i++)
 						{
 							//alert($('.tag_box').find('.tag_values').eq(i).val());
-							if(cont==$('.tag_box').find('.tag_values').eq(i).val())
+							if(cont==$('.tags').find('.tag_values').eq(i).val())
 							{
 								alert('이미 존재하는 태그입니다');
 								return false;
@@ -634,6 +605,14 @@ $('#custom-button-trigger, .cs').click(function(){
 				
 				<div style="overflow:hidden;" id="tag_box">
 									</div>
+			</div>
+			<div class="sample1 inner1">
+				<div class="arw">
+					<img class="button" src="https://front-img.taling.me/Content/Images/tutor/Images/icon_down.png" onclick="arwpaper(this)">
+					<img class="button" style="display:none"src="https://front-img.taling.me/Content/Images/tutor/Images/icon_up.png" onclick="arwpaper(this)">
+				</div>
+				<span>예시 이미지 및 화면보기</span>
+				<div class="ex"><img src="https://front-img.taling.me/Content/Images/tutor/Images/img_example_05.png"></div>
 			</div>
 		</div>
 	</div>

@@ -106,16 +106,14 @@ public class ClssController {
 	public String insertTclss(Clss clss, HttpServletRequest request, Model model,
 			@RequestParam(name = "upfile", required = false) MultipartFile mfile, HttpSession session) {
 
-		/*
-		 * Member loginUser = (Member) session.getAttribute("loginUser");
-		 * System.out.println(loginUser);
-		 */
 		// 업로드된 파일 저장 폴더 지정하기
 		String savePath = request.getSession().getServletContext().getRealPath("resources/clss_files");
 
+		System.out.println(mfile);
 		// 첨부파일이 있을때만 업로드된 파일을 지정 폴더로 옮기기
 		// 단, 첨부된 파일의 이름을 'yyyyMMddHHmmss.확장자' 형식으로 바꾸어 저장함
 		if (mfile != null) {
+			System.out.println(mfile);
 			String fileName = mfile.getOriginalFilename();
 			if (fileName != null && fileName.length() > 0) {
 				clss.setClss_original_filename(fileName); // 원래 파일명 저장하고
@@ -134,6 +132,7 @@ public class ClssController {
 					return "common/errorPage";
 				}
 				clss.setClss_rename_filename(renameFileName);
+				System.out.println(renameFileName);
 			}
 		}
 		if (cService.insertTclss(clss) > 0) {
