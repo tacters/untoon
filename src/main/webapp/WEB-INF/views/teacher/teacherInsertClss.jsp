@@ -74,10 +74,27 @@ input[type=file] {
 					</div>
 					<div class="inner1">
 						<input type="text" class="basic nick" id="Title" name="clss_title" placeholder="수강생을 끌어당길 수 있는 개성넘치는 제목을 만들어 보세요.">
-		                <span style="float:right;">(<span id="span-title-length">0</span>/60)</span>
+		                <span style="float:right;">(<span id="title_length">0</span>/100)</span>
 					</div>
 				</div>
 			</div>
+			<!-- 제목글자수세기 -->
+			<script>
+			$(function(){
+				$('#Title').keyup(function (e){
+					var title = $(this).val();
+					
+					/* $('#title_length').html("("+title.length +"/100)"); */
+					$('#title_length').html(title.length);
+							
+					if(title.length > 100){
+						alert("최대 100자까지 입력가능합니다.");
+						$(this).val(title.substring(0,100));
+						/* $('#title').html("(100 / 200)"); */
+					}
+				});
+			});// function end
+			</script>
 	
 			<div class="box">
 				<div class="title">
@@ -212,6 +229,23 @@ input[type=file] {
 				
 				
 			</div>
+			<!-- 참여인원수 -->
+			<script>
+			$(function(){
+			 	$("#MaxPerson").change(function(){
+					/* var min = $("#MinPerson option:selected").val();
+					var max = $("#MaxPerson option:selected").val();
+					console.log(min);
+					console.log(max);
+					if(min > max){
+						alert("최대 인원보다 최소 인원이 많습니다. 다시 확인해주세요.")
+					}*/
+					if($("#MinPerson option:selected").val > $("#MaxPerson option:selected").val()){
+						alert("최대 인원보다 최소 인원이 많습니다. 다시 확인해주세요.");
+					}
+				}); 
+			});
+			</script>
 			
 		</div>
 	</div>
@@ -256,11 +290,35 @@ input[type=file] {
 				</div>
 				<div class="inner1">
 					<div class="gray5 title">수업기간</div>			
-					<label> 시작날짜 <input type="date" name="clss_start" class="basic phone">
-					 ~  종강날짜 <input class="basic phone" type="date" name = "clss_end"></label>	
+					<label> 시작날짜 <input type="date" name="clss_start" class="basic phone" id="start_date">
+					 ~  종강날짜 <input class="basic phone" type="date" name = "clss_end" id="end_date"></label>	
 				</div>
 		</div>
 	</div>
+	<script>
+	$(function(){
+		$("#end_date").change(function(){
+			var start = $("#start_date").val();
+			var startDateArr = start.split('-');
+			
+			var end = $("#end_date").val();
+			var endDateArr = end.split('-');
+			
+			//var today = new Date();	//오늘날짜
+			
+			var startDate = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
+			var endDate = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
+			//var todayDate = new Date(todayArr[0], parseInt(todayArr[1]-1, todayArr[2]));
+			var today = new Date();
+			
+			if(startDate.getTime() > endDate.getTime()){
+				alert("시작날짜와 종료날짜를 확인 해 주세요");
+				
+				return;
+			}
+		});
+	});
+	</script>
 	
 	<div class="box">
 		<div class="title">영상등록<br><br><span class="gray8">권장사항</span></div>
@@ -498,7 +556,7 @@ $('#custom-button-trigger, .cs').click(function(){
 <!-- insert4 -->
 <div class="tutor_cont">
 	<div class="box">
-		<div class="title">강사소개<b class="pink">*</b><br><br><span class="gray8">공백포함 200자 이상 권장</span></div>
+		<div class="title">강사소개<b class="pink">*</b><br><br><span class="gray8">공백포함 1000자 이하</span></div>
 		<div class="cont" style="padding-top:15px">
 			<div class="caution caution2">
 				<b class="pink">TIP</b><br>
@@ -514,7 +572,7 @@ $('#custom-button-trigger, .cs').click(function(){
 			</div>
 			<div class="inner1">
 				<textarea class="basic len980 hei190" placeholder="수강생은 강사님에 대해 많은 관심을 가지고 있습니다. TIP을 참고하여 최대한 자세히 소개를 해주세요." id="TutorInfo" name="tchr_introduction"></textarea>
-                <span style="float:right;">(<span id="span-tutor-info-length">0</span>/1000)</span>
+                <span style="float:right;">(<span id="teacher_info">0</span>/1000)</span>
 			</div>
 			<div class="inner1">
 				<div class="sample1">
@@ -530,16 +588,30 @@ $('#custom-button-trigger, .cs').click(function(){
 			</div>
 		</div>
 	</div>
+	<script>
+	$(function(){
+		$("#TutorInfo").keyup(function(e){
+			var content = $(this).val();
+			
+			$("#teacher_info").html(content.length);
+			
+			if(content.length > 1000){
+				alert("최대 1000자까지 입력 가능합니다.");
+				$(this).val(content.substring(0,1000));
+			}
+		});
+	});
+	</script>
 	<div class="box">
-		<div class="title">수업소개<b class="pink">*</b><br><br><span class="gray8">공백포함 2500자 이상 권장</span></div>
+		<div class="title">수업소개<b class="pink">*</b><br><br><span class="gray8">공백포함 2000자 이하</span></div>
 		<div class="cont">
 			<div class="caution caution2">
 				<b class="pink">TIP</b><br>
 				<ul class="gray8">
-											<li>수업의 목표와 수업진행방식에 대해 설명해주세요.</li>
+						<li>수업의 목표와 수업진행방식에 대해 설명해주세요.</li>
 						<li>수업을 진행하는 동안 얻을 수 있는 결과물 혹은 수업 후 기대할 수 있는 발전에 대해 소개해주세요.</li>
 						<li>다른 학원, 수업과는 다른 강사님만의 장점에 대해서 설명해주세요.</li>
-									</ul><br>
+						</ul><br>
 				<b class="pink">주의!</b><br>
 				<ul class="gray8">
 					일부 이모티콘은 인식이 되지 않아, 정성스럽게 작성해주신 내용이 날아갈 수 있습니다. 
@@ -547,9 +619,24 @@ $('#custom-button-trigger, .cs').click(function(){
 				</ul>
 			</div>
 						<div class="inner1">
-				<textarea class="basic len980 hei190" placeholder="수업소개는 수강생이 가장 주의깊게 살펴보는 부분입니다. 수강생들이 수업에 대해 알 수 있도록 TIP의 질문을 반드시 포함하여 작성해주세요." id="Introduction" name="clss_content"></textarea>
-                <span style="float:right;">(<span id="span-class-intro-length">0</span>/5000)</span>
+				<textarea class="basic len980 hei190" placeholder="수업소개는 수강생이 가장 주의깊게 살펴보는 부분입니다. 수강생들이 수업에 대해 알 수 있도록 TIP의 질문을 반드시 포함하여 작성해주세요." id="clss_content" name="clss_content"></textarea>
+                <span style="float:right;">(<span id="content_length">0</span>/2000)</span>
 			</div>
+			<!-- 수업소개 글자수 세기 -->
+			<script>
+			$(function(){
+				$("#clss_content").keyup(function(e){
+					var content = $(this).val();
+					
+					$("#content_length").html(content.length);
+					
+					if(content.length > 2000){
+						alert("최대 2000자까지 입력 가능합니다.");
+						$(this).val(content.substring(0,2000));
+					}
+				});
+			});
+			</script>
 			<div class="inner1">
 				<div class="gray5 title">태그<font class="gray8">최대10개 태그 가능</font></div>
 				
@@ -604,7 +691,7 @@ $('#custom-button-trigger, .cs').click(function(){
 				</script>
 				
 				<div style="overflow:hidden;" id="tag_box">
-									</div>
+				</div>
 			</div>
 			<div class="sample1 inner1">
 				<div class="arw">
@@ -622,18 +709,13 @@ $('#custom-button-trigger, .cs').click(function(){
 			<div class="caution caution2">
 				<b class="pink">TIP</b><br>
 				<ul class="gray8">
-					<li>수업을 추천하는 대상은 누구일까요? ('관심이 있는 누구나'와 같이 추상적이거나 너무 포괄적인 답변은 피해주세요.)</li>
-					<li>예시: 인턴/입사를 앞두고 엑셀이 걱정되는 분/ 토익 00점 이상의 기초적인 의사소통만 가능하신 분</li>
+					<li>강사님에 대해서 임팩트 있는 내용을 써주세요.</li>
+					<li>강사님만의 강점을 입력해 주세요</li>
 				</ul><br>
-				<b class="pink">주의!</b><br>
-				<ul class="gray8">
-					일부 이모티콘은 인식이 되지 않아, 정성스럽게 작성해주신 내용이 날아갈 수 있습니다. 
-					<br>강조를 해야 할 내용이 있는 경우 되도록이면 일반 특수문자(★/◎/♡)를 사용해주세요
-				</ul>
 			</div>
 			<div class="inner1">
-				<textarea class="basic len980 hei190" placeholder="TIP의 내용을 참고하여 강사님의 수업을 수강하기에 적합한 수업대상에 대해 알려주세요. " id="Target" name="tchr_profile"></textarea>
-                <span style="float:right;">(<span id="span-tutee-info-length">0</span>/1000)</span>
+				<textarea class="basic len980 hei190" placeholder="TIP의 내용을 참고하여 강사님의 수업을 수강하기에 적합한 수업대상에 대해 알려주세요. " id="profile" name="tchr_profile"></textarea>
+                <span style="float:right;">(<span id="profile_length">0</span>/50)</span>
 			</div>
 			<div class="sample1 inner1">
 				<div class="arw">
@@ -645,29 +727,53 @@ $('#custom-button-trigger, .cs').click(function(){
 			</div>
 		</div>
 	</div>
+	<!-- 강사 프로필 글자수 세기 -->
+			<script>
+			$(function(){
+				$("#profile").keyup(function(e){
+					var content = $(this).val();
+					
+					$("#profile_length").html(content.length);
+					
+					if(content.length > 50){
+						alert("최대 50자까지 입력 가능합니다.");
+						$(this).val(content.substring(0,50));
+					}
+				});
+			});
+			</script>
 	
 	<div class="box">
-		<div class="title">환불규정<b class="pink">*</b><br><br><span class="gray8">공백포함 2500자 이상 권장</span></div>
+		<div class="title">환불규정<b class="pink">*</b><br><br><span class="gray8">공백포함 500자 이하</span></div>
 		<div class="cont">
 			<div class="caution caution2">
 				<b class="pink">TIP</b><br>
 				<ul class="gray8">
-											<li>수업의 목표와 환불규정에 대해 설명해주세요.</li>
-						<li>수업을 진행하는 동안 얻을 수 있는 결과물 혹은 수업 후 기대할 수 있는 발전에 대해 소개해주세요.</li>
-						<li>다른 학원, 수업과는 다른 강사님만의 장점에 대해서 설명해주세요.</li>
-									</ul><br>
-				<b class="pink">주의!</b><br>
-				<ul class="gray8">
-					일부 이모티콘은 인식이 되지 않아, 정성스럽게 작성해주신 내용이 날아갈 수 있습니다. 
-					<br>강조를 해야 할 내용이 있는 경우 되도록이면 일반 특수문자(★/◎/♡)를 사용해주세요
-				</ul>
+						<li>수업의 환불규정에 대해 설명해주세요.</li>
+						<li>환불 규정에 대해서 상세하게 설명해주세요.</li>
+				</ul><br>
 			</div>
 				<div class="inner1">
-				<textarea class="basic len980 hei190" placeholder="수업소개는 수강생이 가장 주의깊게 살펴보는 부분입니다. 수강생들이 수업에 대해 알 수 있도록 TIP의 질문을 반드시 포함하여 작성해주세요." id="Introduction" name="clss_content"></textarea>
-                <span style="float:right;">(<span id="span-class-intro-length">0</span>/5000)</span>
+				<textarea class="basic len980 hei190" placeholder="수업소개는 수강생이 가장 주의깊게 살펴보는 부분입니다. 수강생들이 수업에 대해 알 수 있도록 TIP의 질문을 반드시 포함하여 작성해주세요." id="policy" name="clss_policy"></textarea>
+                <span style="float:right;">(<span id="policy_length">0</span>/500)</span>
 			</div>
 		</div>
 	</div>
+	<!-- 환불규정 글자수 세기 -->
+			<script>
+			$(function(){
+				$("#policy").keyup(function(e){
+					var content = $(this).val();
+					
+					$("#policy_length").html(content.length);
+					
+					if(content.length > 500){
+						alert("최대 500자까지 입력 가능합니다.");
+						$(this).val(content.substring(0,500));
+					}
+				});
+			});
+			</script>
 
 
 	<div class="button_box" style="width:680px">
