@@ -54,11 +54,11 @@
 		SET 
 			   RCONTENT = #{ rcontent }, 
 			   R_MODIFY_DATE = sysdate
-			   <if test="OFILE_R == null">
+			   <if test="ofile_r == null">
 			   , OFILE_R = null,
 			   RFILE_R = null
 			   </if>
-			   <if test="OFILE_R != null">
+			   <if test="ofile_r != null">
 			   , OFILE_R = #{ ofile_r },
 			   OFILE_R = #{ rfile_r }
 			   </if>

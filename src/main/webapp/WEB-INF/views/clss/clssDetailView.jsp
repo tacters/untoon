@@ -155,7 +155,6 @@ body, html {
 </style>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/jquery-3.5.1.min.js"></script>
 
-
 <!-- 후기 AJAX -->
 <script type="text/javascript">
 function showReviewForm(){
@@ -171,12 +170,12 @@ function showReviewListView(){
 function hideReviewListView(){
 	$("#reviewlistView").css("display", "none");
 }
-
-
 function reviewDelete(rid){
 	location.href = "${ pageContext.request.contextPath }/rdelete.do?rid=" + rid + "&cid=${ clss.cid}";
 }
-function showReviewReplyForm(){
+
+
+/* function showReviewReplyForm(){
 	$("#reviewReplyDiv").css("display", "block");
 }
 function hideReviewReplyForm(){
@@ -191,21 +190,21 @@ function showReviewReplyListView(){
 }
 function hideReviewReplyListView(){
 	$("#reviewReplyListView").css("display", "none");
-}
+} */
 
 
 //jquery ajax 로 해당 < 수업 클래스 > 대한 문의 조회 요청
 //해당 < 수업 클래스 >의 번호를 전송함
 $(function(){
 	hideReviewForm(); 
-	hideReviewReplyForm(); // ADDED TO TEST "REPLY댓글 달기 기능"
-	hideReviewListView(); // ADDED TO TEST "REVIEW 목록조회 기능"
-	hideReviewReplyListView(); // ADDED TO TEST "REVIEW REPLY 목록조회 기능"
+	showReviewListView(); //hideReviewListView(); // ADDED TO TEST "REVIEW 목록조회 기능"
+	// hideReviewReplyForm(); // ADDED TO TEST "REPLY댓글 달기 기능"
+	// hideReviewReplyListView(); // ADDED TO TEST "REVIEW REPLY 목록조회 기능"
 	
-	var clssCid = "${ clss.cid }";  //el 의 값을 변수에 대입
+	var clssCid = ${ clss.cid };  //el 의 값을 변수에 대입 : 클래스 ID
 	var loginUser = "${ sessionScope.loginUser.id }";  //로그인한 회원 아이디 변수에 대입
-	var teacher = "${clss.tchr_id}"; // 수업 강사님
-	var adminLv= "${ sessionScope.loginUser.user_lv }";
+	var teacher = "${clss.tchr_id}"; //el 의 값을 변수에 대입 : 수업 강사님
+	var adminLv= "${ sessionScope.loginUser.user_lv }";  //로그인한 회원 유저레벨 (S, T, A) 변수에 대입
 	
 	$.ajax({
 		url: "${ pageContext.request.contextPath }/rlist.do",
@@ -220,15 +219,17 @@ $(function(){
 		//string ==> json 
 		var json = JSON.parse(jsonStr);
 		
+		showReviewListView(); // NEWLY ADDED HERE = THIS <div> LIST IS NOT SHOWINGGGGGGGGGGGGGG
+		
 		var values = "";
 				for(var i in json.list){
 					// 본인이 등록한 후기글일 때는 수정/삭제 가능
-					if(loginUser == json.list[i].rwriter){
-						values += "<tr><td>" + json.list[i].rwriter 
-							+ "</td><td>" +  json.list[i].r_modify_date 
+					if(loginUser == json.reviewList[i].rwriter){
+						values += "<tr><td>" + json.reviewList[i].rwriter 
+							+ "</td><td>" +  json.reviewList[i].r_modify_date 
 							+ "</td></tr><tr><td colspan='2'>"
-							+ "<form action='rupdate.do' method='post'>" 
-							+ "<input type='hidden' name='rid' value='" +  json.list[i].rid  + "'>"
+							+ "<form action='rupdate.do' method='post=' enctype='multipart/form-data'>" 
+							+ "<input type='hidden' name='rid' value='" +  json.reviewList[i].rid  + "'>"
 							+ "<input type='hidden' name='cid' value='"+clssCid+"'>"
 							
 							// 첨부파일 업데이트
@@ -237,34 +238,51 @@ $(function(){
 							// 원래 첨부파일 있는 경우
 							if (review.ofile_r != null){
 							+ "<input type='checkbox' name='delFlag' value='yes'> 파일삭제 <br>"
+							+"<tr><td colspan='2'>"
+								+ "<img src= 'resources/reviewClss_files/"+ review.ofile_r +"' alt='"+clssCid+" 클래스 " 
+								+ json.reviewList[i].rwriter +"님의 후기 사진' style='width:100%; align: center; position: relative; max-width: 500px; padding: 10px;'>"
+							+ "</td></tr>"
 							} else { //원래 첨부파일이 없는 경우
 							+ "<input type='file' name='upfile'>"	
 							}
 							
 							// 글 내용 수정
 							+ "<textarea name='rcontent'>"
-							+ decodeURIComponent(json.list[i].rcontent).replace(/\+/gi, " ") 
+							+ decodeURIComponent(json.reviewList[i].rcontent).replace(/\+/gi, " ") 
 							+ "</textarea><input type='submit' value=' 수정 '></form>" 
-							+ "<button onclick='reviewDelete(" + json.list[i].rid + ");'> 삭제 </button>"
+							+ "<button onclick='reviewDelete(" + json.reviewList[i].rid + ");'> 삭제 </button>";
 							
 							/* for each문 안에다가 댓글달 수 있게 끔 */
-							+ "<button onclick='revReply(" + json.list[i].rid + ");'> 댓글달기 </button></td></tr>";
+							// + "<button onclick='revReply(" + json.reviewList[i].rid + ");'> 댓글달기 </button></td></tr>";
 							
 					} else if (loginUser == teacher || adminLv == 'A' ) { //대상 강사또는 관리자일 때
-						values += "<tr><td>" + json.list[i].rwriter 
-						+ "</td><td>" +  json.list[i].r_modify_date 
-						+ "</td></tr><tr><td colspan='2'>"
-						+ decodeURIComponent(json.list[i].qcontent).replace(/\+/gi, " ") 
+						values += "<tr><td>" + json.reviewList[i].rwriter 
+						+ "</td><td>" +  json.reviewList[i].r_modify_date 
+						+ "</td></tr>"
+					
+						// 원래 첨부파일 있는 경우
+						if (review.ofile_r != null){
+							+ "<tr><td colspan='2'>"
+							+ "<img src= 'resources/reviewClss_files/"+ review.ofile_r +"' alt='"+clssCid+" 클래스 " 
+							+ json.reviewList[i].rwriter +"님의 후기 사진' style='width:100%; align: center; position: relative; max-width: 500px; padding: 10px;'>"
+						+ "</td></tr>"
+						} else{
+						
+						+"<tr><td colspan='2'>"
+						+ decodeURIComponent(json.reviewList[i].qcontent).replace(/\+/gi, " ") 
+						+ "</td></tr>"
 						//댓글달기
-						+ "<button onclick='revReply(" + json.list[i].rid + ");'> 댓글달기 </button></td></tr>"
-						+ "<tr><td colspan='2' style='text-align:right;'><button onclick='saveReview("+json.list[i].save_count +");'> 좋아요 </td></tr>"; 
+						// + "<button onclick='revReply(" + json.reviewList[i].rid + ");'> 댓글달기 </button></td></tr>" // 다시 살리면 </td></tr> 확인하기
+						+ "<tr><td colspan='2' style='text-align:right;'><button onclick='saveReview("+json.reviewList[i].save_count +");'> 좋아요 </td></tr>";
+						}
 						
 					} else { // 글작성자가 아니며, 대상 강사또는 관리자가 아닐 때
-						values += "<tr><td>" + json.list[i].rwriter 
-						+ "</td><td>" +  json.list[i].r_modify_date 
+						values += "<tr><td>" + json.reviewList[i].rwriter 
+						+ "</td><td>" +  json.reviewList[i].r_modify_date 
 						+ "</td></tr><tr><td colspan='2'>"
-						+ decodeURIComponent(json.list[i].rcontent).replace(/\+/gi, " ")
-						+ "<tr><td colspan='2' style='text-align:right;'><button onclick='saveReview("+json.list[i].save_count +");'> 좋아요 </td></tr>";
+						+ decodeURIComponent(json.reviewList[i].rcontent).replace(/\+/gi, " ")
+						+"</td></tr>"
+						+ "<tr><td colspan='2' style='text-align:right;'><button onclick='saveReview("+json.reviewList[i].save_count +");'> 좋아요 </td></tr>";
 					}
 				}
 				$("#rlistTbl").html($("#rlistTbl").html() + values);
@@ -277,8 +295,10 @@ $(function(){
 });  //jquery document ready
 
 function revReply(rid){
+	showReviewListView();
+	
 	showReviewReplyForm();
-	showReviewReplyListView();
+	//showReviewReplyListView();
 	
 
 	jQuery( function($) {
@@ -648,14 +668,17 @@ function selfReply(qid){
 		}
 		
 		// Get the element with id="defaultOpen" and click on it
-		document.getElementById("defaultOpen").click();
+		//document.getElementById("defaultOpen").click();
+			$(window).load(function(){	// on load
+					$(".defaultOpen").click(); 	// click the element
+			})
 		</script>
 		   
-		<button class="tablink" onclick="openPage('1-intro', this, '#2392bd');" id="defaultOpen"> 클래스 소개 </button>
-		<button class="tablink" onclick="openPage('2-review', this, '#2392bd')"> 후기 </button>
-		<button class="tablink" onclick="openPage('3-qna', this, '#2392bd')"> 문의 </button>
-		<button class="tablink" onclick="openPage('4-refund', this, '#2392bd')"> 환불정책 </button>
-		<button class="tablink" onclick="openPage('5-teacher', this, '#2392bd')"> 강사소개 </button>
+		<button class="tablink" onclick="openPage('1-intro', this, '#2392bd')" class="defaultOpen" id="tab1"> 클래스 소개 </button>
+		<button class="tablink" onclick="openPage('2-review', this, '#2392bd')" id="tab2"> 후기 </button>
+		<button class="tablink" onclick="openPage('3-qna', this, '#2392bd')" id="tab3"> 문의 </button>
+		<button class="tablink" onclick="openPage('4-refund', this, '#2392bd')" id="tab4"> 환불정책 </button>
+		<button class="tablink" onclick="openPage('5-teacher', this, '#2392bd')" id="tab5"> 강사소개 </button>
 		
 		<!-- 클래스 소개 -->
 		<div id="1-intro" class="tabcontent">
@@ -690,7 +713,7 @@ function selfReply(qid){
 									</script>
 									<%-- 후기 달기 폼 영역 --%>
 									<div id="reviewDiv">
-									<form action="rinsert.do" method="post">
+									<form action="rinsert.do" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="cid" value="${ clss.cid }" >
 									<table align="center" width="500" border="1" cellspacing="0" cellpadding="5" class="tbl">
 									<tr><th>
@@ -714,7 +737,10 @@ function selfReply(qid){
 									<%-- 후기 목록 표시 영역 --%>
 									<div id="reviewlistView" >
 									<table id="rlistTbl" class="tbl" align="center" cellspacing="0" cellpadding="5" border="1"></table>
-				
+									</div>
+									
+									
+									
 											<%-- 후기 ** 댓글 ** 달기 폼 영역 --%>
 											<div id="reviewReplyDiv">
 												<form action="rrinsert.do" method="post">
@@ -745,7 +771,9 @@ function selfReply(qid){
 											<table id="rrlistTbl" class="tbl_reply" align="center" cellspacing="0" cellpadding="5" border="1"></table>
 											</div>
 											
-									</div>
+									
+									
+
 		</div>
 		
 		<%-- 문의 목록 / 작성 --%>

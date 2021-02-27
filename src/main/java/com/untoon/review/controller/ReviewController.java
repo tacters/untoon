@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +27,11 @@ import com.untoon.review.model.vo.Review;
 @Controller
 public class ReviewController {
 	
+	private static final Logger logger = LoggerFactory.getLogger("ReviewController.class");
+	
 	@Autowired
 	private ReviewService rService;
+	
 	@RequestMapping(value="rinsert.do", method = RequestMethod.POST)
 	public String insertReview(Review review, HttpServletRequest request, Model model, 
 												@RequestParam(name = "upfile", required = false) MultipartFile mfile) {
@@ -35,12 +40,17 @@ public class ReviewController {
 				String savePath = request.getSession().getServletContext()
 						.getRealPath("resources/reviewClss_files");
 				
+				//System.out.println(mfile.getOriginalFilename());	// JUST TO CHECK 확인용
+				
 				// 첨부파일이 있을때만 업로드된 파일을 지정 폴더로 옮기기
 				// 단, 첨부된 파일의 이름을 'yyyyMMddHHmmss.확장자' 형식으로 바꾸어 저장함
 				if (mfile != null) {
-					String fileName = mfile.getOriginalFilename();			
+					String fileName = mfile.getOriginalFilename();	
+					System.out.println(fileName);	// JUST TO CHECK 확인용
+					
 					if (fileName != null && fileName.length() > 0) {
 						review.setOfile_r(fileName); //원래 파일명 vo 에 저장함
+						System.out.println(review.getOfile_r());	// JUST TO CHECK 확인용
 						
 						//첨부된 파일의 파일명 바꾸기
 						SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -55,6 +65,7 @@ public class ReviewController {
 							return "common/errorPage";
 						}
 						review.setRfile_r(renameFileName);
+						logger.info("rinsert.do : " + review);
 					}
 				}
 				
@@ -143,7 +154,7 @@ public class ReviewController {
 		@ResponseBody
 		public String selectReviewList(@RequestParam("cid") int cid) throws UnsupportedEncodingException {
 			// 원글에 대한 댓글 조회 요청
-			ArrayList<Review> list = rService.selectReviewList(cid);
+			ArrayList<Review> reviewList = rService.selectReviewList(cid);
 
 			// 전송용 json 객체 준비
 			JSONObject sendJson = new JSONObject();
@@ -151,14 +162,15 @@ public class ReviewController {
 			JSONArray jarr = new JSONArray();
 
 			// list 를 jarr 로 옮기기(복사)
-			for (Review review : list) {
+			for (Review review : reviewList) {
 				// review 의 필드값 저장할 json 객체 생성
 				JSONObject job = new JSONObject();
 
 				job.put("rid", review.getRid());
 				job.put("cid", review.getCid());
-				job.put("rwriter", review.getRwriter());
+				job.put("rwriter", URLEncoder.encode(review.getRwriter(), "utf-8"));
 				job.put("rcontent", URLEncoder.encode(review.getRcontent(), "utf-8"));
+				job.put("r_create_date", review.getR_create_date().toString());
 				job.put("r_modify_date", review.getR_modify_date().toString());
 				job.put("save_count", review.getSave_count());
 
@@ -167,7 +179,7 @@ public class ReviewController {
 			}
 
 			// 전송용 json 객체에 jarr 담음
-			sendJson.put("list", jarr);
+			sendJson.put("reviewList", jarr);
 
 			return sendJson.toJSONString(); // jsonView 가 리턴됨
 		}
