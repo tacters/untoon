@@ -18,15 +18,15 @@ public class ReviewDao {
 
 	public int insertReview(Review review) {
 		System.out.println(review);
-		return sqlSession.insert("reviewMapper.insertReview, review");
+		return sqlSession.insert("reviewMapper.insertReview", review);
 	}
 
 	public int updateReview(Review review) {
-		return sqlSession.update("reviewMapper.updateReview, review");
+		return sqlSession.update("reviewMapper.updateReview", review);
 	}
 
 	public int deleteReview(int rid) {
-		return sqlSession.update("reviewMapper.deleteReview, rid");
+		return sqlSession.update("reviewMapper.deleteReview", rid);
 	}
 
 	public ArrayList<Review> selectReviewList(int cid) {

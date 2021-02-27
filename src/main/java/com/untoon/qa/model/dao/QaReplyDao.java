@@ -17,15 +17,15 @@ public class QaReplyDao {
 
 
 	public int insertQaReply(QaReply qaReply) {
-		return sqlSession.insert("qareplyMapper.insertQaReply, qaReply");
+		return sqlSession.insert("qareplyMapper.insertQaReply", qaReply);
 	}
 	
 	public int updateQaReply(QaReply qaReply) {
-		return sqlSession.update("qareplyMapper.updateQaReply, qaReply");
+		return sqlSession.update("qareplyMapper.updateQaReply", qaReply);
 	}
 
 	public int deleteQaReply(int qaid) {
-		return sqlSession.update("qareplyMapper.deleteQaReply, qaReply");
+		return sqlSession.update("qareplyMapper.deleteQaReply", qaid);
 	}
 
 	public int selectQaReply(int qaid) {

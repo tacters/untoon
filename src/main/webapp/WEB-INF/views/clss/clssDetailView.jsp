@@ -7,7 +7,9 @@
 	<c:url var="approve" value="/approve.do"/>
 	<c:url var="deny" value="/deny.do"/>
 	<c:url var="adcdelete" value="/adcdelete.do"/>
-	<c:url var="pay" value="/paymove.do"/>
+	<c:url var="pay" value="/paymove.do">
+		<c:param name="cid" value="${clss.cid }" />
+	</c:url>
 	<%-- <c:url var="qareplyinsert" value="/qainsert.do">
 		<c:param name="cid" value="${clss.cid }" />
 	</c:url> --%>
@@ -228,11 +230,22 @@ $(function(){
 							+ "<form action='rupdate.do' method='post'>" 
 							+ "<input type='hidden' name='rid' value='" +  json.list[i].rid  + "'>"
 							+ "<input type='hidden' name='cid' value='"+clssCid+"'>"
-							/* + "<input type='hidden' name='clssCid' value='${clss.cid}'>" */
+							
+							// 첨부파일 업데이트
+																//+ "<input type='hidden' name='ofile_r' value='${ review.ofile_r}'>"
+																//+ "<input type='hidden' name='rfile_r' value='${ review.rfile_r}'>"
+							// 원래 첨부파일 있는 경우
+							if (review.ofile_r != null){
+							+ "<input type='checkbox' name='delFlag' value='yes'> 파일삭제 <br>"
+							} else { //원래 첨부파일이 없는 경우
+							+ "<input type='file' name='upfile'>"	
+							}
+							
+							// 글 내용 수정
 							+ "<textarea name='rcontent'>"
 							+ decodeURIComponent(json.list[i].rcontent).replace(/\+/gi, " ") 
-							+ "</textarea><input type='submit' value=' 수정 '></form>" 	// 원래 여기에 </form> 들어감
-							+ "<button onclick='reviewDelete(" + json.list[i].rid + ");'> 삭제 </button>" //원래 여기에 </td></tr> 들어감
+							+ "</textarea><input type='submit' value=' 수정 '></form>" 
+							+ "<button onclick='reviewDelete(" + json.list[i].rid + ");'> 삭제 </button>"
 							
 							/* for each문 안에다가 댓글달 수 있게 끔 */
 							+ "<button onclick='revReply(" + json.list[i].rid + ");'> 댓글달기 </button></td></tr>";
@@ -266,6 +279,7 @@ $(function(){
 function revReply(rid){
 	showReviewReplyForm();
 	showReviewReplyListView();
+	
 
 	jQuery( function($) {
 		var refRid = rid; 
@@ -359,7 +373,7 @@ function hideQaListView(){
 $(function(){
 	hideQaForm(); 
 	hideQaReplyForm(); // ADDED TO TEST "REPLY댓글 달기 기능"
-	hideQaListView(); // ADDED TO TEST "REPLY댓글 목록조회 기능"
+	hideQaListView(); // ADDED TO TEST "질문 목록조회 기능"
 		
 	var clssCid = "${ clss.cid }";  //el 의 값을 변수에 대입
 	var loginUser = "${ sessionScope.loginUser.id }";  //로그인한 회원 아이디 변수에 대입
@@ -637,7 +651,7 @@ function selfReply(qid){
 		document.getElementById("defaultOpen").click();
 		</script>
 		   
-		<button class="tablink" onclick="openPage('1-intro', this, '#2392bd')" id="defaultOpen"> 클래스 소개 </button>
+		<button class="tablink" onclick="openPage('1-intro', this, '#2392bd');" id="defaultOpen"> 클래스 소개 </button>
 		<button class="tablink" onclick="openPage('2-review', this, '#2392bd')"> 후기 </button>
 		<button class="tablink" onclick="openPage('3-qna', this, '#2392bd')"> 문의 </button>
 		<button class="tablink" onclick="openPage('4-refund', this, '#2392bd')"> 환불정책 </button>
@@ -688,6 +702,7 @@ function selfReply(qid){
 												</div>	
 											</th>
 									<td><input type="text" name="rwriter" readonly value="${ sessionScope.loginUser.id }"></td></tr>
+									<tr><th colspan="2"><input type="file" name="upfile"></th></tr>
 									<tr><th colspan="2"><textarea name="rcontent" rows="5" cols="50" placeholder="택터즈님의 소중한 후기는 요기에~"></textarea></th></tr>
 									<tr><th colspan="2">
 									<input type="submit" value="후기 등록"> &nbsp; 
