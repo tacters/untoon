@@ -308,6 +308,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 							<!-- ADMIN 로그인-->
 							<c:if test="${sessionScope.loginUser.user_lv eq 'A'}">
 								<c:out value="${ loginUser.name }님은 관리하시느라 수고 많으세용 ㅠㅜ~!"/>&nbsp; &nbsp; &nbsp;
+								<div class ="widget edgtf-login-register-widget edgtf-user-not-logged-in">
+											<c:url var="hdetail" value="/hdetail.do" />
+											<a href='${ hdetail }' title="hdetail"> 홈페이지 관리 </a> <!-- 홈페이지 관리하기 -->
+								</div>
 								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
 											<c:url var="adnclist" value="/adnclist.do" />
 											<a href='${ adnclist }' title="adnclist">미승인 클래스 </a> <!-- 관리자 미승인 클래스 목록보기 -->
