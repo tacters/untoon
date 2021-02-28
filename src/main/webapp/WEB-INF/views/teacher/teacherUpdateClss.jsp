@@ -212,20 +212,22 @@ input[type=file] {
 			</div>
 			<!-- 참여인원수 -->
 			<script>
-			$(function(){
-			 	$("#MaxPerson").change(function(){
-					/* var min = $("#MinPerson option:selected").val();
-					var max = $("#MaxPerson option:selected").val();
-					console.log(min);
-					console.log(max);
-					if(min > max){
-						alert("최대 인원보다 최소 인원이 많습니다. 다시 확인해주세요.")
-					}*/
-					if($("#MinPerson option:selected").val > $("#MaxPerson option:selected").val()){
-						alert("최대 인원보다 최소 인원이 많습니다. 다시 확인해주세요.");
-					}
-				}); 
-			});
+			function fn_person(){
+				//var min = $("#MinPerson option:selected").val();
+				//var max = $("#maxPerson option:selected").val();
+				var min = document.getElementById("MinPerson");
+				var max = document.getElementById("MaxPerson");
+				
+				console.log("min : " + min.value);
+				console.log("max : " + max.value);
+				
+				if(min.value > max.value){
+					console.log("여기넘어왔니")
+					alert("최대 인원보다 최소 인원이 많습니다. 다시 확인해주세요.");
+				}
+				
+			}
+			
 			</script>
 			
 		</div>

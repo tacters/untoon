@@ -141,7 +141,7 @@
     	insert into clss
     	values (
     		seq_cid.nextval, #{clss_title}, #{clss_price}, default, default, #{clss_category}, #{clss_content},
-    		#{clss_times}, #{clss_start}, #{clss_end}, #{clss_duration}, #{clss_min}, #{clss_max}, DEFAULT, DEFAULT,DEFAULT,
+    		#{clss_times}, #{clss_start}, #{clss_end}, #{clss_duration}, #{clss_min}, #{clss_max}, DEFAULT, #{clss_policy},DEFAULT,
     		DEFAULT,
     		#{clss_original_filename}, #{clss_rename_filename}, #{clss_url},
     		#{tchr_id}, #{tchr_introduction}, #{tchr_profile}, default, #{clss_tags}
