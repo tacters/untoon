@@ -179,16 +179,16 @@ input[type=file] {
 		<div class="cont">
 			<div class="inner2"  id="minmax">
 				<select class="basic len290" id="MinPerson" name="clss_min">
-					<option value="0">최소인원수</option>
-					 					 <option value="1" >1</option>
-					 					 <option value="2" >2</option>
-					 					 <option value="3" >3</option>
-					 					 <option value="4" >4</option>
-					 					 <option value="5" >5</option>
-					 					 <option value="6" >6</option>
-					 					 <option value="7" >7</option>
-					 					 <option value="8" >8</option>
-					 					 <option value="9" >9</option>
+					<option value="00" selected>최소인원수</option>
+					 					 <option value="01" >1</option>
+					 					 <option value="02" >2</option>
+					 					 <option value="03" >3</option>
+					 					 <option value="04" >4</option>
+					 					 <option value="05" >5</option>
+					 					 <option value="06" >6</option>
+					 					 <option value="07" >7</option>
+					 					 <option value="08" >8</option>
+					 					 <option value="09" >9</option>
 					 					 <option value="10" >10</option>
 					 					 <option value="11" >11</option>
 					 					 <option value="12" >12</option>
@@ -203,17 +203,17 @@ input[type=file] {
 				</select>
 				 명 ~ 
 
-				<select class="basic len290" id="MaxPerson" name="clss_max">
-					<option value="0">최대인원수</option>
-										<option value="1" >1</option>
-										 <option value="2" >2</option>
-					 					 <option value="3" >3</option>
-					 					 <option value="4" >4</option>
-					 					 <option value="5" >5</option>
-					 					 <option value="6" >6</option>
-					 					 <option value="7" >7</option>
-					 					 <option value="8" >8</option>
-					 					 <option value="9" >9</option>
+				<select class="basic len290" id="MaxPerson" name="clss_max" onchange="fn_person()">
+					<option value="00" selected>최대인원수</option>
+										<option value="01" >1</option>
+										 <option value="02" >2</option>
+					 					 <option value="03" >3</option>
+					 					 <option value="04" >4</option>
+					 					 <option value="05" >5</option>
+					 					 <option value="06" >6</option>
+					 					 <option value="07" >7</option>
+					 					 <option value="08" >8</option>
+					 					 <option value="09" >9</option>
 					 					 <option value="10" >10</option>
 					 					 <option value="11" >11</option>
 					 					 <option value="12" >12</option>
@@ -231,20 +231,22 @@ input[type=file] {
 			</div>
 			<!-- 참여인원수 -->
 			<script>
-			$(function(){
-			 	$("#MaxPerson").change(function(){
-					/* var min = $("#MinPerson option:selected").val();
-					var max = $("#MaxPerson option:selected").val();
-					console.log(min);
-					console.log(max);
-					if(min > max){
-						alert("최대 인원보다 최소 인원이 많습니다. 다시 확인해주세요.")
-					}*/
-					if($("#MinPerson option:selected").val > $("#MaxPerson option:selected").val()){
-						alert("최대 인원보다 최소 인원이 많습니다. 다시 확인해주세요.");
-					}
-				}); 
-			});
+			function fn_person(){
+				//var min = $("#MinPerson option:selected").val();
+				//var max = $("#maxPerson option:selected").val();
+				var min = document.getElementById("MinPerson");
+				var max = document.getElementById("MaxPerson");
+				
+				console.log("min : " + min.value);
+				console.log("max : " + max.value);
+				
+				if(min.value > max.value){
+					console.log("여기넘어왔니")
+					alert("최대 인원보다 최소 인원이 많습니다. 다시 확인해주세요.");
+				}
+				
+			}
+			
 			</script>
 			
 		</div>
@@ -340,218 +342,18 @@ input[type=file] {
 		</div>
 	</div>
 
-	<!-- <div class="button_box">
-		<div class="next button prev" onclick="setMode(0);">임시저장</div>
-		<div class="next button on" onclick="setMode(1);">저장 후 다음단계 (2/4)</div>
-	</div> -->
 
 </div>
 
-<!-- <form method="POST" id="frm-register-detail" enctype="multipart/form-data"> -->
 <div class="tutor_cont">
 	<div id="pay_pop" >
 		<iframe src="${ pageContext.request.contextPath }/clss/Register_pop">
 		</iframe>
 	</div>
-	<!-- <div class="button_box">
-		<a href="/Talent/Detail/32599" target="_blank"><div class="next button prev">미리보기</div></a>
-		<div class="next button on" onclick="setMode(0);">저장 후 다음단계 (3/4)</div>
-	</div> -->
 
 </div>
-<!-- </form> -->
-<!-- <script>
-	function setMode(val)
-	{
-		Mode = val;
-		$('#frm-register-detail').submit();
-	}
 
-	var isUploading = false;
-	 $('#frm-register-detail').submit(function (e) {
-        e.preventDefault();
-		
-		if($('#UnitPrice').val() == '' ){ alert('시간당 가격을 입력하세요');$('#UnitPrice').focus();return false;}
-		if($('#UnitPrice').val() == '0' ){ alert('0원으로 변경시 결제 취소됩니다.\n가격을 확인 바랍니다.');$('#UnitPrice').focus();return false;}
-		if($('#Time').val() == '0' ){ alert('1회 수업시간을 입력하세요');$('#Time').focus();return false;}
-		if($('#TotalTimes').val() == '0' ){ alert('총 수업횟수를 입력하세요');$('#TotalTimes').focus();return false;}
-		var unitPrice = Number($('#UnitPrice').val());
-		var time = Number($('#Time').val());
-		var totalTimes = Number($('#TotalTimes').val());
-		
-		var x = $('#UnitPrice').val();
-		if(x && x.length > 0) {
-			if(!$.isNumeric(x)) {
-				x = x.replace(/[^0-9]/g,"");
-			}
-			$('#UnitPrice').val(x);
-		}
 
-		var x = $('#TotalTimes').val();
-		if(x && x.length > 0) {
-			if(!$.isNumeric(x)) {
-				x = x.replace(/[^0-9]/g,"");
-			}
-			$('#TotalTimes').val(x);
-		}
-		/*
-		if(!Number.isInteger(unitPrice))
-		{
-			alert('숫자만 입력가능합니다');
-			return false;
-		}
-		if(!Number.isInteger(totalTimes))
-		{
-			alert('숫자만 입력가능합니다');
-			return false;
-		}
-		*/
-
-		if(isUploading) {
-			alert('업로드 중입니다. 잠시만 기다려 주세요');
-			return false;
-		}
-
-		var formData = new FormData(this);
-
-		isUploading = true;
-		$.ajax({
-			type: 'POST',
-			url: '/tutor/regiPrice_proc.php',
-			contentType: false,
-			data: formData,
-			processData: false,
-			success: function (response) {
-				isUploading = false;			   
-					alert('가격 등록이 완료되었습니다.');
-					
-					if(Mode == 1)
-					{
-						location.href="/tutor/regiClass/"+$('#Id').val();
-					}
-					else
-					{
-						location.href="/tutor/regiClass/"+$('#Id').val();
-					}
-			},
-			error: function(response) {
-				isUploading = false;
-			}
-		});
-		return false;
-	});
-
-	function formatMoney(val) {
-		if (val.length < 4)
-			return val;
-		return formatMoney(val.substring(0, val.length - 3)) + ',' + val.substring(val.length - 3, val.length);
-	}
-</script> -->
-<script>
-	updateCalculation();
-	function updateCalculation() { //다회차일때
-		
-		
-		var unitPrice = Number($('#UnitPrice').val());
-		var time = Number($('#Time').val());
-		var totalTimes = Number($('#TotalTimes').val());
-
-		var x = $('#TotalTimes').val();
-		if(x && x.length > 0) {
-			if(!$.isNumeric(x)) {
-				x = x.replace(/[^0-9]/g,"");
-			}
-			$('#TotalTimes').val(x);
-		}
-		/*
-		if(!Number.isInteger(totalTimes))
-		{
-			alert('숫자만 입력가능합니다');
-			return false;
-		}
-		*/
-		
-		$('#calc-unit-price').text(formatMoney(unitPrice.toString()));
-		$('#calc-time').text(time);
-		$('#calc-total-times').text(totalTimes);
-
-		$('#calc-result').text(formatMoney((unitPrice * time * totalTimes).toString()));
-		$('#calc-fee').text(formatMoney(unitPrice.toString()));
-		$('#calc-fee2').text(formatMoney(unitPrice.toString()) + '원');
-		$('#calc-fee3').text(formatMoney(unitPrice.toString()) + '원');
-		$('#calc-fee4').text(formatMoney(unitPrice.toString())+'원' );
-		$('#calc-fee5').text(formatMoney(unitPrice.toString()) + '원');
-
-		$('#calc-result2').text(formatMoney((unitPrice * time * totalTimes - unitPrice).toString()) + '원');
-	}
-	
-	$('#UnitPrice').change(updateCalculation);
-	$('#Time').change(updateCalculation);
-	$('#TotalTimes').change(updateCalculation);
-</script>
-
-<!-- Channel Plugin Scripts -->
-<script>
-var scrollTop=0;
-$('#custom-button-trigger, .cs').click(function(){
-	scrollTop= $(window).scrollTop();
-	$('#custom-button-1').click();
-});
- (function() {
-   var w = window;
-   if (w.ChannelIO) {
-     return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
-   }
-   var d = window.document;
-   var ch = function() {
-     ch.c(arguments);
-   };
-   ch.q = [];
-   ch.c = function(args) {
-     ch.q.push(args);
-   };
-   w.ChannelIO = ch;
-   function l() {
-     if (w.ChannelIOInitialized) {
-       return;
-     }
-     w.ChannelIOInitialized = true;
-     var s = document.createElement('script');
-     s.type = 'text/javascript';
-     s.async = true;
-     s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-     s.charset = 'UTF-8';
-     var x = document.getElementsByTagName('script')[0];
-     x.parentNode.insertBefore(s, x);
-   }
-   if (document.readyState === 'complete') {
-     l();
-   } else if (window.attachEvent) {
-     window.attachEvent('onload', l);
-   } else {
-     window.addEventListener('DOMContentLoaded', l, false);
-     window.addEventListener('load', l, false);
-   }
- })();
-  ChannelIO('boot', {
-   "pluginKey": "8fc98895-06a5-402d-8740-1cb9261ebc91",
-	"customLauncherSelector": "#custom-button-1",
-    "hideDefaultLauncher": true,
-	   "userId": "jaeyeun95@naver.com", //fill with user id
-	   "profile": {
-		 "name": "김재윤", //fill with user name
-		 "mobileNumber": "010-4763-5023", //fill with user phone number
-		 "CUSTOM_VALUE_1": "VALUE_1", //any other custom meta data
-		 "CUSTOM_VALUE_2": "VALUE_2"
-	   }
- });
-  ChannelIO('onHide', function() {
-	$(window).scrollTop(scrollTop);
-});
-</script>
-<!-- End Channel Plugin -->	
-
-</div>
 
 <!-- insert4 -->
 <div class="tutor_cont">
@@ -777,9 +579,6 @@ $('#custom-button-trigger, .cs').click(function(){
 
 
 	<div class="button_box" style="width:680px">
-		<!-- <a href="/Talent/Detail/32599" target="_blank"><div class="next button prev">미리보기</div></a> -->
-		<!-- <div class="next button prev" onclick="setMode(0);">임시저장</div> -->
-				<!-- <div class="next button on" onclick="setMode(1);">최종 승인요청</div> -->
 				<input class="next button on" type="submit" value="최종승인요청">&nbsp;&nbsp;&nbsp;&nbsp;
 				<input class="next button prev" type="reset" value="작성취소">
 				

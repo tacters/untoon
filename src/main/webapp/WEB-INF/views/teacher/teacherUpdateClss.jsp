@@ -74,10 +74,27 @@ input[type=file] {
 					</div>
 					<div class="inner1">
 						<input type="text" class="basic nick" id="Title" name="clss_title" placeholder="수강생을 끌어당길 수 있는 개성넘치는 제목을 만들어 보세요.">
-		                <span style="float:right;">(<span id="span-title-length">0</span>/60)</span>
+		                <span style="float:right;">(<span id="title_length">0</span>/100)</span>
 					</div>
 				</div>
 			</div>
+			<!-- 제목글자수세기 -->
+			<script>
+			$(function(){
+				$('#Title').keyup(function (e){
+					var title = $(this).val();
+					
+					/* $('#title_length').html("("+title.length +"/100)"); */
+					$('#title_length').html(title.length);
+							
+					if(title.length > 100){
+						alert("최대 100자까지 입력가능합니다.");
+						$(this).val(title.substring(0,100));
+						/* $('#title').html("(100 / 200)"); */
+					}
+				});
+			});// function end
+			</script>
 	
 			<div class="box">
 				<div class="title">
@@ -136,7 +153,6 @@ input[type=file] {
 		</div>
 		</div>
 
-<!-- <form method="POST" id="frm-register-detail" enctype="multipart/form-data"> -->
 <div class="tutor_cont">
 
 	<div class="box" id="groupBox">
@@ -145,6 +161,7 @@ input[type=file] {
 			<div class="inner2"  id="minmax">
 				<select class="basic len290" id="MinPerson" name="clss_min">
 					<option value="0">최소인원수</option>
+					 					 <option value="1" >1</option>
 					 					 <option value="2" >2</option>
 					 					 <option value="3" >3</option>
 					 					 <option value="4" >4</option>
@@ -168,7 +185,8 @@ input[type=file] {
 				 명 ~ 
 
 				<select class="basic len290" id="MaxPerson" name="clss_max">
-					<option value="">최대인원수</option>
+					<option value="0">최대인원수</option>
+										 <option value="1" >1</option>
 										 <option value="2" >2</option>
 					 					 <option value="3" >3</option>
 					 					 <option value="4" >4</option>
@@ -192,6 +210,23 @@ input[type=file] {
 				
 				
 			</div>
+			<!-- 참여인원수 -->
+			<script>
+			$(function(){
+			 	$("#MaxPerson").change(function(){
+					/* var min = $("#MinPerson option:selected").val();
+					var max = $("#MaxPerson option:selected").val();
+					console.log(min);
+					console.log(max);
+					if(min > max){
+						alert("최대 인원보다 최소 인원이 많습니다. 다시 확인해주세요.")
+					}*/
+					if($("#MinPerson option:selected").val > $("#MaxPerson option:selected").val()){
+						alert("최대 인원보다 최소 인원이 많습니다. 다시 확인해주세요.");
+					}
+				}); 
+			});
+			</script>
 			
 		</div>
 	</div>
@@ -232,11 +267,35 @@ input[type=file] {
 				</div>
 				<div class="inner1">
 					<div class="gray5 title">수업기간</div>			
-					<label> 시작날짜 <input type="date" name="clss_start" class="basic phone">
-					 ~  종강날짜 <input class="basic phone" type="date" name = "clss_end"></label>	
+					<label> 시작날짜 <input type="date" name="clss_start" class="basic phone" id="start_date">
+					 ~  종강날짜 <input class="basic phone" type="date" name = "clss_end" id="end_date"></label>	
 				</div>
 		</div>
 	</div>
+	<script>
+	$(function(){
+		$("#end_date").change(function(){
+			var start = $("#start_date").val();
+			var startDateArr = start.split('-');
+			
+			var end = $("#end_date").val();
+			var endDateArr = end.split('-');
+			
+			//var today = new Date();	//오늘날짜
+			
+			var startDate = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
+			var endDate = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
+			//var todayDate = new Date(todayArr[0], parseInt(todayArr[1]-1, todayArr[2]));
+			var today = new Date();
+			
+			if(startDate.getTime() > endDate.getTime()){
+				alert("시작날짜와 종료날짜를 확인 해 주세요");
+				
+				return;
+			}
+		});
+	});
+	</script>
 	
 	<div class="box">
 		<div class="title">영상등록<br><br><span class="gray8">권장사항</span></div>
@@ -260,7 +319,6 @@ input[type=file] {
 
 </div>
 
-<input type="hidden" id="Id" name="Id" value="32599">
 <div class="tutor_cont">
 	<div id="pay_pop" >
 		<iframe src="${ pageContext.request.contextPath }/clss/Register_pop">
@@ -270,11 +328,6 @@ input[type=file] {
 </div>
 
 
-<!-- insert4 -->
-<input type="hidden" id="Id" name="Id" value="32599">
-<input type="hidden" id="Status" name="Status" value="0">
-<input type="hidden" id="Mode" name="Mode" value="">
-<input type="hidden" id="CateMain" name="CateMain" value="2">
 <div class="tutor_cont">
 	<div class="box">
 		<div class="title">강사소개<b class="pink">*</b><br><br><span class="gray8">공백포함 200자 이상 권장</span></div>
@@ -293,7 +346,7 @@ input[type=file] {
 			</div>
 			<div class="inner1">
 				<textarea class="basic len980 hei190" placeholder="수강생은 강사님에 대해 많은 관심을 가지고 있습니다. TIP을 참고하여 최대한 자세히 소개를 해주세요." id="TutorInfo" name="tchr_introduction"></textarea>
-                <span style="float:right;">(<span id="span-tutor-info-length">0</span>/1000)</span>
+                <span style="float:right;">(<span id="teacher_info">0</span>/1000)</span>
 			</div>
 			<div class="inner1">
 				<div class="sample1">
@@ -309,6 +362,20 @@ input[type=file] {
 			</div>
 		</div>
 	</div>
+	<script>
+	$(function(){
+		$("#TutorInfo").keyup(function(e){
+			var content = $(this).val();
+			
+			$("#teacher_info").html(content.length);
+			
+			if(content.length > 1000){
+				alert("최대 1000자까지 입력 가능합니다.");
+				$(this).val(content.substring(0,1000));
+			}
+		});
+	});
+	</script>
 	<div class="box">
 		<div class="title">수업소개<b class="pink">*</b><br><br><span class="gray8">공백포함 2500자 이상 권장</span></div>
 		<div class="cont">
@@ -326,9 +393,24 @@ input[type=file] {
 				</ul>
 			</div>
 						<div class="inner1">
-				<textarea class="basic len980 hei190" placeholder="수업소개는 수강생이 가장 주의깊게 살펴보는 부분입니다. 수강생들이 수업에 대해 알 수 있도록 TIP의 질문을 반드시 포함하여 작성해주세요." id="Introduction" name="clss_content"></textarea>
-                <span style="float:right;">(<span id="span-class-intro-length">0</span>/5000)</span>
+				<textarea class="basic len980 hei190" placeholder="수업소개는 수강생이 가장 주의깊게 살펴보는 부분입니다. 수강생들이 수업에 대해 알 수 있도록 TIP의 질문을 반드시 포함하여 작성해주세요." id="clss_content" name="clss_content"></textarea>
+                <span style="float:right;">(<span id="content_length">0</span>/2000)</span>
 			</div>
+			<!-- 수업소개 글자수 세기 -->
+			<script>
+			$(function(){
+				$("#clss_content").keyup(function(e){
+					var content = $(this).val();
+					
+					$("#content_length").html(content.length);
+					
+					if(content.length > 2000){
+						alert("최대 2000자까지 입력 가능합니다.");
+						$(this).val(content.substring(0,2000));
+					}
+				});
+			});
+			</script>
 			<div class="inner1">
 				<div class="gray5 title">태그<font class="gray8">최대10개 태그 가능</font></div>
 				
@@ -343,7 +425,8 @@ input[type=file] {
 						var cont = $('#tag_place').val();
 						if(check_tag(cont))
 						{
-							$('#tag_box').prepend('<div class="tags"><span>'+$('#tag_place').val()+'</span><img src="/Tutor2/Content/btn-clse-13-13.png" onclick="del_tag(this)"><input class="tag_values" type="hidden" name="tags[]" value="'+$('#tag_place').val()+'"></div>');									
+							$('#tag_box').prepend('<div class="tags"><span>'+$('#tag_place').val()+'</span><img src="${ pageContext.request.contextPath }/resources/css/clssInsert/xbtn.png" onclick="del_tag(this)"><input class="tag_values" type="hidden" name="clss_tags" value="'+$('#tag_place').val()+'"></div>');									
+							/* $('#tag_box').prepend('<div class="tags"><span>'+$('#tag_place').val()+'</span><img src="${ pageContext.request.contextPath }/resources/css/clssInsert/xbtn.png" onclick="del_tag(this)"><input class="tag_values" type="hidden" name="tags[]" value="'+$('#tag_place').val()+'"></div>'); */
 						}
 						$('#tag_place').val('');
 					}
@@ -356,7 +439,7 @@ input[type=file] {
 
 					function check_tag(cont){
 						//alert($('.tag_box').find('.tag_values').size());
-						var num = $('.tag_box').find('.tag_values').size();
+						var num = $('.tags').length;
 						if(num==10)
 						{
 							alert('태그는 10개 까지 등록 가능합니다');
@@ -371,7 +454,7 @@ input[type=file] {
 						for(var i =0; i<num;i++)
 						{
 							//alert($('.tag_box').find('.tag_values').eq(i).val());
-							if(cont==$('.tag_box').find('.tag_values').eq(i).val())
+							if(cont==$('.tags').find('.tag_values').eq(i).val())
 							{
 								alert('이미 존재하는 태그입니다');
 								return false;
@@ -402,8 +485,8 @@ input[type=file] {
 				</ul>
 			</div>
 			<div class="inner1">
-				<textarea class="basic len980 hei190" placeholder="TIP의 내용을 참고하여 강사님의 수업을 수강하기에 적합한 수업대상에 대해 알려주세요. " id="Target" name="tchr_profile"></textarea>
-                <span style="float:right;">(<span id="span-tutee-info-length">0</span>/1000)</span>
+				<textarea class="basic len980 hei190" placeholder="TIP의 내용을 참고하여 강사님의 수업을 수강하기에 적합한 수업대상에 대해 알려주세요. " id="profile" name="tchr_profile"></textarea>
+                <span style="float:right;">(<span id="profile_length">0</span>/50)</span>
 			</div>
 			<div class="sample1 inner1">
 				<div class="arw">
@@ -415,6 +498,21 @@ input[type=file] {
 			</div>
 		</div>
 	</div>
+	<!-- 강사 프로필 글자수 세기 -->
+			<script>
+			$(function(){
+				$("#profile").keyup(function(e){
+					var content = $(this).val();
+					
+					$("#profile_length").html(content.length);
+					
+					if(content.length > 50){
+						alert("최대 50자까지 입력 가능합니다.");
+						$(this).val(content.substring(0,50));
+					}
+				});
+			});
+			</script>
 	
 	<div class="box">
 		<div class="title">환불규정<b class="pink">*</b><br><br><span class="gray8">공백포함 2500자 이상 권장</span></div>
@@ -433,11 +531,26 @@ input[type=file] {
 				</ul>
 			</div>
 				<div class="inner1">
-				<textarea class="basic len980 hei190" placeholder="수업소개는 수강생이 가장 주의깊게 살펴보는 부분입니다. 수강생들이 수업에 대해 알 수 있도록 TIP의 질문을 반드시 포함하여 작성해주세요." id="Introduction" name="clss_content"></textarea>
-                <span style="float:right;">(<span id="span-class-intro-length">0</span>/5000)</span>
+				<textarea class="basic len980 hei190" placeholder="수업소개는 수강생이 가장 주의깊게 살펴보는 부분입니다. 수강생들이 수업에 대해 알 수 있도록 TIP의 질문을 반드시 포함하여 작성해주세요." id="policy" name="clss_policy"></textarea>
+                <span style="float:right;">(<span id="policy_length">0</span>/500)</span>
 			</div>
 		</div>
 	</div>
+	<!-- 환불규정 글자수 세기 -->
+			<script>
+			$(function(){
+				$("#policy").keyup(function(e){
+					var content = $(this).val();
+					
+					$("#policy_length").html(content.length);
+					
+					if(content.length > 500){
+						alert("최대 500자까지 입력 가능합니다.");
+						$(this).val(content.substring(0,500));
+					}
+				});
+			});
+			</script>
 
 
 	<div class="button_box" style="width:680px">

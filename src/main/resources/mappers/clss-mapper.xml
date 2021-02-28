@@ -73,6 +73,7 @@
 			tchr_profile = #{tchr_profile},
 			clss_policy = #{clss_policy},
 			clss_update = sysdate,
+			clss_tags = #{clss_tags},
 			clss_status = 1	
 		where cid = #{cid}
 	</update>

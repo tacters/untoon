@@ -114,10 +114,10 @@ public class MemberController {
 	}
 
 	// 강사회원가입페이지로 이동
-	@RequestMapping("tenrollview.do")
-	public String tenrollview() {
-		return "member/teacherInsertForm";
-	}
+//	@RequestMapping("tenrollview.do")
+//	public String tenrollview() {
+//		return "member/teacherInsertForm";
+//	}
 
 	// 마이페이지로 이동
 	@RequestMapping("myInfo.do")
