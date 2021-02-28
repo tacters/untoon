@@ -221,73 +221,194 @@ public class ClssController {
 			return "common/errorPage";
 		}
 	}
+	
+	// 관리자 페이지
+	@RequestMapping("adpage.do")
+	public String adminPage() {
+		return "admin/adminPage";
+	}
 
-	// 관리자 미승인 클래스 목록조회
-	@RequestMapping("adnclist.do")
-	public String adminNlist(Model model) {
+//	// 관리자 미승인 클래스 목록조회
+//	@RequestMapping("adnclist.do")
+//	public String adminNlist(Model model) {
+//		ArrayList<Clss> list = cService.adminNlist();
+//
+//		System.out.println(list);
+//		if (list.size() > 0) {
+//			System.out.println("목록있음");
+//			model.addAttribute("list", list);
+//			return "admin/adminNlistView"; // 수정필요
+//		} else {
+//			System.out.println("목록없음");
+//			model.addAttribute("msg", "강의 목록 조회 실패");
+//			return "common/errorPage";
+//		}
+//	}
+	
+	// 관리자 미승인 클래스 ajax
+	@RequestMapping(value="adnclist.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String adminNlist(HttpServletResponse response, HttpSession session, Model model) throws UnsupportedEncodingException {
 		ArrayList<Clss> list = cService.adminNlist();
 
 		System.out.println(list);
-		if (list.size() > 0) {
-			System.out.println("목록있음");
-			model.addAttribute("list", list);
-			return "admin/adminNlistView"; // 수정필요
-		} else {
-			System.out.println("목록없음");
-			model.addAttribute("msg", "강의 목록 조회 실패");
-			return "common/errorPage";
+		
+		JSONObject sendJson = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		
+		for (Clss clss : list){
+			
+			JSONObject job = new JSONObject();
+			
+			job.put("cid", clss.getCid());
+			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
+			job.put("clss_start", clss.getClss_start().toString());
+			job.put("clss_end", clss.getClss_end().toString());
+			
+			jarr.add(job);
 		}
+		
+		sendJson.put("list", jarr);
+		
+		return sendJson.toJSONString();
 	}
 
-	// 관리자 승인 클래스 목록조회
-	@RequestMapping("adclist.do")
-	public String adminYList(Model model) {
+//	// 관리자 승인 클래스 목록조회
+//	@RequestMapping("adclist.do")
+//	public String adminYList(Model model) {
+//		ArrayList<Clss> list = cService.adminYList();
+//
+//		System.out.println(list);
+//		if (list.size() > 0) {
+//			System.out.println("목록있음");
+//			model.addAttribute("list", list);
+//			return "admin/adminYlistView"; // 수정필요
+//		} else {
+//			System.out.println("목록없음");
+//			model.addAttribute("msg", "강의 목록 조회 실패");
+//			return "common/errorPage";
+//		}
+//	}
+	
+	// 관리자 승인 클래스 목록조회 ajax
+	@RequestMapping(value="adclist.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String adminYList(HttpServletResponse response, HttpSession session, Model model) throws UnsupportedEncodingException {
 		ArrayList<Clss> list = cService.adminYList();
 
 		System.out.println(list);
-		if (list.size() > 0) {
-			System.out.println("목록있음");
-			model.addAttribute("list", list);
-			return "admin/adminYlistView"; // 수정필요
-		} else {
-			System.out.println("목록없음");
-			model.addAttribute("msg", "강의 목록 조회 실패");
-			return "common/errorPage";
+		
+		JSONObject sendJson = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		
+		for (Clss clss : list){
+			
+			JSONObject job = new JSONObject();
+			
+			job.put("cid", clss.getCid());
+			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
+			job.put("clss_start", clss.getClss_start().toString());
+			job.put("clss_end", clss.getClss_end().toString());
+			
+			jarr.add(job);
 		}
+		
+		sendJson.put("list", jarr);
+		
+		return sendJson.toJSONString();
 	}
-
 	// 관리자 승인거부 클래스 목록조회
-	@RequestMapping("adrclist.do")
-	public String adminRlist(Model model) {
+//	@RequestMapping("adrclist.do")
+//	public String adminRlist(Model model) {
+//		ArrayList<Clss> list = cService.adminRlist();
+//
+//		System.out.println(list);
+//		if (list.size() > 0) {
+//			System.out.println("목록있음");
+//			model.addAttribute("list", list);
+//			return "admin/adminRlistView";
+//		} else {
+//			System.out.println("목록없음");
+//			model.addAttribute("msg", "강의 목록 조회 실패");
+//			return "common/errorPage";
+//		}
+//	}
+	
+	// 관리자 승인거부 목록조회 ajax
+	@RequestMapping(value="adrclist.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String adminRlist(HttpServletResponse response, HttpSession session, Model model) throws UnsupportedEncodingException {
 		ArrayList<Clss> list = cService.adminRlist();
 
 		System.out.println(list);
-		if (list.size() > 0) {
-			System.out.println("목록있음");
-			model.addAttribute("list", list);
-			return "admin/adminRlistView";
-		} else {
-			System.out.println("목록없음");
-			model.addAttribute("msg", "강의 목록 조회 실패");
-			return "common/errorPage";
+		
+		JSONObject sendJson = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		
+		for (Clss clss : list){
+			
+			JSONObject job = new JSONObject();
+			
+			job.put("cid", clss.getCid());
+			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
+			job.put("clss_start", clss.getClss_start().toString());
+			job.put("clss_end", clss.getClss_end().toString());
+			
+			jarr.add(job);
 		}
+		
+		sendJson.put("list", jarr);
+		
+		return sendJson.toJSONString();
 	}
 
 	// 관리자 기간 지난 클래스 목록조회
-	@RequestMapping("adendclist.do")
-	public String adminEndList(Model model) {
+//	@RequestMapping("adendclist.do")
+//	public String adminEndList(Model model) {
+//		ArrayList<Clss> list = cService.adminEndList();
+//
+//		System.out.println(list);
+//		if (list.size() > 0) {
+//			System.out.println("목록있음");
+//			model.addAttribute("list", list);
+//			return "admin/adminEndListView"; // 수정필요
+//		} else {
+//			System.out.println("목록없음");
+//			model.addAttribute("msg", "강의 목록 조회 실패");
+//			return "common/errorPage";
+//		}
+//	}
+	
+	// 관리자 기간 지난 클래스 목록조회 ajax
+	@RequestMapping(value="adendclist.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String adminEndList(HttpServletResponse response, HttpSession session, Model model) throws UnsupportedEncodingException {
 		ArrayList<Clss> list = cService.adminEndList();
 
 		System.out.println(list);
-		if (list.size() > 0) {
-			System.out.println("목록있음");
-			model.addAttribute("list", list);
-			return "admin/adminEndListView"; // 수정필요
-		} else {
-			System.out.println("목록없음");
-			model.addAttribute("msg", "강의 목록 조회 실패");
-			return "common/errorPage";
+		
+		JSONObject sendJson = new JSONObject();
+		JSONArray jarr = new JSONArray();
+		
+		for (Clss clss : list){
+			
+			JSONObject job = new JSONObject();
+			
+			job.put("cid", clss.getCid());
+			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
+			job.put("clss_start", clss.getClss_start().toString());
+			job.put("clss_end", clss.getClss_end().toString());
+			
+			jarr.add(job);
 		}
+		
+		sendJson.put("list", jarr);
+		
+		return sendJson.toJSONString();
 	}
 
 	// 관리자 클래스 상세보기
@@ -314,7 +435,7 @@ public class ClssController {
 		System.out.println(result);
 
 		if (result > 0) {
-			return "redirect:adnclist.do";
+			return "redirect:adpage.do";
 		} else {
 			model.addAttribute("msg", cid + "번 클래스 승인 실패");
 			return "common/errorPage";
@@ -343,7 +464,7 @@ public class ClssController {
 		if (cService.adminDenyClss(clss) > 0) {
 			System.out.println("값o");
 			System.out.println(clss);
-			return "redirect:adnclist.do";
+			return "redirect:adpage.do";
 		} else {
 			System.out.println("값x");
 			model.addAttribute("msg", "클래스 승인 실패");
@@ -363,55 +484,55 @@ public class ClssController {
 	}
 
 	// 사용자 마이페이지에 본인 클래스 목록 불러오기
-//	@RequestMapping(value="mclss.do", method = RequestMethod.POST)
-//	public String myClssList(HttpSession session, Model model) {
-//		Member loginUser = (Member) session.getAttribute("loginUser");
-////			Member loginUser = (Member)session.getAttribute("id");
-////			String id = (String)session.getAttribute("id");
-//		String id = loginUser.getId();
-//		System.out.println(id);
-//		ArrayList<Clss> myList = cService.myClssList(id);
-//		System.out.println("myList : " + myList);
-//
-//		if (myList.size() > 0) {
-//			System.out.println("값o");
-//			model.addAttribute("myList", myList);
-//			return "member/myClssListView";
-//		} else {
-//			model.addAttribute("msg", "나의 클래스 조회 실패");
-//			return "common/errorPage";
-//		}
-//	}
-	
-	@RequestMapping(value="mclss.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String myClssList(HttpServletResponse response, HttpSession session, Model model) throws UnsupportedEncodingException {
+	@RequestMapping("mclss.do")
+	public String myClssList(HttpSession session, Model model) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
+//			Member loginUser = (Member)session.getAttribute("id");
+//			String id = (String)session.getAttribute("id");
 		String id = loginUser.getId();
 		System.out.println(id);
 		ArrayList<Clss> myList = cService.myClssList(id);
-		
-		System.out.println(myList);
-		
-		JSONObject sendJson = new JSONObject();
-		JSONArray jarr = new JSONArray();
-		
-		for (Clss clss : myList){
-			
-			JSONObject job = new JSONObject();
-			
-			job.put("cid", clss.getCid());
-			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
-			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
-			job.put("clss_start", clss.getClss_start().toString());
-			job.put("clss_end", clss.getClss_end().toString());
-			
-			jarr.add(job);
+		System.out.println("myList : " + myList);
+
+		if (myList.size() > 0) {
+			System.out.println("값o");
+			model.addAttribute("myList", myList);
+			return "member/myClssListView";
+		} else {
+			model.addAttribute("msg", "나의 클래스 조회 실패");
+			return "common/errorPage";
 		}
-		
-		sendJson.put("myList", jarr);
-		
-		return sendJson.toJSONString();
 	}
+	
+//	@RequestMapping(value="mclss.do", method = RequestMethod.POST)
+//	@ResponseBody
+//	public String myClssList(HttpServletResponse response, HttpSession session, Model model) throws UnsupportedEncodingException {
+//		Member loginUser = (Member) session.getAttribute("loginUser");
+//		String id = loginUser.getId();
+//		System.out.println(id);
+//		ArrayList<Clss> myList = cService.myClssList(id);
+//		
+//		System.out.println(myList);
+//		
+//		JSONObject sendJson = new JSONObject();
+//		JSONArray jarr = new JSONArray();
+//		
+//		for (Clss clss : myList){
+//			
+//			JSONObject job = new JSONObject();
+//			
+//			job.put("cid", clss.getCid());
+//			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+//			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
+//			job.put("clss_start", clss.getClss_start().toString());
+//			job.put("clss_end", clss.getClss_end().toString());
+//			
+//			jarr.add(job);
+//		}
+//		
+//		sendJson.put("myList", jarr);
+//		
+//		return sendJson.toJSONString();
+//	}
 
 }

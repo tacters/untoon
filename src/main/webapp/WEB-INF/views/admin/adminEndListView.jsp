@@ -17,7 +17,6 @@
 		<td align="center">${ c.cid }</td>
 		<td align="center">
 			<c:url var="acd" value="/adcdetail.do">
-		      <%-- <c:param name="page" value="${ currentPage }"/> --%>
 		      <c:param name="cid" value="${ c.cid }" />
 		   </c:url>
 		   <a href="${ acd }">${ c.clss_title }</a>

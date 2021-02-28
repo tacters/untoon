@@ -10,6 +10,7 @@
 </head>
 <body>
 <c:import url="../common/menubar.jsp"/>
+<c:import url="../member/myPageheader.jsp"/>
 
 <table align="center" border="1" width="700" cellspacing="0">
 <tr><th>번호</th><th>제목</th><th>수업승인상태</th><th>강의 시작 날짜</th><th>강의 끝나는 날짜</th><th>수정날짜</th>

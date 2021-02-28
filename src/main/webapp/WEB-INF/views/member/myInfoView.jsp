@@ -13,7 +13,7 @@
 	<br><br><br><br>
 	
 	<div class="outer" align="center">
-		<form action="mupdate.do" method="post" id="joinForm">
+		<form action="mupdate.do" method="post" id="joinForm" enctype="multipart/form-data">
 			<table width="500" cellspacing="5">
 				<tr>
 					<td width="150"> 아이디 :</td>
@@ -42,7 +42,7 @@
 				<tr>
 					<td> 비밀번호 확인 :</td>
 					<td>
-						<input type="password" name="pwd">
+						<input type="password" name="pwd2">
 					</td>
 				</tr>
 				<tr>
@@ -69,23 +69,6 @@
 					</c:choose>
 				</tr>
 				<tr>
-					<td>사용자 타입 :</td>
-					<c:choose>
-						<c:when test="${ loginUser.user_lv eq 'S' }">
-							<td>
-								<input type="radio" name="user_lv" value="${ loginUser.user_lv }" checked>일반 사용자
-								<input type="radio" name="user_lv" value="${ loginUser.user_lv }">강사
-							</td>
-						</c:when>
-						<c:when test="${ loginUser.user_lv eq 'T' }">
-							<td>
-								<input type="radio" name="user_lv" value="${ loginUser.user_lv }">강사
-								<input type="radio" name="user_lv" value="${ loginUser.user_lv }" checked>일반 사용자
-							</td>
-						</c:when>
-					</c:choose>
-				</tr>
-				<tr>
 					<td>생일 :</td>
 						<fmt:parseDate value="${ loginUser.birthday }" var ="b" pattern="yyMMdd"/>
 					<td>
@@ -105,16 +88,20 @@
 						<input type="tel" name="phone"><br><br>
 					</td>
 				</tr>
+				<tr>
+					<td>프로필 사진</td>
+					<td><input type="file" name="afile"></td>
+				</tr>
 				
 				<tr>
 					<td colspan="2" align="center">
 						<button>수정하기</button>
-						<c:url var="mdelete" value="mdelete.do">
-							<c:param name="id" value="${ loginUser.id }"/>
-						</c:url>
 						<input type="reset" value="취소하기">
 					</td>
 				</tr>
+				</table>
+				</form>
+				</div>
 		</body>
 		<script type="text/javascript">	
 	

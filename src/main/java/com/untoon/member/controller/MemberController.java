@@ -113,12 +113,6 @@ public class MemberController {
 		return "member/memberInsertForm";
 	}
 
-	// 강사회원가입페이지로 이동
-//	@RequestMapping("tenrollview.do")
-//	public String tenrollview() {
-//		return "member/teacherInsertForm";
-//	}
-
 	// 마이페이지로 이동
 	@RequestMapping("myInfo.do")
 	public String myInfo() {
@@ -148,8 +142,8 @@ public class MemberController {
 	public String idfindView() {
 		return "member/findIdView";
 	}
-	
-	//비밀번호 찾는 페이지로 이동
+
+	// 비밀번호 찾는 페이지로 이동
 	@RequestMapping("findpwdview.do")
 	public String pwdfindView() {
 		return "member/findPwdView";
@@ -235,26 +229,6 @@ public class MemberController {
 
 	}
 
-//	// 강사 회원가입
-//	@RequestMapping(value = "tinsert.do", method = RequestMethod.POST)
-//	public String insertTeacher(@ModelAttribute Member m, Model model, HttpServletRequest request) {
-//		
-//		// 기존의 평문을 암호문으로 바꿔서 m객체에 담기
-//		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
-//
-//		// setter를 통해서 Member객체의 pwd 변경
-//		m.setPwd(encPwd);
-//		// 회원가입 서비스 호출
-//		int result = mService.insertMember(m);
-//
-//		if (result > 0) {
-//			return "redirect:home.do";
-//		} else {
-//			model.addAttribute("msg", "회원가입 실패");
-//			return "common/errorPage";
-//		}
-//	}
-
 	// 아이디 중복 확인
 	@ResponseBody
 	@RequestMapping("idCheck.do")
@@ -270,7 +244,74 @@ public class MemberController {
 
 	// 강사 개인정보 수정하기
 	@RequestMapping("tupdate.do")
-	public String tUpdate(@ModelAttribute Member m, Model model) {
+	public String tUpdate(@ModelAttribute Member m, Model model, HttpServletRequest request,
+			@RequestParam(name = "afile", required = false) MultipartFile afile,
+			@RequestParam(name = "rfile", required = false) MultipartFile rfile) {
+
+		// 첨부된 파일 저장 폴더 지정하기(이력서 저장)
+		String saveAvatar = request.getSession().getServletContext().getRealPath("resources/images/profilePics");
+		System.out.println(afile);
+		// 새로운 첨부파일이 있따면
+		if (afile != null) {
+			String fileName = afile.getOriginalFilename();
+			String renameFileName = null;
+			if (fileName != null && fileName.length() > 0) {
+				// 첨부된 파일의 파일명 바꾸기
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+				renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); // System = 자바가 구동되는 컴퓨터
+				renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1); // 파일이름의 끝의 그 다음 1자리에
+
+				try {
+					afile.transferTo(new File(saveAvatar + "\\" + renameFileName));
+				} catch (Exception e) {
+					e.printStackTrace();
+					model.addAttribute("msg", "전송 파일 저장 실패");
+					return "common/errorPage";
+				}
+			} // 첨부된 파일의 파일명 변경에서 폴더에 저장 처리
+
+			// 원래 첨부파일이 있는데 바뀐경우
+			if (m.getAvatar() != null) {
+				// 원래 파일을 폴더에서 삭제 처리
+				new File(saveAvatar + "\\" + m.getAvatar()).delete();
+			}
+
+			m.setAvatar(fileName);
+			m.setRename_avatar(renameFileName);
+		}
+		
+		// 첨부된 파일 저장 폴더 지정하기(이력서 저장)
+				String saveRfile= request.getSession().getServletContext().getRealPath("resources/resume_files");
+				System.out.println(rfile);
+				// 새로운 첨부파일이 있따면
+				if (rfile != null) {
+					String fileName = rfile.getOriginalFilename();
+					String renameFileName = null;
+					if (fileName != null && fileName.length() > 0) {
+						// 첨부된 파일의 파일명 바꾸기
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+						renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); // System = 자바가 구동되는 컴퓨터
+						renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1); // 파일이름의 끝의 그 다음 1자리에
+
+						try {
+							rfile.transferTo(new File(saveRfile + "\\" + renameFileName));
+						} catch (Exception e) {
+							e.printStackTrace();
+							model.addAttribute("msg", "전송 파일 저장 실패");
+							return "common/errorPage";
+						}
+					} // 첨부된 파일의 파일명 변경에서 폴더에 저장 처리
+
+					// 원래 첨부파일이 있는데 바뀐경우
+					if (m.getOriginal_resume() != null) {
+						// 원래 파일을 폴더에서 삭제 처리
+						new File(saveRfile + "\\" + m.getOriginal_resume()).delete();
+					}
+
+					m.setOriginal_resume(fileName);
+					m.setRename_resume(renameFileName);
+				}
+
 		System.out.println("Member : " + m);
 
 		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
@@ -285,16 +326,49 @@ public class MemberController {
 		if (result > 0) {
 			System.out.println("성공");
 			model.addAttribute("loginUser", m);
-			return "redirect:tInfo.do";
+			return "redirect:home.do";
 		} else {
 			model.addAttribute("msg", "회원 정보 수정 실패");
 			return "common/errorPage";
 		}
 	}
 
-	//정보 수정하기
+	// 일반회원정보 수정하기
 	@RequestMapping("mupdate.do")
-	public String memberUpdate(@ModelAttribute Member m, Model model) {
+	public String memberUpdate(@ModelAttribute Member m, Model model, HttpServletRequest request,
+			@RequestParam(name = "afile", required = false) MultipartFile afile) {
+		// 첨부된 파일 저장 폴더 지정하기
+		String saveNewAvatar = request.getSession().getServletContext().getRealPath("resources/images/profilePics");
+		System.out.println(afile);
+		// 새로운 첨부파일이 있따면
+		if (afile != null) {
+			String fileName = afile.getOriginalFilename();
+			String renameFileName = null;
+			if (fileName != null && fileName.length() > 0) {
+				// 첨부된 파일의 파일명 바꾸기
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+				renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())); // System = 자바가 구동되는 컴퓨터
+				renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1); // 파일이름의 끝의 그 다음 1자리에
+
+				try {
+					afile.transferTo(new File(saveNewAvatar + "\\" + renameFileName));
+				} catch (Exception e) {
+					e.printStackTrace();
+					model.addAttribute("msg", "전송 파일 저장 실패");
+					return "common/errorPage";
+				}
+			} // 첨부된 파일의 파일명 변경에서 폴더에 저장 처리
+
+			// 원래 첨부파일이 있는데 바뀐경우
+			if (m.getAvatar() != null) {
+				// 원래 파일을 폴더에서 삭제 처리
+				new File(saveNewAvatar + "\\" + m.getAvatar()).delete();
+			}
+
+			m.setAvatar(fileName);
+			m.setRename_avatar(renameFileName);
+		}
+
 		System.out.println("Member :" + m);
 
 		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
@@ -313,7 +387,7 @@ public class MemberController {
 		}
 	}
 
-	//탈퇴하기
+	// 탈퇴하기
 	@RequestMapping("mdelete.do")
 	public String memeberDelete(SessionStatus status, @RequestParam("id") String id, Model model) {
 

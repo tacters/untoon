@@ -10,6 +10,11 @@
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/resources/js/jquery-3.5.1.min.js"></script>
 <style type="text/css">
+.container-avatar {
+  position: relative;
+  width: 20%;
+  max-width: 200px;
+}
    #menu {
       width: 960px;
       height: 40px;
@@ -95,7 +100,7 @@
    
 
 </style>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(function(){
 	
 	$.ajax({
@@ -130,10 +135,10 @@ $(function(){
 		}
 	});
 });
-</script>
+</script> -->
 </head>
 <body>
-<c:if test="${ !empty sessionScope.loginUser }">
+<c:if test="${ !empty sessionScope.loginUser and sessionScope.loginUser.user_lv eq 'S'}">
 		<h3 style="text-align: center;">
 			안녕하세요.<br> ${ loginUser.name }님
 		</h3><hr/>
@@ -142,7 +147,8 @@ $(function(){
 			<ul class="navi">
 				<li><a href="#" id="#" title="내 클래스 관리" class="#">내 클래스 관리</a> 
 					<ul>
-						<li><a href="mclss.do" id="#" class="#">수업 목록</a></li>
+							<c:url var="mclss" value="/mclss.do"/>
+						<li><a href="${ mclss }" title="mclss">수업 목록</a></li>
 							<c:url var="pmselect" value="/pmselect.do"/>
 						<li><a href='${ pmselect }' title="pmselect">결제내역</a></li>
 							
@@ -154,7 +160,9 @@ $(function(){
 						<li><a href="${ myUpdateView }">회원정보 수정</a>
 						</li>
 							<c:url var="myDeleteView" value="myDeleteView.do"/>
-						<li><a href="${ myDeleteView }">회원정보 탈퇴</a></li>
+						<li><a href="${ myDeleteView }">강사로 지원하기</a></li>
+							<c:url var="myDeleteView" value="myDeleteView.do"/>
+						<li><a href="${ myDeleteView }">회원 탈퇴</a></li>
 			   		</ul>
 			   </li>
 			   	<li><a href="#" id="#" title="내 활동 내역" class="#">내 활동 내역</a>
@@ -172,8 +180,12 @@ $(function(){
 	
 	<c:if test="${ !empty sessionScope.loginUser and sessionScope.loginUser.user_lv eq 'T' }">
 		<h3 style="text-align: center;">
-			안녕하세요.<br> ${ loginUser.name }님
-		</h3><hr/>
+			안녕하세요.<br> ${ loginUser.name }님 
+		</h3>
+		<div class="container-avatar">
+			<img src="${ loginUser.avatar }">
+		</div>
+		<hr/>
 		<br><br>
 		<div id="teacher_menu">
 			<ul class="navi">
@@ -187,23 +199,17 @@ $(function(){
 				</li>
 				<li><a href="#" id="#" title="내 정보 관리" class="#">내 정보 관리</a>
 					<ul>
-							<c:url var="myUpdateView" value="myUpdateView.do"/>
-						<li><a href="${ myUpdateView }">회원정보 수정</a>
+							<c:url var="tup" value="/tup.do"/>
+						<li><a href="${ tup }">회원정보 수정</a>
 						</li>
 							<c:url var="myDeleteView" value="myDeleteView.do"/>
-						<li><a href="${ myDeleteView }">회원정보 탈퇴</a></li>
+						<li><a href="${ myDeleteView }">회원 탈퇴</a></li>
 			   		</ul>
 			   </li>
-			   	<li><a href="#" id="#" title="내 활동 내역" class="#">내 활동 내역</a>
+			  	<li><a href="#" id="#" title="수업 관리하기" class="#">수업 관리하기</a>
 					<ul>	
-						<li><a href="#" id="#" class="#">내가 쓴 댓글</a></li>
-						<li><a href="#" id="#" class="#">클래스 후기</a></li>
-						<li><a href="#" id="#" class="#">1:1문의</a></li>
-			  		</ul>
-			  	</li>
-			  	<li><a href="#" id="#" title="내 활동 내역" class="#">내가 등록한 클래스 관리하기</a>
-					<ul>	
-						<li><a href="#" id="#" class="#">내가 쓴 댓글</a></li>
+						<c:url var="tclist" value="/tclist.do" />
+						<li><a href="${ tclist }">수업 목록</a></li>
 						<li><a href="#" id="#" class="#">클래스 후기</a></li>
 						<li><a href="#" id="#" class="#">1:1문의</a></li>
 			  		</ul>
@@ -214,13 +220,13 @@ $(function(){
 			</div>
 	</c:if>
 	
-	<div>
+	<!-- <div>
 		<table align="center" border="1" width="700" cellspacing="0" id="myClss">
 			<tr><th>클래스 번호</th><th>클래스 제목</th><th>강사</th><th>강의 시작 날짜</th><th>강의 끝나는 날짜</th>
 			</tr>
-			<!-- <tr><th>클래스 번호</th><th>클래스 제목</th><th>강의 시작 날짜</th>
-			</tr> -->
+			<tr><th>클래스 번호</th><th>클래스 제목</th><th>강의 시작 날짜</th>
+			</tr>
 		</table>
-	</div>
+	</div> -->
 </body>
 </html>

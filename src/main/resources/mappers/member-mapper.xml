@@ -66,6 +66,12 @@
     	     , PWD=#{pwd}
     	     , PHONE=#{phone}
     	     , UPDATE_DATE= sysdate
+    	     , avatar = #{avatar}
+    	     , rename_avatar = #{rename_avatar}
+    	     , original_resume = #{original_resume}
+    	     , rename_resume = #{rename_resume}
+    	     , bank = #{bank}
+    	     , bank_acct = #{bank_acct}
     	 WHERE ID = #{id}
     </update>
     

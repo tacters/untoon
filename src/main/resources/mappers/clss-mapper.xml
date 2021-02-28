@@ -81,7 +81,7 @@
 	<!-- 기간 안지나고 미승인클래스 -->
 	<select id="adminNlist" resultMap="clssResultSet">
 		<![CDATA[
-		select cid, clss_title, clss_status, clss_start, clss_end
+		select *
 		from clss
 		join member on (tchr_id=id)
 		where clss_end > sysdate
