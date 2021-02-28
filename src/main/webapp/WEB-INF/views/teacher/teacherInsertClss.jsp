@@ -276,6 +276,7 @@ input[type=file] {
 									
 						<select id="TotalTimes" name="clss_times" class="basic len320">
 						<option value="0">총 수업횟수를 선택하세요</option>
+												<option value="1" >1회</option>
 												<option value="2" >2회</option>
 												<option value="3" >3회</option>
 												<option value="4" >4회</option>
