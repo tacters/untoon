@@ -32,18 +32,117 @@
 	</resultMap>
 	
 	<select id="tClssList" resultMap="clssResultSet">
-		<!-- SELECT * FROM MEMBER
-		LEFT JOIN CLSS ON(CLSS.TCHR_ID = MEMBER.ID)
-		where id = #{ id } -->
 		select * 
 		from clss
 		join member on (id=tchr_id)
 		where id = #{ id} 
 	</select>
 	
-	<select id="clssList" resultMap="clssResultSet">
-		select * from clss
+	<!-- 페이징처리 -->
+	<select id="getListCount" resultType="_int">
+		select count(*) from clss where clss_status =2
 	</select>
+	
+	<select id="clssList" resultMap="clssResultSet" parameterType="com.untoon.clss.model.vo.ClssPage">
+		<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select * from clss
+		                where clss_status =2
+		                order by cid desc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<!-- 제목 검색 페이징처리 -->
+	<select id="getSearchTitleListCount" resultType="_int" parameterType="string">
+		select count(*) from clss
+		where clss_title like '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="getSearchTagListCount" resultType="_int" parameterType="string">
+		select count(*) from clss
+		where clss_tags like '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="getSearchTeacherCount" resultType="_int" parameterType="string">
+		select count(*) from clss
+		where tchr_id like '%' || #{keyword} || '%'
+		
+		<!-- select count(*) from clss
+		join member on (tchr_id=id)
+		where name like '%' || #{keyword} || '%'
+		'%김신%' -->
+	</select>
+	
+	<select id="getSearchCategoryCount" resultType="_int" parameterType="string">
+		select count(*) from clss
+		where clss_category like '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 제목검색 -->
+	<select id="searchTitle" resultMap="clssResultSet" parameterType="com.untoon.common.SearchAndPage">
+	<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select * from clss
+		                where clss_status =2
+		                and clss_title like '%' || #{keyword} || '%'
+		                order by cid desc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<!-- 태그검색 -->
+	<select id="searchTag" resultMap="clssResultSet" parameterType="com.untoon.common.SearchAndPage">
+	<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select * from clss
+		                where clss_status =2
+		                and clss_tags like '%' || #{keyword} || '%'
+		                order by cid desc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<!-- 강사검색 -->
+	<select id="searchTeacher" resultMap="clssResultSet" parameterType="com.untoon.common.SearchAndPage">
+	<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select * from clss
+		                where clss_status =2
+		                and tchr_id like '%' || #{keyword} || '%'
+		                order by cid desc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<!-- 카테고리 검색 -->
+	<select id="searchCategory" resultMap="clssResultSet" parameterType="com.untoon.common.SearchAndPage">
+	<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select * from clss
+		                where clss_status =2
+		                and clss_category like '%' || #{keyword} || '%'
+		                order by cid desc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	
 	
 	<select id="selectTClss" parameterType="_int" resultMap="clssResultSet">
 		select * from clss

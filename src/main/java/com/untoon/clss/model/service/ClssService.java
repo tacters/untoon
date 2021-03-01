@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 import com.untoon.clss.model.vo.Clss;
+import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.vo.Member;
 
 public interface ClssService {
@@ -13,7 +14,7 @@ public interface ClssService {
 
 	Clss selectTclss(int cid);	// 강사 클래스 상세보기
 
-	ArrayList<Clss> clssList();		// 사용자 클래스 전체조회
+	ArrayList<Clss> clssList(int currentPage, int limit);		// 사용자 클래스 전체조회
 
 	Clss selectClss(int cid);	// 사용자 클래스 상세보기
 
@@ -41,6 +42,25 @@ public interface ClssService {
 	int adminDenyClss(Clss clss);	//관리자 클래스 거부하기
 
 	int tUpdateClss(Clss clss);		// 강사 클래스 수정하기
+
+	int getListCount();	//페이징처리
+
+	int getSearchTitleListCount(String keyword);	//제목검색 페이징처리
+	
+	int getSearchTagListCount(String keyword);
+	
+	int getSearchTeacherListCount(String keyword);
+	
+	int getSearchCategoryListCount(String keyword);
+	
+	ArrayList<Clss> searchTitle(SearchAndPage searches);	//제목으로검색
+
+	ArrayList<Clss> searchTag(SearchAndPage searches);	//태그검색
+
+	ArrayList<Clss> searchTeacher(SearchAndPage searches);	//강사이름으로 검색
+
+	ArrayList<Clss> searchCategory(SearchAndPage searches);	// 카테고리로 검색
+
 
 
 }
