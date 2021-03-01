@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.untoon.review.model.dao.ReviewDao;
 import com.untoon.review.model.vo.Review;
+import com.untoon.review.model.vo.ReviewClss;
 
 @Service("reviewService")
 public class ReviewServiceImpl implements ReviewService{
@@ -37,6 +38,12 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public Review selectReview(int rid) {
 		return rDao.selectReview(rid);
+	}
+
+	// 마이페이지에서 본인 후기 불러오기
+	@Override
+	public ArrayList<ReviewClss> myReview(String id) {
+		return rDao.myReview(id);
 	}
 	
 	

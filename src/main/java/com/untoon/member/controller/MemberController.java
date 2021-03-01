@@ -148,6 +148,12 @@ public class MemberController {
 	public String pwdfindView() {
 		return "member/findPwdView";
 	}
+	
+	// 일반회원 -> 강사로 지원하기
+	@RequestMapping("insertTeacher.do")
+	public String insertTeacher() {
+		return "member/teacherInsertForm";
+	}
 
 	// 회원가입
 	@RequestMapping(value = "minsert.do", method = RequestMethod.POST)

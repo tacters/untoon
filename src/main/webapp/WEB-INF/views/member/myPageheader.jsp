@@ -159,17 +159,18 @@ $(function(){
 							<c:url var="myUpdateView" value="myUpdateView.do"/>
 						<li><a href="${ myUpdateView }">회원정보 수정</a>
 						</li>
-							<c:url var="myDeleteView" value="myDeleteView.do"/>
-						<li><a href="${ myDeleteView }">강사로 지원하기</a></li>
+							<c:url var="insertTeacher" value="insertTeacher.do"/>
+						<li><a href="${ insertTeacher }">강사로 지원하기</a></li>
 							<c:url var="myDeleteView" value="myDeleteView.do"/>
 						<li><a href="${ myDeleteView }">회원 탈퇴</a></li>
 			   		</ul>
 			   </li>
 			   	<li><a href="#" id="#" title="내 활동 내역" class="#">내 활동 내역</a>
 					<ul>	
-						<li><a href="#" id="#" class="#">내가 쓴 댓글</a></li>
-						<li><a href="#" id="#" class="#">클래스 후기</a></li>
-						<li><a href="#" id="#" class="#">1:1문의</a></li>
+						<c:url var="myreview" value="/myreview.do"/>
+						<li><a href="${ myreview }">클래스 후기</a></li>
+						<c:url var="myqa" value="/myqa.do"/>
+						<li><a href="${ myqa }">1:1문의</a></li>
 			  		</ul>
 			  	</li>
 			 </ul>

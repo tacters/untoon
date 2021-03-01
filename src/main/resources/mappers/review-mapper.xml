@@ -14,6 +14,22 @@
 		<result column="rfile_r" property="rfile_r" />
 		<result column="save_count" property="save_count"/>
 	</resultMap>
+	
+	<resultMap type="ReviewClss" id="resultReviewClss">
+		<id column="rid" property="rid" />
+		<id column="cid" property="cid" />
+		<result column="rwriter" property="rwriter" />
+		<result column="rcontent" property="rcontent" />
+		<result column="r_create_date" property="r_create_date" />
+		<result column="r_modify_date" property="r_modify_date" />
+		<result column="r_status" property="r_status" />
+		<result column="save_count" property="save_count"/>
+		<result column="clss_title" property="clss_title"/>
+		<result column="clss_start" property="clss_start"/>
+		<result column="clss_end" property="clss_end"/>
+		<result column="tchr_id" property="tchr_id"/>
+		
+	</resultMap>
 
 <!-- <, >, & 들어가면 사용하기 <![CDATA[ 쿼리문장 ]]>  -->
 
@@ -73,6 +89,13 @@
 				R_MODIFY_DATE=SYSDATE
 		WHERE RID= #{ rid }
 	</update>
+	
+	<!-- 마이페이지에서 본인 후기 불러오기 -->
+	<select id="myReivew" parameterType="string" resultMap="resultReviewClss">
+	select * from review
+	join clss using (cid)
+	where rwriter = #{ id}
+	</select>
 
 </mapper>
 
