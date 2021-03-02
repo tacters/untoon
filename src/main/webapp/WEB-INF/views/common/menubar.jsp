@@ -271,8 +271,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											<a href='${ clist }' title="clist">클래스 찾기</a>
 								</div>
 								<div class="widget edgtf-login-register-widget">
-									<c:url var="myInfo" value="/myInfo.do" />
-									<a href='${ myInfo }' title="myInfo">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->
+									<c:url var="mclss" value="/mclss.do" />
+									<a href='${ mclss }' title="mclss">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->
 								</div>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="pmselect" value="/pmselect.do" />
@@ -313,10 +313,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											<a href='${ hdetail }' title="hdetail"> 홈페이지 관리 </a> <!-- 홈페이지 관리하기 -->
 								</div>
 								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
-											<c:url var="adnclist" value="/adnclist.do" />
-											<a href='${ adnclist }' title="adnclist">미승인 클래스 </a> <!-- 관리자 미승인 클래스 목록보기 -->
+											<c:url var="adpage" value="/adpage.do" />
+											<a href='${ adpage }' title="adpage">클래스 관리 </a> <!-- 클래스 관리하기 -->
 								</div>
-								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
+								<%-- <div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
 											<c:url var="adclist" value="/adclist.do" />
 											<a href='${ adclist }' title="adclist">승인클래스</a> <!-- 관리자 승인 클래스 목록보기 -->
 								</div>
@@ -327,7 +327,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
 											<c:url var="adrclist" value="/adrclist.do" />
 											<a href='${ adrclist }' title="adrclist">승인거부 클래스</a> <!-- 관리자 기간지난 클래스 목록보기 -->
-								</div>
+								</div>--%>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="myInfo" value="/myInfo.do" />
 									<a href='${ myInfo }' title="myInfo">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->

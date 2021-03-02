@@ -37,4 +37,9 @@ public class QaDao {
 		return sqlSession.insert("qaMapper.deleteQa", qid);
 	}
 
+	public ArrayList<QA> myQa(String id) {
+		List<QA> list = sqlSession.selectList("qaMapper.myQa",id); 
+		return (ArrayList<QA>)list;
+	}
+
 }

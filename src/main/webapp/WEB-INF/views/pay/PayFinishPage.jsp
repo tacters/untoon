@@ -12,17 +12,26 @@
 <c:import url="../common/menubar.jsp"/>
 
 
-<h1> 결제가 완료되었습니다. </h1>
+<h2> 결제가 완료되었습니다. </h2>
 <hr>
+<form action="pinsert.do" post="post">
 <h3>주문정보</h3>
-<p>${ clss.clss_title }</p> <br>
-<p>${ clss.tchr_id }</p> &nbsp; &nbsp; &nbsp; <p>${clss.clss_start} ~ ${clss.clss_end}</p>
+<p>${ clss.clss_title }</p>
+<p>${ clss.tchr_id }</p> &nbsp; &nbsp; &nbsp; 
+<p>${clss.clss_start} ~ ${clss.clss_end}</p>
 <hr>
 <h3>고객 정보</h3>
-<p><label>고객명 : <input type="text" name="name" value="${loginUser.name}"></label></p>
-<p><label>연락처 : <input type="tel" name="phone" value="${loginUser.phone}"></label></p>
+<p><label>고객명 : <input type="text" value="${loginUser.name}"></label></p>
+<p><label>연락처 : <input type="tel" value="${loginUser.phone}"></label></p>
 <hr>
-<p>총 상품 금액 : ${ clss.clss_price }</p>
+<p>총 결제 금액 : ${ clss.clss_price }</p>
+
+<input type="hidden" name="pid" value="${loginUser.id}">
+<input type="hidden" name="cid" value="${clss.cid}">
+
+<button class="btn">결제완료 </button>
+
+</form>
 
 <footer><c:import url="../common/footer.jsp"/></footer>
 

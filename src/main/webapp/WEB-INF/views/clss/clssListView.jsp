@@ -3,6 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
+
+<c:set var="maxPage" value="${ requestScope.maxPage }" /> 
+<c:set var="startPage" value="${ requestScope.startPage }"  /> 
+<c:set var="endPage" value="${ requestScope.endPage }"  /> 
+<c:set var="currentPage" value="${ requestScope.currentPage }"  />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +45,133 @@
 </tr>
 </c:forEach>
 </table>
+
+<!-- 페이징 처리 -->
+<%-- 현재 페이지가 1이 아니면 링크설정, 현재 1페이지이면 링크없음 --%>
+<c:if test="${ empty action}">
+<%-- 페이징 처리 
+   [맨처음][이전] 숫자...........  [다음][맨끝]
+--%>
+<div style="text-align: center;">
+<c:if test="${ currentPage <= 1}">
+[맨처음]
+</c:if>
+<c:if test="${ currentPage > 1 }">
+   <c:url var="cls" value="/clist.do">
+      <c:param name="page" value="1" />
+   </c:url>
+   <a href="${ cls }">[맨처음]</a>
+</c:if> &nbsp;
+<%-- 이전 그룹이 있으면 링크설정, 이전 그룹 없으면 링크없음 --%>
+<c:if test="${ (currentPage - 10) < startPage and (currentPage - 10) >= 1 }">
+   <c:url var="cls2" value="/clist.do">
+      <c:param name="page" value="${ startPage - 10 }"/>
+   </c:url>
+   <a href="${ cls2 }">[이전]</a>
+</c:if>
+<c:if test="${ !((currentPage - 10) < startPage and (currentPage - 10) >= 1) }">
+[이전]
+</c:if> &nbsp; 
+<%-- 가운데 표시할 페이지 그룹 숫자 링크 설정 --%>
+<c:forEach var="p" begin="${ startPage }" end="${ endPage }" step="1">
+    <c:if test="${ p eq currentPage }">
+      <font size="4" color="red">[${ p }]</font>
+   </c:if>
+   <c:if test="${ p ne currentPage }">
+      <c:url var="cls3" value="/clist.do">
+         <c:param name="page" value="${ p }" />
+      </c:url>
+      <a href="${ cls3 }">${ p }</a>
+   </c:if>
+</c:forEach> &nbsp;
+<%-- 다음 그룹이 있으면 링크설정, 다음 그룹 없으면 링크없음 --%>
+<c:if test="${ (currentPage + 10) > endPage && (currentPage + 10) < maxPage }">
+   <c:url var="cls4" value="/clist.do">
+      <c:param name="page" value="${ endPage + 10 }"/>
+   </c:url>
+   <a href="${ cls4 }">[다음그룹]</a>
+</c:if>
+<c:if test="${ !((currentPage + 10) > endPage && (currentPage + 10) < maxPage) }">
+   [다음그룹]&nbsp;
+</c:if>
+<!-- 맨끝 페이지로 이동 처리 -->
+<c:if test="${ currentPage >= maxPage }">
+   [맨끝]&nbsp;
+</c:if>   
+<c:if test="${ currentPage < maxPage }">
+   <c:url var="cls5" value="/clist.do">
+      <c:param name="page" value="${ maxPage }"/>
+   </c:url>
+   <a href="${ cls5 }">[맨끝]</a>
+</c:if>
+</div>
+</c:if>
+
+
+<c:if test="${ !empty action}">
+<%-- 페이징 처리 
+   [맨처음][이전] 숫자...........  [다음][맨끝]
+--%>
+<div style="text-align: center;">
+<c:if test="${ currentPage <= 1}">
+[맨처음]
+</c:if>
+<c:if test="${ currentPage > 1 }">
+   <c:url var="bsearch1" value="${ action }">
+      <c:if test="${ action ne 'bsearchDate.do'}">
+         <c:param name="page" value="1" />
+      </c:if>
+      <c:if test="${ action eq 'bsearchDate.do'}">
+         <c:param name="begin" value="${ begin }" />
+         <c:param name="end" value="${ end }" />
+      </c:if>
+   </c:url>
+   <a href="${ bsearch1 }">[맨처음]</a>
+</c:if> &nbsp;
+<%-- 이전 그룹이 있으면 링크설정, 이전 그룹 없으면 링크없음 --%>
+<c:if test="${ (currentPage - 10) < startPage and (currentPage - 10) >= 1 }">
+   <c:url var="bsearch2" value="/blist.do">
+      <c:param name="page" value="${ startPage - 10 }"/>
+   </c:url>
+   <a href="${ bsearch2 }">[이전]</a>
+</c:if>
+<c:if test="${ !((currentPage - 10) < startPage and (currentPage - 10) >= 1) }">
+[이전]
+</c:if> &nbsp; 
+<%-- 가운데 표시할 페이지 그룹 숫자 링크 설정 --%>
+<c:forEach var="p" begin="${ startPage }" end="${ endPage }" step="1">
+    <c:if test="${ p eq currentPage }">
+      <font size="4" color="red">[${ p }]</font>
+   </c:if>
+   <c:if test="${ p ne currentPage }">
+      <c:url var="bsearch3" value="/blist.do">
+         <c:param name="page" value="${ p }" />
+      </c:url>
+      <a href="${ bsearch3 }">${ p }</a>
+   </c:if>
+</c:forEach> &nbsp;
+<%-- 다음 그룹이 있으면 링크설정, 다음 그룹 없으면 링크없음 --%>
+<c:if test="${ (currentPage + 10) > endPage && (currentPage + 10) < maxPage }">
+   <c:url var="bsearch4" value="/blist.do">
+      <c:param name="page" value="${ endPage + 10 }"/>
+   </c:url>
+   <a href="${ bsearch4 }">[다음그룹]</a>
+</c:if>
+<c:if test="${ !((currentPage + 10) > endPage && (currentPage + 10) < maxPage) }">
+   [다음그룹]&nbsp;
+</c:if>
+<!-- 맨끝 페이지로 이동 처리 -->
+<c:if test="${ currentPage >= maxPage }">
+   [맨끝]&nbsp;
+</c:if>   
+<c:if test="${ currentPage < maxPage }">
+   <c:url var="bsearch5" value="/blist.do">
+      <c:param name="page" value="${ maxPage }"/>
+   </c:url>
+   <a href="${ bsearch5 }">[맨끝]</a>
+</c:if>
+</div>
+</c:if>
 <footer><c:import url="../common/footer.jsp"/></footer>
 </body>
 </html>

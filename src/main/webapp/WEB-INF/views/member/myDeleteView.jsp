@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:import url="../common/menubar.jsp"/>
 	<c:import url="../member/myPageheader.jsp"/>  
 	<br><br><br><br>
 	
@@ -26,5 +27,6 @@
 					</td>
 			</tr>
 		</table>
+		<c:import url="../common/footer.jsp"/>
 </body>
 </html>

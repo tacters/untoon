@@ -135,7 +135,7 @@ body, html {
   cursor: pointer;
   padding: 14px 16px;
   font-size: 17px;
-  width: 10%;
+  width: 20%;
   min-width: 150px;
 }
 
@@ -674,11 +674,15 @@ function selfReply(qid){
 			})
 		</script>
 		   
+		<!-- <div class="tabcontent"> -->
+		<div class="button">
 		<button class="tablink" onclick="openPage('1-intro', this, '#2392bd')" class="defaultOpen" id="tab1"> 클래스 소개 </button>
 		<button class="tablink" onclick="openPage('2-review', this, '#2392bd')" id="tab2"> 후기 </button>
 		<button class="tablink" onclick="openPage('3-qna', this, '#2392bd')" id="tab3"> 문의 </button>
 		<button class="tablink" onclick="openPage('4-refund', this, '#2392bd')" id="tab4"> 환불정책 </button>
 		<button class="tablink" onclick="openPage('5-teacher', this, '#2392bd')" id="tab5"> 강사소개 </button>
+		</div>
+		<!-- </div> -->
 		
 		<!-- 클래스 소개 -->
 		<div id="1-intro" class="tabcontent">

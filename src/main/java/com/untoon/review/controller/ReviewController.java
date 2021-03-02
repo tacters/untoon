@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -21,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.untoon.member.model.vo.Member;
 import com.untoon.review.model.service.ReviewService;
 import com.untoon.review.model.vo.Review;
+import com.untoon.review.model.vo.ReviewClss;
 
 @Controller
 public class ReviewController {
@@ -195,6 +198,26 @@ public class ReviewController {
 				model.addAttribute("msg", rid + "번 후기 글 조회 실패");
 				return "common/errorPage";
 			}
+		}
+		
+		// 마이페이지에서 본인 후기 불러오기
+		@RequestMapping("myreview.do")
+		public String myReview(HttpSession session, Model model) {
+			Member loginUser = (Member)session.getAttribute("loginUser");
+			String id = loginUser.getId();
+			System.out.println(id);
+			
+			ArrayList<ReviewClss> list = rService.myReview(id);
+			System.out.println(list);
+			if(list.size() > 0) {
+				System.out.println("값있음");
+				model.addAttribute("list",list);
+				return "member/myReview";
+			}else {
+				model.addAttribute("msg","리뷰 없음");
+				return "common/errorPage";
+			}
+			
 		}
 	
 }// ReviewController

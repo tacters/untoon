@@ -44,5 +44,11 @@ public class QaServiceImpl implements QaService{
 	public int deleteQa(int qid) {
 		return qaDao.deleteQa(qid);
 	}
+
+	// 마이페이지에서 1:1문의 내역 가져오기
+	@Override
+	public ArrayList<QA> myQa(String id) {
+		return qaDao.myQa(id);
+	}
 	
 }

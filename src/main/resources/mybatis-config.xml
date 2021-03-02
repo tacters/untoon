@@ -13,6 +13,7 @@
 		<typeAlias type="com.untoon.pay.model.vo.PayClss" alias="PayClss"/>
 		
 		<typeAlias type="com.untoon.review.model.vo.Review" alias="Review"/>
+		<typeAlias type="com.untoon.review.model.vo.ReviewClss" alias="ReviewClss"/>
 		<typeAlias type="com.untoon.review.model.vo.ReviewReply" alias="ReviewReply"/>
 		
 		<typeAlias type="com.untoon.qa.model.vo.QA" alias="QA"/>

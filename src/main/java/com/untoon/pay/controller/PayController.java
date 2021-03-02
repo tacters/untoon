@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.untoon.clss.model.service.ClssService;
+import com.untoon.clss.model.vo.Clss;
 import com.untoon.member.model.vo.Member;
 import com.untoon.pay.model.service.PayService;
 import com.untoon.pay.model.vo.Pay;
@@ -20,6 +22,45 @@ public class PayController {
 	
 	@Autowired
 	private PayService payService;
+	
+	@RequestMapping("kakaopay.do")
+	public String kakaoPay() {
+		return "pay/kakaopay";
+	}
+	
+	//클래스 상세정보 가져오기 ..그 중에서 필요한 정보들 호출할거야 뷰페이지(결제하는페이지)에서
+	//클래스 상세에서 구매하기 누르면 결제페이지로 클래스 정보 값 넘겨줘
+	@RequestMapping("paymove.do")
+	public String clssPayMove(Model model, @RequestParam("cid") int cid) {
+		PayClss pay = payService.payMove(cid);
+		
+		if(pay != null) {
+			System.out.println("clsspaymove값있음");
+			model.addAttribute("clss", pay);
+			return "pay/PayPage";
+		} else {
+			System.out.println("clsspaymove값없음");
+			model.addAttribute("msg", "결제페이지 이동이 실패하였습니다.");
+			return "common/errorPage";
+		}
+	}
+	
+	//카카오페이 결제가 끝나고 결제완료페이지로 넘어갈 때 값 넘겨주기
+	@RequestMapping("kakaomove.do")
+	public String kakaoMove(Model model, @RequestParam("cid") int cid) {
+		PayClss pay = payService.payMove(cid);
+		
+		if(pay != null) {
+			System.out.println("kakaomove값있음");
+			model.addAttribute("clss", pay);
+			return "pay/PayFinishPage";
+		} else {
+			System.out.println("kakaomove값없음");
+			model.addAttribute("msg", "결제페이지 이동이 실패하였습니다.");
+			return "common/errorPage";
+		}
+	}
+	
 	
 	//관리자가 전체 결제 목록 보기 요청 할 때 
 	@RequestMapping("plist.do")
@@ -82,14 +123,9 @@ public class PayController {
 		@RequestMapping("pinsert.do")
 		public String insertPay(Pay pay, Model model, HttpSession session) {
 			int p = payService.insertPay(pay);
-			Member loginUser = (Member) session.getAttribute("loginUser");
 			
-			if(p > 0 && loginUser !=null && loginUser.getUser_lv().equals("S")) {
-				model.addAttribute("msg", "결제가 완료되었습니다.");
-				return "pay/PayFinishPage";
-			}else if(p > 0 && loginUser !=null && loginUser.getUser_lv().equals("A")) {
-				return "pay/AdminPayList";
-			
+			if(p > 0 ) {
+				return "redirect: home.do";
 			}else {
 				model.addAttribute("msg", "결제가 실패되었습니다.");
 				return "common/errorPage";
