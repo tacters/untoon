@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<c:import url="../common/menubar.jsp"/>
 	<c:import url="../member/myPageheader.jsp"/>  
 	<br><br><br><br>
 	
@@ -102,6 +103,7 @@
 				</table>
 				</form>
 				</div>
+				<footer><c:import url="../common/footer.jsp"/></footer>
 		</body>
 		<script type="text/javascript">	
 	

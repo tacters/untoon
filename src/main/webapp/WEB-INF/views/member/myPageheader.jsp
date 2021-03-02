@@ -44,10 +44,10 @@
       line-height: 40px;
       color: #fff;
       text-decoration: none;
-      text-shadow: 1px 1px 1px #880000;
+      /* text-shadow: 1px 1px 1px #880000; */
       margin: 0;
       padding: 0 30px;
-      background: #F5D0A9;
+      background: #2392BD;
       -moz-border-radius-topright: 10px;
       -webkit-border-top-right-radius: 10px;
       -moz-border-radius-topleft: 10px;
@@ -57,8 +57,8 @@
    ul.navi .current a, ul.navi li:hover > a { 
       color: #fff;
       text-decoration: none; 
-      text-shadow: 1px 1px 1px #330000; 
-      background: #fab66e; 
+      /* text-shadow: 1px 1px 1px #330000;  */
+      background: #2392BD; 
       -moz-border-radius-topright: 10px; 
       -webkit-border-top-right-radius: 10px;
       -moz-border-radius-topleft: 10px;
@@ -73,7 +73,7 @@
       width: 920px; 
       height: 45px; 
       margin: 40px 0 0 0; 
-      background: #c29f7a; 
+      background: #2392BD; 
       -moz-border-radius-bottomright: 10px;
       -webkit-border-bottom-right-radius: 10px;
       -moz-border-radius-bottomleft: 10px;
@@ -86,10 +86,10 @@
       line-height: 45px;
       color: #fff;
       text-decoration: none;
-      text-shadow: 1px 1px 1px #110000;
+      /* text-shadow: 1px 1px 1px #110000; */
       margin: 0;
       padding: 0 30px 0 0;
-      background: #c29f7a;
+      background: #2392BD;
    }
 
    ul.navi li:hover > ul li a:hover {
