@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adMapper">
+
+<resultMap id="adResultSet" type="Ad">
+		<id property="adid" column="adid"/>
+		<result property="ad_title" column="ad_title"/>
+		<result property="ad_xy" column="ad_xy"/>
+		<result property="ad_start" column="ad_start"/>
+		<result property="ad_end" column="ad_end"/>
+		<result property="a_status" column="a_status"/>
+		<result property="ad_width" column="ad_width"/>
+		<result property="ad_height" column="ad_height"/>
+		<result property="ad_close" column="ad_close"/>
+</resultMap>
+
+
+
+
+<insert id="insertAd" parameterType ="Ad">
+		INSERT INTO 	AD
+		VALUES (			seq_adid.nextval , <!-- ADID  -->
+								#{ ad_title }, #{ ad_xy },
+								#{ ad_start }, #{ ad_end }, #{ a_status },
+								#{ ad_width }, #{ ad_height }, #{ ad_close }
+					)
+</insert>
+
+<update id="updateAd" parameterType = "Ad">
+		 UPDATE	AD
+				SET	ad_title = #{ ad_title }, ad_xy = #{ ad_xy },   <!-- ADID 제외하고 수정 가능 -->
+						ad_start = #{ ad_start }, ad_end = #{ ad_end }, a_status = #{ a_status },
+						ad_width = #{ ad_width }, ad_height = #{ ad_height }, ad_close= #{ ad_close }
+		  WHERE	ADID = #{ adid }
+</update> 
+
+<update id = "deleteAd" parameterType = "_int">
+		  UPDATE		AD
+				 SET		A_STATUS = 'N'
+		   WHERE		ADID = #{ adid }	
+</update>
+
+<select id="selectAllAd" resultMap="adResultSet">
+		<![CDATA[
+			SELECT * FROM AD
+			WHERE ROWNUM<=4
+			ORDER BY ADID DESC
+		]]>
+</select>
+
+<select id="selectAd" parameterType="_int" resultMap="adResultSet">
+			SELECT * FROM AD
+			WHERE ADID = #{ adid }
+</select>
+	
+<select id="selectRecentAd" resultMap="adResultSet">
+			SELECT * FROM AD
+			WHERE ADID = (SELECT MAX(ADID) FROM AD)
+</select>
+	
+	
+</mapper>

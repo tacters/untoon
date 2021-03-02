@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="homeMapper">
+
+<resultMap id="homeResultSet" type="Home">
+		<id property="hid" column="HID"/>
+		<result property="banner1_txt" column="banner1_txt"/>
+		<result property="search_txt" column="search_txt"/>
+		<result property="menu_cat1" column="menu_cat1"/>
+		<result property="menu_cat2" column="menu_cat2"/>
+		<result property="menu_cat3" column="menu_cat3"/>
+		<result property="menu_cat4" column="menu_cat4"/>
+		<result property="menu_cat5" column="menu_cat5"/>
+		<result property="menu_cat6" column="menu_cat6"/>
+		<result property="trending_txt" column="trending_txt"/>
+		<result property="howto_title" column="howto_title"/>
+		<result property="howto_txt" column="howto_txt"/>
+		<result property="banner2_txt" column="banner2_txt"/>
+</resultMap>
+
+
+<insert id="insertHome" parameterType ="Home">
+		INSERT INTO 	HOME
+		VALUES (			seq_hid.nextval , <!-- HID  -->
+								#{ banner1_txt }, #{ search_txt },
+								#{ menu_cat1 }, #{ menu_cat2 }, #{ menu_cat3 }, #{ menu_cat4 }, #{ menu_cat5 }, #{ menu_cat6 },
+								#{ trending_txt }, #{ howto_title }, #{ howto_txt }, #{ banner2_txt }
+					)
+</insert>
+
+	<select id="selectAll" resultMap="homeResultSet">
+		SELECT * FROM HOME
+		ORDER BY HID DESC
+	</select>
+	
+	<select id="selectHome" parameterType="_int" resultMap="homeResultSet">
+		SELECT * FROM 	HOME
+		WHERE 				HID =(SELECT MAX(HID) FROM HOME)
+	</select>
+
+
+
+</mapper>

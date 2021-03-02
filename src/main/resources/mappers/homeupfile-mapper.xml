@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="homeUpfileMapper">
+
+<resultMap id="hUpfileResultSet" type="HomeUpfile">
+		<id property="huid" column="huid"/>
+		<result property="adid" column="adid"/>
+		<result property="ad_file" column="ad_file"/>
+		<result property="hid" column="hid"/>
+		<result property="banner1_img" column="banner1_img"/>
+		<result property="logo_cat1" column="logo_cat1"/>
+		<result property="logo_cat2" column="logo_cat2"/>
+		<result property="logo_cat3" column="logo_cat3"/>
+		<result property="logo_cat4" column="logo_cat4"/>
+		<result property="logo_cat5" column="logo_cat5"/>
+		<result property="logo_cat6" column="logo_cat6"/>
+		<result property="howto_file" column="howto_file"/>
+		<result property="banner2_img" column="banner2_img"/>
+</resultMap>
+
+
+
+
+
+<insert id="insertHomeFiles" parameterType ="HomeUpfile">
+		INSERT INTO 	HOME_UPFILE
+		<if test="hid != null"> <!-- 홈페이지 수정 하는 경우 = 첨부파일 있을 경우 -->
+		VALUES (			seq_huid.nextval , <!-- HUID  -->
+								null, null, 
+								#{ hid }, #{ banner1_img }, 
+								#{ logo_cat1 }, #{ logo_cat2 }, #{ logo_cat3 }, #{ logo_cat4 }, #{ logo_cat5 }, #{ logo_cat6 }, 
+								#{ howto_file }, #{ banner2_img }
+					)
+		</if>
+		<if test="hid == null"> <!-- 광고 첨부파일 없을 경우 -->
+		VALUES (			seq_huid.nextval , <!-- HUID  -->
+								null , null, 
+								null, null, 
+								null, null, null, null, null, null, 
+								null, null
+					)
+		</if>
+</insert>
+
+<update id="updateHomeFiles" parameterType = "HomeUpfile">
+		 UPDATE	HOME_UPFILE
+				SET	
+						<if test = "banner1_img !=null">	banner1_img = #{ banner1_img }	</if>
+						<if test = "banner1_img ==null">	banner1_img = null		</if>
+						,
+						<if test = "logo_cat1 !=null">	logo_cat1 = #{ logo_cat1 }	</if>
+						<if test = "logo_cat1 ==null">	logo_cat1 = null		</if>
+						,
+						<if test = "logo_cat2 !=null">	logo_cat2 = #{ logo_cat2 }	</if>
+						<if test = "logo_cat2 ==null">	logo_cat2 = null		</if>
+						,
+						<if test = "logo_cat3 !=null">	logo_cat3 = #{ logo_cat3 }	</if>
+						<if test = "logo_cat3 ==null">	logo_cat3 = null		</if>
+						,
+						<if test = "logo_cat4 !=null">	logo_cat4 = #{ logo_cat4 }	</if>
+						<if test = "logo_cat4 ==null">	logo_cat4 = null		</if>
+						,
+						<if test = "logo_cat5 !=null">	logo_cat5 = #{ logo_cat5 }	</if>
+						<if test = "logo_cat5 ==null">	logo_cat5 = null		</if>
+						,
+						<if test = "logo_cat6 !=null">	logo_cat6 = #{ logo_cat6 }	</if>
+						<if test = "logo_cat6 ==null">	logo_cat6 = null		</if>
+						,
+						<if test = "howto_file !=null">	howto_file = #{ howto_file }	</if>
+						<if test = "howto_file ==null">	howto_file = null		</if>
+						,
+						<if test = "banner2_img !=null">	banner2_img = #{ banner2_img }	</if>
+						<if test = "banner2_img ==null">	banner2_img = null		</if>
+		  WHERE	hid = #{ hid }
+</update> 
+
+<delete id = "deleteHomeFiles" parameterType = "_int">
+		  DELETE FROM		HOME_UPFILE
+		   WHERE				hid = #{ hid }
+</delete>
+	
+<select id="selectHomeUpfile"  resultMap="hUpfileResultSet">
+		SELECT * FROM  HOME_UPFILE
+		WHERE				  hid = (SELECT MAX(HID) FROM HOME_UPFILE)
+</select>
+	
+
+
+
+<!-- ADID 관련 첨부파일은 별도로 삽입-->
+
+
+
+
+<insert id="insertAdFile" parameterType ="HomeUpfile">
+		INSERT INTO 	HOME_UPFILE
+		<if test="ad_file != null"> <!-- 광고 첨부파일 있을 경우 -->
+		VALUES (			seq_huid.nextval , <!-- HUID  -->
+								#{ adid } , #{ ad_file }, 
+								null, null, 
+								null, null, null, null, null, null, 
+								null, null
+					)
+		</if>
+		<if test="ad_file == null"> <!-- 광고 첨부파일 없을 경우 -->
+		VALUES (			seq_huid.nextval , <!-- HUID  -->
+								#{ adid } , null, 
+								null, null, 
+								null, null, null, null, null, null, 
+								null, null
+					)
+		</if>
+</insert>
+
+<update id="updateAdFile" parameterType = "HomeUpfile">
+		 UPDATE	HOME_UPFILE
+				SET	
+						<if test = "ad_file !=null">
+						ad_file = #{ ad_file }
+						</if>
+						<if test = "ad_file ==null">
+						ad_file = null
+						</if>
+		  <!-- WHERE	HUID = ${ huid } -->
+		  WHERE	ADID = ${ adid }
+</update> 
+
+<delete id = "deleteAdFile" parameterType = "_int">
+		  DELETE FROM		HOME_UPFILE
+		   <!-- WHERE				HUID = ${ huid } -->
+		   WHERE	ADID = ${ adid }
+</delete>
+	
+<select id="selectAdUpfile" parameterType="_int" resultMap="hUpfileResultSet">
+			SELECT * FROM  HOME_UPFILE
+			<!-- WHERE				  HUID = ${ huid } -->
+			WHERE				ADID = ${ adid }
+</select>
+
+</mapper>
