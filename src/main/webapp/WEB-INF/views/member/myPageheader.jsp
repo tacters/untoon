@@ -9,84 +9,98 @@
 <title>UNTOON 언투온택터즈</title>
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/resources/js/jquery-3.5.1.min.js"></script>
-<style>
-	#div_root{
-		margin:auto;
-		width:800px;
-	}
-	#div_top{
-		width:100%;
-		height:100px;
-		background-color:#82FA58;
-		text-align:center;
-	}
-	#div_menu{
-		width:20%;
-		height:70%;
-		float:left;
-		/* background-color:#819FF7; */
-		text-align:left;
-	}
-	#div_menu ul{
-		width:30%;
-		height:30%;
-		float:left;
-		align:center;
-		list-style-type:none;
-		margin:10%;
-		padding:10;
-		/* border:solid 1px black; */
-		background-color:#2392BD;
-	}
-	#div_menu ul li:last-child {
-		height:0;
-	}
-	#div_con{
-		width:80%;
-		height:70%;
-		float:left;
-		background-size:100%100%;
-		text-align:center;
-	}
-	#div_bottom{
-		width:100%;
-		height:100px;
-		clear:both;
-		background-color:#C8FE2E;
-		text-align:center;
-	}
-	
-	
-</style>
 <style type="text/css">
-	/* ul {
-		background-color:#2392BD;
-		width:150px;
-		list-style-type:none;
-		margin:10%;
-		padding:10;
-		border:solid 1px black;
-	} */
-	li { border-bottom: solid 1px black;}
-	li:last-child { border-bottom:solid;}
-	button { background-color:#C6D8D3; border:none;}
-	li button{
-		display:block;
-		color:#000000;
-		padding:8px;
-		text-align:center;
-		text-decoration:none;
-		font-weight: bold;
-	}
-	li button.current{
-		background-color:#2392BD;
-		color: white;
-	}
-	li button:hover:not(.current){
-		background-color:#2392BD;
-		color : white;
-	}
+.container-avatar {
+  position: relative;
+  width: 20%;
+  max-width: 200px;
+}
+   #menu {
+      width: 960px;
+      height: 40px;
+      clear: both;
+   }
+
+   ul.navi {
+      float: left;
+      width: 960px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      -moz-border-radius-topright: 10px;
+      -webkit-border-top-right-radius: 10px;
+      -moz-border-radius-topleft: 10px;
+      -webkit-border-top-left-radius: 10px;
+       
+   }
+
+   ul.navi li {
+      display: inline;
+   }
+
+   ul.navi li a {
+      float: left;
+      font: bold 14px 굴림;
+      line-height: 40px;
+      color: #fff;
+      text-decoration: none;
+      /* text-shadow: 1px 1px 1px #880000; */
+      margin: 0;
+      padding: 0 30px;
+      background: #2392BD;
+      -moz-border-radius-topright: 10px;
+      -webkit-border-top-right-radius: 10px;
+      -moz-border-radius-topleft: 10px;
+      -webkit-border-top-left-radius: 10px;
+   }
+
+   ul.navi .current a, ul.navi li:hover > a { 
+      color: #fff;
+      text-decoration: none; 
+      /* text-shadow: 1px 1px 1px #330000;  */
+      background: #2392BD; 
+      -moz-border-radius-topright: 10px; 
+      -webkit-border-top-right-radius: 10px;
+      -moz-border-radius-topleft: 10px;
+      -webkit-border-top-left-radius: 10px; 
+   }
+   
+   ul.navi ul { display: none; }
+   
+   ul.navi li:hover > ul {
+      position: absolute; 
+      display: block; 
+      width: 920px; 
+      height: 45px; 
+      margin: 40px 0 0 0; 
+      background: #2392BD; 
+      -moz-border-radius-bottomright: 10px;
+      -webkit-border-bottom-right-radius: 10px;
+      -moz-border-radius-bottomleft: 10px;
+      -webkit-border-bottom-left-radius: 10px; 
+   }
+
+   ul.navi li:hover > ul li a {
+      float: left;
+      font: bold 14px 굴림;
+      line-height: 45px;
+      color: #fff;
+      text-decoration: none;
+      /* text-shadow: 1px 1px 1px #110000; */
+      margin: 0;
+      padding: 0 30px 0 0;
+      background: #2392BD;
+   }
+
+   ul.navi li:hover > ul li a:hover {
+      color: #120000;
+      text-decoration: none;
+      text-shadow: none;
+   }
+   
+
 </style>
+
 <!-- <script type="text/javascript">
 $(function(){
 	
