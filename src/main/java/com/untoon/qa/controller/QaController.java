@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.untoon.member.model.vo.Member;
 import com.untoon.qa.model.service.QaService;
 import com.untoon.qa.model.vo.QA;
 
@@ -44,7 +47,7 @@ public class QaController {
 	}
 	
 	@RequestMapping("qdelete.do")
-	public String replyDeleteMethod(@RequestParam("qid") int qid, 
+	public String deleteQa(@RequestParam("qid") int qid, 
 																@RequestParam("cid") int cid, Model model) {
 		if(qaService.deleteQa(qid) > 0) {
 					return "redirect: cdetail.do?cid=" + cid;
@@ -86,6 +89,25 @@ public class QaController {
 			sendJson.put("list", jarr);
 
 			return sendJson.toJSONString(); // jsonView 가 리턴됨
+		}
+		
+		// 마이페이지에서 1:1문의 내역 가져오기
+		@RequestMapping("myqa.do")
+		public String myQa(HttpSession session, Model model) {
+			Member loginUser = (Member)session.getAttribute("loginUser");
+			String id = loginUser.getId();
+			
+			ArrayList<QA> list = qaService.myQa(id);
+			System.out.println(list);
+			if(list.size() > 0) {
+				System.out.println("값있음");
+				model.addAttribute("list",list);
+				return "member/myQa";
+			}else {
+				model.addAttribute("msg","qa목록이 없습니다.");
+				return "common/errorPage";
+			}
+			
 		}
 	
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +42,7 @@ function showDiv(){
 }
 </script>
 <body>
+<c:import url="../common/menubar.jsp"/>
 
 	<h1 align="center">회원가입</h1>
 
@@ -143,7 +145,9 @@ function showDiv(){
 		</form>
 		<br> <br> <a href="home.do">홈 페이지로 이동</a>
 	</div>
-	<footer><c:import url="../common/footer.jsp"/></footer>
+	<footer>
+	<c:import url="../common/footer.jsp"/>
+	</footer>
 </body>
 	<script type="text/javascript">	
 	function idDuplicateCheck(){
@@ -171,7 +175,7 @@ function showDiv(){
 		}
 	
 	//  email관련 ajax  
-	function email(){
+	/* function email(){
 		$.ajax({
 			url: "emailNum.do",
 			type: "post",
@@ -184,7 +188,6 @@ function showDiv(){
 			               + ", " + errorthrown);
 			  }    
 		});
-	}
-	// ▲ email ajax
+	} */
 	</script>
 </html>

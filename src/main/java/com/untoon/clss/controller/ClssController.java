@@ -7,9 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.untoon.clss.model.service.ClssService;
 import com.untoon.clss.model.vo.Clss;
+import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.vo.Member;
+
+import net.sf.json.JSONArray;
 
 @Controller
 public class ClssController {
@@ -31,18 +34,34 @@ public class ClssController {
 
 	// 사용자 클래스 목록조회
 	@RequestMapping("clist.do")
-	public String clssListMethod(Model model) {
+	public String clssListMethod(@RequestParam("page") int currentPage, Model model) {
+		int limit = 10;
+		ArrayList<Clss> list = cService.clssList(currentPage, limit);
 
-		ArrayList<Clss> list = cService.clssList();
+		// 페이지 처리와 관련된 값 처리
+		// 총 페이지 계산을 위한 총 목록 갯수 조회
+		int listCount = cService.getListCount();
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+		// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+		int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+		int endPage = startPage + 9;
+
+		if (maxPage < endPage)
+			endPage = maxPage;
 
 		System.out.println(list);
 		if (list.size() > 0) {
 			System.out.println("목록있음");
 			model.addAttribute("list", list);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
 			return "clss/clssListView";
 		} else {
 			System.out.println("목록없음");
-			model.addAttribute("msg", "강의 목록 조회 실패");
+			model.addAttribute("msg", currentPage + "강의 목록 조회 실패");
 			return "common/errorPage";
 		}
 	}
@@ -71,14 +90,32 @@ public class ClssController {
 	@RequestMapping("tclist.do")
 	public String tClssListMethod(Model model, HttpSession session) {
 
+//		int limit = 10;
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		ArrayList<Clss> list = cService.tClssList(loginUser);
+
 		System.out.println(list);
-//		Member loginUser = (Member) session.getAttribute("loginUser");
 		System.out.println(loginUser);
-		if (list.size() > 0 && loginUser != null) {
+
+//		// 페이지 처리와 관련된 값 처리
+//		// 총 페이지 계산을 위한 총 목록 갯수 조회
+//		int listCount = cService.getListCount();
+//		int maxPage = (int) ((double) listCount / limit + 0.9);
+//		// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+//		// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+//		int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+//		int endPage = startPage + 9;
+//
+//		if (maxPage < endPage)
+//			endPage = maxPage;
+
+		if (list.size() > 0) {
 			System.out.println("목록있음");
 			model.addAttribute("list", list);
+//			model.addAttribute("currentPage", currentPage);
+//			model.addAttribute("maxPage", maxPage);
+//			model.addAttribute("startPage", startPage);
+//			model.addAttribute("endPage", endPage);
 			return "teacher/teacherClssListView";
 		} else {
 			System.out.println("목록없음");
@@ -104,16 +141,14 @@ public class ClssController {
 	public String insertTclss(Clss clss, HttpServletRequest request, Model model,
 			@RequestParam(name = "upfile", required = false) MultipartFile mfile, HttpSession session) {
 
-		/*
-		 * Member loginUser = (Member) session.getAttribute("loginUser");
-		 * System.out.println(loginUser);
-		 */
 		// 업로드된 파일 저장 폴더 지정하기
 		String savePath = request.getSession().getServletContext().getRealPath("resources/clss_files");
 
+		System.out.println(mfile);
 		// 첨부파일이 있을때만 업로드된 파일을 지정 폴더로 옮기기
 		// 단, 첨부된 파일의 이름을 'yyyyMMddHHmmss.확장자' 형식으로 바꾸어 저장함
 		if (mfile != null) {
+			System.out.println(mfile);
 			String fileName = mfile.getOriginalFilename();
 			if (fileName != null && fileName.length() > 0) {
 				clss.setClss_original_filename(fileName); // 원래 파일명 저장하고
@@ -132,6 +167,7 @@ public class ClssController {
 					return "common/errorPage";
 				}
 				clss.setClss_rename_filename(renameFileName);
+				System.out.println(renameFileName);
 			}
 		}
 		if (cService.insertTclss(clss) > 0) {
@@ -221,72 +257,197 @@ public class ClssController {
 		}
 	}
 
-	// 관리자 미승인 클래스 목록조회
-	@RequestMapping("adnclist.do")
-	public String adminNlist(Model model) {
+	// 관리자 페이지
+	@RequestMapping("adpage.do")
+	public String adminPage() {
+		return "admin/adminPage";
+	}
+
+//	// 관리자 미승인 클래스 목록조회
+//	@RequestMapping("adnclist.do")
+//	public String adminNlist(Model model) {
+//		ArrayList<Clss> list = cService.adminNlist();
+//
+//		System.out.println(list);
+//		if (list.size() > 0) {
+//			System.out.println("목록있음");
+//			model.addAttribute("list", list);
+//			return "admin/adminNlistView"; // 수정필요
+//		} else {
+//			System.out.println("목록없음");
+//			model.addAttribute("msg", "강의 목록 조회 실패");
+//			return "common/errorPage";
+//		}
+//	}
+
+	// 관리자 미승인 클래스 ajax
+	@RequestMapping(value = "adnclist.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String adminNlist(HttpServletResponse response, HttpSession session, Model model)
+			throws UnsupportedEncodingException {
 		ArrayList<Clss> list = cService.adminNlist();
 
 		System.out.println(list);
-		if (list.size() > 0) {
-			System.out.println("목록있음");
-			model.addAttribute("list", list);
-			return "admin/adminNlistView"; // 수정필요
-		} else {
-			System.out.println("목록없음");
-			model.addAttribute("msg", "강의 목록 조회 실패");
-			return "common/errorPage";
+
+		JSONObject sendJson = new JSONObject();
+		JSONArray jarr = new JSONArray();
+
+		for (Clss clss : list) {
+
+			JSONObject job = new JSONObject();
+
+			job.put("cid", clss.getCid());
+			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
+			job.put("clss_start", clss.getClss_start().toString());
+			job.put("clss_end", clss.getClss_end().toString());
+
+			jarr.add(job);
 		}
+
+		sendJson.put("list", jarr);
+
+		return sendJson.toJSONString();
 	}
 
-	// 관리자 승인 클래스 목록조회
-	@RequestMapping("adclist.do")
-	public String adminYList(Model model) {
+//	// 관리자 승인 클래스 목록조회
+//	@RequestMapping("adclist.do")
+//	public String adminYList(Model model) {
+//		ArrayList<Clss> list = cService.adminYList();
+//
+//		System.out.println(list);
+//		if (list.size() > 0) {
+//			System.out.println("목록있음");
+//			model.addAttribute("list", list);
+//			return "admin/adminYlistView"; // 수정필요
+//		} else {
+//			System.out.println("목록없음");
+//			model.addAttribute("msg", "강의 목록 조회 실패");
+//			return "common/errorPage";
+//		}
+//	}
+
+	// 관리자 승인 클래스 목록조회 ajax
+	@RequestMapping(value = "adclist.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String adminYList(HttpServletResponse response, HttpSession session, Model model)
+			throws UnsupportedEncodingException {
 		ArrayList<Clss> list = cService.adminYList();
 
 		System.out.println(list);
-		if (list.size() > 0) {
-			System.out.println("목록있음");
-			model.addAttribute("list", list);
-			return "admin/adminYlistView"; // 수정필요
-		} else {
-			System.out.println("목록없음");
-			model.addAttribute("msg", "강의 목록 조회 실패");
-			return "common/errorPage";
-		}
-	}
 
+		JSONObject sendJson = new JSONObject();
+		JSONArray jarr = new JSONArray();
+
+		for (Clss clss : list) {
+
+			JSONObject job = new JSONObject();
+
+			job.put("cid", clss.getCid());
+			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
+			job.put("clss_start", clss.getClss_start().toString());
+			job.put("clss_end", clss.getClss_end().toString());
+
+			jarr.add(job);
+		}
+
+		sendJson.put("list", jarr);
+
+		return sendJson.toJSONString();
+	}
 	// 관리자 승인거부 클래스 목록조회
-	@RequestMapping("adrclist.do")
-	public String adminRlist(Model model) {
+//	@RequestMapping("adrclist.do")
+//	public String adminRlist(Model model) {
+//		ArrayList<Clss> list = cService.adminRlist();
+//
+//		System.out.println(list);
+//		if (list.size() > 0) {
+//			System.out.println("목록있음");
+//			model.addAttribute("list", list);
+//			return "admin/adminRlistView";
+//		} else {
+//			System.out.println("목록없음");
+//			model.addAttribute("msg", "강의 목록 조회 실패");
+//			return "common/errorPage";
+//		}
+//	}
+
+	// 관리자 승인거부 목록조회 ajax
+	@RequestMapping(value = "adrclist.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String adminRlist(HttpServletResponse response, HttpSession session, Model model)
+			throws UnsupportedEncodingException {
 		ArrayList<Clss> list = cService.adminRlist();
 
 		System.out.println(list);
-		if (list.size() > 0) {
-			System.out.println("목록있음");
-			model.addAttribute("list", list);
-			return "admin/adminRlistView";
-		} else {
-			System.out.println("목록없음");
-			model.addAttribute("msg", "강의 목록 조회 실패");
-			return "common/errorPage";
+
+		JSONObject sendJson = new JSONObject();
+		JSONArray jarr = new JSONArray();
+
+		for (Clss clss : list) {
+
+			JSONObject job = new JSONObject();
+
+			job.put("cid", clss.getCid());
+			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
+			job.put("clss_start", clss.getClss_start().toString());
+			job.put("clss_end", clss.getClss_end().toString());
+
+			jarr.add(job);
 		}
+
+		sendJson.put("list", jarr);
+
+		return sendJson.toJSONString();
 	}
 
 	// 관리자 기간 지난 클래스 목록조회
-	@RequestMapping("adendclist.do")
-	public String adminEndList(Model model) {
+//	@RequestMapping("adendclist.do")
+//	public String adminEndList(Model model) {
+//		ArrayList<Clss> list = cService.adminEndList();
+//
+//		System.out.println(list);
+//		if (list.size() > 0) {
+//			System.out.println("목록있음");
+//			model.addAttribute("list", list);
+//			return "admin/adminEndListView"; // 수정필요
+//		} else {
+//			System.out.println("목록없음");
+//			model.addAttribute("msg", "강의 목록 조회 실패");
+//			return "common/errorPage";
+//		}
+//	}
+
+	// 관리자 기간 지난 클래스 목록조회 ajax
+	@RequestMapping(value = "adendclist.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String adminEndList(HttpServletResponse response, HttpSession session, Model model)
+			throws UnsupportedEncodingException {
 		ArrayList<Clss> list = cService.adminEndList();
 
 		System.out.println(list);
-		if (list.size() > 0) {
-			System.out.println("목록있음");
-			model.addAttribute("list", list);
-			return "admin/adminEndListView"; // 수정필요
-		} else {
-			System.out.println("목록없음");
-			model.addAttribute("msg", "강의 목록 조회 실패");
-			return "common/errorPage";
+
+		JSONObject sendJson = new JSONObject();
+		JSONArray jarr = new JSONArray();
+
+		for (Clss clss : list) {
+
+			JSONObject job = new JSONObject();
+
+			job.put("cid", clss.getCid());
+			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
+			job.put("clss_start", clss.getClss_start().toString());
+			job.put("clss_end", clss.getClss_end().toString());
+
+			jarr.add(job);
 		}
+
+		sendJson.put("list", jarr);
+
+		return sendJson.toJSONString();
 	}
 
 	// 관리자 클래스 상세보기
@@ -313,7 +474,7 @@ public class ClssController {
 		System.out.println(result);
 
 		if (result > 0) {
-			return "redirect:adnclist.do";
+			return "redirect:adpage.do";
 		} else {
 			model.addAttribute("msg", cid + "번 클래스 승인 실패");
 			return "common/errorPage";
@@ -342,7 +503,7 @@ public class ClssController {
 		if (cService.adminDenyClss(clss) > 0) {
 			System.out.println("값o");
 			System.out.println(clss);
-			return "redirect:adnclist.do";
+			return "redirect:adpage.do";
 		} else {
 			System.out.println("값x");
 			model.addAttribute("msg", "클래스 승인 실패");
@@ -380,6 +541,213 @@ public class ClssController {
 			model.addAttribute("msg", "나의 클래스 조회 실패");
 			return "common/errorPage";
 		}
+	}
+
+//	@RequestMapping(value="mclss.do", method = RequestMethod.POST)
+//	@ResponseBody
+//	public String myClssList(HttpServletResponse response, HttpSession session, Model model) throws UnsupportedEncodingException {
+//		Member loginUser = (Member) session.getAttribute("loginUser");
+//		String id = loginUser.getId();
+//		System.out.println(id);
+//		ArrayList<Clss> myList = cService.myClssList(id);
+//		
+//		System.out.println(myList);
+//		
+//		JSONObject sendJson = new JSONObject();
+//		JSONArray jarr = new JSONArray();
+//		
+//		for (Clss clss : myList){
+//			
+//			JSONObject job = new JSONObject();
+//			
+//			job.put("cid", clss.getCid());
+//			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+//			job.put("tchr_id", URLEncoder.encode(clss.getTchr_id(), "utf-8"));
+//			job.put("clss_start", clss.getClss_start().toString());
+//			job.put("clss_end", clss.getClss_end().toString());
+//			
+//			jarr.add(job);
+//		}
+//		
+//		sendJson.put("myList", jarr);
+//		
+//		return sendJson.toJSONString();
+//	}
+
+	// 제목으로 검색
+	@RequestMapping(value = "csearchTitle.do", method = RequestMethod.POST)
+	public String csearchTitle(@RequestParam("keyword") String keyword, @RequestParam("page") int currentPage,
+			Model model) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int limit = 10;
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+
+		SearchAndPage searches = new SearchAndPage();
+		searches.setKeyword(keyword);
+		searches.setStartRow(startRow);
+		searches.setEndRow(endRow);
+
+		ArrayList<Clss> list = cService.searchTitle(searches);
+
+		// 페이지 처리와 관련된 값 처리
+		// 검색에 대한 총 페이지 계산을 위한 검색결과 총 목록 갯수 조회
+		int listCount = cService.getSearchTitleListCount(keyword);
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+		// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+		int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+		int endPage = startPage + 9;
+
+		if (maxPage < endPage)
+			endPage = maxPage;
+
+		if (list.size() > 0) {
+			model.addAttribute("keyword", keyword);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("action", "csearchTitle.do");
+			model.addAttribute("keyword", keyword);
+			return "redirect:clist.do";
+		} else {
+			model.addAttribute("msg", keyword + "로 검색한 결과가 없습니다.");
+			return "common/errorPage";
+		}
+
+	}
+
+	// 태그로 검색
+	@RequestMapping(value = "csearchTag.do", method = RequestMethod.POST)
+	public String cSearchTag(@RequestParam("keyword") String keyword, @RequestParam("page") int currentPage,
+			Model model) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int limit = 10;
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+
+		SearchAndPage searches = new SearchAndPage();
+		searches.setKeyword(keyword);
+		searches.setStartRow(startRow);
+		searches.setEndRow(endRow);
+
+		ArrayList<Clss> list = cService.searchTag(searches);
+
+		// 페이지 처리와 관련된 값 처리
+		// 검색에 대한 총 페이지 계산을 위한 검색결과 총 목록 갯수 조회
+		int listCount = cService.getSearchTagListCount(keyword);
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+		// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+		int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+		int endPage = startPage + 9;
+
+		if (maxPage < endPage)
+			endPage = maxPage;
+
+		if (list.size() > 0) {
+			model.addAttribute("keyword", keyword);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("action", "csearchTag.do");
+			model.addAttribute("keyword", keyword);
+			return "redirect:clist.do";
+		} else {
+			model.addAttribute("msg", keyword + "로 검색한 결과가 없습니다.");
+			return "common/errorPage";
+		}
+
+	}
+
+	// 강사이름으로 검색
+	@RequestMapping(value = "csearchTeacher.do", method = RequestMethod.POST)
+	public String cSearchTeacher(@RequestParam("keyword") String keyword, @RequestParam("page") int currentPage,
+			Model model) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int limit = 10;
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+
+		SearchAndPage searches = new SearchAndPage();
+		searches.setKeyword(keyword);
+		searches.setStartRow(startRow);
+		searches.setEndRow(endRow);
+
+		ArrayList<Clss> list = cService.searchTeacher(searches);
+
+		// 페이지 처리와 관련된 값 처리
+		// 검색에 대한 총 페이지 계산을 위한 검색결과 총 목록 갯수 조회
+		int listCount = cService.getSearchTeacherListCount(keyword);
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+		// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+		int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+		int endPage = startPage + 9;
+
+		if (maxPage < endPage)
+			endPage = maxPage;
+
+		if (list.size() > 0) {
+			model.addAttribute("keyword", keyword);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("action", "csearchTeacher.do");
+			model.addAttribute("keyword", keyword);
+			return "redirect:clist.do";
+		} else {
+			model.addAttribute("msg", keyword + "로 검색한 결과가 없습니다.");
+			return "common/errorPage";
+		}
+
+	}
+
+	// 카테고리로 검색
+	@RequestMapping(value = "csearchCategory.do", method = RequestMethod.POST)
+	public String cSearchCategory(@RequestParam("keyword") String keyword, @RequestParam("page") int currentPage,
+			Model model) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int limit = 10;
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+
+		SearchAndPage searches = new SearchAndPage();
+		searches.setKeyword(keyword);
+		searches.setStartRow(startRow);
+		searches.setEndRow(endRow);
+
+		ArrayList<Clss> list = cService.searchCategory(searches);
+
+		// 페이지 처리와 관련된 값 처리
+		// 검색에 대한 총 페이지 계산을 위한 검색결과 총 목록 갯수 조회
+		int listCount = cService.getSearchCategoryListCount(keyword);
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+		// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+		int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+		int endPage = startPage + 9;
+
+		if (maxPage < endPage)
+			endPage = maxPage;
+
+		if (list.size() > 0) {
+			model.addAttribute("keyword", keyword);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("action", "csearchCategory.do");
+			model.addAttribute("keyword", keyword);
+			return "redirect:clist.do";
+		} else {
+			model.addAttribute("msg", keyword + "로 검색한 결과가 없습니다.");
+			return "common/errorPage";
+		}
+
 	}
 
 }

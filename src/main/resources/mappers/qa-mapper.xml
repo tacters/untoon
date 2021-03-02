@@ -40,4 +40,10 @@
 		WHERE	QID=#{ qid }
 	</update>
 	
+	<!-- 마이페이지에서 1대1 문의내역 가져오기 -->
+	<select id="myQa" resultMap="resultQa" parameterType="string">
+		select * from qa
+		where qwriter=#{id}
+	</select>
+	
 </mapper>

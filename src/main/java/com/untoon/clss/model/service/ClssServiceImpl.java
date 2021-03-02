@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.untoon.clss.model.dao.ClssDao;
 import com.untoon.clss.model.vo.Clss;
+import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.vo.Member;
 
 @Service("clssService")
@@ -29,8 +30,8 @@ public class ClssServiceImpl implements ClssService {
 
 	// 사용자 클래스 전체조회
 	@Override
-	public ArrayList<Clss> clssList() {
-		return cDao.clssList();
+	public ArrayList<Clss> clssList(int currentPage, int limit) {
+		return cDao.clssList(currentPage, limit);
 	}
 
 	// 사용자 클래스 상세보기
@@ -80,14 +81,13 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.insertTclss(clss);
 	}
 
-	//관리자 클래스 승인하기
+	// 관리자 클래스 승인하기
 	@Override
 	public int adminApproveClss(int cid) {
 		return cDao.adminApproveClss(cid);
 	}
 
-
-	//관리자 승인거부 클래스 목록조회
+	// 관리자 승인거부 클래스 목록조회
 	@Override
 	public ArrayList<Clss> adminRlist() {
 		return cDao.adminRlist();
@@ -99,7 +99,7 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.adminDeleteClss(cid);
 	}
 
-	//관리자 클래스 거부하기
+	// 관리자 클래스 거부하기
 	@Override
 	public int adminDenyClss(Clss clss) {
 		return cDao.adminDenyClss(clss);
@@ -111,10 +111,52 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.tUpdateClss(clss);
 	}
 
+	// 페이징 처리
+	@Override
+	public int getListCount() {
+		return cDao.getListCount();
+	}
 
+	// 제목 검색 페이징 처리
+	@Override
+	public int getSearchTitleListCount(String keyword) {
+		return cDao.getSearchTitleListCount(keyword);
+	}
 
+	@Override
+	public int getSearchTagListCount(String keyword) {
+		return cDao.getSearchTagListCount(keyword);
+	}
 
+	@Override
+	public int getSearchTeacherListCount(String keyword) {
+		return cDao.getSearchTeacherListCount(keyword);
+	}
 
+	@Override
+	public int getSearchCategoryListCount(String keyword) {
+		return cDao.getSearchCategoryListCount(keyword);
+	}
 
+	// 제목으로검색
+	@Override
+	public ArrayList<Clss> searchTitle(SearchAndPage searches) {
+		return cDao.searchTitle(searches);
+	}
+	
+	@Override
+	public ArrayList<Clss> searchTag(SearchAndPage searches) {
+		return cDao.searchTag(searches);
+	}
+
+	@Override
+	public ArrayList<Clss> searchTeacher(SearchAndPage searches) {
+		return cDao.searchTeacher(searches);
+	}
+
+	@Override
+	public ArrayList<Clss> searchCategory(SearchAndPage searches) {
+		return cDao.searchCategory(searches);
+	}
 
 }

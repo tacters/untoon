@@ -3,18 +3,16 @@ package com.untoon.review.model.service;
 import java.util.ArrayList;
 
 import com.untoon.review.model.vo.Review;
+import com.untoon.review.model.vo.ReviewClss;
 
 public interface ReviewService {
-
-
-	ArrayList<Review> selectReviewList(int currentPage, int limit, int cid);
-	Review selectReview(int rid);
+	
+	
 	int insertReview(Review review);
 	int updateReview(Review review);
 	int deleteReview(int rid);
-	int getListCount();
-
-
+	
+	ArrayList<Review> selectReviewList(int cid);
+	Review selectReview(int rid);
+	ArrayList<ReviewClss> myReview(String id);	// 마이페이지에서 본인 후기 불러오기
 }
-
-

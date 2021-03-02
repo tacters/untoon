@@ -12,39 +12,54 @@
 		<result column="r_status" property="r_status" />
 		<result column="ofile_r" property="ofile_r" />
 		<result column="rfile_r" property="rfile_r" />
+		<result column="save_count" property="save_count"/>
+	</resultMap>
+	
+	<resultMap type="ReviewClss" id="resultReviewClss">
+		<id column="rid" property="rid" />
+		<id column="cid" property="cid" />
+		<result column="rwriter" property="rwriter" />
+		<result column="rcontent" property="rcontent" />
+		<result column="r_create_date" property="r_create_date" />
+		<result column="r_modify_date" property="r_modify_date" />
+		<result column="r_status" property="r_status" />
+		<result column="save_count" property="save_count"/>
+		<result column="clss_title" property="clss_title"/>
+		<result column="clss_start" property="clss_start"/>
+		<result column="clss_end" property="clss_end"/>
+		<result column="tchr_id" property="tchr_id"/>
+		
 	</resultMap>
 
 <!-- <, >, & 들어가면 사용하기 <![CDATA[ 쿼리문장 ]]>  -->
 
-	<select id="selectList" parameterType="com.untoon.review.model.vo.ReviewPage" 
-	resultMap="resultReview">
-		<!-- 밑에 select 쿼리문안에 #{cid}는 ReviewDao의 selectList() 안에서 가져오는 값임-->
-		<![CDATA[
-		SELECT *
-		FROM (SELECT ROWNUM RNUM, RID, #{ cid }, RWRITER, RCONTENT, 
-		                    R_CREATE_DATE, R_MODIFY_DATE, R_STATUS,
-		                    OFILE_R, RFILE_R
-		            FROM (SELECT * FROM REVIEW 
-		                       WHERE R_STATUS = 'Y'
-		                       ORDER BY RID DESC))
-		WHERE RNUM >= #{ startRow } AND RNUM <= #{ endRow }
-		]]>
+	<select id="selectReviewList" parameterType="com.untoon.review.model.vo.Review"  resultMap="resultReview">
+		SELECT * FROM REVIEW 
+		WHERE R_STATUS = 'Y' AND CID = #{ cid }
+		ORDER BY SAVE_COUNT DESC , RID ASC	 		<!-- 좋아요 많은 순, 그 다음에 등록된 후기 순 -->
+	</select>
+	
+	<select id="selectReview" parameterType ="ReviewReply" resultMap="resultReview">
+		SELECT * FROM REVIEW
+		WHERE  	RID = # { rid }
 	</select>
 
 	<insert id="insertReview" parameterType="Review">
 		INSERT INTO REVIEW
-		<if test="OFILE_R != null">
+		<if test="ofile_r != null"> <!-- VO객체에서 대소문자 주의 -->
 		VALUES (
-				seq_rid.nextval, #{ cid },#{ rwriter }, #{ rcontent }, 
+				seq_rid.nextval, #{ cid }, #{ rwriter }, #{ rcontent }, 
 				sysdate, sysdate, default,
-				#{ OFILE_R }, #{ RFILE_R }
+				#{ ofile_r }, #{ rfile_r },
+				default
 				)
 		</if>
-		<if test="OFILE_R == null">
+		<if test="ofile_r == null">
 		VALUES (
-				seq_bid.nextval, #{ cid },#{ rwriter }, #{ rcontent }, 
+				seq_rid.nextval, #{ cid }, #{ rwriter }, #{ rcontent }, 
 				sysdate, sysdate, default,
-				null, null
+				null, null,
+				default
 				)
 		</if>
 	</insert>
@@ -55,11 +70,11 @@
 		SET 
 			   RCONTENT = #{ rcontent }, 
 			   R_MODIFY_DATE = sysdate
-			   <if test="OFILE_R == null">
+			   <if test="ofile_r == null">
 			   , OFILE_R = null,
 			   RFILE_R = null
 			   </if>
-			   <if test="OFILE_R != null">
+			   <if test="ofile_r != null">
 			   , OFILE_R = #{ ofile_r },
 			   OFILE_R = #{ rfile_r }
 			   </if>
@@ -72,13 +87,16 @@
 		SET
 				R_STATUS='N',
 				R_MODIFY_DATE=SYSDATE
-		WHERE RID= #{RID}
+		WHERE RID= #{ rid }
 	</update>
 	
-	<select id="getListCount" resultType="_int">
-			SELECT COUNT(*) FROM REVIEW
+	<!-- 마이페이지에서 본인 후기 불러오기 -->
+	<select id="myReivew" parameterType="string" resultMap="resultReviewClss">
+	select * from review
+	join clss using (cid)
+	where rwriter = #{ id}
 	</select>
-	
+
 </mapper>
 
 
