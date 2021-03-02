@@ -28,10 +28,35 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.selectOne(cid);
 	}
 
-	// 사용자 클래스 전체조회
+	// 사용자 뷰티/헬스 클래스 전체조회
 	@Override
 	public ArrayList<Clss> clssList(int currentPage, int limit) {
 		return cDao.clssList(currentPage, limit);
+	}
+	
+	@Override
+	public ArrayList<Clss> aclssList(int currentPage, int limit) {
+		return cDao.aclssList(currentPage, limit);
+	}
+
+	@Override
+	public ArrayList<Clss> lclssList(int currentPage, int limit) {
+		return cDao.lclssList(currentPage, limit);
+	}
+
+	@Override
+	public ArrayList<Clss> fclssList(int currentPage, int limit) {
+		return cDao.fclssList(currentPage, limit);
+	}
+
+	@Override
+	public ArrayList<Clss> dclssList(int currentPage, int limit) {
+		return cDao.dclssList(currentPage, limit);
+	}
+
+	@Override
+	public ArrayList<Clss> oclssList(int currentPage, int limit) {
+		return cDao.oclssList(currentPage, limit);
 	}
 
 	// 사용자 클래스 상세보기
@@ -111,12 +136,6 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.tUpdateClss(clss);
 	}
 
-	// 페이징 처리
-	@Override
-	public int getListCount() {
-		return cDao.getListCount();
-	}
-
 	// 제목 검색 페이징 처리
 	@Override
 	public int getSearchTitleListCount(String keyword) {
@@ -143,7 +162,7 @@ public class ClssServiceImpl implements ClssService {
 	public ArrayList<Clss> searchTitle(SearchAndPage searches) {
 		return cDao.searchTitle(searches);
 	}
-	
+
 	@Override
 	public ArrayList<Clss> searchTag(SearchAndPage searches) {
 		return cDao.searchTag(searches);
@@ -158,5 +177,37 @@ public class ClssServiceImpl implements ClssService {
 	public ArrayList<Clss> searchCategory(SearchAndPage searches) {
 		return cDao.searchCategory(searches);
 	}
+
+	// 뷰티/헬스 페이징 처리
+	@Override
+	public int getListCount() {
+		return cDao.getListCount();
+	}
+
+	@Override
+	public int getArtCount() {
+		return cDao.getArtCount();
+	}
+
+	@Override
+	public int getLanguageCount() {
+		return cDao.getLanguageCount();
+	}
+
+	@Override
+	public int getFinanceCount() {
+		return cDao.getFinanceCount();
+	}
+
+	@Override
+	public int getDataCount() {
+		return cDao.getDataCount();
+	}
+
+	@Override
+	public int getOtherCount() {
+		return cDao.getOtherCount();
+	}
+
 
 }

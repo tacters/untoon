@@ -38,11 +38,33 @@
 		where id = #{ id} 
 	</select>
 	
-	<!-- 페이징처리 -->
+	<!-- 뷰티/헬스 페이징처리 -->
 	<select id="getListCount" resultType="_int">
-		select count(*) from clss where clss_status =2
+		select count(*) from clss where clss_status =2 and clss_category like '%' || '뷰티' || '%'
 	</select>
 	
+	<select id="getArtCount" resultType="_int">
+		select count(*) from clss where clss_status =2 and clss_category like '%' || '미술' || '%'
+	</select>
+	
+	<select id="getLanguageCount" resultType="_int">
+		select count(*) from clss where clss_status =2 and clss_category like '%' || '언어' || '%'
+	</select>
+	
+	<select id="getFinanceCount" resultType="_int">
+		select count(*) from clss where clss_status =2 and clss_category like '%' || '머니' || '%'
+	</select>
+	
+	<select id="getDataCount" resultType="_int">
+		select count(*) from clss where clss_status =2 and clss_category like '%' || '데이터' || '%'
+	</select>
+	
+	<select id="getOtherCount" resultType="_int">
+		select count(*) from clss where clss_status =2 and clss_category like '%' || '기타' || '%'
+	</select>
+	
+	
+	<!-- 뷰티헬스 전체조회 -->
 	<select id="clssList" resultMap="clssResultSet" parameterType="com.untoon.clss.model.vo.ClssPage">
 		<![CDATA[
 		select * 
@@ -50,11 +72,80 @@
 		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
 		        clss_comment, clss_tags
 		        from (select * from clss
-		                where clss_status =2
+		                where clss_status =2 and clss_category like '%' || '뷰티' || '%'
 		                order by cid desc))
 		where rnum >= #{ startRow } and rnum <= #{endRow}
 		]]>
 	</select>
+	
+	<select id="aclssList" resultMap="clssResultSet" parameterType="com.untoon.clss.model.vo.ClssPage">
+		<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select * from clss
+		                where clss_status =2 and clss_category like '%' || '미술' || '%'
+		                order by cid desc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<select id="lclssList" resultMap="clssResultSet" parameterType="com.untoon.clss.model.vo.ClssPage">
+		<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select * from clss
+		                where clss_status =2 and clss_category like '%' || '언어' || '%'
+		                order by cid desc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<select id="fclssList" resultMap="clssResultSet" parameterType="com.untoon.clss.model.vo.ClssPage">
+		<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select * from clss
+		                where clss_status =2 and clss_category like '%' || '머니' || '%'
+		                order by cid desc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<select id="dclssList" resultMap="clssResultSet" parameterType="com.untoon.clss.model.vo.ClssPage">
+		<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select * from clss
+		                where clss_status =2 and clss_category like '%' || '데이터' || '%'
+		                order by cid desc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	<select id="oclssList" resultMap="clssResultSet" parameterType="com.untoon.clss.model.vo.ClssPage">
+		<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select * from clss
+		                where clss_status =2 and clss_category like '%' || '기타' || '%'
+		                order by cid desc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+	</select>
+	
+	
+	
+	
 	
 	<!-- 제목 검색 페이징처리 -->
 	<select id="getSearchTitleListCount" resultType="_int" parameterType="string">

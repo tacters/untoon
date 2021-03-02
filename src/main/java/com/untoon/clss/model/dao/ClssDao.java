@@ -22,10 +22,6 @@ public class ClssDao {
 	public ClssDao() {
 	}
 
-	public int getListCount() {
-		return sqlSession.selectOne("clssMapper.getListCount");
-	}
-
 	// 강사 본인 클래스 목록 불러오기
 	public ArrayList<Clss> tClssList(Member loginUser) {
 
@@ -44,7 +40,7 @@ public class ClssDao {
 		return sqlSession.selectOne("clssMapper.selectTClss", cid);
 	}
 
-	// 사용자 클래스 전체보기
+	// 사용자 뷰티/헬스 클래스 전체보기
 	public ArrayList<Clss> clssList(int currentPage, int limit) {
 
 		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
@@ -133,43 +129,113 @@ public class ClssDao {
 
 	// 제목 검색 페이징 처리
 	public int getSearchTitleListCount(String keyword) {
-		return sqlSession.selectOne("clssMapper.getSearchTitleListCount",keyword);
+		return sqlSession.selectOne("clssMapper.getSearchTitleListCount", keyword);
 	}
 
 	public int getSearchTagListCount(String keyword) {
-		return sqlSession.selectOne("clssMapper.getSearchTagListCount",keyword);
+		return sqlSession.selectOne("clssMapper.getSearchTagListCount", keyword);
 	}
 
 	public int getSearchTeacherListCount(String keyword) {
-		return sqlSession.selectOne("clssMapper.getSearchTeacherCount",keyword);
+		return sqlSession.selectOne("clssMapper.getSearchTeacherCount", keyword);
 	}
 
 	public int getSearchCategoryListCount(String keyword) {
-		return sqlSession.selectOne("clssMapper.getSearchCategoryCount",keyword);
+		return sqlSession.selectOne("clssMapper.getSearchCategoryCount", keyword);
 	}
 
-	//제목 검색
+	// 제목 검색
 	public ArrayList<Clss> searchTitle(SearchAndPage searches) {
 		List<Clss> list = sqlSession.selectList("clssMapper.searchTitle", searches);
-		return (ArrayList<Clss>)list;
+		return (ArrayList<Clss>) list;
 	}
 
-	//태그검색
+	// 태그검색
 	public ArrayList<Clss> searchTag(SearchAndPage searches) {
 		List<Clss> list = sqlSession.selectList("clssMapper.searchTag", searches);
-		return (ArrayList<Clss>)list;
+		return (ArrayList<Clss>) list;
 	}
 
-	//강사검색
+	// 강사검색
 	public ArrayList<Clss> searchTeacher(SearchAndPage searches) {
 		List<Clss> list = sqlSession.selectList("clssMapper.searchTeacher", searches);
-		return (ArrayList<Clss>)list;
+		return (ArrayList<Clss>) list;
 	}
 
-	//카테고리검색
+	// 카테고리검색
 	public ArrayList<Clss> searchCategory(SearchAndPage searches) {
 		List<Clss> list = sqlSession.selectList("clssMapper.searchCategory", searches);
-		return (ArrayList<Clss>)list;
+		return (ArrayList<Clss>) list;
+	}
+
+	// 뷰티/헬스 페이징처리
+	public int getListCount() {
+		return sqlSession.selectOne("clssMapper.getListCount");
+	}
+
+	public int getArtCount() {
+		return sqlSession.selectOne("clssMapper.getArtCount");
+	}
+
+	public int getLanguageCount() {
+		return sqlSession.selectOne("clssMapper.getLanguageCount");
+	}
+
+	public int getFinanceCount() {
+		return sqlSession.selectOne("clssMapper.getFinanceCount");
+	}
+
+	public int getDataCount() {
+		return sqlSession.selectOne("clssMapper.getDataCount");
+	}
+
+	public int getOtherCount() {
+		return sqlSession.selectOne("clssMapper.getOtherCount");
+	}
+
+	public ArrayList<Clss> aclssList(int currentPage, int limit) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+		List<Clss> list = sqlSession.selectList("clssMapper.aclssList", new ClssPage(startRow, endRow));
+
+		return (ArrayList<Clss>) list;
+	}
+
+	public ArrayList<Clss> lclssList(int currentPage, int limit) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+		List<Clss> list = sqlSession.selectList("clssMapper.lclssList", new ClssPage(startRow, endRow));
+
+		return (ArrayList<Clss>) list;
+	}
+
+	public ArrayList<Clss> fclssList(int currentPage, int limit) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+		List<Clss> list = sqlSession.selectList("clssMapper.fclssList", new ClssPage(startRow, endRow));
+
+		return (ArrayList<Clss>) list;
+	}
+
+	public ArrayList<Clss> dclssList(int currentPage, int limit) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+		List<Clss> list = sqlSession.selectList("clssMapper.dclssList", new ClssPage(startRow, endRow));
+
+		return (ArrayList<Clss>) list;
+	}
+
+	public ArrayList<Clss> oclssList(int currentPage, int limit) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+		List<Clss> list = sqlSession.selectList("clssMapper.oclssList", new ClssPage(startRow, endRow));
+
+		return (ArrayList<Clss>) list;
 	}
 
 }

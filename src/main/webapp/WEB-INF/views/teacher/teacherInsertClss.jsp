@@ -160,17 +160,13 @@ input[type=file] {
 		<div class="title">수업카테고리<b class="pink">*</b></div>
 		<div class="cont">
 			<select class="basic len320" id="CateMain" name="clss_category">
-				<option>수업카테고리를 선택해 주세요</option>
-										<option value="커리어">커리어</option>
+												<option value="null">수업카테고리를 선택해 주세요</option>
+												<option value="미술/공예" >미술/공예</option>
 												<option value="뷰티/헬스" >뷰티/헬스</option>
-												<option value="디자인/영상" >디자인/영상</option>
-												<option value="외국어" >외국어</option>
-												<option value="라이프" >라이프</option>
-												<option value="액티비티" >액티비티</option>
+												<option value="언어" >언어</option>
 												<option value="머니" >머니</option>
-												<option value="이벤트" >이벤트</option>
-												<option value="강사전자책" >강사전자책</option>
-												<option value="취미/공예" >취미/공예</option>
+												<option value="데이터" >데이터</option>
+												<option value="기타" >기타</option>
 									</select>
 		</div>
 	</div>

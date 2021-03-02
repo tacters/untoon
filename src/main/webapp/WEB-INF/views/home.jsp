@@ -2651,11 +2651,11 @@ var revapi1,
 																			</div>
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Beauty</p>
-																				<c:url var="clist" value="clist.do">
+																				<c:url var="bclist" value="bclist.do">
 																					<c:param name="page" value="1"/>
 																				</c:url>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${ clist }"></a>
+																				href="${ bclist }"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -2695,8 +2695,11 @@ var revapi1,
 																			</div>
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Coworking</p>
+																				<c:url var="aclist" value="aclist.do">
+																					<c:param name="page" value="1"/>
+																				</c:url>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/clist.do"></a>
+																				href="${aclist}"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
@@ -2726,8 +2729,11 @@ var revapi1,
 																			</div>
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px">Cuisine</p>
+																				<c:url var="lclist" value="/lclist.do">
+																					<c:param name="page" value="1"/>
+																				</c:url>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/clist.do"></a>
+																				href="${lclist}"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">

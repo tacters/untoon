@@ -32,9 +32,9 @@ public class ClssController {
 	@Autowired
 	private ClssService cService;
 
-	// 사용자 클래스 목록조회
-	@RequestMapping("clist.do")
-	public String clssListMethod(@RequestParam("page") int currentPage, Model model) {
+	// 사용자 뷰티/헬스 클래스 목록조회
+	@RequestMapping("bclist.do")
+	public String aclssListMethod(@RequestParam("page") int currentPage, Model model) {
 		int limit = 10;
 		ArrayList<Clss> list = cService.clssList(currentPage, limit);
 
@@ -58,13 +58,183 @@ public class ClssController {
 			model.addAttribute("maxPage", maxPage);
 			model.addAttribute("startPage", startPage);
 			model.addAttribute("endPage", endPage);
-			return "clss/clssListView";
+			return "clss/bclssListView";
 		} else {
 			System.out.println("목록없음");
 			model.addAttribute("msg", currentPage + "강의 목록 조회 실패");
 			return "common/errorPage";
 		}
 	}
+
+	// 사용자 미술/공예 클래스 목록조회
+	@RequestMapping("aclist.do")
+	public String bclssListMethod(@RequestParam("page") int currentPage, Model model) {
+		int limit = 10;
+		ArrayList<Clss> list = cService.aclssList(currentPage, limit);
+
+		// 페이지 처리와 관련된 값 처리
+		// 총 페이지 계산을 위한 총 목록 갯수 조회
+		int listCount = cService.getArtCount();
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+		// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+		int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+		int endPage = startPage + 9;
+
+		if (maxPage < endPage)
+			endPage = maxPage;
+
+		System.out.println(list);
+		if (list.size() > 0) {
+			System.out.println("목록있음");
+			model.addAttribute("list", list);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			return "clss/aclssListView";
+		} else {
+			System.out.println("목록없음");
+			model.addAttribute("msg", currentPage + "강의 목록 조회 실패");
+			return "common/errorPage";
+		}
+	}
+
+	// 사용자 언어 클래스 목록조회
+	@RequestMapping("lclist.do")
+	public String lclssListMethod(@RequestParam("page") int currentPage, Model model) {
+		int limit = 10;
+		ArrayList<Clss> list = cService.lclssList(currentPage, limit);
+
+		// 페이지 처리와 관련된 값 처리
+		// 총 페이지 계산을 위한 총 목록 갯수 조회
+		int listCount = cService.getLanguageCount();
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+		// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+		int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+		int endPage = startPage + 9;
+
+		if (maxPage < endPage)
+			endPage = maxPage;
+
+		System.out.println(list);
+		if (list.size() > 0) {
+			System.out.println("목록있음");
+			model.addAttribute("list", list);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			return "clss/lclssListView";
+		} else {
+			System.out.println("목록없음");
+			model.addAttribute("msg", currentPage + "강의 목록 조회 실패");
+			return "common/errorPage";
+		}
+	}
+
+	// 사용자 머니 클래스 목록조회
+	@RequestMapping("fclist.do")
+	public String fclssListMethod(@RequestParam("page") int currentPage, Model model) {
+		int limit = 10;
+		ArrayList<Clss> list = cService.fclssList(currentPage, limit);
+
+		// 페이지 처리와 관련된 값 처리
+		// 총 페이지 계산을 위한 총 목록 갯수 조회
+		int listCount = cService.getFinanceCount();
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+		// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+		int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+		int endPage = startPage + 9;
+
+		if (maxPage < endPage)
+			endPage = maxPage;
+
+		System.out.println(list);
+		if (list.size() > 0) {
+			System.out.println("목록있음");
+			model.addAttribute("list", list);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			return "clss/fclssListView";
+		} else {
+			System.out.println("목록없음");
+			model.addAttribute("msg", currentPage + "강의 목록 조회 실패");
+			return "common/errorPage";
+		}
+	}
+	
+	// 사용자 데이터 클래스 목록조회
+		@RequestMapping("dclist.do")
+		public String dclssListMethod(@RequestParam("page") int currentPage, Model model) {
+			int limit = 10;
+			ArrayList<Clss> list = cService.dclssList(currentPage, limit);
+
+			// 페이지 처리와 관련된 값 처리
+			// 총 페이지 계산을 위한 총 목록 갯수 조회
+			int listCount = cService.getDataCount();
+			int maxPage = (int) ((double) listCount / limit + 0.9);
+			// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+			// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+			int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+			int endPage = startPage + 9;
+
+			if (maxPage < endPage)
+				endPage = maxPage;
+
+			System.out.println(list);
+			if (list.size() > 0) {
+				System.out.println("목록있음");
+				model.addAttribute("list", list);
+				model.addAttribute("currentPage", currentPage);
+				model.addAttribute("maxPage", maxPage);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				return "clss/dclssListView";
+			} else {
+				System.out.println("목록없음");
+				model.addAttribute("msg", currentPage + "강의 목록 조회 실패");
+				return "common/errorPage";
+			}
+		}
+		
+		// 사용자 기타 클래스 목록조회
+		@RequestMapping("oclist.do")
+		public String oclssListMethod(@RequestParam("page") int currentPage, Model model) {
+			int limit = 10;
+			ArrayList<Clss> list = cService.oclssList(currentPage, limit);
+
+			// 페이지 처리와 관련된 값 처리
+			// 총 페이지 계산을 위한 총 목록 갯수 조회
+			int listCount = cService.getOtherCount();
+			int maxPage = (int) ((double) listCount / limit + 0.9);
+			// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+			// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+			int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+			int endPage = startPage + 9;
+
+			if (maxPage < endPage)
+				endPage = maxPage;
+
+			System.out.println(list);
+			if (list.size() > 0) {
+				System.out.println("목록있음");
+				model.addAttribute("list", list);
+				model.addAttribute("currentPage", currentPage);
+				model.addAttribute("maxPage", maxPage);
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+				return "clss/oclssListView";
+			} else {
+				System.out.println("목록없음");
+				model.addAttribute("msg", currentPage + "강의 목록 조회 실패");
+				return "common/errorPage";
+			}
+		}
 
 	// 사용자 클래스 상세보기
 	@RequestMapping("cdetail.do")

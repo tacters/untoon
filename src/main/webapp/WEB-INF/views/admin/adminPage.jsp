@@ -27,7 +27,7 @@
 		width:20%;
 		height:70%;
 		float:left;
-		/* background-color:#819FF7; */
+		background-color:#819FF7;
 		text-align:left;
 	}
 	#div_menu ul{
@@ -38,7 +38,7 @@
 		list-style-type:none;
 		margin:10%;
 		padding:10;
-		/* border:solid 1px black; */
+		border:solid 1px black;
 		background-color:#2392BD;
 	}
 	#div_menu ul li:last-child {
@@ -74,6 +74,7 @@
 	li:last-child { border-bottom:solid;}
 	button { background-color:#C6D8D3; border:none;}
 	li button{
+		width:100%;
 		display:block;
 		color:#000000;
 		padding:8px;

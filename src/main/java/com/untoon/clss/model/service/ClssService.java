@@ -14,7 +14,19 @@ public interface ClssService {
 
 	Clss selectTclss(int cid);	// 강사 클래스 상세보기
 
-	ArrayList<Clss> clssList(int currentPage, int limit);		// 사용자 클래스 전체조회
+	ArrayList<Clss> clssList(int currentPage, int limit);		// 사용자 뷰티/헬스 클래스 전체조회
+	
+	int getListCount();	//사용자 뷰티/헬스 페이징 처리
+	
+	int getArtCount();
+
+	int getLanguageCount();
+
+	int getFinanceCount();
+
+	int getDataCount();
+	
+	int getOtherCount();
 
 	Clss selectClss(int cid);	// 사용자 클래스 상세보기
 
@@ -43,8 +55,6 @@ public interface ClssService {
 
 	int tUpdateClss(Clss clss);		// 강사 클래스 수정하기
 
-	int getListCount();	//페이징처리
-
 	int getSearchTitleListCount(String keyword);	//제목검색 페이징처리
 	
 	int getSearchTagListCount(String keyword);
@@ -60,6 +70,18 @@ public interface ClssService {
 	ArrayList<Clss> searchTeacher(SearchAndPage searches);	//강사이름으로 검색
 
 	ArrayList<Clss> searchCategory(SearchAndPage searches);	// 카테고리로 검색
+
+	ArrayList<Clss> aclssList(int currentPage, int limit);
+
+	ArrayList<Clss> lclssList(int currentPage, int limit);
+
+	ArrayList<Clss> fclssList(int currentPage, int limit);
+
+	ArrayList<Clss> dclssList(int currentPage, int limit);
+
+	ArrayList<Clss> oclssList(int currentPage, int limit);
+
+
 
 
 
