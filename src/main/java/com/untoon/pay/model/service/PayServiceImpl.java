@@ -49,6 +49,11 @@ public class PayServiceImpl implements PayService{
 		// TODO Auto-generated method stub
 		return payDao.updatePay(payno);
 	}
-	
+
+	@Override
+	public PayClss payMove(int cid) {
+		// TODO Auto-generated method stub
+		return payDao.payMove(cid);
+	}
 	
 }

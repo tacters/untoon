@@ -48,5 +48,10 @@ public class PayDao {
 		return sqlSession.update("payMapper.updatePay", payno);
 	}
 
+	public PayClss payMove(int cid) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("payMapper.payMove", cid);
+	}
+
 
 }

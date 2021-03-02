@@ -12,5 +12,6 @@ public interface PayService {
 	PayClss detailMyPay(int payno);
 	int insertPay(Pay pay);
 	int updatePay(int payno);
+	PayClss payMove(int cid);
 	
 }
