@@ -7,6 +7,11 @@
 	
 	
 	<typeAliases>
+		
+      <typeAlias type="com.untoon.home.model.vo.Home" alias="Home"/>
+      <typeAlias type="com.untoon.home.model.vo.Ad" alias="Ad"/>
+      <typeAlias type="com.untoon.home.model.vo.HomeUpfile" alias="HomeUpfile"/>
+   
 		<typeAlias type="com.untoon.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.untoon.clss.model.vo.Clss" alias="Clss"/>
 		<typeAlias type="com.untoon.pay.model.vo.Pay" alias="Pay"/>
@@ -20,7 +25,12 @@
 		<typeAlias type="com.untoon.qa.model.vo.QaReply" alias="QaReply"/>
 	</typeAliases>
 	
+   
+	
 	<mappers>
+	    <mapper resource ="mappers/home-mapper.xml"/>
+      	<mapper resource = "mappers/ad-mapper.xml"/>
+   
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/clss-mapper.xml"/>
 		<mapper resource="mappers/pay-mapper.xml"/>
