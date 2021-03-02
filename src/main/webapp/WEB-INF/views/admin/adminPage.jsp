@@ -27,8 +27,22 @@
 		width:20%;
 		height:70%;
 		float:left;
-		background-color:#819FF7;
+		/* background-color:#819FF7; */
 		text-align:left;
+	}
+	#div_menu ul{
+		width:30%;
+		height:30%;
+		float:left;
+		align:center;
+		list-style-type:none;
+		margin:10%;
+		padding:10;
+		/* border:solid 1px black; */
+		background-color:#2392BD;
+	}
+	#div_menu ul li:last-child {
+		height:0;
 	}
 	#div_con{
 		width:80%;
@@ -48,17 +62,17 @@
 	
 </style>
 <style type="text/css">
-	ul {
-		background-color:#FFDAB9;
+	/* ul {
+		background-color:#2392BD;
 		width:150px;
 		list-style-type:none;
-		margin:0;
-		padding:0;
+		margin:10%;
+		padding:10;
 		border:solid 1px black;
-	}
+	} */
 	li { border-bottom: solid 1px black;}
-	li:last-child { border-bottom:none;}
-	button { background-color:FFDAB9; border:none;}
+	li:last-child { border-bottom:solid;}
+	button { background-color:#C6D8D3; border:none;}
 	li button{
 		display:block;
 		color:#000000;
@@ -68,11 +82,11 @@
 		font-weight: bold;
 	}
 	li button.current{
-		background-color:#FF6347;
+		background-color:#2392BD;
 		color: white;
 	}
 	li button:hover:not(.current){
-		background-color:#CD853F;
+		background-color:#2392BD;
 		color : white;
 	}
 </style>
@@ -120,7 +134,7 @@ function showEclss(){
 <div id="div_top"><c:import url="../common/menubar.jsp"/></div>
 <div id="div_menu">
 	<h1>세로 네비바 </h1>
-	<ul>
+	<ul style="align:center;">
 		<li><button onclick="showNclss();">미승인 클래스관리</button></li>	
 		<li><button onclick="showYclss();">승인 클래스 관리</button></li>
 		<li><button onclick="showRclss();">승인 거부한 클래스 관리</button></li>
@@ -286,7 +300,7 @@ function showEclss(){
 	});
 	</script>
 </div>
-<div id="div_bottom">footer</div>
+<div id="div_bottom"><c:import url="../common/footer.jsp"/></div>
 
 </body>
 </html>
