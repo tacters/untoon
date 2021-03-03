@@ -1,5 +1,6 @@
 package com.untoon.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.untoon.member.model.vo.Member;
+import com.untoon.member.model.vo.MemberPage;
 
 
 
@@ -64,6 +66,26 @@ public class MemberDao {
 	public String findId(String email) {
 		
 		return sqlSession.selectOne("memberMapper.findId", email);
+	}
+
+	//회원조회 목록
+	public ArrayList<Member> selectList(int currentPage, int limit) {
+		//전달된 값을 이용해 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage -1) * limit -1;
+		int endRow = startRow + limit -1;
+		
+		List<Member> list = sqlSession.selectList("memberMapper.selectList",
+						new MemberPage(startRow, endRow));
+		return (ArrayList<Member>)list;
+	}
+
+	public int getListCount() {
+		return sqlSession.selectOne("memberMapper.getListCount");
+	}
+	
+	//회원정보 상세보기
+	public Member selectMember(int id) {
+		return sqlSession.selectOne("memberMapper.selectMember", id);
 	}
 
 	

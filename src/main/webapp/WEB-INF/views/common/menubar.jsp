@@ -329,9 +329,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											<a href='${ adrclist }' title="adrclist">승인거부 클래스</a> <!-- 관리자 기간지난 클래스 목록보기 -->
 								</div>--%>
 								<div class="widget edgtf-login-register-widget">
-									<c:url var="myInfo" value="/myInfo.do" />
-									<a href='${ myInfo }' title="myInfo">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->
+									<c:url var="mlist" value="/mlist.do" >
+										<c:param name="page" value="1" />
+									</c:url>
+									<a href='${ mlist }' title="mlist">회원 목록</a> <!-- 회원목록 -->
 								</div>
+								
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="plist" value="/plist.do" />
 									<a href='${ plist }' title="plist">전체 결제내역</a> <!-- 결제내역 목록 조회하기(관리자) -->

@@ -107,8 +107,26 @@
     	SELECT ID
     	  FROM MEMBER
     	 WHERE EMAIL=#{email}
+     </select>
      
-    </select>
+   
+	 
+	 <select id="getListCount" resultType="_int">
+  		SELECT COUNT(*) FROM MEMBER
+	 </select>
+	 <!-- 회원정보 목록 -->
+     <select id="selectList" parameterType="com.untoon.member.model.vo.MemberPage" resultMap="memberResultSet">
+     	<![CDATA[
+     	SELECT *
+  		  FROM(SELECT ROWNUM RNUM, ID, NICKNAME, EMAIL, GENDER, PHONE, ENROLL_DATE, UPDATE_DATE
+                 FROM(SELECT * FROM MEMBER
+               WHERE M_STATUS='Y'
+               ORDER BY ID DESC))
+     	  WHERE RNUM >= #{ startRow } AND RNUM <= #{ endRow }		  			
+     	 ]]> 
+   </select>
+  
+   
 </mapper>
 
 

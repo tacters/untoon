@@ -1,5 +1,6 @@
 package com.untoon.member.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -70,6 +71,23 @@ public class MemberServiceImpl implements MemberService {
 	public String findId(String email) {
 		
 		return mDao.findId(email);
+	}
+	
+	//관리자 -> 회원조회
+	@Override
+	public ArrayList<Member> selectList(int currentPage, int limit) {
+		return mDao.selectList(currentPage, limit);
+	}
+
+	@Override
+	public int getListCount() {
+		return mDao.getListCount();
+	}
+
+	//회원정보 상세보기
+	@Override
+	public Member selectMember(int id) {
+		return mDao.selectMember(id);
 	}
 
 
