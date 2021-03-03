@@ -22,11 +22,13 @@
 <body>
 <h2 style="text-align: center;">회원목록</h2>
 		<div align="center" id="writerDiv">
-			<form action="msearchId.do" method="post"></form>
+			<form action="msearchId.do" method="post">
 			<label align="center"> 아이디를 입력하세요 : <input type="search" name="keyword"></label>
-			<input type="submit" value="검색"><br><br>
+			<input type="hidden" name="page" value="1">
+			<input type="submit" value="검색"></form><br><br>
 			<a align="center" href="${ mlist }">전체 목록보기</a>
   		    <input type="button" value="홈으로 이동" onclick="location.href='home.do'"><br><br><br>
+
   		   	</div>
 <table align="center" border="1">
 	<tr>

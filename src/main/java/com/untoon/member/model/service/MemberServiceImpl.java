@@ -1,8 +1,12 @@
 package com.untoon.member.model.service;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.mail.HtmlEmail;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,5 +106,8 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.getSearchWriterListCount(keyword);
 	}
 
+			
+	}
 
-}
+
+

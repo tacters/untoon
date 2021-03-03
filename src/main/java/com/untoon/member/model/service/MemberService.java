@@ -3,6 +3,8 @@ package com.untoon.member.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.vo.Member;
 
@@ -38,6 +40,8 @@ public interface MemberService {
 	ArrayList<Member> selectSearchWriter(SearchAndPage searches);
 
 	int getSearchWriterListCount(String keyword);
+	
+
 
 	
 
