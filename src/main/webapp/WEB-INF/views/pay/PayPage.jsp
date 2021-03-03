@@ -36,7 +36,6 @@ function pay(){
 
 	<c:url var="kakao" value="/movekakao.do">
 		<c:param name="cid" value="${clss.cid }" />
-		<c:param name="pid" value="${clss.pid}"/>
 	</c:url>
 	
 <button class="btn" onclick="location.href='${ kakao }'">결제하기</button>

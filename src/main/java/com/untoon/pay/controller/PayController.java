@@ -21,26 +21,6 @@ public class PayController {
 	@Autowired
 	private PayService payService;
 	
-	//결제페이지에서 카카오페이결제로 넘어가기 
-	@RequestMapping("movekakao.do")
-	public String kakaoPay(Model model, @RequestParam("cid") int cid) {
-		
-		PayClss pay = payService.payMove(cid);
-		 
-		 if(pay != null) { 
-			 System.out.println("movekakao값있음");
-			 model.addAttribute("clss", pay);
-			 return "pay/kakaopay";
-			 } 
-		 else {
-			 System.out.println("movekakao값없음");
-			 model.addAttribute("msg","결제페이지 이동이 실패하였습니다.");
-			 return "common/errorPage"; 
-			 }
-	}
-	
-	
-	//클래스 상세정보 가져오기 ..그 중에서 필요한 정보들 호출할거야 뷰페이지(결제하는페이지)에서
 	//클래스 상세에서 구매하기 누르면 결제페이지로 클래스 정보 값 넘겨줘
 	@RequestMapping("paymove.do")
 	public String clssPayMove(HttpSession session, Model model, @RequestParam("cid") int cid) {
@@ -60,6 +40,43 @@ public class PayController {
 		}
 		
 	}
+	
+	//결제페이지에서 카카오페이결제로 넘어가기 
+	@RequestMapping("movekakao.do")
+	public String kakaoPay(Model model, @RequestParam("cid") int cid) {
+		
+		PayClss pay = payService.payMove(cid);
+		 
+		 if(pay != null) { 
+			 System.out.println("movekakao값있음");
+			 model.addAttribute("clss", pay);
+			 return "pay/kakaopay";
+			 } 
+		 else {
+			 System.out.println("movekakao값없음");
+			 model.addAttribute("msg","결제페이지 이동이 실패하였습니다.");
+			 return "common/errorPage"; 
+			 }
+	}
+	
+	// 카카오페이결제완료되면 결제피니쉬페이지로 넘어가기
+	@RequestMapping("pfinish.do")
+	public String payFinish(Model model) {
+		return "pay/PayFinishPage";
+//				, @RequestParam("cid") int cid
+//				PayClss pay = payService.payMove(cid);
+//				
+//				if (pay != null) {
+//					System.out.println("결제완료후 페이지 넘어감");
+//					model.addAttribute("clss", pay);
+//					return "pay/PayFinishPage";
+//				} else {
+//					System.out.println("페이지 넘어가지 않고 있음..오류");
+//					model.addAttribute("msg", "결제가 정상적으로 처리되지 않았습니다.");
+//					return "common/errorPage";
+//				}
+	}
+	
 	
 	//카카오 결제 실패했을 때 페이지 이동
 	@RequestMapping("kakaofail.do")
@@ -128,22 +145,7 @@ public class PayController {
 			}	
 		}
 
-		// 카카오페이결제완료되면 결제피니쉬페이지로 넘어가기
-		@RequestMapping("pfinish.do")
-		public String payFinish(Model model, @RequestParam("cid") int cid) {
-
-			PayClss pay = payService.payMove(cid);
-			
-			if (pay != null) {
-				System.out.println("결제완료후 페이지 넘어감");
-				model.addAttribute("clss", pay);
-				return "pay/PayFinishPage";
-			} else {
-				System.out.println("페이지 넘어가지 않고 있음..오류");
-				model.addAttribute("msg", "결제가 정상적으로 처리되지 않았습니다.");
-				return "common/errorPage";
-			}
-		}
+		
 		
 	// 결제목록 추가하기(결제완료 페이지에서 결제완료 버튼 누르면  → 마이페이지 결제목록에서 새로운 결제 내역이 추가된다.) → 메인페이지 다시나와
 		@RequestMapping("pinsert.do")

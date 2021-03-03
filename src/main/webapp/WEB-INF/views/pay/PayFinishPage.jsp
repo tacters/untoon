@@ -27,15 +27,21 @@
 <hr>
 <p>총 결제 금액 : ${ clss.clss_price }</p> --%>
 
+<%-- 
 <form action="pinsert.do" method="post">
 
 <input type="hidden" name="pid" value="${loginUser.id}">
 <input type="hidden" name="cid" value="${clss.cid}">
 
+ --%>
+ 
+	<c:url var="home" value="/home.do">
+	</c:url>
 
-<button class="btn"> 결제완료 </button>
+ 
+<button class="btn" onclick="location.href='${home}'"> 결제완료 </button>
 
-</form>
+<!-- </form> -->
 
 <footer><c:import url="../common/footer.jsp"/></footer>
 
