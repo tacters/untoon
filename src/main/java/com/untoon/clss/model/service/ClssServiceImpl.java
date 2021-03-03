@@ -67,20 +67,20 @@ public class ClssServiceImpl implements ClssService {
 
 	// 관리자 미승인 클래스 목록조회
 	@Override
-	public ArrayList<Clss> adminNlist() {
-		return cDao.adminNlist();
+	public ArrayList<Clss> adminNlist(int currentPage, int limit) {
+		return cDao.adminNlist(currentPage, limit);
 	}
 
 	// 관리자 승인 클래스 목록조회
 	@Override
-	public ArrayList<Clss> adminYList() {
-		return cDao.adminYList();
+	public ArrayList<Clss> adminYList(int currentPage, int limit) {
+		return cDao.adminYList(currentPage, limit);
 	}
 
 	// 관리자 기간 지난 클래스 목록조회
 	@Override
-	public ArrayList<Clss> adminEndList() {
-		return cDao.adminEndList();
+	public ArrayList<Clss> adminEndList(int currentPage, int limit) {
+		return cDao.adminEndList(currentPage, limit);
 	}
 
 	// 관리자 클래스 상세보기
@@ -114,8 +114,8 @@ public class ClssServiceImpl implements ClssService {
 
 	// 관리자 승인거부 클래스 목록조회
 	@Override
-	public ArrayList<Clss> adminRlist() {
-		return cDao.adminRlist();
+	public ArrayList<Clss> adminRlist(int currentPage, int limit) {
+		return cDao.adminRlist(currentPage, limit);
 	}
 
 	// 관리자 클래스 삭제하기
@@ -207,6 +207,26 @@ public class ClssServiceImpl implements ClssService {
 	@Override
 	public int getOtherCount() {
 		return cDao.getOtherCount();
+	}
+
+	@Override
+	public int getAdminNListCount() {
+		return cDao.getAdminNListCount();
+	}
+
+	@Override
+	public int getAdminYListCount() {
+		return cDao.getAdminYListCount();
+	}
+
+	@Override
+	public int getAdminRListCount() {
+		return cDao.getAdminRListCount();
+	}
+
+	@Override
+	public int getAdminEListCount() {
+		return cDao.getAdminEListCount();
 	}
 
 	@Override

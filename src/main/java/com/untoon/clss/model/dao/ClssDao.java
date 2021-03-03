@@ -57,29 +57,42 @@ public class ClssDao {
 	}
 
 	// 관리자 미승인 클래스 목록조회
-	public ArrayList<Clss> adminNlist() {
-		List<Clss> list = sqlSession.selectList("clssMapper.adminNlist");
+	public ArrayList<Clss> adminNlist(int currentPage, int limit) {
+
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+		List<Clss> list = sqlSession.selectList("clssMapper.adminNlist", new ClssPage(startRow, endRow));
 
 		return (ArrayList<Clss>) list;
 	}
 
 	// 관리자 승인 클래스 목록조회
-	public ArrayList<Clss> adminYList() {
-		List<Clss> list = sqlSession.selectList("clssMapper.adminYlist");
+	public ArrayList<Clss> adminYList(int currentPage, int limit) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+		List<Clss> list = sqlSession.selectList("clssMapper.adminYlist", new ClssPage(startRow, endRow));
 
 		return (ArrayList<Clss>) list;
 	}
 
 	// 관리자 기간 지난 클래스 목록조회
-	public ArrayList<Clss> adminEndList() {
-		List<Clss> list = sqlSession.selectList("clssMapper.adminEndList");
+	public ArrayList<Clss> adminEndList(int currentPage, int limit) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+		List<Clss> list = sqlSession.selectList("clssMapper.adminEndList", new ClssPage(startRow, endRow));
 
 		return (ArrayList<Clss>) list;
 	}
 
 	// 관리자 승인거부 클래스 목록조회
-	public ArrayList<Clss> adminRlist() {
-		List<Clss> list = sqlSession.selectList("clssMapper.adminRlist");
+	public ArrayList<Clss> adminRlist(int currentPage, int limit) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+		List<Clss> list = sqlSession.selectList("clssMapper.adminRlist", new ClssPage(startRow, endRow));
 
 		return (ArrayList<Clss>) list;
 	}
@@ -237,6 +250,23 @@ public class ClssDao {
 
 		return (ArrayList<Clss>) list;
 	}
+
+	public int getAdminNListCount() {
+		return sqlSession.selectOne("clssMapper.getAdminNListCount");
+	}
+
+	public int getAdminYListCount() {
+		return sqlSession.selectOne("clssMapper.getAdminYListCount");
+	}
+
+	public int getAdminRListCount() {
+		return sqlSession.selectOne("clssMapper.getAdminRListCount");
+	}
+
+	public int getAdminEListCount() {
+		return sqlSession.selectOne("clssMapper.getAdminEListCount");
+	}
+
 
 	public int addClssSave(int cid) {
 		return sqlSession.update("clssMapper.addClssSave", cid);

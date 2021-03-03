@@ -269,40 +269,98 @@
 	</update>
 	
 	<!-- 기간 안지나고 미승인클래스 -->
-	<select id="adminNlist" resultMap="clssResultSet">
+	<select id="adminNlist" resultMap="clssResultSet" parameterType="com.untoon.common.SearchAndPage">
 		<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select *
+						from clss
+						join member on (tchr_id=id)
+						where clss_end > sysdate
+						and clss_status=1))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+		<!-- <![CDATA[
 		select *
 		from clss
 		join member on (tchr_id=id)
 		where clss_end > sysdate
 		and clss_status=1
+		]]> -->
+	</select>
+	
+	<select id="getAdminNListCount" resultType="_int">
+		<![CDATA[
+		select count(*) from clss where clss_end > sysdate and clss_status=1
+		]]>
+	</select>
+	
+	<select id="getAdminYListCount" resultType="_int">
+		<![CDATA[
+		select count(*) from clss where clss_end > sysdate and clss_status=2
+		]]>
+	</select>
+	
+	<select id="getAdminRListCount" resultType="_int">
+		<![CDATA[
+		select count(*) from clss where clss_end > sysdate and clss_status=3
+		]]>
+	</select>
+	
+	<select id="getAdminEListCount" resultType="_int">
+		<![CDATA[
+		select count(*) from clss where clss_end < sysdate
 		]]>
 	</select>
 
 	<!-- 승인된 클래스 -->
-	<select id="adminYlist" resultMap="clssResultSet">
-		select *
-		from clss
-		join member on (tchr_id=id)
-		where clss_status=2
+	<select id="adminYlist" resultMap="clssResultSet" parameterType="com.untoon.common.SearchAndPage">
+		<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select *
+						from clss
+						join member on (tchr_id=id)
+						where clss_end > sysdate
+						and clss_status=2))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
 	</select>
 	
 	<!-- 기간지난 클래스 -->
-	<select id="adminEndList" resultMap="clssResultSet">
+	<select id="adminEndList" resultMap="clssResultSet"  parameterType="com.untoon.common.SearchAndPage">
 		<![CDATA[
-		select *
-		from clss
-		join member on (tchr_id=id)
-		where clss_end < sysdate
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select *
+						from clss
+						join member on (tchr_id=id)
+						where clss_end < sysdate
+						))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
 		]]>
 	</select>
 	
 	<!-- 승인거부한클래스 -->
-	<select id="adminRlist" resultMap="clssResultSet">
-		select *
-		from clss
-		join member on (tchr_id=id)
-		where clss_status = 3
+	<select id="adminRlist" resultMap="clssResultSet" parameterType="com.untoon.common.SearchAndPage">
+		<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select *
+						from clss
+						join member on (tchr_id=id)
+						where clss_end > sysdate
+						and clss_status=3))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
 	</select>
 	
 	<select id="adminSelectClss" resultMap="clssResultSet">

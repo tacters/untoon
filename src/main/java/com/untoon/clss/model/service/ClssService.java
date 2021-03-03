@@ -30,11 +30,11 @@ public interface ClssService {
 
 	Clss selectClss(int cid);	// 사용자 클래스 상세보기
 
-	ArrayList<Clss> adminNlist();	// 관리자 미승인 클래스 목록조회
+	ArrayList<Clss> adminNlist(int currentPage, int limit);	// 관리자 미승인 클래스 목록조회
 
-	ArrayList<Clss> adminYList();	// 관리자 승인 클래스 목록조회
+	ArrayList<Clss> adminYList(int currentPage, int limit);	// 관리자 승인 클래스 목록조회
 
-	ArrayList<Clss> adminEndList();	// 관리자 기간 지난 클래스 목록조회
+	ArrayList<Clss> adminEndList(int currentPage, int limit);	// 관리자 기간 지난 클래스 목록조회
 
 	Clss adminSelectClss(int cid);	// 관리자 클래스 상세보기
 
@@ -47,7 +47,7 @@ public interface ClssService {
 	int adminApproveClss(int cid);	//관리자 클래스 승인하기
 
 
-	ArrayList<Clss> adminRlist();	//관리자 승인거부 클래스 목록조회
+	ArrayList<Clss> adminRlist(int currentPage, int limit);	//관리자 승인거부 클래스 목록조회
 
 	int adminDeleteClss(int cid);	// 관리자 클래스 삭제하기
 
@@ -80,6 +80,14 @@ public interface ClssService {
 	ArrayList<Clss> dclssList(int currentPage, int limit);
 
 	ArrayList<Clss> oclssList(int currentPage, int limit);
+
+	int getAdminNListCount();	//관리자 미승인 클래스 목록조회 페이징처리
+
+	int getAdminYListCount();	//관리자 승인 클래스 목록조회 페이징처리
+
+	int getAdminRListCount();	//관리자 거부 클래스 목록조회 페이징처리
+
+	int getAdminEListCount();	//관리자 기간 지난 클래스 목록조회 페이징처리
 
 	int addClssSave(int cid);
 
