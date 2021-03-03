@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -230,7 +231,8 @@ public class MemberController {
 
 	      if (maxPage < endPage)
 	         endPage = maxPage;
-
+	      System.out.println("list :" + list );
+	      
 	      if (list.size() > 0) {
 	         model.addAttribute("list", list);
 	         model.addAttribute("currentPage", currentPage);
@@ -239,6 +241,7 @@ public class MemberController {
 	         model.addAttribute("endPage", endPage);
 	         model.addAttribute("action", "msearchId.do");
 	         model.addAttribute("keyword", keyword);
+	         
 	         
 	         return "member/memberListView";
 	      } else {
@@ -519,4 +522,6 @@ public class MemberController {
 		}
 		return mav;
 	}
+	
+	
 }

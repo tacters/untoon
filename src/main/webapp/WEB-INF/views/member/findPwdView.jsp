@@ -8,12 +8,29 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+		$(function(){
+			$("#findBtn").click(function(){
+				$.ajax({
+					url : "findpwd.do",
+					type : "POST",
+					data : {
+						id : $("#id").val(),
+						email : $("#email").val()
+					},
+					success : function(result) {
+						alert(result);
+					},
+				})
+			});
+		})
+</script>
 <title>Insert title here</title>
 </head>
 <body>
 	<div class="w3-content w3-container w3-margin-top">
 		<div class="w3-container w3-card-4">
-			<form action="myUpdateView.do" method="post">
+			<form action="loginpage.do" method="post">
 				<div class="w3-center w3-large w3-margin-top">
 					<h3>비밀번호 찾기</h3>
 				</div>

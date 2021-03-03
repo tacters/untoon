@@ -262,6 +262,12 @@
 		    <version>1.4</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-email</artifactId>
+		    <version>1.4</version>
+		</dependency>
 		
 		<!-- ▲ mail관련 라이브러리 -->
 		
