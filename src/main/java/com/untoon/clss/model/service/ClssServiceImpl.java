@@ -209,5 +209,15 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.getOtherCount();
 	}
 
+	@Override
+	public int addClssSave(int cid) {
+		return cDao.addClssSave(cid);
+	}
+
+	@Override
+	public int delClssSave(int cid) {
+		return cDao.delClssSave(cid);
+	}
+
 
 }

@@ -17,6 +17,9 @@
 		<typeAlias type="com.untoon.pay.model.vo.Pay" alias="Pay"/>
 		<typeAlias type="com.untoon.pay.model.vo.PayClss" alias="PayClss"/>
 		
+		<typeAlias type="com.untoon.save.model.vo.SaveClss" alias = "SaveClss"/>
+		<!-- <typeAlias type="com.untoon.save.model.vo.SaveReview" alias = "SaveReview"/> -->
+		
 		<typeAlias type="com.untoon.review.model.vo.Review" alias="Review"/>
 		<typeAlias type="com.untoon.review.model.vo.ReviewClss" alias="ReviewClss"/>
 		<typeAlias type="com.untoon.review.model.vo.ReviewReply" alias="ReviewReply"/>
@@ -35,6 +38,9 @@
 		<mapper resource="mappers/clss-mapper.xml"/>
 		<mapper resource="mappers/pay-mapper.xml"/>
 		
+		<mapper resource="mappers/saveclss-mapper.xml"/>
+		<!-- <mapper resource="mappers/savereview-mapper.xml"/> -->
+				
 		<mapper resource="mappers/review-mapper.xml"/>
 		<mapper resource="mappers/reviewreply-mapper.xml"/>
 		

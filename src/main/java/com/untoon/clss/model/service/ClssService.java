@@ -81,6 +81,10 @@ public interface ClssService {
 
 	ArrayList<Clss> oclssList(int currentPage, int limit);
 
+	int addClssSave(int cid);
+
+	int delClssSave(int cid);
+
 
 
 

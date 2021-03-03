@@ -48,5 +48,15 @@ public class AdServiceImpl implements AdService {
 				return adDao.selectAd();
 			}
 
+			@Override
+			public int getListCount() {
+				return adDao.getListCount();
+			}
+
+			@Override
+			public ArrayList<Ad> selectAllAd(int currentPage, int limit) {
+				return adDao.selectAllAd(currentPage, limit);
+			}
+
 
 }

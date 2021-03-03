@@ -238,4 +238,12 @@ public class ClssDao {
 		return (ArrayList<Clss>) list;
 	}
 
+	public int addClssSave(int cid) {
+		return sqlSession.update("clssMapper.addClssSave", cid);
+	}
+
+	public int delClssSave(int cid) {
+		return sqlSession.update("clssMapper.delClssSave", cid);
+	}
+
 }

@@ -22,7 +22,11 @@
 <title>UNTOON 언투온택터즈</title>
 
 <style type="text/css">
-
+#bodyDiv{
+margin: 40px;
+/* border: 1px solid #2392BD; */
+padding: 30px;
+}
 .topGrid{
 	display:auto; margin:auto; align:center;
 	width: 50%;
@@ -43,19 +47,23 @@
 	background-color: #2392bd;
 	color: black;
 	border-radius: 20px;
-	padding: 15px;
+	padding: 30px;
+	margin-bottom: 40px; /* matchced */
 	max-width: 40%;
 	/* #c6d8d3*/
 	
 }
 
 #tabArea{
-  left-margin: 10%;
-  width: 100%;
+	 /* left-margin: 10%; */
+	 width: 100%;
+	 margin: 40px;
+	/* border: 1px solid #2392BD; */
+	padding: 30px;
   }
  .iframe-youtube{
 	display:block; margin: auto; float:relative;
-	padding: 100px;
+	padding: 50px;
  }
   
   .tbl{
@@ -169,6 +177,7 @@ body, html {
 .tabcontent {
   color: white;
   display: none;
+  position: relative;
   padding: 100px 20px;
   height: 100%;
   background-color: #2392bd;
@@ -552,6 +561,7 @@ function selfReply(qid){
 <body>	
 <c:import url="../common/menubar.jsp"/>
 
+<div id="bodyDiv" >
 <header  style="position: relative; ">
 <br>
 <br>
@@ -668,6 +678,7 @@ function selfReply(qid){
 			
 			<c:set var="tags" value="${ clss.clss_tags }"/><!-- 이 다음에, 쉼표 기준으로 떼어놓기 -->
 			<%-- <c:set var="tag" value="${fn:split(tags, ',') }"/> 			items에다가 split fn 쓰고 index 에다 0,1,2,3,4 쓰면 된다--%>
+			<!-- https://offbyone.tistory.com/368 -->
 			<c:forEach var="i" items="${fn: split(tags, ',') }" >
 				<a href="#" style="color:#fff;">#<c:out value="${ i }"/></a>[
 			</c:forEach>
@@ -682,7 +693,7 @@ function selfReply(qid){
   <script type="text/javascript">
 			function checkPayer(){
 				var txt;
-				var r = confirm("수강신청 가능한 <일반 student> 계정으로 로그인한 후 결제 하시기 바랍니다.");
+				var r = confirm("수강신청 가능한 계정으로 로그인한 후 결제 하시기 바랍니다.");
 				if (r==true) {
 					var myWindow = window.open("${pageContext.request.contextPath}/loginpage.do", "_self");
 				} else {
@@ -719,6 +730,114 @@ function selfReply(qid){
 			</c:if>		
 		</c:if>
 		
+		
+		
+		
+		
+	<!-- 찜하기 / 좋아요  TO PRESS, YOU MUST LOGIN -->
+	  <script type="text/javascript">
+			function checkSaver(){
+				var txt;
+				var r = confirm("클래스 찜하기 가능한 계정으로 로그인한 후 결제 하시기 바랍니다.");
+				if (r==true) {
+					var myWindow = window.open("${pageContext.request.contextPath}/loginpage.do", "_self");
+				} else {	
+					window.open(url, "_self");
+				}
+			}
+			function showEmptyHeart(){
+				$("#emptyHeartDiv").css("display", "block");
+			}
+			function hideEmptyHeart(){
+				$("#emptyHeartDiv").css("display", "none");
+			}
+			function showFullHeart(){
+				$("#fullHeartDiv").css("display", "block");
+			}
+			function hideFullHeart(){
+				$("#fullHeartDiv").css("display", "none");
+			}
+			
+			$(function(){
+				hideFullHeart();
+				showEmptyHeart();
+				
+				var cid =${clss.cid};
+				var loginUser = "${ sessionScope.loginUser.id }";
+				
+				$.ajax({
+					url: "${ pageContext.request.contextPath }/scCheck.do",
+					type: "post",
+					data: {cid: cid, id: loginUser},
+					dataType: "json",
+					success: function(data){
+						console.log("success:" + data);
+						//object ==> string
+						var jsonStr = JSON.stringify(data);
+						//string ==> json 
+						var json = JSON.parse(jsonStr);
+						for(var i in json.list){
+							if(loginUser == json.list[i].id && cid == json.list[i].cid ){
+								hideEmptyHeart();
+								showFullHeart();
+							}
+						}// for in
+					},
+					error: function(jqXHR, textstatus, errorthrown){
+						console.log("error : " + jqXHR + ", " + textstatus + ", " 
+								+ errorthrown);
+					}
+				});//ajax
+			}
+			
+	</script>
+		
+		<!-- 찜하기 / 좋아요 버튼 기능 구현   btn-save -->
+		<c:if test="${ empty sessionScope.loginUser }">
+		<button class="btn-save" onclick="checkSaver();" style="font-size:24px;">♡</button>
+		</c:if>
+		<c:if test="${ !empty sessionScope.loginUser }">
+			<c:url var="scInsert" value="/scInsert.do">
+				<c:param name="cid" value="${clss.cid }" />
+				<c:param name="id" value="${sessionScope.loginUser.id }"/>
+			</c:url>
+			<c:url var="scDelete" value="/scDelete.do">
+				<c:param name="cid" value="${clss.cid }" />
+				<c:param name="id" value="${sessionScope.loginUser.id }"/>
+			</c:url>
+			<c:url var="addClssSave" value="/addClssSave.do">
+				<c:param name="cid" value="${clss.cid }" />
+			</c:url>
+			<c:url var="delClssSave" value="/delClssSave.do">
+				<c:param name="cid" value="${clss.cid }" />
+			</c:url>
+			
+			<div id="saveDiv">
+				<div id="emptyHeartDiv" ><button class="btn-save" onclick="changeHeart(scInsert);" style="font-size:24px;">♡</button></div>
+				<div id="fullHeartDiv"><button class="btn-save" onclick="changeHeart(scDelete);" style="font-size:24px;">♥</button></div>
+			</div>
+			<div id="unsaveDiv">
+			
+			</div>
+		</c:if>
+		<script type="text/javascript">
+			function changeHeart(loc){
+				if (loc == scInsert){ /* scInsert을 따옴표안에 넣어야하나? */
+					addClssSave();
+					location.href="${ scInsert }"; /* JAVASCRIPT에서 이렇게 반환 가능? */
+				} else if (loc== scDelete){
+					delClssSave();
+					return location.href="${ scDelete }"; /* JAVASCRIPT에서 이렇게 반환 가능? */
+				}
+			};
+			function addClssSave(){
+				location.href="${ addClssSave }"; 
+			}
+			function delClssSave(){
+				location.href="${ delClssSave }"; 
+			}
+		</script>
+		
 </div><!-- end of id= "sideIntro" -->
 </header>
 
@@ -727,13 +846,10 @@ function selfReply(qid){
 <br> <br> <br> <br><br> <br> <br> <br><br> <br> 
 <br><br><br><br><br><br>
 </div> -->
+<br style="clear:">
 
-<div id="bodyDiv" style="position:relative;">
-		<div style="display:block; position:relative; margin:auto;">
-			<br style="float:clear;">
-			<br style="float:clear;">
-			<br style="float:clear;">
-		</div>
+<div style="position:relative;">
+		
 		
 		<div id="tabArea" class="bottomGrid">
 			
@@ -749,6 +865,7 @@ function selfReply(qid){
 				    tablinks[i].style.backgroundColor = "";
 				  }
 				  document.getElementById(pageName).style.display = "block";
+				  document.getElementById(pageName).style.position = "relative"; /* 이구절을 보가 추가로 넣음 */
 				  elmnt.style.backgroundColor = color;
 				}
 				
@@ -995,6 +1112,9 @@ function selfReply(qid){
 		
 
 </div><!-- css: Position Relative  -->
+
+
+</div><!-- bodyDiv -->
 
 <footer><c:import url="../common/footer.jsp"/></footer>
 </body>

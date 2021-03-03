@@ -919,5 +919,31 @@ public class ClssController {
 		}
 
 	}
+	
+	
+	// 클래스 찜하기 1 추가용 ADD
+	@RequestMapping("addClssSave.do")
+	public Clss addClssSave(@RequestParam("cid") int cid, Model model) {
+		Clss clss = cService.selectClss(cid);
+		int result = cService.addClssSave(cid);
+		if(clss !=null && result >0) {
+			model.addAttribute("clss", clss);
+			return clss;
+		} else {
+			return clss;
+		}
+	}
+	// 클래스 찜하기 1 삭제용 DELETE
+		@RequestMapping("delClssSave.do")
+		public Clss delClssSave(@RequestParam("cid") int cid, Model model) {
+			Clss clss = cService.selectClss(cid);
+			int result = cService.delClssSave(cid);
+			if(clss !=null && result >0) {
+				model.addAttribute("clss", clss);
+				return clss;
+			} else {
+				return clss;
+			}
+		}
 
 }

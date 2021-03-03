@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.untoon.home.model.vo.Ad;
+import com.untoon.home.model.vo.AdPage;
 
 @Repository("adDao")
 public class AdDao {
@@ -24,7 +25,7 @@ public class AdDao {
 	}
 
 	public int deleteAd(int adid) {
-		return sqlSession.update("adMapper.updateAd", adid);
+		return sqlSession.delete("adMapper.deleteAd", adid);
 	}
 
 	public Ad selectAd(int adid) {
@@ -38,6 +39,19 @@ public class AdDao {
 
 	public Ad selectAd() {
 		return sqlSession.selectOne("adMapper.selectRecentAd");
+	}
+
+	public int getListCount() {
+		return sqlSession.selectOne("adMapper.getListCount");
+	}
+
+	public ArrayList<Ad> selectAllAd(int currentPage, int limit) {
+		//전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+				int startRow = (currentPage - 1) * limit -1;
+				int endRow = startRow + limit -1;
+		List<Ad> adlist = sqlSession.selectList("adMapper.selectAllAdPaging", 
+																	new AdPage(startRow,endRow));
+		return (ArrayList<Ad>)adlist;
 	}
 
 }

@@ -2,6 +2,7 @@ package com.untoon.home.controller;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,11 +45,10 @@ public class HomepageController {
 	// 모든 홈피 관리 페이지
 	@RequestMapping("hdetail.do") 
 	public String homeDetailView( //@RequestParam("hid") int hid, 
-													Model model, HttpSession session) 
-													throws UnsupportedEncodingException{
+													Model model) {
 		
-		ArrayList<Ad> adlist = adService.selectAllAd(); 		// 광고 전체 목록보기 요청 처리용 = adlist.do 역할
-		System.out.println(adlist);
+//		ArrayList<Ad> adlist = adService.selectAllAd(); 		// 광고 전체 목록보기 요청 처리용 = adlist.do 역할
+//		System.out.println(adlist);
 		
 		Home home = homeService.selectHome();	//홈 상세보기도 불러오고
 		System.out.println(home);
@@ -60,8 +60,8 @@ public class HomepageController {
 //		System.out.println(hupfile);
 		
 		
-		if ( home != null || adlist.size() >0) { // 광고들과 홈페이지에서 수정할것들이 1개라도 있다면
-			model.addAttribute("adlist", adlist);
+		if (home != null/* || adlist.size() >0 */) { // 광고들과 홈페이지에서 수정할것들이 1개라도 있다면
+//			model.addAttribute("adlist", adlist);
 			model.addAttribute("home", home);
 //			model.addAttribute("hupfile", hupfile);
 			
@@ -73,13 +73,28 @@ public class HomepageController {
 	}
 
 	// adlist 광고 리스트 조회
+	// A_STATUS DESC, AD_END DESC
 	@RequestMapping("alist.do")
-	public String adListView(Model model) {
-		ArrayList<Ad> adlist = adService.selectAllAd();
+	public String adListView(@RequestParam("page") int currentPage, Model model) {
+		
+		int limit = 10;
+		ArrayList<Ad> adlist = adService.selectAllAd(currentPage, limit);
+		int listCount = adService.getListCount();
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		int startPage = ((int) ((double) currentPage / 10)) *10 + 1;
+		int endPage = startPage + 9;
+		
+		if(maxPage<endPage)
+			endPage = maxPage;
 		
 		if ( adlist.size() >0) { // 광고들 수정할것들이 1개라도 있다면
 			model.addAttribute("adlist", adlist);
-			return "home/homeDetailView";			
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			
+			return "home/adListView";			
 		} else {
 			model.addAttribute("msg", "홈페이지 관리용 뷰가 생성되지 않고 있습니다ㅠㅜㅠ 오류를 잡아주세요.");
 			return "common/errorPage";  
@@ -278,16 +293,14 @@ public class HomepageController {
 		// 광고관리용 상세보기 페이지
 		@RequestMapping("adetail.do")
 		public String adDetailView(@RequestParam("adid") int adid,
-													Model model, HttpSession session) {
+													@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage,
+													Model model) {
 			
 			Ad ad = adService.selectAd(adid); // 광고 상세보기
-			HomeUpfile ad_file = huService.selectAdUpfile(adid); // adid = 위Param으로 받아온 adid 인경우게 광고 첨부파일 넣기
 			
 			if (ad != null) { //광고 값이 있으면
-				model.addAttribute("ad", ad); //광고 객체
-				model.addAttribute("ad_file", ad_file); //광고첨부파일 객체
-				
-				
+				model.addAttribute("page", currentPage);
+				model.addAttribute("ad", ad); //광고 객체				
 				return "home/adDetailView"; 
 			} else {
 				// 값이 없다면 오류
@@ -299,37 +312,51 @@ public class HomepageController {
 		
 		//UPDATE
 		@RequestMapping(value = "aupdate.do" , method = RequestMethod.POST)
-		public String updateAd(Ad ad ,	 HomeUpfile hupfile, HttpServletRequest request, Model model,
+		public String updateAd(Ad ad , HttpServletRequest request, Model model,
+											@RequestParam("page") int currentPage, 
 											@RequestParam(name = "delFlag", required = false) String delFlag,
 											@RequestParam(name = "ad_file", required = false) MultipartFile mfile ) {
 			// 업로드된 파일 저장 폴더 지정하기
 			String savePath = request.getSession().getServletContext().getRealPath("resources/home/ad");
 			
 			// 원래 첨부파일이 있는데, 삭제를 선택한 경우
-			if (hupfile.getAd_file() != null && delFlag != null && delFlag.equals("yes")) {
+			if (ad.getAd_file() != null && delFlag != null && delFlag.equals("yes")) {
 				// 저장 폴더에서 파일을 삭제함
-				new File(savePath + "\\" + hupfile.getAd_file()).delete();
-				hupfile.setAd_file(null);
+				new File(savePath + "\\" + ad.getAd_file()).delete();
+				ad.setAd_file(null);
+				ad.setAd_file_r(null);
 			}
 			
 			// 첨부파일이 없었는데, 새로 추가한 경우
 			if (mfile != null) {
 				String fileName = mfile.getOriginalFilename();
 				System.out.println("update : " + fileName);
+				String renameFileName = null;
 				
-				if (hupfile.getAd_file() == null && fileName.length() > 0) {
+				if (fileName != null && fileName.length() > 0) {
+					//첨부된 파일의 파일명 바꾸기
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+					renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()));
+					renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
+					
 					// 업로드된 파일을 지정 폴더로 옮기기
 					try {
-						mfile.transferTo(new File(savePath + "\\" + fileName));
+						mfile.transferTo(new File(savePath + "\\" + renameFileName));
 					} catch (Exception e) {
 						e.printStackTrace();
 						model.addAttribute("msg", "전송파일 저장 실패.");
 						return "common/errorPage";
 					}
-					hupfile.setAd_file(fileName);
 				}
+				
+				if(ad.getAd_file() != null) {
+					new File(savePath  + "\\" + ad.getAd_file_r()).delete();
+				}
+				
+				ad.setAd_file(fileName);
+				ad.setAd_file_r(renameFileName);
 			}
-			if (adService.updateAd(ad) > 0 && huService.updateAdFile(hupfile)>0) {
+			if (adService.updateAd(ad) > 0 ) {
 				return "redirect:hdetail.do";
 			} else {
 				model.addAttribute("msg", "광고 수정 실패.");
@@ -349,74 +376,50 @@ public class HomepageController {
 		
 		// 광고 새로 추가하기
 		@RequestMapping(value="ainsert.do", method = RequestMethod.POST)
-		public String insertAd(Ad ad, HttpServletRequest request, Model model) {
+		public String insertAd(Ad ad, HttpServletRequest request, Model model,
+											@RequestParam(name="upfile", required = false) MultipartFile mfile){
+			
+			String savePath = request.getSession().getServletContext()
+					.getRealPath("resources/home/ad");
+			
+			if (mfile != null) {
+				String fileName = mfile.getOriginalFilename();			
+				if (fileName != null && fileName.length() > 0) {
+					ad.setAd_file(fileName); //원래 파일명 vo 에 저장함
+					
+					//첨부된 파일의 파일명 바꾸기
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+					String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()));
+					renameFileName += "." + fileName.substring(fileName.lastIndexOf(".") + 1);
+					
+					try {
+						mfile.transferTo(new File(savePath + "\\" + renameFileName));
+					} catch (Exception e) {
+						e.printStackTrace();
+						model.addAttribute("msg", "전송파일 저장 실패.");
+						return "common/errorPage";
+					}
+					ad.setAd_file_r(renameFileName);
+				}
+			}
+			
+						
 			if (adService.insertAd(ad)>0) {
 				model.addAttribute("ad", ad); //광고 객체
 				System.out.println("입력된 광고 정보 : " + ad);
-				return "redirect:aumove.do"; // 광고 글정보가 insert 완료되면 첨부파일 넣는 것을 실행해라
+				return "redirect:hdetail.do"; 
 			} else {
 				model.addAttribute("msg", "광고 등록 실패");
 				return "common/errorPage";
 			}
 		}
 		
-		// 광고 첨부파일 FILE 추가하기로 이동하기
-		@RequestMapping("aumove.do") //	ad upload move
-		public String adUploadView(//@RequestParam("adid") int adid, 
-													HttpServletRequest request, Model model) {
-			Ad ad = adService.selectAd();
-			System.out.println("현재 저장된 광고 ID: "+ ad.getAdid());
-			if(ad != null) {
-			model.addAttribute("ad", ad); //광고 객체
-			return "home/adUploadView";
-			} else {
-				model.addAttribute("msg", "광고 첨부파일 등록 페이지로 이동 실패");
-				return "common/errorPage";
-			}
-		}
 	
-		// 광고 첨부파일 추가하기
-		@RequestMapping(value = "aupload.do", method = RequestMethod.POST)
-		public String insertAdFile(Ad ad, HomeUpfile hupfile, // HomeUpfile 추가
-														HttpServletRequest request, Model model,
-														@RequestParam(name = "ad_file", required=false) MultipartFile mfile
-														) throws UnsupportedEncodingException{
-			
-			System.out.println("현재 광고 ID : " + ad.getAdid());
-			// form태그안에 이미 있으므로 사실 필요가 없어야함 hupfile.setAdid(ad.getAdid());
-			
-			// 업로드된 파일 저장 폴더 지정하기
-			String savePath = request.getSession().getServletContext().getRealPath("resources/home/ad");
-
-			// 첨부파일이 있을때만 업로드된 파일을 지정 폴더로 옮기기
-			if (mfile != null) {
-				String fileName = mfile.getOriginalFilename();
-				if (fileName != null && fileName.length() > 0) {
-					try {
-						mfile.transferTo(new File(savePath + "\\" + fileName));
-					} catch (Exception e) {
-						e.printStackTrace();
-						model.addAttribute("msg", "전송파일 저장 실패.");
-						return "common/errorPage";
-					}
-					hupfile.setAd_file(mfile.getOriginalFilename());
-					logger.info("aupload.do : " + hupfile);
-				}
-		}
-			if(huService.insertAdFile(hupfile)>0) {
-				System.out.println("현재 광고 upfile ID : " + hupfile.getHuid());
-				return"redirect:hdetail.do";
-			} else {
-				model.addAttribute("msg", "광고 등록 실패.");
-				return "common/errorPage";
-			}
-			
-		}
 		
 		// 광고 삭제하기 + 첨부파일도 같이 삭제
 		@RequestMapping("adelete.do")
 		public String deleteAd(@RequestParam("adid") int adid, 
-											@RequestParam(name="ad_file", required = false) String fileName,
+											@RequestParam(name="ad_file_r", required = false) String fileName,
 											HttpServletRequest request, Model model) {
 			if (adService.deleteAd(adid)>0) {
 				//첨부파일이 있는 글일 때, 저장폴더에 있는 파일도 삭제함

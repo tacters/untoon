@@ -10,8 +10,11 @@ public interface AdService {
 	int updateAd(Ad ad);
 	int deleteAd(int adid);
 	
+	int getListCount();
+	
 	Ad selectAd();
 	Ad selectAd(int adid);
 	ArrayList<Ad> selectAllAd();
+	ArrayList<Ad> selectAllAd(int currentPage, int limit);
 
 }

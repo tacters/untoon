@@ -362,6 +362,20 @@
     </delete>
     
     
+    <update id="addClssSave">
+    	UPDATE 	CLSS
+    	SET
+    					SAVE_COUNT = SAVE_COUNT + 1
+    	WHERE		CID = #{ cid }
+    </update>
+    
+     <update id="delClssSave">
+    	UPDATE 	CLSS
+    	SET
+    					SAVE_COUNT = SAVE_COUNT - 1
+    	WHERE		CID = #{ cid }
+    </update>
+    
 </mapper>
 
 

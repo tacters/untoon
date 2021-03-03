@@ -66,8 +66,9 @@ padding: 30px;
 				<!-- 창닫기 방법: 1=오늘 하루 열지 않음, 2=다시 열지 않음 -->
 				<input type="checkbox" name="ad_close" id="todayclose" value="1"><label for "todayclose">오늘 하루 열지 않음</label><br>
 				<!-- <input type="checkbox" name="ad_close" id="permclose" value="2"><label for "permclose">오늘 하루 열지 않음</label><br> -->
+<tr><th colspan="2"><input type="file" name="upfile"></th></tr>
 <tr><th colspan="2">
-				<input type="submit" value="저장하고 첨부파일 넣기"> &nbsp; 
+				<input type="submit" value="광고 등록"> &nbsp; 
 				<input type="reset" value="취소"> &nbsp; 
 				<button onclick="javascript:history.go(-1); return false;">목록</button>
 				</th></tr>
