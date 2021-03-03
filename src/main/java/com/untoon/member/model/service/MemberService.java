@@ -3,6 +3,7 @@ package com.untoon.member.model.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.vo.Member;
 
 public interface MemberService {
@@ -32,6 +33,11 @@ public interface MemberService {
 
 	//회원정보 상세보기
 	Member selectMember(int id);
+
+	//아이디로 검색하기
+	ArrayList<Member> selectSearchWriter(SearchAndPage searches);
+
+	int getSearchWriterListCount(String keyword);
 
 	
 

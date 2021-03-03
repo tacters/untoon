@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.vo.Member;
 import com.untoon.member.model.vo.MemberPage;
 
@@ -86,6 +87,16 @@ public class MemberDao {
 	//회원정보 상세보기
 	public Member selectMember(int id) {
 		return sqlSession.selectOne("memberMapper.selectMember", id);
+	}
+
+	//아이디로 검색하기
+	public ArrayList<Member> selectSerarchWriter(SearchAndPage searches) {
+		List<Member> list = sqlSession.selectList("memberMapper.searchWriter",searches);
+		return (ArrayList<Member>)list;
+	}
+
+	public int getSearchWriterListCount(String keyword) {
+		return sqlSession.selectOne("memberMapper.getSearchWriterListCount", keyword);
 	}
 
 	

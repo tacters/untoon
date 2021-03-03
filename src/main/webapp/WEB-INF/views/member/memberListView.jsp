@@ -22,7 +22,7 @@
 <body>
 <h2 style="text-align: center;">회원목록</h2>
 		<div align="center" id="writerDiv">
-			<form action="msearchWriter.do" method="post"></form>
+			<form action="msearchId.do" method="post"></form>
 			<label align="center"> 아이디를 입력하세요 : <input type="search" name="keyword"></label>
 			<input type="submit" value="검색"><br><br>
 			<a align="center" href="${ mlist }">전체 목록보기</a>
@@ -33,6 +33,8 @@
 		<td>아이디</td>
 		<td>닉네임</td>
 		<td>이메일</td>
+		<td>성별</td>
+		<td>사용자등급</td>
 		<td>생년월일</td>
 		<td>전화번호</td>
 		<td>회원가입일</td>
@@ -50,6 +52,8 @@
 			<td align="center">${m.nickname}</td>
 			<td align="center">${m.email}</td>
 			<td align="center">${m.gender}</td>
+			<td align="center">${m.user_lv}</td>
+			<td align="center">${m.birthday}</td>
 			<td align="center">${m.phone}</td>
 			<td align="center">${m.enroll_date}</td>
 			<td align="center">${m.update_date}</td>

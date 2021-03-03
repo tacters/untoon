@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.dao.MemberDao;
 import com.untoon.member.model.vo.Member;
 
@@ -79,15 +80,26 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.selectList(currentPage, limit);
 	}
 
+	//회원정보 상세보기
 	@Override
 	public int getListCount() {
 		return mDao.getListCount();
 	}
 
-	//회원정보 상세보기
 	@Override
 	public Member selectMember(int id) {
 		return mDao.selectMember(id);
+	}
+
+	//아이디로 검색하기
+	@Override
+	public ArrayList<Member> selectSearchWriter(SearchAndPage searches) {
+		return mDao.selectSerarchWriter(searches);
+	}
+
+	@Override
+	public int getSearchWriterListCount(String keyword) {
+		return mDao.getSearchWriterListCount(keyword);
 	}
 
 

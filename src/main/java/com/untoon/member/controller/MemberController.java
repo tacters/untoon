@@ -22,6 +22,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.service.MemberService;
 import com.untoon.member.model.vo.Member;
 
@@ -202,6 +203,50 @@ public class MemberController {
 			return "common/errorPage";
 		}
 	}
+	
+	//아이디로 검색하기
+	@RequestMapping(value="msearchId.do", method=RequestMethod.POST)
+	public String memberSearchId(@RequestParam("keyword") String keyword,
+					@RequestParam("page") int currentPage, Model model) {
+		  int limit = 10;
+	      int startRow = (currentPage - 1) * limit - 1;
+	      int endRow = startRow + limit - 1;
+
+	      SearchAndPage searches = new SearchAndPage();
+	      searches.setKeyword(keyword);
+	      searches.setStartRow(startRow);
+	      searches.setEndRow(endRow);
+
+	      ArrayList<Member> list = mService.selectSearchWriter(searches);
+
+	      // 페이지 처리와 관련된 값 처리
+	      // 총 페이지 계산을 위한 총 목록 갯수 조회
+	      int listCount = mService.getSearchWriterListCount(keyword);
+	      int maxPage = (int) ((double) listCount / limit + 0.9);
+	      // 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+	      // 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+	      int startPage = ((int) (double) currentPage / 10) * 10 + 1;
+	      int endPage = startPage + 9;
+
+	      if (maxPage < endPage)
+	         endPage = maxPage;
+
+	      if (list.size() > 0) {
+	         model.addAttribute("list", list);
+	         model.addAttribute("currentPage", currentPage);
+	         model.addAttribute("maxPage", maxPage);
+	         model.addAttribute("startPage", startPage);
+	         model.addAttribute("endPage", endPage);
+	         model.addAttribute("action", "msearchId.do");
+	         model.addAttribute("keyword", keyword);
+	         
+	         return "member/memberListView";
+	      } else {
+	         model.addAttribute("msg", keyword + "검색된 정보  없습니다.");
+	         return "common/errorPage";
+	      }
+	   }
+	
 
 	// 회원가입
 	@RequestMapping(value = "minsert.do", method = RequestMethod.POST)
