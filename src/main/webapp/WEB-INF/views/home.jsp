@@ -17,7 +17,16 @@
 <link rel="profile" href="https://gmpg.org/xfn/11" />
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,user-scalable=yes">
-
+<style type="text/css">
+/* AD TEST */
+ .divpop {
+      position: absolute; z-index:999; top:50px; left:50px;
+      width:350px; height:500px; border:1px solid black;background-color:yellow;display:none;
+  }
+  .title_area {font-weight:bold;text-align:center;width:100%}
+  .button_area {position:absolute;bottom:0;left:10px;} 
+  
+</style>
 <style type="text/css" data-type="vc_shortcodes-custom-css">
 .vc_custom_1533890452168 {
 	padding-top: 85px !important;
@@ -271,6 +280,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </style>
 </noscript>
+<script src="${ pageContext.request.contextPath }/resources/home/adCookie.js" type="text/javascript"></script>
 </head>
 <body
 	class="home page-template page-template-full-width page-template-full-width-php page page-id-31 urbango-core-1.0 edgtf-social-login-1.0 woocommerce-no-js urbango-listing-1.0 urbango-ver-1.0 edgtf-smooth-page-transitions edgtf-smooth-page-transitions-fadeout edgtf-grid-1300 edgtf-content-is-behind-header edgtf-wide-dropdown-menu-content-in-grid edgtf-light-header edgtf-sticky-header-on-scroll-down-up edgtf-dropdown-default edgtf-header-standard edgtf-menu-area-shadow-disable edgtf-menu-area-in-grid-shadow-disable edgtf-menu-area-border-disable edgtf-menu-area-in-grid-border-disable edgtf-logo-area-border-disable edgtf-logo-area-in-grid-border-disable edgtf-woocommerce-columns-3 edgtf-woo-normal-space edgtf-woo-pl-info-below-image edgtf-woo-single-thumb-below-image edgtf-woo-single-has-pretty-photo edgtf-default-mobile-header edgtf-sticky-up-mobile-header edgtf-header-top-enabled edgtf-slide-from-header-bottom wpb-js-composer js-comp-ver-6.0.5 vc_responsive"
@@ -278,6 +288,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	
 <c:import url="common/menubar.jsp"/>
 		
+		<form name="adPopup">
+		      <div id="divpop1" class="divpop" > 
+		          <div class="title_area" >
+		          		<img src="${pageContext.request.contextPath }/resources/home/ad/20210303160636.png" alt="" 
+						style=" width: 1600; height:1600; border-radius: 5px;">
+		          </div>
+		           <div class="button_area" style="position:absolute;bottom:0;left:10px;">
+							<input type='checkbox' name='chkbox' id='todaycloseyn' value='Y'>오늘 하루 이 창을 열지 않음
+		           		
+		               <a href='#' onclick="javascript:closeWin(1);"><B>[닫기]</B></a>
+		           </div>
+		      </div>		      
+  </form>
 	<%-- 	
 	<div class="edgtf-wrapper">
 		<div class="edgtf-wrapper-inner">
