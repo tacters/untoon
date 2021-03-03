@@ -26,19 +26,19 @@ li:last-child {
 #div_top {
 	width: 100%;
 	height: 100px;
-	/* background-color: #82FA58; */
+	background-color: #82FA58;
 	text-align: center;
 }
 
 #div_menu {
-	width: 15%;
+	width: 20%;
 	height: 70%;
 	float: left;
-	background-color: white;
+	background-color: #819FF7;
 	text-align: left;
 }
 
-/* #div_menu ul {
+#div_menu ul {
 	width: 30%;
 	height: 30%;
 	float: left;
@@ -48,46 +48,10 @@ li:last-child {
 	padding: 10;
 	border: solid 1px black;
 	background-color: #2392BD;
-} */
-
-#div_menu ul{
-	width: 80%;
-	height: 25%;
-	list-style-type: none;
-	margin: 5%;
-	padding: 10;
-	float: left;
-	background-color: #2392BD;
 }
 
-/*  #div_menu ul li:last-child {
-	height: 100;
-}  */
-
-#div_menu ul li{
-	list-style:none;
-	/* border-bottom: solid 1px black; */
-	border-bottom:none;
-}
-
-#div_menu li a {
-	width: 100%;
-	display: block;
-	color: #000000;
-	padding: 8px;
-	text-align: center;
-	text-decoration: none;
-	font-weight: bold;
-}
-
-#div_menu li a.current {
-	background-color: #2392BD;
-	color: white;
-}
-
-#div_menu li a:hover:not(.current) {
-	background-color: #2392BD;
-	color: white;
+#div_menu ul li:last-child {
+	height: 0;
 }
 
 #div_con {
@@ -106,15 +70,15 @@ li:last-child {
 	text-align: center;
 }
 </style>
-<!-- <style type="text/css">
-ul {
+<style type="text/css">
+/* ul {
 		background-color:#2392BD;
 		width:150px;
 		list-style-type:none;
 		margin:10%;
 		padding:10;
 		border:solid 1px black;
-	}
+	} */
 li {
 	border-bottom: solid 1px black;
 }
@@ -147,7 +111,7 @@ li a:hover:not(.current) {
 	background-color: #2392BD;
 	color: white;
 }
-</style> -->
+</style>
 </head>
 <body>
 
@@ -156,7 +120,7 @@ li a:hover:not(.current) {
 		<c:import url="../common/menubar.jsp" />
 	</div>
 	<div id="div_menu">
-		<h4>세로네비바</h4>
+		<h1>세로 네비바</h1>
 		<ul style="align: center;">
 			<li><a href="">미승인 클래스관리</a></li>
 			<li><a href="">승인 클래스 관리</a></li>
@@ -165,7 +129,6 @@ li a:hover:not(.current) {
 		</ul>
 	</div>
 	<div id="div_con">
-	내용
 	</div>
 	<div id="div_bottom">
 		<c:import url="../common/footer.jsp" />

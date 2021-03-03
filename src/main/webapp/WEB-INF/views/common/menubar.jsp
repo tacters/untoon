@@ -313,8 +313,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											<a href='${ hdetail }' title="hdetail"> 홈페이지 관리 </a> <!-- 홈페이지 관리하기 -->
 								</div>
 								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
-											<c:url var="adpage" value="/adpage.do" />
-											<a href='${ adpage }' title="adpage">클래스 관리 </a> <!-- 클래스 관리하기 -->
+											<c:url var="adnclist" value="/adnclist.do">
+											<c:param name="page" value="1"/>
+											</c:url>
+											<a href='${ adnclist }' title="adnclist">클래스 관리 </a> <!-- 클래스 관리하기 -->
 								</div>
 								<%-- <div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
 											<c:url var="adclist" value="/adclist.do" />
