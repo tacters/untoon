@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UNTOON 언투온택터즈</title>
+	<style>
+		.notice{
+			position: fixed;
+			padding: 20px;
+			border: 1px solid #ccc;
+			top:100px;
+			left:100px;
+			}
+	</style>
+</head>
+<body>
+	<div class="notice"> Notice</div>
+	
+	<script>
+	console.log(document.cookie); // CookieName = UNTOON
+	var currentCookie = document.cookie;
+	var cookieCheck = currentCookie.indexOf('UNTOON'); //cookiename
+	
+	console.log(cookieCheck); // 11 번째
+	if(cookieCheck > -1){
+		document.querySelector('.notice').style.display = 'none'; // 처음 본 사람이 아니다 = 광고 '.notice를 띄우지 말아라 = 다시 보지 않기
+	} else {
+		document.querySelector('.notice').style.display = 'block'; // 처음 온 사람이라 띄운다
+	}
+
+</script>
+</body>
+</html>

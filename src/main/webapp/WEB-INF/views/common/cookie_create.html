@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>UNTOON 언투온택터즈</title>
+
+<script>
+	var date = new Date(); //현재 날짜 반환
+	// 변수 날짜 지정 변수 .setDate (새로운 날짜); = 7일 후의 날짜; =  date.getDate() +7
+	console.log(date.getDate() + 7); //하지만 한국 표준시가 아니라 GMT 그리니치 평균시가 들어가야함
+													
+	date.getDate(date.getDate() + 7); //COOKIE 파기 날짜
+	
+	console.log(date);
+	var setCookie='');
+	setCookie += 'CookieName = UNTOON;'; // 마음대로 지정 가능
+	setCookie += 'expires = '+ date.toUTCString(); // GMT , UTC 협정세계시 가 들어감
+	
+	console.log(setCookie);
+	document.cookie = setCookie;
+	
+</script>
+</head>
+<body>
+
+
+<!--  참고 : https://www.youtube.com/watch?v=XtzoyhirKcQ
+cookie_base
+쿠키 생성, 확인, 삭제
+
+cookie_create.html
+
+cookieName 이름
+expires 소멸시기
+
+오늘 날짜, 일주일
+
+ -->
+</body>
+</html>

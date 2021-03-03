@@ -21,7 +21,7 @@
 			
 			rows.forEach(row => {
 				row.addEventListener("click", () =>{
-					window.location.href = row.dataset.href; // 주소창을 바꿔라. dataset = data-로 설정된 값들 = data-href의 값
+					window.parent.location.href = row.dataset.href; // 주소창을 바꿔라. dataset = data-로 설정된 값들 = data-href의 값
 				});
 			});
 		});
@@ -34,11 +34,11 @@ margin: 40px;
 padding: 30px;
 }
 /* TABLE */
-.tbl-ad {	border-collapse: collapse;  width: 100%;		} /* font-family 지정해줘도 좋을듯! */
+.tbl-ad {	border-collapse: collapse;  width: 100%;	 text-align: center;	} /* font-family 지정해줘도 좋을듯! */
 .tbl-ad th {
 	padding-top: 12px;
 	padding-bottom: 12px;
-	text-align: left;
+	text-align: center;
 	background-color: #2392bd;
 	color: white;
 }
@@ -62,11 +62,12 @@ body, html {
 
 
 <title>UNTOON 언투온택터즈</title>
+
 </head>
 <body>
 <div class="body">
 	<%-- ADVERTISEMENT --%>
-	<h3> 홈페이지 광고 관리 </h3>
+	<h1> 홈페이지 광고 관리 </h1>
 	<i> 현재 액티브인 광고 및 광고 마감일 내림차순으로 정렬한 광고 목록입니다. 광고를 동시에 3개 이상 액티브 시키면 홈페이지 뷰 (home.jsp)가 어수선해 보일 수 있으니 주의 바랍니다.</i> 
 	<br>
 	<br>
@@ -82,12 +83,12 @@ body, html {
 		<c:forEach items="${ requestScope.adlist }" var="a"> <!-- ArrayList로 받아져오는 광고 목록 = adlist -->
 			<tbody style="display:none">
 				<tr><td>${ a.adid }</td></tr>
-				<c:url value="/adetail.do" var ="adet">
+				<c:url value="/adetail.do" var ="adet" >
 					<c:param name="page" value="${ currentPage }"/>
 					<c:param name = "adid" value="${ a.adid }"/>
 				</c:url>
 			</tbody>
-		<tr data-href="${ adet }">
+		<tr data-href="${ adet }" >
 			<td class="tbl-ad-data" > ${ a.ad_title } </td> <!-- 광고제목 -->
 			<td class="tbl-ad-data"> ${ a.ad_xy } </td> <!-- 화면위치 -->
 			<td class="tbl-ad-data"> ${ a.ad_start } </td> <!-- 광고 시작일  -->
@@ -98,13 +99,7 @@ body, html {
 	</table>
 	<br>
 	<br>
-	<c:if test="${ !empty sessionScope.loginUser and sessionScope.loginUser.user_lv eq 'A' }">
-		<div style="align:center;">
-			<c:url var = "aim" value="/aimove.do"/>
-				<button onclick="javascript:location.href='${ aim }'" style="display:block; margin:auto; align:center;">새 광고 등록</button>
-		</div>
-	<br>
-	</c:if>
+
 <br>
 
 <%-- 현재 페이지가 1이 아니면 링크설정, 현재 1페이지이면 링크없음 --%>
