@@ -13,6 +13,7 @@ import com.untoon.clss.model.vo.Clss;
 import com.untoon.clss.model.vo.ClssPage;
 import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.vo.Member;
+import com.untoon.member.model.vo.PayMember;
 
 @Repository("clssDao")
 public class ClssDao {
@@ -274,6 +275,12 @@ public class ClssDao {
 
 	public int delClssSave(int cid) {
 		return sqlSession.update("clssMapper.delClssSave", cid);
+	}
+
+	public ArrayList<PayMember> teacherEnrolled(int cid) {
+		List<PayMember> list = sqlSession.selectList("clssMapper.teacherEnrolled", cid);
+
+		return (ArrayList<PayMember>) list;
 	}
 
 }

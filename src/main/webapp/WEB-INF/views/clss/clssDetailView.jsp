@@ -585,7 +585,7 @@ function selfReply(qid){
 						<c:if test="${ clss.clss_status lt 3 }">
 						<textarea cols="100" rows="10" name="clss_comment"></textarea>
 						<input type="submit" value="거부하기">
-						&nbsp; &nbsp; 
+						&nbsp; &nbsp;  
 						</c:if>
 					</c:if>
 					</form>

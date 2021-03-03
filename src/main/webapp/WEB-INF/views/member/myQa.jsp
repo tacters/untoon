@@ -10,7 +10,7 @@
 <body>
 <c:import url="../common/menubar.jsp"/>
 <c:import url="../member/myPageheader.jsp"/>
-<h2>${ loginUser.name }님의 1대1문의 내역</h2>
+<h3 align="center">${ loginUser.name }님의 1대1문의 내역</h3>
 <table>
 <tr><th>문의글 번호</th><th>문의 내용</th><th>답변 상태</th>
 </tr>

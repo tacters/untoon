@@ -26,8 +26,8 @@ span.error {
 <body>
 
 <c:import url="../common/menubar.jsp"/>
-	
-	<h1 align="center">강사 지원하기</h1>
+<c:import url="../member/myPageheader.jsp"/>
+	<h3 align="center">강사 지원하기</h3>
 
 	<div class="outer" align="center">
 		<form action="minsert.do" method="post" id="joinForm" enctype="multipart/form-data">

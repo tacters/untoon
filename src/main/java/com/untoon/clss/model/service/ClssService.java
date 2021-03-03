@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.untoon.clss.model.vo.Clss;
 import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.vo.Member;
+import com.untoon.member.model.vo.PayMember;
 
 public interface ClssService {
 
@@ -92,6 +93,8 @@ public interface ClssService {
 	int addClssSave(int cid);
 
 	int delClssSave(int cid);
+
+	ArrayList<PayMember> teacherEnrolled(int cid);	// 강사 클래스 상세보기에서 본인 회원 수강한 회원 정보 보기
 
 
 

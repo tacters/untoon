@@ -29,8 +29,21 @@
 		<result property="clss_comment" column="CLSS_COMMENT"/>
 		<result property="clss_tags" column="CLSS_TAGS"/>
 		<result property="save_count" column="SAVE_COUNT"/>
-		
 	</resultMap>
+	
+	<resultMap type="PayMember" id="PayMember">
+		<id column="id" property="id" />
+		<result column="email" property="email" />
+		<result column="name" property="name" />
+		<result column="nickname" property="nickname" />
+		<result column="birthday" property="birthday" />
+		<result column="gender" property="gender"/>
+		<result column="phone" property="phone"/>
+		<result column="pid" property="pid"/>
+		<result column="cid" property="cid"/>
+		<result column="pstatus" property="pstatus"/>
+	</resultMap>
+	
 	
 	<select id="tClssList" resultMap="clssResultSet">
 		select * 
@@ -434,6 +447,14 @@
     					SAVE_COUNT = SAVE_COUNT - 1
     	WHERE		CID = #{ cid }
     </update>
+    
+    <!-- 강사 본인회원 수강한 회원정보  -->
+    <select id="teacherEnrolled" resultMap="PayMember">
+    	select name, id, nickname, phone, gender
+		from member
+		join pay on (id=pid)
+		where pstatus=2 and cid=#{cid}
+    </select>
     
 </mapper>
 

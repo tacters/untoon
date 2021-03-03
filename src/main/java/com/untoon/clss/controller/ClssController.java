@@ -24,6 +24,7 @@ import com.untoon.clss.model.service.ClssService;
 import com.untoon.clss.model.vo.Clss;
 import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.vo.Member;
+import com.untoon.member.model.vo.PayMember;
 
 import net.sf.json.JSONArray;
 
@@ -277,7 +278,7 @@ public class ClssController {
 		}
 	}
 
-	// 강사 마이페이지(나중에 지워야함)
+	// 강사 마이페이지
 	@RequestMapping("teacherInfo.do")
 	public String teacherInfoView() {
 		return "teacher/teacherPage";
@@ -324,12 +325,14 @@ public class ClssController {
 			}
 		}
 		if (cService.insertTclss(clss) > 0) {
-			return "teacher/teacherPage";
+			return "redirect:home.do";
 		} else {
 			model.addAttribute("msg", "클래스 등록 실패");
 			return "common/errorPage";
 		}
 	}
+	
+	// 강사 
 
 	// 강사 클래스 상세 보기
 	@RequestMapping("tcdetail.do")
@@ -344,6 +347,21 @@ public class ClssController {
 		} else {
 			System.out.println("값없음");
 			model.addAttribute("msg", "강사 상세보기 실패");
+			return "common/errorPage";
+		}
+	}
+	
+	// 강사 클래스 상세보기에서 본인 회원 수강한 회원 정보 보기
+	@RequestMapping("checkEnroll.do")
+	public String teacherEnrolled(Model model, @RequestParam("cid") int cid) {
+		ArrayList<PayMember> list = cService.teacherEnrolled(cid);
+		System.out.println(list);
+		
+		if(list.size()>0) {
+			model.addAttribute("list", list);
+			return "teacher/teacherEnroll";
+		}else {
+			model.addAttribute("msg", "수강한 회원이 없습니다.");
 			return "common/errorPage";
 		}
 	}
@@ -409,12 +427,11 @@ public class ClssController {
 			return "common/errorPage";
 		}
 	}
-
 	// 관리자 페이지
-	@RequestMapping("adpage.do")
-	public String adminPage() {
-		return "admin/adminPage";
-	}
+//	@RequestMapping("adpage.do")
+//	public String adminPage() {
+//		return "admin/adminPage";
+//	}
 
 	// 관리자 미승인 클래스 목록조회
 	@RequestMapping("adnclist.do")
@@ -695,7 +712,7 @@ public class ClssController {
 		System.out.println(result);
 
 		if (result > 0) {
-			return "redirect:adpage.do";
+			return "redirect:adnclist.do?page=1";
 		} else {
 			model.addAttribute("msg", cid + "번 클래스 승인 실패");
 			return "common/errorPage";
@@ -724,7 +741,7 @@ public class ClssController {
 		if (cService.adminDenyClss(clss) > 0) {
 			System.out.println("값o");
 			System.out.println(clss);
-			return "redirect:adpage.do";
+			return "redirect:adnclist.do?page=1";
 		} else {
 			System.out.println("값x");
 			model.addAttribute("msg", "클래스 승인 실패");
@@ -736,7 +753,7 @@ public class ClssController {
 	@RequestMapping("adcdelete.do")
 	public String adminDelectClss(Model model, @RequestParam("cid") int cid) {
 		if (cService.adminDeleteClss(cid) > 0) {
-			return "redirect:adrclist.do";
+			return "redirect:adnclist.do?page=1";
 		} else {
 			model.addAttribute("msg", "클래스 삭제 실패");
 			return "common/errorPage";

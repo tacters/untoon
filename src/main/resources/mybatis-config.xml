@@ -13,6 +13,7 @@
       <typeAlias type="com.untoon.home.model.vo.HomeUpfile" alias="HomeUpfile"/>
    
 		<typeAlias type="com.untoon.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.untoon.member.model.vo.PayMember" alias="PayMember"/>
 		<typeAlias type="com.untoon.clss.model.vo.Clss" alias="Clss"/>
 		<typeAlias type="com.untoon.pay.model.vo.Pay" alias="Pay"/>
 		<typeAlias type="com.untoon.pay.model.vo.PayClss" alias="PayClss"/>
