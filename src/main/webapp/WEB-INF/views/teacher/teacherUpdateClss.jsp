@@ -73,7 +73,7 @@ input[type=file] {
 						<ul>
 					</div>
 					<div class="inner1">
-						<input type="text" class="basic nick" id="Title" name="clss_title" placeholder="수강생을 끌어당길 수 있는 개성넘치는 제목을 만들어 보세요.">
+						<input type="text" class="basic nick" id="Title" name="clss_title" value="${clss.clss_title }">
 		                <span style="float:right;">(<span id="title_length">0</span>/100)</span>
 					</div>
 				</div>
@@ -131,10 +131,10 @@ input[type=file] {
 							<img
 								src="//s3.ap-northeast-2.amazonaws.com/taling.me/Content/Uploads/Profile/s_4c2bb13bbdf07495208dc87bcf2700e860e6f329.png"
 								style="width: 300px; height: 132px; float: right; margin-left: 582px; position: absolute; opacity: 0;" />
-							<input type="hidden" id="ProfileThumbnailUrl"
-								value="//s3.ap-northeast-2.amazonaws.com/taling.me/Content/Uploads/Profile/s_4c2bb13bbdf07495208dc87bcf2700e860e6f329.png" />
+							<!-- <input type="hidden" id="ProfileThumbnailUrl"
+								value="//s3.ap-northeast-2.amazonaws.com/taling.me/Content/Uploads/Profile/s_4c2bb13bbdf07495208dc87bcf2700e860e6f329.png" /> -->
 							<input type="file" id="picture" name="upfile"
-								style="width: 150px; height: 130px; opacity: 0;" />
+								style="width: 150px; height: 130px; opacity: 0; value='${clss.clss_rename_filename}'"/>
 						</div>
 					</div>
 					<script>
@@ -160,7 +160,7 @@ input[type=file] {
 		<div class="cont">
 			<div class="inner2"  id="minmax">
 				<select class="basic len290" id="MinPerson" name="clss_min">
-					<option value="0">최소인원수</option>
+					<option value="${clss.clss_min }" selected>${clss.clss_min }</option>
 					 					 <option value="1" >1</option>
 					 					 <option value="2" >2</option>
 					 					 <option value="3" >3</option>
@@ -185,7 +185,7 @@ input[type=file] {
 				 명 ~ 
 
 				<select class="basic len290" id="MaxPerson" name="clss_max">
-					<option value="0">최대인원수</option>
+					<option value="${clss.clss_max }" selected>${clss.clss_max }</option>
 										 <option value="1" >1</option>
 										 <option value="2" >2</option>
 					 					 <option value="3" >3</option>
@@ -238,7 +238,7 @@ input[type=file] {
 				<div class="inner1">
 					<div class="gray5 title">1회당 수업시간</div>
 					<select class="basic len320" id="Time" name="clss_duration">
-						<option value="0">1회당 수업시간을 선택하세요</option>
+						<option value="${clss.clss_duration }" selected>${clss.clss_duration }</option>
 						 						<option value="1" >1시간</option>
 												<option value="2" >2시간</option>
 												<option value="3" >3시간</option>
@@ -252,7 +252,8 @@ input[type=file] {
 					<div class="gray5 title">총 수업횟수</div>			
 									
 						<select id="TotalTimes" name="clss_times" class="basic len320">
-						<option value="0">총 수업횟수를 선택하세요</option>
+						<option value="${clss.clss_times }" selected>${clss.clss_times }</option>
+												<option value="1" >1회</option>
 												<option value="2" >2회</option>
 												<option value="3" >3회</option>
 												<option value="4" >4회</option>
@@ -269,8 +270,8 @@ input[type=file] {
 				</div>
 				<div class="inner1">
 					<div class="gray5 title">수업기간</div>			
-					<label> 시작날짜 <input type="date" name="clss_start" class="basic phone" id="start_date">
-					 ~  종강날짜 <input class="basic phone" type="date" name = "clss_end" id="end_date"></label>	
+					<label> 시작날짜 <input type="date" name="clss_start" class="basic phone" id="start_date" value="${clss.clss_start }">
+					 ~  종강날짜 <input class="basic phone" type="date" name = "clss_end" id="end_date" value="${clss.clss_end }"></label>	
 				</div>
 		</div>
 	</div>
@@ -314,7 +315,7 @@ input[type=file] {
 			</div>
 			</div>
 			<div class="inner1">
-					<div class="vdo"><input type="text" name="clss_url" class="basic len786" placeholder="예) https://youtu.be/1sboNBkTMuU" style="margin-bottom:10px;width: 100%;"></div>
+					<div class="vdo"><input type="text" name="clss_url" class="basic len786" value="${clss.clss_url }" style="margin-bottom:10px;width: 100%;"></div>
 			</div>
 		</div>
 	</div>
@@ -347,7 +348,7 @@ input[type=file] {
 				</ul>
 			</div>
 			<div class="inner1">
-				<textarea class="basic len980 hei190" placeholder="수강생은 강사님에 대해 많은 관심을 가지고 있습니다. TIP을 참고하여 최대한 자세히 소개를 해주세요." id="TutorInfo" name="tchr_introduction"></textarea>
+				<textarea class="basic len980 hei190" id="TutorInfo" name="tchr_introduction"><c:out value="${clss.tchr_introduction }"/></textarea>
                 <span style="float:right;">(<span id="teacher_info">0</span>/1000)</span>
 			</div>
 			<div class="inner1">
@@ -395,11 +396,13 @@ input[type=file] {
 				</ul>
 			</div>
 						<div class="inner1">
-				<textarea class="basic len980 hei190" placeholder="수업소개는 수강생이 가장 주의깊게 살펴보는 부분입니다. 수강생들이 수업에 대해 알 수 있도록 TIP의 질문을 반드시 포함하여 작성해주세요." id="clss_content" name="clss_content"></textarea>
+				<textarea class="basic len980 hei190" id="clss_content" name="clss_content"><c:out value="${clss.clss_content }"/></textarea>
                 <span style="float:right;">(<span id="content_length">0</span>/2000)</span>
 			</div>
 			<!-- 수업소개 글자수 세기 -->
 			<script>
+			/* var content = ${clss.clss_content};
+			$("#clss_content").val(content); */
 			$(function(){
 				$("#clss_content").keyup(function(e){
 					var content = $(this).val();
@@ -487,7 +490,7 @@ input[type=file] {
 				</ul>
 			</div>
 			<div class="inner1">
-				<textarea class="basic len980 hei190" placeholder="TIP의 내용을 참고하여 강사님의 수업을 수강하기에 적합한 수업대상에 대해 알려주세요. " id="profile" name="tchr_profile"></textarea>
+				<textarea class="basic len980 hei190" id="profile" name="tchr_profile"><c:out value="${clss.tchr_profile }"/></textarea>
                 <span style="float:right;">(<span id="profile_length">0</span>/50)</span>
 			</div>
 			<div class="sample1 inner1">
@@ -533,7 +536,7 @@ input[type=file] {
 				</ul>
 			</div>
 				<div class="inner1">
-				<textarea class="basic len980 hei190" placeholder="수업소개는 수강생이 가장 주의깊게 살펴보는 부분입니다. 수강생들이 수업에 대해 알 수 있도록 TIP의 질문을 반드시 포함하여 작성해주세요." id="policy" name="clss_policy"></textarea>
+				<textarea class="basic len980 hei190" id="policy" name="clss_policy"><c:out value="${clss.clss_policy }"/></textarea>
                 <span style="float:right;">(<span id="policy_length">0</span>/500)</span>
 			</div>
 		</div>
@@ -561,6 +564,99 @@ input[type=file] {
 			</div>
 		
 </div>
+<script>
+function check(){
+	title = document.getElementById("Title").value;
+	picture = document.getElementById("picture").value;
+	cate = document.getElementById("CateMain").value;
+	mip = document.getElementById("MinPerson").value;
+	maxp = document.getElementById("MaxPerson").value;
+	price = document.getElementById("UnitPrice").value;
+	times = document.getElementById("Time").value;
+	totaltimes = document.getElementById("TotalTimes").value;
+	start = document.getElementById("start_date").value;
+	end = document.getElementById("end_date").value;
+	tinfo = document.getElementById("TutorInfo").value;
+	content = document.getElementById("clss_content").value;
+	profile = document.getElementById("profile").value;
+	policy = document.getElementById("policy").value;
+	
+	if(title == ""){
+		alert("제목을 입력하세요.");
+		document.getElementById("Title").focus();
+		return false;
+	}
+	if(picture == ""){
+		alert("강의 사진을 등록하세요");
+		document.getElementById("picture").focus();
+		return false;
+	}
+	if(cate == ""){
+		alert("카테고리를 선택하세요.");
+		document.getElementById("CateMain").focus();
+		return false;
+	}
+	if(mip == ""){
+		alert("최소인원을 입력하세요.");
+		document.getElementById("MinPerson").focus();
+		return false;
+	}
+	if(maxp == ""){
+		alert("최대인원을 입력하세요.");
+		document.getElementById("MaxPerson").focus();
+		return false;
+	}
+	if(price == ""){
+		alert("가격을 입력하세요.");
+		document.getElementById("UnitPrice").focus();
+		return false;
+	}
+	if(times == "null"){
+		alert("수업시간을 입력하세요.");
+		document.getElementById("Time").focus();
+		return false;
+	}
+	if(totaltimes == "null"){
+		alert("총 횟수를 입력하세요.");
+		document.getElementById("TotalTimes").focus();
+		return false;
+	}
+	if(start == ""){
+		alert("시작날짜를 입력하세요.");
+		document.getElementById("start_date").focus();
+		return false;
+	}
+	if(end == ""){
+		alert("종강날짜를 입력하세요.");
+		document.getElementById("end_date").focus();
+		return false;
+	}
+	if(tinfo == ""){
+		alert("강사소개를 입력하세요.");
+		document.getElementById("TutorInfo").focus();
+		return false;
+	}
+	if(content == ""){
+		alert("수업내용을 입력하세요.");
+		document.getElementById("clss_content").focus();
+		return false;
+	}
+	if(profile == ""){
+		alert("강사 프로필을 입력하세요.");
+		document.getElementById("profile").focus();
+		return false;
+	}
+	if(policy == ""){
+		alert("환불규정을 입력하세요.");
+		document.getElementById("policy").focus();
+		return false;
+	}
+	else{
+		document.insert.submit();	
+	}
+	
+}
+</script>
 </form>
 
 

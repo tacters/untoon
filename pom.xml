@@ -261,7 +261,10 @@
 		    <artifactId>mail</artifactId>
 		    <version>1.4</version>
 		</dependency>
+		
+		
 		<!-- ▲ mail관련 라이브러리 -->
+		
 		
 		<!-- 네이버  -->
 		<!-- https://mvnrepository.com/artifact/com.github.scribejava/scribejava-core -->

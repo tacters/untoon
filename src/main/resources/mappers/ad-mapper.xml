@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adMapper">
+
+<resultMap id="adResultSet" type="Ad">
+		<id property="adid" column="adid"/>
+		<result property="ad_title" column="ad_title"/>
+		<result property="ad_xy" column="ad_xy"/>
+		<result property="ad_start" column="ad_start"/>
+		<result property="ad_end" column="ad_end"/>
+		<result property="a_status" column="a_status"/>
+		<result property="ad_width" column="ad_width"/>
+		<result property="ad_height" column="ad_height"/>
+		<result property="ad_close" column="ad_close"/>
+		<result property="ad_file" column="ad_file"/>
+		<result property="ad_file_r" column="ad_file_r"/>
+</resultMap>
+
+
+
+
+<insert id="insertAd" parameterType ="Ad">
+		INSERT INTO 	AD
+		<if test ="ad_file !=null">
+		VALUES (			seq_adid.nextval , <!-- ADID  -->
+								#{ ad_title }, #{ ad_xy },
+								#{ ad_start }, #{ ad_end }, #{ a_status },
+								#{ ad_width }, #{ ad_height }, #{ ad_close },
+								#{ ad_file}, #{ ad_file_r }
+					)
+		</if>
+		<if test ="ad_file == null">
+		VALUES (			seq_adid.nextval , <!-- ADID  -->
+								#{ ad_title }, #{ ad_xy },
+								#{ ad_start }, #{ ad_end }, #{ a_status },
+								#{ ad_width }, #{ ad_height }, #{ ad_close },
+								null, null
+					)
+		</if>
+</insert>
+
+<update id="updateAd" parameterType = "Ad">
+		 UPDATE	AD
+				SET	ad_title = #{ ad_title }, ad_xy = #{ ad_xy },   <!-- ADID 제외하고 수정 가능 -->
+						ad_start = #{ ad_start }, ad_end = #{ ad_end }, a_status = #{ a_status },
+						ad_width = #{ ad_width }, ad_height = #{ ad_height }, ad_close= #{ ad_close },
+				<if test ="ad_file !=null">
+						ad_file = #{ ad_file }, ad_file_r = #{ ad_file_r }
+				</if>
+				<if test ="ad_file ==null">
+						ad_file = null, ad_file_r = null
+				</if>
+		  WHERE	ADID = #{ adid }
+</update> 
+
+<delete id = "deleteAd" parameterType = "_int">
+		  DELETE		AD
+		   WHERE		ADID = #{ adid }	
+</delete>
+
+<select id="selectAllAd" resultMap="adResultSet">
+		<![CDATA[
+			SELECT * FROM AD
+			WHERE ROWNUM
+			ORDER BY ADID DESC
+		]]>
+</select>
+
+
+<select id="selectAllAdPaging" parameterType="com.untoon.home.model.vo.AdPage" resultMap="adResultSet">
+		<![CDATA[			
+			SELECT *
+			FROM (SELECT ROWNUM RNUM, ADID, AD_TITLE, AD_XY, 
+                                        AD_START, AD_END, A_STATUS,  
+                                        AD_WIDTH, AD_HEIGHT, AD_CLOSE,
+                                        AD_FILE, AD_FILE_R
+			            FROM (SELECT * FROM AD 
+			                       ORDER BY A_STATUS DESC, AD_END DESC))
+			WHERE RNUM >= #{ startRow } AND RNUM <= #{ endRow }
+		]]>
+</select>
+
+
+
+	<select id="getListCount" resultType="_int">
+			SELECT COUNT(*) FROM AD
+	</select>
+	
+
+
+<select id="selectAd" parameterType="_int" resultMap="adResultSet">
+			SELECT * FROM AD
+			WHERE ADID = #{ adid }
+</select>
+	
+<select id="selectRecentAd" resultMap="adResultSet">
+			SELECT * FROM AD
+			WHERE ADID = (SELECT MAX(ADID) FROM AD)
+</select>
+	
+	
+	
+	
+</mapper>

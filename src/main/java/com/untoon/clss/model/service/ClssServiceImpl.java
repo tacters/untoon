@@ -28,10 +28,35 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.selectOne(cid);
 	}
 
-	// 사용자 클래스 전체조회
+	// 사용자 뷰티/헬스 클래스 전체조회
 	@Override
 	public ArrayList<Clss> clssList(int currentPage, int limit) {
 		return cDao.clssList(currentPage, limit);
+	}
+	
+	@Override
+	public ArrayList<Clss> aclssList(int currentPage, int limit) {
+		return cDao.aclssList(currentPage, limit);
+	}
+
+	@Override
+	public ArrayList<Clss> lclssList(int currentPage, int limit) {
+		return cDao.lclssList(currentPage, limit);
+	}
+
+	@Override
+	public ArrayList<Clss> fclssList(int currentPage, int limit) {
+		return cDao.fclssList(currentPage, limit);
+	}
+
+	@Override
+	public ArrayList<Clss> dclssList(int currentPage, int limit) {
+		return cDao.dclssList(currentPage, limit);
+	}
+
+	@Override
+	public ArrayList<Clss> oclssList(int currentPage, int limit) {
+		return cDao.oclssList(currentPage, limit);
 	}
 
 	// 사용자 클래스 상세보기
@@ -42,20 +67,20 @@ public class ClssServiceImpl implements ClssService {
 
 	// 관리자 미승인 클래스 목록조회
 	@Override
-	public ArrayList<Clss> adminNlist() {
-		return cDao.adminNlist();
+	public ArrayList<Clss> adminNlist(int currentPage, int limit) {
+		return cDao.adminNlist(currentPage, limit);
 	}
 
 	// 관리자 승인 클래스 목록조회
 	@Override
-	public ArrayList<Clss> adminYList() {
-		return cDao.adminYList();
+	public ArrayList<Clss> adminYList(int currentPage, int limit) {
+		return cDao.adminYList(currentPage, limit);
 	}
 
 	// 관리자 기간 지난 클래스 목록조회
 	@Override
-	public ArrayList<Clss> adminEndList() {
-		return cDao.adminEndList();
+	public ArrayList<Clss> adminEndList(int currentPage, int limit) {
+		return cDao.adminEndList(currentPage, limit);
 	}
 
 	// 관리자 클래스 상세보기
@@ -89,8 +114,8 @@ public class ClssServiceImpl implements ClssService {
 
 	// 관리자 승인거부 클래스 목록조회
 	@Override
-	public ArrayList<Clss> adminRlist() {
-		return cDao.adminRlist();
+	public ArrayList<Clss> adminRlist(int currentPage, int limit) {
+		return cDao.adminRlist(currentPage, limit);
 	}
 
 	// 관리자 클래스 삭제하기
@@ -109,12 +134,6 @@ public class ClssServiceImpl implements ClssService {
 	@Override
 	public int tUpdateClss(Clss clss) {
 		return cDao.tUpdateClss(clss);
-	}
-
-	// 페이징 처리
-	@Override
-	public int getListCount() {
-		return cDao.getListCount();
 	}
 
 	// 제목 검색 페이징 처리
@@ -143,7 +162,7 @@ public class ClssServiceImpl implements ClssService {
 	public ArrayList<Clss> searchTitle(SearchAndPage searches) {
 		return cDao.searchTitle(searches);
 	}
-	
+
 	@Override
 	public ArrayList<Clss> searchTag(SearchAndPage searches) {
 		return cDao.searchTag(searches);
@@ -158,5 +177,67 @@ public class ClssServiceImpl implements ClssService {
 	public ArrayList<Clss> searchCategory(SearchAndPage searches) {
 		return cDao.searchCategory(searches);
 	}
+
+	// 뷰티/헬스 페이징 처리
+	@Override
+	public int getListCount() {
+		return cDao.getListCount();
+	}
+
+	@Override
+	public int getArtCount() {
+		return cDao.getArtCount();
+	}
+
+	@Override
+	public int getLanguageCount() {
+		return cDao.getLanguageCount();
+	}
+
+	@Override
+	public int getFinanceCount() {
+		return cDao.getFinanceCount();
+	}
+
+	@Override
+	public int getDataCount() {
+		return cDao.getDataCount();
+	}
+
+	@Override
+	public int getOtherCount() {
+		return cDao.getOtherCount();
+	}
+
+	@Override
+	public int getAdminNListCount() {
+		return cDao.getAdminNListCount();
+	}
+
+	@Override
+	public int getAdminYListCount() {
+		return cDao.getAdminYListCount();
+	}
+
+	@Override
+	public int getAdminRListCount() {
+		return cDao.getAdminRListCount();
+	}
+
+	@Override
+	public int getAdminEListCount() {
+		return cDao.getAdminEListCount();
+	}
+
+	@Override
+	public int addClssSave(int cid) {
+		return cDao.addClssSave(cid);
+	}
+
+	@Override
+	public int delClssSave(int cid) {
+		return cDao.delClssSave(cid);
+	}
+
 
 }

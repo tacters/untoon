@@ -137,8 +137,8 @@ function showDiv(){
 
 				<tr>
 					<td colspan="2" align="center">
-						<button onclick='return validate();'>가입하기</button> &nbsp; <input
-						type="reset" value="취소하기">
+						<button onclick='return validate();'>가입하기</button> &nbsp; 
+						<input type="reset" value="취소하기">
 					</td>
 				</tr>
 			</table>

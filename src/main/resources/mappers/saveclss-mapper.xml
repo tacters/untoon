@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="scMapper">
+
+	<resultMap id="scResultSet" type="SaveClss">
+		<id property="cid" column="cid"/>
+		<id property="id" column="id"/> <!-- 둘이 복합키 = 기본키 -->
+		<result property="clss_category" column="clss_category"/>
+	</resultMap>
+	
+	<resultMap id="top8Result" type="SaveClss">
+		<id property="cid" column="cid"/>
+	</resultMap>
+	
+	<resultMap id="categoryResult" type="SaveClss">
+		<id property="cid" column="cid"/>
+		<result property="clss_category" column="clss_category"/>
+	</resultMap>
+	
+	<resultMap id="personalResult" type="SaveClss">
+		<id property="cid" column="cid"/>
+		<id property="id" column="id"/>
+	</resultMap>
+	
+	
+	<insert id="insertSC" parameterType="SaveClss">
+		INSERT INTO SAVE_CLSS
+		VALUES ( #{ cid }, #{ id }, #{ clss_category }	)
+	</insert>
+	
+	<delete id="deleteSC" parameterType="SaveClss">
+		DELETE FROM   SAVE_CLSS
+		WHERE 			CID = #{ cid } <!-- PRIMARY KEY 가 복합키라 WHERE~ AND~ 절이 들어가야함 -->
+			AND				ID = #{ id } 
+	</delete>
+	
+	<select id="countClssTotal"  parameterType="_int" resultMap="scResultSet">
+		SELECT COUNT(*) FROM SAVE_CLSS
+		WHERE CID = #{ cid }
+	</select>
+	
+	<select id="countMemberTotal"  parameterType="_int" resultMap="scResultSet">
+		SELECT COUNT(*) FROM SAVE_CLSS
+		WHERE ID = #{ id }
+	</select>
+	
+	<select id="selectOne"  parameterType="SaveClss" resultMap="scResultSet">
+		SELECT * FROM SAVE_CLSS
+		WHERE ID = #{ id }
+			AND CID =#{ cid } <!-- 복합키로 받아와져야하는데 먹힐지 모르겠다 -->
+	</select>
+	
+	<select id="selectTop8" resultMap="top8Result"> <!-- // 좋아요가 가장 많은 8개 CLSS -->
+		<![CDATA[
+		SELECT 		*
+			FROM 		(SELECT ROWNUM RNUM, CID
+			           		 FROM (SELECT CID, COUNT(ID)
+				                        FROM SAVE_CLSS
+				                        GROUP BY CID
+				                        ORDER BY COUNT(ID) DESC))
+			WHERE 	RNUM >=1 AND RNUM <=8
+		]]>
+	</select>
+	
+	<select id="selectCategory" parameterType="string" resultMap="categoryResult">
+		SELECT		 CID
+		FROM		 SAVE_CLSS
+		WHERE 	 CLSS_CATEGORY = #{ clss_category }
+		GROUP BY CID
+		ORDER BY  COUNT(CLSS_CATEGORY) DESC;
+	</select>
+	
+	<select id="selectPersonalSave" parameterType="_int" resultMap="personalResult">
+		SELECT		 	CID
+		FROM 		 	SAVE_CLSS
+		WHERE 	 	ID = #{ id }
+		GROUP BY 	CID;
+	</select>
+	
+</mapper>
