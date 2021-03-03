@@ -10,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.untoon.clss.model.service.ClssService;
-import com.untoon.clss.model.vo.Clss;
 import com.untoon.member.model.vo.Member;
 import com.untoon.pay.model.service.PayService;
 import com.untoon.pay.model.vo.Pay;
@@ -23,44 +21,53 @@ public class PayController {
 	@Autowired
 	private PayService payService;
 	
-	@RequestMapping("kakaopay.do")
-	public String kakaoPay() {
-		return "pay/kakaopay";
+	//결제페이지에서 카카오페이결제로 넘어가기 
+	@RequestMapping("movekakao.do")
+	public String kakaoPay(Model model, @RequestParam("cid") int cid) {
+		
+		PayClss pay = payService.payMove(cid);
+		 
+		 if(pay != null) { 
+			 System.out.println("movekakao값있음");
+			 model.addAttribute("clss", pay);
+			 return "pay/kakaopay";
+			 } 
+		 else {
+			 System.out.println("movekakao값없음");
+			 model.addAttribute("msg","결제페이지 이동이 실패하였습니다.");
+			 return "common/errorPage"; 
+			 }
 	}
+	
 	
 	//클래스 상세정보 가져오기 ..그 중에서 필요한 정보들 호출할거야 뷰페이지(결제하는페이지)에서
 	//클래스 상세에서 구매하기 누르면 결제페이지로 클래스 정보 값 넘겨줘
 	@RequestMapping("paymove.do")
-	public String clssPayMove(Model model, @RequestParam("cid") int cid) {
-		PayClss pay = payService.payMove(cid);
+	public String clssPayMove(HttpSession session, Model model, @RequestParam("cid") int cid) {
 		
-		if(pay != null) {
-			System.out.println("clsspaymove값있음");
-			model.addAttribute("clss", pay);
-			return "pay/PayPage";
+		 PayClss pay = payService.payMove(cid);
+		 
+		 Member loginUser = (Member) session.getAttribute("loginUser");
+		 
+		 if(pay != null && loginUser.getUser_lv().equals("S")) { 
+			 System.out.println("clsspaymove값있음");
+			 model.addAttribute("clss", pay);
+			 return "pay/PayPage"; 
 		} else {
-			System.out.println("clsspaymove값없음");
-			model.addAttribute("msg", "결제페이지 이동이 실패하였습니다.");
-			return "common/errorPage";
+			 System.out.println("clsspaymove값없음");
+			 model.addAttribute("msg","결제페이지 이동이 실패하였습니다.");
+			 return "common/errorPage"; 
 		}
+		
 	}
 	
-	//카카오페이 결제가 끝나고 결제완료페이지로 넘어갈 때 값 넘겨주기
-	@RequestMapping("kakaomove.do")
-	public String kakaoMove(Model model, @RequestParam("cid") int cid) {
-		PayClss pay = payService.payMove(cid);
+	//카카오 결제 실패했을 때 페이지 이동
+	@RequestMapping("kakaofail.do")
+	public String kakaoFail(Model model) {
 		
-		if(pay != null) {
-			System.out.println("kakaomove값있음");
-			model.addAttribute("clss", pay);
-			return "pay/PayFinishPage";
-		} else {
-			System.out.println("kakaomove값없음");
-			model.addAttribute("msg", "결제페이지 이동이 실패하였습니다.");
-			return "common/errorPage";
-		}
+		model.addAttribute("msg", "결제가 실패되었습니다.");
+		return "common/errorPage";
 	}
-	
 	
 	//관리자가 전체 결제 목록 보기 요청 할 때 
 	@RequestMapping("plist.do")
@@ -73,7 +80,8 @@ public class PayController {
 		} else {
 			model.addAttribute("msg", "결제내역 목록을 조회할 수 없습니다.");
 			return "common/errorPage";
-		}}
+		}
+	}
 	
 	//관리자가 결제목록 상세보기 할 때 
 	@RequestMapping("pdetail.do")
@@ -87,6 +95,7 @@ public class PayController {
 			model.addAttribute("msg", payno + "번 결제내역 상세보기를 할 수 없습니다.");
 			return "common/errorPage";
 		}}
+	
 	//사용자가 마이페이지에서 결제내역 목록을 조회할 때 
 	@RequestMapping("pmselect.do")
 	public String selectMyPay(HttpSession session, Model model) {
@@ -118,21 +127,32 @@ public class PayController {
 				return "common/errorPage";
 			}	
 		}
-	
-	// 결제목록 추가하기(결제가 완료되었다고 페이지에 뜨고  → 마이페이지 결제목록에서 새로운 결제 내역이 추가된다.) 
+
+		// 카카오페이결제완료되면 결제피니쉬페이지로 넘어가기
+		@RequestMapping("pfinish.do")
+		public String payFinish(Model model, @RequestParam("cid") int cid) {
+
+			PayClss pay = payService.payMove(cid);
+			
+			if (pay != null) {
+				System.out.println("결제완료후 페이지 넘어감");
+				model.addAttribute("clss", pay);
+				return "pay/PayFinishPage";
+			} else {
+				System.out.println("페이지 넘어가지 않고 있음..오류");
+				model.addAttribute("msg", "결제가 정상적으로 처리되지 않았습니다.");
+				return "common/errorPage";
+			}
+		}
+		
+	// 결제목록 추가하기(결제완료 페이지에서 결제완료 버튼 누르면  → 마이페이지 결제목록에서 새로운 결제 내역이 추가된다.) → 메인페이지 다시나와
 		@RequestMapping("pinsert.do")
-		public String insertPay(Pay pay, Model model, HttpSession session) {
+		public void insertPay(Pay pay, Model model) {
 			int p = payService.insertPay(pay);
 			
-			if(p > 0 ) {
-				return "redirect: home.do";
-			}else {
-				model.addAttribute("msg", "결제가 실패되었습니다.");
-				return "common/errorPage";
-			
 			}
-}
-	// 결제목록 결제상태(결제승인여부) 업데이트
+
+	// 결제목록 결제상태(결제승인여부) 업데이트 -- 결제취소하기
 		@RequestMapping("pupdate.do")
 		public String updatePay(@RequestParam("payno") int payno, Model model, HttpSession session) {
 			int p = payService.updatePay(payno);

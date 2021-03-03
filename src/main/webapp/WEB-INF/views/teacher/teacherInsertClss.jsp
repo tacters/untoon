@@ -41,7 +41,7 @@ input[type=file] {
 </head> 
 <body>
 <c:import url="../common/menubar.jsp"/>
-	<form action="tcinsert.do" method="POST" id="frm-register-detail" enctype="multipart/form-data">
+	<form action="tcinsert.do" method="POST" id="frm-register-detail" enctype="multipart/form-data" name="insert">
 	<input type="hidden" name="tchr_id" value="${ loginUser.id }">
 		<div class="insertForm1">
 		<div class="tutor_cont">
@@ -160,7 +160,7 @@ input[type=file] {
 		<div class="title">수업카테고리<b class="pink">*</b></div>
 		<div class="cont">
 			<select class="basic len320" id="CateMain" name="clss_category">
-												<option value="null">수업카테고리를 선택해 주세요</option>
+												<option value="">수업카테고리를 선택해 주세요</option>
 												<option value="미술/공예" >미술/공예</option>
 												<option value="뷰티/헬스" >뷰티/헬스</option>
 												<option value="언어" >언어</option>
@@ -175,7 +175,7 @@ input[type=file] {
 		<div class="cont">
 			<div class="inner2"  id="minmax">
 				<select class="basic len290" id="MinPerson" name="clss_min">
-					<option value="00" selected>최소인원수</option>
+					<option value="" selected>최소인원수</option>
 					 					 <option value="01" >1</option>
 					 					 <option value="02" >2</option>
 					 					 <option value="03" >3</option>
@@ -200,7 +200,7 @@ input[type=file] {
 				 명 ~ 
 
 				<select class="basic len290" id="MaxPerson" name="clss_max" onchange="fn_person()">
-					<option value="00" selected>최대인원수</option>
+					<option value="" selected>최대인원수</option>
 										<option value="01" >1</option>
 										 <option value="02" >2</option>
 					 					 <option value="03" >3</option>
@@ -257,7 +257,7 @@ input[type=file] {
 				<div class="inner1">
 					<div class="gray5 title">1회당 수업시간</div>
 					<select class="basic len320" id="Time" name="clss_duration">
-						<option value="0">1회당 수업시간을 선택하세요</option>
+						<option value="null">1회당 수업시간을 선택하세요</option>
 						 						<option value="1" >1시간</option>
 												<option value="2" >2시간</option>
 												<option value="3" >3시간</option>
@@ -271,7 +271,7 @@ input[type=file] {
 					<div class="gray5 title">총 수업횟수</div>			
 									
 						<select id="TotalTimes" name="clss_times" class="basic len320">
-						<option value="0">총 수업횟수를 선택하세요</option>
+						<option value="null">총 수업횟수를 선택하세요</option>
 												<option value="1" >1회</option>
 												<option value="2" >2회</option>
 												<option value="3" >3회</option>
@@ -575,14 +575,109 @@ input[type=file] {
 			</script>
 
 
-	<div class="button_box" style="width:680px">
-				<input class="next button on" type="submit" value="최종승인요청">&nbsp;&nbsp;&nbsp;&nbsp;
+			<div class="button_box" style="width:680px">
+				<!-- <input class="next button on" type="submit" value="최종승인요청">&nbsp;&nbsp;&nbsp;&nbsp; -->
+				<input class="next button on" type="button" onclick="check()" value="최종승인요청">&nbsp;&nbsp;&nbsp;&nbsp;
 				<input class="next button prev" type="reset" value="작성취소">
 				
 			</div>
 		
 </div>
 </form>
+<!-- 값 입력확인 스크립트 -->
+<script>
+function check(){
+	title = document.getElementById("Title").value;
+	picture = document.getElementById("picture").value;
+	cate = document.getElementById("CateMain").value;
+	mip = document.getElementById("MinPerson").value;
+	maxp = document.getElementById("MaxPerson").value;
+	price = document.getElementById("UnitPrice").value;
+	times = document.getElementById("Time").value;
+	totaltimes = document.getElementById("TotalTimes").value;
+	start = document.getElementById("start_date").value;
+	end = document.getElementById("end_date").value;
+	tinfo = document.getElementById("TutorInfo").value;
+	content = document.getElementById("clss_content").value;
+	profile = document.getElementById("profile").value;
+	policy = document.getElementById("policy").value;
+	
+	if(title == ""){
+		alert("제목을 입력하세요.");
+		document.getElementById("Title").focus();
+		return false;
+	}
+	if(picture == ""){
+		alert("강의 사진을 등록하세요");
+		document.getElementById("picture").focus();
+		return false;
+	}
+	if(cate == ""){
+		alert("카테고리를 선택하세요.");
+		document.getElementById("CateMain").focus();
+		return false;
+	}
+	if(mip == ""){
+		alert("최소인원을 입력하세요.");
+		document.getElementById("MinPerson").focus();
+		return false;
+	}
+	if(maxp == ""){
+		alert("최대인원을 입력하세요.");
+		document.getElementById("MaxPerson").focus();
+		return false;
+	}
+	if(price == ""){
+		alert("가격을 입력하세요.");
+		document.getElementById("UnitPrice").focus();
+		return false;
+	}
+	if(times == "null"){
+		alert("수업시간을 입력하세요.");
+		document.getElementById("Time").focus();
+		return false;
+	}
+	if(totaltimes == "null"){
+		alert("총 횟수를 입력하세요.");
+		document.getElementById("TotalTimes").focus();
+		return false;
+	}
+	if(start == ""){
+		alert("시작날짜를 입력하세요.");
+		document.getElementById("start_date").focus();
+		return false;
+	}
+	if(end == ""){
+		alert("종강날짜를 입력하세요.");
+		document.getElementById("end_date").focus();
+		return false;
+	}
+	if(tinfo == ""){
+		alert("강사소개를 입력하세요.");
+		document.getElementById("TutorInfo").focus();
+		return false;
+	}
+	if(content == ""){
+		alert("수업내용을 입력하세요.");
+		document.getElementById("clss_content").focus();
+		return false;
+	}
+	if(profile == ""){
+		alert("강사 프로필을 입력하세요.");
+		document.getElementById("profile").focus();
+		return false;
+	}
+	if(policy == ""){
+		alert("환불규정을 입력하세요.");
+		document.getElementById("policy").focus();
+		return false;
+	}
+	else{
+		document.insert.submit();	
+	}
+	
+}
+</script>
 <footer><c:import url="../common/footer.jsp"/></footer>
 
 

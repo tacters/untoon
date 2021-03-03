@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>UNTOON 언투온택터즈</title>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 function pay(){
-   return "kakaopay.do";
+   return "redirect: kakaopay.do";
 };
-</script>
+</script> -->
  
 
 </head>
@@ -32,9 +33,13 @@ function pay(){
 <p><label>연락처 : <input type="tel" value="${loginUser.phone}"></label></p>
 <hr>
 <p>총 상품 금액 : ${ clss.clss_price }</p>
-<button class="btn" onclick="pay();">결제하기 </button>
 
-<%-- <button class="btn" onclick="location.href='${ pay }'">결제하기</button> --%>
+	<c:url var="kakao" value="/movekakao.do">
+		<c:param name="cid" value="${clss.cid }" />
+		<c:param name="pid" value="${clss.pid}"/>
+	</c:url>
+	
+<button class="btn" onclick="location.href='${ kakao }'">결제하기</button>
 
 <footer><c:import url="../common/footer.jsp"/></footer>
 

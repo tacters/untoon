@@ -29,6 +29,7 @@ public class Clss {
 	private String tchr_profile;
 	private String clss_comment;
 	private String clss_tags;
+	private int save_count;
 	
 	public Clss() {}
 
@@ -36,7 +37,7 @@ public class Clss {
 			String clss_category, String clss_content, int clss_times, Date clss_start, Date clss_end,
 			int clss_duration, int clss_min, int clss_max, int clss_enrolled, String clss_policy, int clss_status,
 			int view_count, String clss_original_filename, String clss_rename_filename, String clss_url, String tchr_id,
-			String tchr_introduction, String tchr_profile, String clss_comment, String clss_tags) {
+			String tchr_introduction, String tchr_profile, String clss_comment, String clss_tags, int save_count) {
 		super();
 		this.cid = cid;
 		this.clss_title = clss_title;
@@ -63,6 +64,7 @@ public class Clss {
 		this.tchr_profile = tchr_profile;
 		this.clss_comment = clss_comment;
 		this.clss_tags = clss_tags;
+		this.save_count = save_count;
 	}
 
 	public int getCid() {
@@ -265,6 +267,14 @@ public class Clss {
 		this.clss_tags = clss_tags;
 	}
 
+	public int getSave_count() {
+		return save_count;
+	}
+
+	public void setSave_count(int save_count) {
+		this.save_count = save_count;
+	}
+
 	@Override
 	public String toString() {
 		return "Clss [cid=" + cid + ", clss_title=" + clss_title + ", clss_price=" + clss_price + ", clss_registration="
@@ -275,12 +285,9 @@ public class Clss {
 				+ ", clss_status=" + clss_status + ", view_count=" + view_count + ", clss_original_filename="
 				+ clss_original_filename + ", clss_rename_filename=" + clss_rename_filename + ", clss_url=" + clss_url
 				+ ", tchr_id=" + tchr_id + ", tchr_introduction=" + tchr_introduction + ", tchr_profile=" + tchr_profile
-				+ ", clss_comment=" + clss_comment + ", clss_tags=" + clss_tags + "]";
+				+ ", clss_comment=" + clss_comment + ", clss_tags=" + clss_tags + ", save_count=" + save_count + "]";
 	}
 
-	
-
-	
 	
 	
 

@@ -11,6 +11,8 @@
 <body>
 <c:import url="../common/menubar.jsp"/>
 
+<c:import url="../member/myPageheader.jsp"/>
+
 <h3 align="left"> ${ loginUser.name }님의 결제내역 </h3>
 <h2 align ="center">${pay.pid}번 결제내역 상세보기</h2>
 <br>
@@ -52,7 +54,7 @@
 <c:url var="pup" value="/pupdate.do">
 		<c:param name="payno" value="${ pay.payno }"/>
 </c:url>
-<p align="center"><a href="${ pup }">[결체 취소하기]</a></p> 
+<p align="center"><a href="${ pup }">[결체 취소/환불하기]</a></p> 
 </c:if>
 
 <c:url var="pms" value="/pmselect.do">

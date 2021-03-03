@@ -29,8 +29,7 @@
 	</resultMap>
 	
 	<select id="payMove" parameterType="_int" resultMap="payclssResultSet">
-		select * from pay
-		join clss using (cid)
+		select * from clss
 		where cid = #{cid}
 	</select>
 	
