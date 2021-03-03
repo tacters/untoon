@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,8 @@
 
 <h2> 결제가 완료되었습니다. </h2>
 <hr>
-<form action="pinsert.do" post="post">
-<h3>주문정보</h3>
+
+<%-- <h3>주문정보</h3>
 <p>${ clss.clss_title }</p>
 <p>${ clss.tchr_id }</p> &nbsp; &nbsp; &nbsp; 
 <p>${clss.clss_start} ~ ${clss.clss_end}</p>
@@ -24,12 +25,15 @@
 <p><label>고객명 : <input type="text" value="${loginUser.name}"></label></p>
 <p><label>연락처 : <input type="tel" value="${loginUser.phone}"></label></p>
 <hr>
-<p>총 결제 금액 : ${ clss.clss_price }</p>
+<p>총 결제 금액 : ${ clss.clss_price }</p> --%>
+
+<form action="pinsert.do" method="post">
 
 <input type="hidden" name="pid" value="${loginUser.id}">
 <input type="hidden" name="cid" value="${clss.cid}">
 
-<button class="btn">결제완료 </button>
+
+<button class="btn"> 결제완료 </button>
 
 </form>
 
