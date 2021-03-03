@@ -28,6 +28,7 @@
 		<result property="tchr_profile" column="TCHR_PROFILE"/>
 		<result property="clss_comment" column="CLSS_COMMENT"/>
 		<result property="clss_tags" column="CLSS_TAGS"/>
+		<result property="save_count" column="SAVE_COUNT"/>
 		
 	</resultMap>
 	
@@ -392,7 +393,7 @@
     		#{clss_times}, #{clss_start}, #{clss_end}, #{clss_duration}, #{clss_min}, #{clss_max}, DEFAULT, #{clss_policy},DEFAULT,
     		DEFAULT,
     		#{clss_original_filename}, #{clss_rename_filename}, #{clss_url},
-    		#{tchr_id}, #{tchr_introduction}, #{tchr_profile}, default, #{clss_tags}
+    		#{tchr_id}, #{tchr_introduction}, #{tchr_profile}, default, #{clss_tags}, default
     	)
     </insert>
     
