@@ -456,6 +456,22 @@
 		where pstatus=2 and cid=#{cid}
     </select>
     
+    <select id="getAListCount" resultType="_int">
+    	select count(*) from clss where clss_status =2
+    </select>
+    
+    <select id="clssAList" resultMap="clssResultSet" parameterType="com.untoon.clss.model.vo.ClssPage">
+    	<![CDATA[
+		select * 
+		from (select rownum rnum, cid, clss_title, clss_price, clss_registration, clss_update, clss_category, clss_content, clss_times, clss_start, clss_end, clss_duration, clss_min,
+		        clss_max, clss_enrolled, clss_policy, clss_status, view_count, clss_original_filename, clss_rename_filename, clss_url, tchr_id, tchr_introduction, tchr_profile,
+		        clss_comment, clss_tags
+		        from (select * from clss
+		                where clss_status =2
+		                order by cid desc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+    </select>
 </mapper>
 
 

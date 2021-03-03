@@ -342,16 +342,6 @@ input[type=file] {
 
 </div>
 
-<div class="tutor_cont">
-	<div id="pay_pop" >
-		<iframe src="${ pageContext.request.contextPath }/clss/Register_pop">
-		</iframe>
-	</div>
-
-</div>
-
-
-
 <!-- insert4 -->
 <div class="tutor_cont">
 	<div class="box">

@@ -33,6 +33,40 @@ public class ClssController {
 	@Autowired
 	private ClssService cService;
 
+	// 사용자 전체 클래스 목록조회
+	@RequestMapping("clist.do")
+	public String clssListMethod(@RequestParam("page") int currentPage, Model model) {
+		int limit = 10;
+		ArrayList<Clss> list = cService.clssAList(currentPage, limit);
+
+		// 페이지 처리와 관련된 값 처리
+		// 총 페이지 계산을 위한 총 목록 갯수 조회
+		int listCount = cService.getAListCount();
+		int maxPage = (int) ((double) listCount / limit + 0.9);
+		// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+		// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+		int startPage = ((int) ((double) currentPage / 10)) * 10 + 1;
+		int endPage = startPage + 9;
+
+		if (maxPage < endPage)
+			endPage = maxPage;
+
+		System.out.println(list);
+		if (list.size() > 0) {
+			System.out.println("목록있음");
+			model.addAttribute("list", list);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			return "clss/clssListView";
+		} else {
+			System.out.println("목록없음");
+			model.addAttribute("msg", currentPage + "강의 목록 조회 실패");
+			return "common/errorPage";
+		}
+	}
+
 	// 사용자 뷰티/헬스 클래스 목록조회
 	@RequestMapping("bclist.do")
 	public String aclssListMethod(@RequestParam("page") int currentPage, Model model) {
@@ -331,8 +365,8 @@ public class ClssController {
 			return "common/errorPage";
 		}
 	}
-	
-	// 강사 
+
+	// 강사
 
 	// 강사 클래스 상세 보기
 	@RequestMapping("tcdetail.do")
@@ -350,17 +384,17 @@ public class ClssController {
 			return "common/errorPage";
 		}
 	}
-	
+
 	// 강사 클래스 상세보기에서 본인 회원 수강한 회원 정보 보기
 	@RequestMapping("checkEnroll.do")
 	public String teacherEnrolled(Model model, @RequestParam("cid") int cid) {
 		ArrayList<PayMember> list = cService.teacherEnrolled(cid);
 		System.out.println(list);
-		
-		if(list.size()>0) {
+
+		if (list.size() > 0) {
 			model.addAttribute("list", list);
 			return "teacher/teacherEnroll";
-		}else {
+		} else {
 			model.addAttribute("msg", "수강한 회원이 없습니다.");
 			return "common/errorPage";
 		}
@@ -988,32 +1022,30 @@ public class ClssController {
 
 	}
 
-
-	
-	
 	// 클래스 찜하기 1 추가용 ADD
 	@RequestMapping("addClssSave.do")
 	public Clss addClssSave(@RequestParam("cid") int cid, Model model) {
 		Clss clss = cService.selectClss(cid);
 		int result = cService.addClssSave(cid);
-		if(clss !=null && result >0) {
+		if (clss != null && result > 0) {
 			model.addAttribute("clss", clss);
 			return clss;
 		} else {
 			return clss;
 		}
 	}
+
 	// 클래스 찜하기 1 삭제용 DELETE
-		@RequestMapping("delClssSave.do")
-		public Clss delClssSave(@RequestParam("cid") int cid, Model model) {
-			Clss clss = cService.selectClss(cid);
-			int result = cService.delClssSave(cid);
-			if(clss !=null && result >0) {
-				model.addAttribute("clss", clss);
-				return clss;
-			} else {
-				return clss;
-			}
+	@RequestMapping("delClssSave.do")
+	public Clss delClssSave(@RequestParam("cid") int cid, Model model) {
+		Clss clss = cService.selectClss(cid);
+		int result = cService.delClssSave(cid);
+		if (clss != null && result > 0) {
+			model.addAttribute("clss", clss);
+			return clss;
+		} else {
+			return clss;
 		}
+	}
 
 }

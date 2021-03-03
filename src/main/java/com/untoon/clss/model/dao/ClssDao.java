@@ -268,7 +268,6 @@ public class ClssDao {
 		return sqlSession.selectOne("clssMapper.getAdminEListCount");
 	}
 
-
 	public int addClssSave(int cid) {
 		return sqlSession.update("clssMapper.addClssSave", cid);
 	}
@@ -281,6 +280,19 @@ public class ClssDao {
 		List<PayMember> list = sqlSession.selectList("clssMapper.teacherEnrolled", cid);
 
 		return (ArrayList<PayMember>) list;
+	}
+
+	public int getAListCount() {
+		return sqlSession.selectOne("clssMapper.getAListCount");
+	}
+
+	public ArrayList<Clss> clssAList(int currentPage, int limit) {
+		// 전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage - 1) * limit - 1;
+		int endRow = startRow + limit - 1;
+		List<Clss> list = sqlSession.selectList("clssMapper.clssAList", new ClssPage(startRow, endRow));
+
+		return (ArrayList<Clss>) list;
 	}
 
 }

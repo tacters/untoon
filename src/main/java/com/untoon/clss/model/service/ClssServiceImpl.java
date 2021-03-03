@@ -246,5 +246,16 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.teacherEnrolled(cid);
 	}
 
+	//클래스 전체 목록 조회
+	@Override
+	public ArrayList<Clss> clssAList(int currentPage, int limit) {
+		return cDao.clssAList(currentPage, limit);
+	}
+
+	@Override
+	public int getAListCount() {
+		return cDao.getAListCount();
+	}
+
 
 }

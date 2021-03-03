@@ -96,6 +96,10 @@ public interface ClssService {
 
 	ArrayList<PayMember> teacherEnrolled(int cid);	// 강사 클래스 상세보기에서 본인 회원 수강한 회원 정보 보기
 
+	ArrayList<Clss> clssAList(int currentPage, int limit);
+
+	int getAListCount();
+
 
 
 
