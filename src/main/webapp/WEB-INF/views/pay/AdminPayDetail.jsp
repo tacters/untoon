@@ -48,8 +48,9 @@
 </table>
 
 <c:url var="pli" value="/plist.do">
+<c:param name="page" value="${ currentPage }"/>
 </c:url>
-<p align="center"><a href="${ pli }">[목록 돌아가기]</a> </span>
+<p align="center"><a href="${ pli }">[목록 돌아가기]</a>
 
 <footer><c:import url="../common/footer.jsp"/></footer>
 </body>

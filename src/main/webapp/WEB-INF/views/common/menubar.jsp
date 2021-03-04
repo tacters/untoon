@@ -275,7 +275,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<a href='${ mclss }' title="mclss">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->
 								</div>
 								<div class="widget edgtf-login-register-widget">
-									<c:url var="pmselect" value="/pmselect.do" />
+									<c:url var="pmselect" value="/pmselect.do" >
+									<c:param name="page" value="1"/>
+									</c:url>
 									<a href='${ pmselect }' title="pmselect">마이 클래스</a> <!-- selectMyPay(): 결제+수강신청 완료된 내역 리스트 조회 페이지  -->
 								</div>
 								<div class="widget edgtf-login-register-widget">
@@ -338,7 +340,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 								</div>
 								
 								<div class="widget edgtf-login-register-widget">
-									<c:url var="plist" value="/plist.do" />
+									<c:url var="plist" value="/plist.do">
+									<c:param name="page" value="1"/>
+									</c:url>
 									<a href='${ plist }' title="plist">전체 결제내역</a> <!-- 결제내역 목록 조회하기(관리자) -->
 								</div>
 								<div class="widget edgtf-login-register-widget">

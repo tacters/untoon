@@ -33,10 +33,17 @@
 		where cid = #{cid}
 	</select>
 	
-	<select id="payList" resultMap="payclssResultSet">
-		select * from pay
-		join clss using (cid)
-		order by payno asc
+	<!-- 관리자용 목록 보기 -->
+	<select id="payList" resultMap="payclssResultSet" parameterType="com.untoon.clss.model.vo.ClssPage">
+		<![CDATA[
+		select * 
+		from (select rownum rnum, payno, pid, clss_title, tchr_id, clss_price, pstatus
+		        from (select * from pay
+		                join clss using (cid)
+		                order by payno asc))
+		where rnum >= #{ startRow } and rnum <= #{endRow}
+		]]>
+		
 	</select>
 	
 	<select id="detailPay" parameterType="_int" resultMap="payclssResultSet">
@@ -67,6 +74,11 @@
 		set pstatus = 4
 		where payno = #{payno}
 	</update>
+	
+	<!-- 테이블 전체 행수 조회하는 쿼리문 -->
+	<select id="getListCount" resultType="_int">
+		select count(*) from pay
+	</select>
 </mapper>
 
 
