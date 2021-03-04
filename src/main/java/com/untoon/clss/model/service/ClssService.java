@@ -100,6 +100,8 @@ public interface ClssService {
 
 	int getAListCount();
 
+	ArrayList<Clss> mlike(String id);	// 사용자 마이페이지에 찜한 목록 불러오기
+
 
 
 

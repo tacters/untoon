@@ -26,6 +26,7 @@
 		<typeAlias type="com.untoon.review.model.vo.ReviewReply" alias="ReviewReply"/>
 		
 		<typeAlias type="com.untoon.qa.model.vo.QA" alias="QA"/>
+		<typeAlias type="com.untoon.qa.model.vo.QaClss" alias="QaClss"/>
 		<typeAlias type="com.untoon.qa.model.vo.QaReply" alias="QaReply"/>
 	</typeAliases>
 	

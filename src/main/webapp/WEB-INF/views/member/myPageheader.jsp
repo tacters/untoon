@@ -224,8 +224,8 @@ $(function(){
 			  	</li>
 			  	<li><a href="#" id="#" title="찜한 목록" class="#">찜한 목록</a>
 					<ul>	
-						<c:url var="myqa" value="/myqa.do"/>
-						<li><a href="${ myqa }">찜한 목록</a></li>
+						<c:url var="mlike" value="/mlike.do"/>
+						<li><a href="${ mlike }">찜한 목록</a></li>
 			  		</ul>
 			  	</li>
 			 </ul>

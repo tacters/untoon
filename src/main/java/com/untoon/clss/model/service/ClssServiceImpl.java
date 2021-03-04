@@ -257,5 +257,10 @@ public class ClssServiceImpl implements ClssService {
 		return cDao.getAListCount();
 	}
 
+	@Override
+	public ArrayList<Clss> mlike(String id) {
+		return cDao.mlike(id);
+	}
+
 
 }

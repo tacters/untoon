@@ -472,6 +472,13 @@
 		where rnum >= #{ startRow } and rnum <= #{endRow}
 		]]>
     </select>
+    
+    <select id="mlike" resultMap="clssResultSet" parameterType="string">
+    	select clss_title, clss_start, clss_end, save_count, tchr_id, cid
+		from clss
+		join save_clss using (cid)
+		where id= #{id}
+    </select>
 </mapper>
 
 

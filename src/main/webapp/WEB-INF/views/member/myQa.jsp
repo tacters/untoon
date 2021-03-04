@@ -19,7 +19,7 @@
 	<td>${ q.qid }</td>
    <td>   
    <c:url var="cdt" value="/cdetail.do">
-      <c:param name="cid" value="${ q.qcontent}" />
+      <c:param name="cid" value="${ q.cid}" />
    </c:url>
    <a href="${ cdt }">${ q.qcontent }</a>
    </td>
