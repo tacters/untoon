@@ -144,7 +144,7 @@ $(function(){
 			안녕하세요.<br> ${ loginUser.name }님
 		</h3><hr/>
 		<br><br>
-		<div id="menu">
+		<div id="menu" style="margin:0px 10%;">
 			<ul class="navi">
 				<li><a href="#" id="#" title="내 클래스 관리" class="#">내 클래스 관리</a> 
 					<ul>
