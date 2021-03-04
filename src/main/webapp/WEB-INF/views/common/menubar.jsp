@@ -276,7 +276,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 								</div>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="pmselect" value="/pmselect.do" >
-									<c:param name="page" value="1"/>
 									</c:url>
 									<a href='${ pmselect }' title="pmselect">마이 클래스</a> <!-- selectMyPay(): 결제+수강신청 완료된 내역 리스트 조회 페이지  -->
 								</div>
