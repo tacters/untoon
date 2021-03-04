@@ -146,7 +146,7 @@ public class PayController {
 	
 	//사용자가 마이페이지에서 결제내역 목록을 조회할 때 
 	@RequestMapping("pmselect.do")
-	public String selectMyPay(HttpSession session, Model model) {
+	public String selectMyPay(HttpSession session, Model model, @RequestParam("page") int currentPage) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		String id = loginUser.getId();
 		System.out.println(id);
