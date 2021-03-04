@@ -55,7 +55,7 @@ public class SaveController {
 			throws UnsupportedEncodingException {
 
 		// 사용자의 "찜하기 / 좋아요" 목록
-		ArrayList<SaveClss> sclist = scService.selectPersonalSave(cid);
+		ArrayList<SaveClss> sclist = scService.selectPersonalSave(id);
 		System.out.println(" sclist :" + sclist);
 
 		// 전송용 json 객체 준비

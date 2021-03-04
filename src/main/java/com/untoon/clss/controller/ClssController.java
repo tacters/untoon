@@ -817,17 +817,17 @@ public class ClssController {
 	}
 	
 	// 사용자 마이페이지에 찜한 목록 불러오기
-	@RequestMapping("mlike.do")
-	public String mlike(HttpSession session, Model model) {
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		String id = loginUser.getId();
-		System.out.println(id);
-		
-		ArrayList<> list = cService.mlike(id);
-			
-		
-	}
+//	@RequestMapping("mlike.do")
+//	public String mlike(HttpSession session, Model model) {
+//		Member loginUser = (Member)session.getAttribute("loginUser");
+//		
+//		String id = loginUser.getId();
+//		System.out.println(id);
+//		
+//		ArrayList<> list = cService.mlike(id);
+//			
+//		
+//	}
 
 //	@RequestMapping(value="mclss.do", method = RequestMethod.POST)
 //	@ResponseBody

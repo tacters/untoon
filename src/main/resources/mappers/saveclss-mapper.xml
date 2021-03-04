@@ -78,10 +78,10 @@
 	</select>
 	 -->
 	 <!-- 재윤 -->
-	 <select id="selectPersonalSave" parameterType="_int" resultMap="personalResult">
+	 <select id="selectPersonalSave" parameterType="string" resultMap="personalResult">
 		SELECT		 	*
 		FROM 		 	SAVE_CLSS
-		WHERE 	 	cid = #{ cid }
+		WHERE 	 	id = #{ id }
 	</select>
 	
 </mapper>

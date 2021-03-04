@@ -50,8 +50,8 @@ public class SaveClssDao {
 		return(ArrayList<SaveClss>)sclist;
 	}
 
-	public ArrayList<SaveClss> selectPersonalSave(int cid) {  // SELECT ALL 개인이 좋아요한 수업 리스트
-		List<SaveClss> sclist = sqlSession.selectList("scMapper.selectPersonalSave", cid);
+	public ArrayList<SaveClss> selectPersonalSave(String id) {  // SELECT ALL 개인이 좋아요한 수업 리스트
+		List<SaveClss> sclist = sqlSession.selectList("scMapper.selectPersonalSave", id);
 		return(ArrayList<SaveClss>)sclist;
 	}
 
