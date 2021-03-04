@@ -43,6 +43,20 @@ padding: 30px;
 <br>
 <div class="body">
 
+<%-- 목록 출력 --%>
+		<div id="iframeAlist">
+			<c:url var="alist" value="/alist.do" >
+					<c:param name="page" value="1" />
+			</c:url>
+			<%-- 	<button onclick="javascript:location.href='${ alist }';">전체 목록 보기</button> --%>
+			
+			<br>
+			<iframe id="iframe"  src="${ alist }"
+							width="80%"  height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+							style="display:block; margin:auto;">
+			</iframe>
+		</div>
+
 <h2>광고관리 : " ${ ad.ad_title } " 광고 상세보기</h2>
 
 <div id="adPreview">

@@ -10,7 +10,7 @@
 <body>
 <c:import url="../common/menubar.jsp"/>
 <c:import url="../member/myPageheader.jsp"/>
-<h2>${ loginUser.name }님의 후기</h2>
+<h3 align="center">${ loginUser.name }님의 후기</h3>
 <table>
 <tr><th>후기 내용</th><th>강사 id</th><th>강의 시작날짜</th><th>강의 끝나는 날짜</th>
 </tr>

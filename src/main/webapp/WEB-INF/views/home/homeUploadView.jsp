@@ -117,52 +117,21 @@ body, html {
 </head>
 <body>
 <c:import url="../common/menubar.jsp"/>
+
 <div class="body">
-	<%-- ADVERTISEMENT --%>
-	<h3> 홈페이지 광고 관리 </h3>
-	<i> 가장 최근 광고 4개. 광고를 동시에 3개 이상 액티브 시키면 홈페이지 뷰 (home.jsp)가 어수선해 보일 수 있으니 주의 바랍니다.</i> 
-	<table class="tbl-ad">
-		<tr class="tbl-ad-header">
-			<th class="tbl-ad-header"> 광고제목 </th>
-			<th class="tbl-ad-header"> 화면위치</th>
-			<th class="tbl-ad-header"> 광고 시작일 </th>
-			<th class="tbl-ad-header"> 광고 종료일 </th>
-			<th class="tbl-ad-header"> 액티브 </th>
-		</tr>
-		<c:forEach items="${ requestScope.adlist }" var="a"> <!-- ArrayList로 받아져오는 광고 목록 = adlist -->
-			<tbody style="display:none">
-				<tr><td>${ a.adid }</td></tr>
-				<c:url value="/adetail.do" var ="adet">
-					<c:param name = "adid" value="${ a.adid }"/>
-				</c:url>
-			</tbody>
-		<tr data-href="${ adet }">
-			<td class="tbl-ad-data" > ${ a.ad_title } </td> <!-- 광고제목 -->
-			<td class="tbl-ad-data"> ${ a.ad_xy } </td> <!-- 화면위치 -->
-			<td class="tbl-ad-data"> ${ a.ad_start } </td> <!-- 광고 시작일  -->
-			<td class="tbl-ad-data"> ${ a.ad_end } </td> <!-- 광고 종료일  -->
-			<td class="tbl-ad-data"> ${ a.a_status } </td> <!-- 액티브 = 현재 보이는지 -->
-		</tr>
-		</c:forEach>
-	</table>
-	<c:if test="${ !empty sessionScope.loginUser and sessionScope.loginUser.id eq 'admin' }">
-		<div style="align:center;">
-			<c:url var = "aim" value="/aimove.do"/>
-				<button onclick="javascript:location.href=${ aim }">광고 등록</button>
-		</div>
-	</c:if>
-	
-	<script type="text/javascript"> /* 자바스크립트 유튜브 참고 : https://youtu.be/6BdKUO2QbA0  */
-		document.addEventListener("DOMContentLoaded", () => {
-			const rows = document.querySelectorAll("tr[data-href]");
+	<%-- 목록 출력 --%>
+		<div id="iframeAlist">
+			<c:url var="alist" value="/alist.do" >
+					<c:param name="page" value="1" />
+			</c:url>
+			<%-- 	<button onclick="javascript:location.href='${ alist }';">전체 목록 보기</button> --%>
 			
-			rows.forEach(row => {
-				row.addEventListener("click", () =>{
-					window.location.href = row.dataset.href; // 주소창을 바꿔라. dataset = data-로 설정된 값들 = data-href의 값
-				});
-			});
-		});
-	</script>
+			<br>
+			<iframe id="iframe"  src="${ alist }"
+							width="80%"  height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+							style="display:block; margin:auto;">
+			</iframe>
+		</div>
 
 	<%-- HOMEPAGE 관련 MANAGEMENT--%>
 	
@@ -253,8 +222,10 @@ body, html {
 			  		</div>
 			</div>
 			
-			<div id="tab3" class="tabcontent">
+			
+			<div id="tab3" class="tabcontent" style="color:black;">
 				<form action ="hupload.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="hid"  value="${ home.hid }">
 					  <h3>첨부파일 업로드</h3>
 					  <ul>
 					  		<li> 홈페이지 맨위 배너에 나올 이미지 <input type="file" name="banner1_img"><br></li>
@@ -265,7 +236,7 @@ body, html {
 					  		<li> 카테고리 "${ home.menu_cat5 }"  <input type="file" name="logo_cat5"></li>
 					  		<li> 카테고리 "${ home.menu_cat6 }"  <input type="file" name="logo_cat6"></li>
 					  		<li> 수강신청 안내 <input type="file" name="howto_file"><br></li>
-					  		<li>  홈페이지 맨밑 배너에 나올 이미지 <input type="file" name="banner2_img"><br></li>
+					  		<li> 홈페이지 맨밑 배너에 나올 이미지 <input type="file" name="banner2_img"><br></li>
 					  </ul>
 					 <br><br>
 					<div style="align:center; padding: 20px;">

@@ -10,8 +10,8 @@
 </head>
 <body>
 <c:import url="../common/menubar.jsp"/>
-<h1>강사 개인정보 수정 페이지</h1>
-<c:import url="../common/menubar.jsp"/>
+<c:import url="../member/myPageheader.jsp"/>
+<h3>${ loginUser.name } 강사님 개인정보 수정 페이지</h3>
 <form action="tupdate.do" method="post" enctype="multipart/form-data">
 	<div class="outer" align="center">
 			<table width="500" cellspacing="5">

@@ -114,7 +114,6 @@ li:last-child {
 		<c:import url="../common/menubar.jsp" />
 	</div>
 	<div id="div_menu">
-		<h4>세로네비바</h4>
 		<ul style="align: center;">
 			<li>
 			<c:url var="adnclist" value="/adnclist.do">
