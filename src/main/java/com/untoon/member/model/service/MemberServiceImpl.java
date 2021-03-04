@@ -105,9 +105,8 @@ public class MemberServiceImpl implements MemberService {
 	public int getSearchWriterListCount(String keyword) {
 		return mDao.getSearchWriterListCount(keyword);
 	}
-
-			
-	}
+	
+}
 
 
 

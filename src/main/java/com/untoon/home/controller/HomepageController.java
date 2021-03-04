@@ -121,24 +121,13 @@ public class HomepageController {
 	@RequestMapping("humove.do") // home upload move
 	public String homeUploadView( //@RequestParam("hid") int hid,
 													Model model) {
-		//HomeUpfile hupfile = huService.selectHomeUpfile(); // (hid)
-		ArrayList<Ad> adlist = adService.selectAllAd(); 		// 광고 전체 목록보기 요청 처리용 = adlist.do 역할
-		System.out.println(adlist);
-
-		
-		if(adlist != null) {
-			
-			model.addAttribute("adlist", adlist);
+		//HomeUpfile hupfile = huService.selectHomeUpfile(); // (hid)		
 			return "home/homeUploadView";
-		} else {
-			model.addAttribute("msg", " 홈페이지 첨부파일 업로드 페이지로 이동 요청 실패");
-			return "common/errorPage";
-		}
 	}
 	
 	// 홈페이지 수정 후 첨부파일 올리기
 		@RequestMapping(value = "hupload.do", method  = RequestMethod.POST)
-		public String insertHomeFiles(Home home, HomeUpfile hupfile, // HomeUpfile 추가
+		public String insertHomeFiles(HomeUpfile hupfile, // HomeUpfile 추가
 														HttpServletRequest request, Model model,
 														@RequestParam(name = "banner1_img", required=false) MultipartFile mfile0,
 														@RequestParam(name = "logo_cat1", required=false) MultipartFile mfile1,
@@ -149,7 +138,7 @@ public class HomepageController {
 														@RequestParam(name = "logo_cat6", required=false) MultipartFile mfile6,
 														@RequestParam(name = "howto_file", required=false) MultipartFile mfile7,
 														@RequestParam(name = "banner2_img", required=false) MultipartFile mfile8
-														) throws UnsupportedEncodingException {
+														) {
 			
 			// 업로드된 파일 저장 폴더 지정하기
 			String savePath = request.getSession().getServletContext().getRealPath("resources/home/homepage");

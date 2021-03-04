@@ -11,6 +11,7 @@ import com.untoon.clss.model.dao.ClssDao;
 import com.untoon.clss.model.vo.Clss;
 import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.vo.Member;
+import com.untoon.member.model.vo.PayMember;
 
 @Service("clssService")
 public class ClssServiceImpl implements ClssService {
@@ -237,6 +238,23 @@ public class ClssServiceImpl implements ClssService {
 	@Override
 	public int delClssSave(int cid) {
 		return cDao.delClssSave(cid);
+	}
+
+	// 강사 클래스 상세보기에서 본인 회원 수강한 회원 정보 보기
+	@Override
+	public ArrayList<PayMember> teacherEnrolled(int cid) {
+		return cDao.teacherEnrolled(cid);
+	}
+
+	//클래스 전체 목록 조회
+	@Override
+	public ArrayList<Clss> clssAList(int currentPage, int limit) {
+		return cDao.clssAList(currentPage, limit);
+	}
+
+	@Override
+	public int getAListCount() {
+		return cDao.getAListCount();
 	}
 
 
