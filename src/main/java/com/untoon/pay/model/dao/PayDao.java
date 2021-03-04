@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.untoon.clss.model.vo.ClssPage;
 import com.untoon.pay.model.vo.Pay;
 import com.untoon.pay.model.vo.PayClss;
 
@@ -18,8 +19,12 @@ public class PayDao {
 	
 	public PayDao() {}
 	
-	public ArrayList<PayClss> payList() {
-		List<PayClss> list = sqlSession.selectList("payMapper.payList");
+	public ArrayList<PayClss> payList(int currentPage, int limit) {
+		//전달된 값을 이용해서 출력할 시작행과 끝행을 계산함
+		int startRow = (currentPage - 1) * limit -1;
+		int endRow = startRow + limit -1;
+		
+		List<PayClss> list = sqlSession.selectList("payMapper.payList", new ClssPage(startRow, endRow)); // 매개변수에서 두번째 거는 전달할 객체
 		return (ArrayList<PayClss>)list;
 	}
 
@@ -51,6 +56,11 @@ public class PayDao {
 	public PayClss payMove(int cid) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("payMapper.payMove", cid);
+	}
+
+	public int getListCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("payMapper.getListCount");
 	}
 
 

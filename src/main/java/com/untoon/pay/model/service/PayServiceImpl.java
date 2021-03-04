@@ -15,8 +15,8 @@ public class PayServiceImpl implements PayService{
 	private PayDao payDao;
 	
 	@Override
-	public ArrayList<PayClss> payList() {
-		return payDao.payList();
+	public ArrayList<PayClss> payList(int currentPage, int limit) {
+		return payDao.payList(currentPage, limit);
 	}
 
 	@Override
@@ -54,6 +54,12 @@ public class PayServiceImpl implements PayService{
 	public PayClss payMove(int cid) {
 		// TODO Auto-generated method stub
 		return payDao.payMove(cid);
+	}
+
+	@Override
+	public int getListCount() {
+		// TODO Auto-generated method stub
+		return payDao.getListCount();
 	}
 	
 }

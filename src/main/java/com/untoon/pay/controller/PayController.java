@@ -98,11 +98,29 @@ public class PayController {
 	
 	//관리자가 전체 결제 목록 보기 요청 할 때 
 	@RequestMapping("plist.do")
-	public String payList(Model model) {
-		ArrayList<PayClss> list = payService.payList();
-		System.out.println("list : " + list );
+	public String payList(@RequestParam("page") int currentPage, Model model) {
+		int limit = 10;
+		ArrayList<PayClss> list = payService.payList(currentPage, limit);
+		
+		//페이지 처리//총 페이지 계산을 위한 총 목록 갯수 조회
+		int listCount = payService.getListCount();
+		int maxPage = (int)((double) listCount / limit + 0.9);
+		// 현재 페이지가 속한 페이지그룹의 시작페이지 값 설정
+		// 예 : 현재 페이지가 35이면, 시작페이지를 31로 지정(페이지 갯수를 10개 표시할 경우)
+		int startPage = ((int)((double)currentPage / 10)) * 10 + 1;
+		int endPage = startPage + 9;
+		
+		if(maxPage < endPage)
+			endPage = maxPage;
+		
 		if(list.size() > 0) {
+			System.out.println("목록있음, list : " + list );
+			
 			model.addAttribute("list", list);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("maxPage", maxPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
 			return "pay/AdminPayList";
 		} else {
 			model.addAttribute("msg", "결제내역 목록을 조회할 수 없습니다.");
@@ -112,11 +130,14 @@ public class PayController {
 	
 	//관리자가 결제목록 상세보기 할 때 
 	@RequestMapping("pdetail.do")
-	public String detailPay(@RequestParam("payno") int payno, Model model) {
+	public String detailPay(@RequestParam("payno") int payno,
+			@RequestParam(name = "page", required = false, defaultValue = "1") int currentPage, Model model) {
 		PayClss pay = payService.detailPay(payno);
 			
 		if (pay !=null){
+			System.out.println("조회성공");
 			model.addAttribute("pay", pay);
+			model.addAttribute("page", currentPage);
 			return "pay/AdminPayDetail";
 		} else {
 			model.addAttribute("msg", payno + "번 결제내역 상세보기를 할 수 없습니다.");
