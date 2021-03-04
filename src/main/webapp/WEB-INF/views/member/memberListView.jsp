@@ -20,6 +20,8 @@
 </script>
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
+<br><br><br>
 <h2 style="text-align: center;">회원목록</h2>
 		<div align="center" id="writerDiv">
 			<form action="msearchId.do" method="post">
@@ -126,7 +128,7 @@
 </c:if>
 </div>
 </c:if>
-
+<c:import url="../common/footer.jsp"/>
 
 
 

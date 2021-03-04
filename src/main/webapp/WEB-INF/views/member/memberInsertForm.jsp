@@ -40,6 +40,78 @@ function showDiv(){
 	   $(".insertTeacher").css("display","block");
 	}
 }
+//아이디 중복확인 체크
+$(function(){
+	$("#userId").on("keyup",function(){
+		var userId = $(this).val();
+		
+		if(userId.length < 5){
+			$(".guide").hide();
+		
+			return;
+		}
+		$.ajax({
+			url:"idCheck.do",
+			data:{id:userId},
+			type:"post",
+			success:function(data){
+				console.log(data);
+				
+				if(data == "ok"){
+					$(".error").hide();
+					$(".ok").show();
+				}else{
+					$(".ok").hide();
+					$(".error").show();
+				}
+				
+			},error:function(jqxhr,textStatus,errorThrown){
+				console.log("ajax 처리 실패");
+				
+				console.log(jqxhr);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	});
+});
+
+//닉네임 중복확인
+$(function(){
+	$("#userNickname").on("keyup",function(){
+		var userId = $(this).val();
+		
+		if(userId.length < 5){
+			$(".nicknameCheck").hide();
+		
+			return;
+		}
+		$.ajax({
+			url:"nicknameCheck.do",
+			data:{nickname:userNickname},
+			type:"post",
+			success:function(data){
+				console.log(data);
+				
+				if(data == "ok"){
+					$(".error").hide();
+					$(".ok").show();
+				}else{
+					$(".ok").hide();
+					$(".error").show();
+				}
+				
+			},error:function(jqxhr,textStatus,errorThrown){
+				console.log("ajax 처리 실패");
+				
+				console.log(jqxhr);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	});
+});
+
 </script>
 <body>
 <c:import url="../common/menubar.jsp"/>
@@ -55,7 +127,7 @@ function showDiv(){
 						<!-- ajax를 적용  -->
 						<span class="guide ok">사용가능</span>
 						<span class="guide error">사용불가능</span>
-						<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0">
+						<!-- <input type="hidden" id="idDuplicateCheck()" value="0"> -->
 						<!-- ajax를 적용  -->
 					</td>
 				</tr>
@@ -81,7 +153,11 @@ function showDiv(){
 				</tr>
 				<tr>
 					<td>NICKNAME</td>
-					<td><input type="text" name="nickname" required></td>
+					<td><input type="text" name="nickname" id="userNickname" required>
+						<!-- ajax를 적용  -->
+						<span class="nicknameCheck ok">사용가능</span>
+						<span class="nicknameCheck error">사용불가능</span>
+					</td>
 				</tr>
 				<tr>
 				<td>user_lv</td>
@@ -149,45 +225,4 @@ function showDiv(){
 	<c:import url="../common/footer.jsp"/>
 	</footer>
 </body>
-	<script type="text/javascript">	
-	function idDuplicateCheck(){
-		   $.ajax({
-		      url: "idCheck.do",
-		      type: "post",
-		      data: {userid : $("#id").val() },
-		      success: function(data){
-		         //처리결과를 문자열로 받음
-		         console.log("success : " + data);
-		         if(data == "ok"){
-		            alert("사용 가능한 아이디입니다.");
-		            $("#pwd").focus();
-		         }else{
-		            alert("이미 사용중인 아이디입니다.\n다시 입력하세요.");
-		            $("#id").select();
-		         }
-		      },
-		      error: function(jqXHR, textstatus, errorthrown){
-		         //에러 발생시 구동되는 콜백함수임
-		         console.log("error : " + jqXHR + ", " + textstatus 
-		               + ", " + errorthrown);
-		      }
-		   });
-		}
-	
-	//  email관련 ajax  
-	/* function email(){
-		$.ajax({
-			url: "emailNum.do",
-			type: "post",
-			data: {email : $("#email").val() },
-			success: function(data){
-				console.log("success :" + data);
-			  error: function(jqXHR, textstatus, errorthrown){
-			         //에러 발생시 구동되는 콜백함수임
-			         console.log("error : " + jqXHR + ", " + textstatus 
-			               + ", " + errorthrown);
-			  }    
-		});
-	} */
-	</script>
 </html>

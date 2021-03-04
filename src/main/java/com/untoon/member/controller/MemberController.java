@@ -343,6 +343,19 @@ public class MemberController {
 			return "ok";
 		}
 	}
+	
+	//닉네임 중복확인
+	@ResponseBody
+	@RequestMapping("nicknameCheck.do")
+	public String nicknameCheck(String nickname) {
+		int result = mService.nicknameCheck(nickname);
+		
+		if(result > 0 ){
+			return "fail";
+		}else {
+			return "ok";
+		}
+	}
 
 	// 강사 개인정보 수정하기
 	@RequestMapping("tupdate.do")

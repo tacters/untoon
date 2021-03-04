@@ -23,7 +23,7 @@
 						</c:url>
 						<button type="button" onclick="location.href='${ mdelete }';">탈퇴하기</button>
 						<%-- <button type="button" onclick="location.href='${ mdelete }';">탈퇴하기</button> --%>
-						<input type="reset" value="취소하기">
+						<input type="button" value="취소하기" onclick="location.href='home.do'">
 					</td>
 			</tr>
 		</table>
