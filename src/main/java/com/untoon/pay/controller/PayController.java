@@ -146,11 +146,12 @@ public class PayController {
 	
 	//사용자가 마이페이지에서 결제내역 목록을 조회할 때 
 	@RequestMapping("pmselect.do")
-	public String selectMyPay(HttpSession session, Model model, @RequestParam("page") int currentPage) {
+	public String selectMyPay(HttpSession session, Model model) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		String id = loginUser.getId();
 		System.out.println(id);
 		ArrayList<PayClss> list = payService.selectMyPay(id);
+		
 		System.out.println("list : " + list );
 		
 		if(list.size() > 0) {
