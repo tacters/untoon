@@ -63,6 +63,8 @@
 			<td align="center">${m.phone}</td>
 			<td align="center">${m.enroll_date}</td>
 			<td align="center">${m.update_date}</td>
+			<td align="center">#</td>
+			<td align="center">#</td>
 		</tr>
 	</c:forEach>
 </table>

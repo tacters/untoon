@@ -37,7 +37,7 @@ function showDiv(){
 	   $(".insertTeacher").css("display","none");
 	}
 	if($("input[name=user_lv]").eq(1).is(":checked")){
-	   $(".insertTeacher").css("display","block");
+	   $(".insertTeacher").css("display","inline-block");
 	}
 }
 //아이디 중복확인 체크
@@ -181,8 +181,7 @@ $(function(){
 					<td>프로필 사진</td>
 					<td><input type="file" name="afile"></td>
 				</tr>
-				<div class="insertTeacher" style="margin:10% 15%;">
-				<tr>
+				<tr class="insertTeacher">
 					<td>계좌번호</td>
 					<td>
 						<select name="bank">
@@ -197,7 +196,10 @@ $(function(){
 						<input type="text" name="bank_accp" placeholder="-빼고 입력해주세요">
 					</td>
 				</tr>
-				
+				<tr class="insertTeacher">
+					<td>이력서</td>
+					<td><input type="file" name="rfile"></td>
+				</tr>
 				</div>
 				<tr>
 					<td colspan="2" align="center">
