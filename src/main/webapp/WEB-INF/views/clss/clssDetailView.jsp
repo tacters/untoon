@@ -865,18 +865,25 @@ function selfReply(qid){
 						}
 						for(var i in json.sclist){
 							console.log("json.sclist : " + json.sclist); 
-							if(loginUser == json.sclist[i].id && cid == json.sclist[i].cid ){
+							if(cid == json.sclist[i].cid ){
 								console.log("좋아요o");
 								console.log("빨간하트");
 								//showEmptyHeart();
 								hideEmptyHeart();
 								//changeHeart();
 							}
-						}// for in
-							//else{
+							else{
 								console.log("좋아요x");
 								console.log("빈하트");
 								showEmptyHeart();
+								//hideEmptyHeart();
+								//changeHeart();
+							}
+						}// for in
+							//else{
+							//	console.log("좋아요x");
+							//	console.log("빈하트");
+							//	showEmptyHeart();
 								//hideEmptyHeart();
 								//changeHeart();
 							//}

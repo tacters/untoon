@@ -295,4 +295,9 @@ public class ClssDao {
 		return (ArrayList<Clss>) list;
 	}
 
+	public ArrayList<Clss> mlike(String id) {
+		List<Clss> list = sqlSession.selectList("clssMapper.mlike", id);
+		return (ArrayList<Clss>) list;
+	}
+
 }

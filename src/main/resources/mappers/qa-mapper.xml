@@ -11,6 +11,16 @@
 		<result column="q_modify_date" property="q_modify_date" />
 		<result column="q_status" property="q_status" />
 	</resultMap>
+	
+	<resultMap type="QaClss" id="resultQaClss">
+		<id column="qid" property="qid"/>
+		<id column="cid" property="cid"/>
+		<result column="qwriter" property="qwriter"/>
+		<result column="qcontent" property="qcontent"/>
+		<result column="q_create_date" property="q_create_date"/>
+		<result column="q_modify_date" property="q_modify_date"/>
+		<result column="q_status" property="q_status"/>
+	</resultMap>
 
 <!-- <, >, & 들어가면 사용하기 <![CDATA[ 쿼리문장 ]]>  -->
 
@@ -41,7 +51,7 @@
 	</update>
 	
 	<!-- 마이페이지에서 1대1 문의내역 가져오기 -->
-	<select id="myQa" resultMap="resultQa" parameterType="string">
+	<select id="myQa" resultMap="resultQaClss" parameterType="string">
 		select * from qa
 		where qwriter=#{id}
 	</select>

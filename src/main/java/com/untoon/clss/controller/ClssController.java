@@ -276,7 +276,9 @@ public class ClssController {
 	@RequestMapping("cdetail.do")
 	public String selectClssMethod(HttpSession session, @RequestParam("cid") int cid, Model model) {
 
+		System.out.println(cid);
 		Clss clss = cService.selectClss(cid);
+		System.out.println(clss);
 
 		// 조회수 처리
 		int result = cService.addViewCount(cid);
@@ -286,7 +288,7 @@ public class ClssController {
 			return "clss/clssDetailView";
 		} else {
 			System.out.println("값없음");
-			model.addAttribute("msg", "강사 상세보기 실패");
+			model.addAttribute("msg", "상세보기 실패");
 			return "common/errorPage";
 		}
 
@@ -824,7 +826,17 @@ public class ClssController {
 		String id = loginUser.getId();
 		System.out.println(id);
 		
-		ArrayList<> list = cService.mlike(id);
+		ArrayList<Clss> list = cService.mlike(id);
+		System.out.println(list);
+		
+		if(list.size()>0) {
+			//if(loginUser.getUser_lv().equals("S"))
+			model.addAttribute("list", list);
+			return "member/myLike";
+		}else {
+			model.addAttribute("msg", "찜한목록이 없습니다.");
+			return "common/errorPage";
+		}
 			
 		
 	}

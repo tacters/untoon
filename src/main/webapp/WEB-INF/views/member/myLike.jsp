@@ -10,24 +10,23 @@
 <body>
 <c:import url="../common/menubar.jsp"/>
 <c:import url="../member/myPageheader.jsp"/>
-<h3 align="center">${ loginUser.name }님의 클래스 관리</h3>
+<h3 align="center">찜한 목록</h3>
 <table align="center" border="1" width="700" cellspacing="0">
-<tr><th>클래스 번호</th><th>클래스 제목</th><th>강사</th><th>강의 시작 날짜</th><th>강의 끝나는 날짜</th>
+<tr><th>클래스 제목</th><th>강사</th><th>시작 날짜</th><th>종강 날짜</th>
 </tr>
-<c:forEach items="${ requestScope.myList }" var="m">
+<c:forEach items="${ requestScope.list }" var="l">
 <tr>
-   <td align="center">${ m.cid }</td>
    <td>   
    <c:url var="cdt" value="/cdetail.do">
-      <c:param name="cid" value="${ m.cid }" />
+      <c:param name="cid" value="${ l.cid }" />
    </c:url>
-   <a href="${ cdt }">${ m.clss_title }</a>
+   <a href="${ cdt }">${ l.clss_title }</a>
    </td>
-   <td align="center">${ m.tchr_id }</td>
+   <td align="center">${ l.tchr_id }</td>
    <td align="center">
-      ${ m.clss_start }
+      ${ l.clss_start }
    </td>
-   <td>${ m.clss_end }</td>
+   <td>${ l.clss_end }</td>
 </tr>
 </c:forEach>
 </table>

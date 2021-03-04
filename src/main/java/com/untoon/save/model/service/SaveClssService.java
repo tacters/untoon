@@ -17,6 +17,6 @@ public interface SaveClssService {
 	
 	ArrayList<SaveClss> selectTop8(); // 좋아요가 가장 많은 8개 CLSS
 	ArrayList<SaveClss> selectCategory(String clss_category); // 찾는 카테고리에 가장 인기 많은 수업 순
-	ArrayList<SaveClss> selectPersonalSave(int cid); // SELECT ALL 개인이 좋아요한 수업 리스트
+	ArrayList<SaveClss> selectPersonalSave(String id); // SELECT ALL 개인이 좋아요한 수업 리스트
 	
 }

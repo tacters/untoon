@@ -3,109 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<style>
-li {
-	border-bottom: solid 1px black;
-}
-
-li:last-child {
-	border-bottom: none;
-}
-</style>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-#div_root {
-	margin: auto;
-	width: 800px;
-}
-
-#div_top {
-	width: 100%;
-	height: 100px;
-	/* background-color: #82FA58; */
-	text-align: center;
-}
-
-#div_menu {
-	width: 15%;
-	height: 70%;
-	float: left;
-	background-color: white;
-	text-align: left;
-}
-
-/* #div_menu ul {
-	width: 30%;
-	height: 30%;
-	float: left;
-	align: center;
-	list-style-type: none;
-	margin: 10%;
-	padding: 10;
-	border: solid 1px black;
-	background-color: #2392BD;
-} */
-
-#div_menu ul{
-	width: 80%;
-	height: 25%;
-	list-style-type: none;
-	margin: 5%;
-	padding: 10;
-	float: left;
-	background-color: #2392BD;
-}
-
-/*  #div_menu ul li:last-child {
-	height: 100;
-}  */
-
-#div_menu ul li{
-	list-style:none;
-	/* border-bottom: solid 1px black; */
-	border-bottom:none;
-}
-
-#div_menu li a {
-	width: 100%;
-	display: block;
-	color: #000000;
-	padding: 8px;
-	text-align: center;
-	text-decoration: none;
-	font-weight: bold;
-}
-
-#div_menu li a.current {
-	background-color: #2392BD;
-	color: white;
-}
-
-#div_menu li a:hover:not(.current) {
-	background-color: #2392BD;
-	color: white;
-}
-
-#div_con {
-	width: 80%;
-	height: 70%;
-	float: left;
-	background-size: 100% 100%;
-	text-align: center;
-}
-
-#div_bottom {
-	width: 100%;
-	height: 100px;
-	clear: both;
-	background-color: #C8FE2E;
-	text-align: center;
-}
-</style>
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/admin/admin.css">
 </head>
 <body>
 
@@ -114,46 +17,25 @@ li:last-child {
 		<c:import url="../common/menubar.jsp" />
 	</div>
 	<div id="div_menu">
-		<ul style="align: center;">
-			<li>
-			<c:url var="adnclist" value="/adnclist.do">
-				<c:param name="page" value="1"/>
-			</c:url>
-			<a href="${ adnclist }">미승인 클래스관리</a></li>
-			<li>
-			<c:url var="adclist" value="/adclist.do">
-				<c:param name="page" value="1"/>
-			</c:url>
-			<a href="${ adclist }">승인 클래스 관리</a></li>
-			<li>
-			<c:url var="adrclist" value="/adrclist.do">
-				<c:param name="page" value="1"/>
-			</c:url>
-			<a href="${ adrclist }">승인 거부한 클래스 관리</a></li>
-			<li>
-			<c:url var="adendclist" value="/adendclist.do">
-				<c:param name="page" value="1"/>
-			</c:url>
-			<a href="${ adendclist }">기간지난 클래스 관리</a></li>
-		</ul>
+		<c:import url="../admin/adMenubar.jsp"/>
 	</div>
-	<div id="div_con">
-	<h3>미승인 클래스목록</h3>
-	<table>
-	<tr><th>수업 번호</th><th>수업 제목</th><th>강사 id</th></tr>
-	<c:forEach items="${ requestScope.list }" var="c">
-	<tr>
-		<td align="center">${ c.cid }</td>
-		<td align="center">
-			<c:url var="acd" value="/adcdetail.do">
-		      <c:param name="cid" value="${ c.cid }" />
-		   </c:url>
-		   <a href="${ acd }">${ c.clss_title }</a>
-		</td>
-		<td align="center">${ c.tchr_id }</td>
-	</tr>
-	</c:forEach>
-</table>
+<div id="div_con">
+		<h3>미승인 클래스목록</h3>
+		<table>
+		<tr><th>수업 번호</th><th>수업 제목</th><th>강사 id</th></tr>
+		<c:forEach items="${ requestScope.list }" var="c">
+		<tr>
+			<td align="center">${ c.cid }</td>
+			<td align="center">
+				<c:url var="acd" value="/adcdetail.do">
+			      <c:param name="cid" value="${ c.cid }" />
+			   </c:url>
+			   <a href="${ acd }">${ c.clss_title }</a>
+			</td>
+			<td align="center">${ c.tchr_id }</td>
+		</tr>
+		</c:forEach>
+		</table>
 <!-- 페이징 처리 -->
 <%-- 현재 페이지가 1이 아니면 링크설정, 현재 1페이지이면 링크없음 --%>
 <c:if test="${ empty action }">
@@ -216,9 +98,10 @@ li:last-child {
 </c:if>
 
 
-	</div>
+</div>
 	<div id="div_bottom">
-		<c:import url="../common/footer.jsp" />
+		<%-- <c:import url="../common/footer.jsp" /> --%>
 	</div>
+	<c:import url="../common/footer.jsp" />
 </body>
 </html>

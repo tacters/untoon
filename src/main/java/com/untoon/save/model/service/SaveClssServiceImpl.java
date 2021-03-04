@@ -57,8 +57,8 @@ public class SaveClssServiceImpl implements SaveClssService {
 	}
 
 	@Override
-	public ArrayList<SaveClss> selectPersonalSave(int cid) {
-		return scDao.selectPersonalSave(cid);
+	public ArrayList<SaveClss> selectPersonalSave(String id) {
+		return scDao.selectPersonalSave(id);
 	}
 
 
