@@ -99,8 +99,10 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.getSearchWriterListCount", keyword);
 	}
 
-	
-
-
+	//비밀번호 임시로 받기
+	public int updatePwd(Member m) {
+		return sqlSession.update("memberMapper.updatePwd", m);
+		
+	}
 
 }

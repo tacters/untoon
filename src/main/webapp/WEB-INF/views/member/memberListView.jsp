@@ -26,10 +26,12 @@
 			<label align="center"> 아이디를 입력하세요 : <input type="search" name="keyword"></label>
 			<input type="hidden" name="page" value="1">
 			<input type="submit" value="검색"></form><br><br>
-			<a align="center" href="${ mlist }">전체 목록보기</a>
+			<c:url var="mlist" value="/mlist.do" >
+				<c:param name="page" value="1" />
+			</c:url>
+			<input type="button" value="전체목록" title="mlist" onclick="location.href='${mlist}'">
   		    <input type="button" value="홈으로 이동" onclick="location.href='home.do'"><br><br><br>
-
-  		   	</div>
+  		</div>
 <table align="center" border="1">
 	<tr>
 		<td>아이디</td>
