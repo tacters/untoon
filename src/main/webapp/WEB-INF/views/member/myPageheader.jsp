@@ -174,6 +174,12 @@ $(function(){
 						<li><a href="${ myqa }">1:1문의</a></li>
 			  		</ul>
 			  	</li>
+			  	<li><a href="#" id="#" title="찜한 목록" class="#">찜한 목록</a>
+					<ul>	
+						<c:url var="mlike" value="/mlike.do"/>
+						<li><a href="${ mlike }">찜한 목록</a></li>
+			  		</ul>
+			  	</li>
 			 </ul>
 			  
 		
@@ -214,6 +220,12 @@ $(function(){
 						<li><a href="${ tclist }">수업 목록</a></li>
 						<li><a href="#" id="#" class="#">클래스 후기</a></li>
 						<li><a href="#" id="#" class="#">1:1문의</a></li>
+			  		</ul>
+			  	</li>
+			  	<li><a href="#" id="#" title="찜한 목록" class="#">찜한 목록</a>
+					<ul>	
+						<c:url var="myqa" value="/myqa.do"/>
+						<li><a href="${ myqa }">찜한 목록</a></li>
 			  		</ul>
 			  	</li>
 			 </ul>

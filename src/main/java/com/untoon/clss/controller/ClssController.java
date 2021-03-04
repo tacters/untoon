@@ -25,6 +25,7 @@ import com.untoon.clss.model.vo.Clss;
 import com.untoon.common.SearchAndPage;
 import com.untoon.member.model.vo.Member;
 import com.untoon.member.model.vo.PayMember;
+import com.untoon.save.model.vo.SaveClss;
 
 import net.sf.json.JSONArray;
 
@@ -814,6 +815,19 @@ public class ClssController {
 			return "common/errorPage";
 		}
 	}
+	
+	// 사용자 마이페이지에 찜한 목록 불러오기
+	@RequestMapping("mlike.do")
+	public String mlike(HttpSession session, Model model) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		String id = loginUser.getId();
+		System.out.println(id);
+		
+		ArrayList<> list = cService.mlike(id);
+			
+		
+	}
 
 //	@RequestMapping(value="mclss.do", method = RequestMethod.POST)
 //	@ResponseBody
@@ -1023,29 +1037,66 @@ public class ClssController {
 	}
 
 	// 클래스 찜하기 1 추가용 ADD
-	@RequestMapping("addClssSave.do")
-	public Clss addClssSave(@RequestParam("cid") int cid, Model model) {
-		Clss clss = cService.selectClss(cid);
+//	@RequestMapping("addClssSave.do")
+//	public Clss addClssSave(@RequestParam("cid") int cid, Model model) {
+//		Clss clss = cService.selectClss(cid);
+//		int result = cService.addClssSave(cid);
+//		if (clss != null && result > 0) {
+//			model.addAttribute("clss", clss);
+//			return clss;
+//		} else {
+//			return clss;
+//		}
+//	}
+
+	// 클래스 찜하기 1 추가용 ADD ajax
+	@RequestMapping(value = "addClssSave.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String addClssSave(@RequestParam("cid") int cid, Model model) throws UnsupportedEncodingException {
+
 		int result = cService.addClssSave(cid);
-		if (clss != null && result > 0) {
-			model.addAttribute("clss", clss);
-			return clss;
-		} else {
-			return clss;
-		}
+		System.out.println("result : " + result);
+
+		
+		// 전송용 json 객체 준비
+		JSONObject sendJson = new JSONObject();
+
+		//sendJson.addProperty("result", result);
+		sendJson.put("cid", cid);
+
+		// 전송용 json 객체에 jarr 담음
+		return sendJson.toJSONString(); // jsonView 가 리턴됨
 	}
 
 	// 클래스 찜하기 1 삭제용 DELETE
-	@RequestMapping("delClssSave.do")
-	public Clss delClssSave(@RequestParam("cid") int cid, Model model) {
-		Clss clss = cService.selectClss(cid);
+//	@RequestMapping("delClssSave.do")
+//	public Clss delClssSave(@RequestParam("cid") int cid, Model model) {
+//		Clss clss = cService.selectClss(cid);
+//		int result = cService.delClssSave(cid);
+//		if (clss != null && result > 0) {
+//			model.addAttribute("clss", clss);
+//			return clss;
+//		} else {
+//			return clss;
+//		}
+//	}
+	// 클래스 찜하기 1 삭제용
+	@RequestMapping(value = "delClssSave.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String delClssSave(@RequestParam("cid") int cid, Model model) throws UnsupportedEncodingException {
+
 		int result = cService.delClssSave(cid);
-		if (clss != null && result > 0) {
-			model.addAttribute("clss", clss);
-			return clss;
-		} else {
-			return clss;
-		}
+		System.out.println("result : " + result);
+
+		
+		// 전송용 json 객체 준비
+		JSONObject sendJson = new JSONObject();
+
+		//sendJson.addProperty("result", result);
+		sendJson.put("cid", cid);
+
+		// 전송용 json 객체에 jarr 담음
+		return sendJson.toJSONString(); // jsonView 가 리턴됨
 	}
 
 }

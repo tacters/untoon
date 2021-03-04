@@ -4,12 +4,12 @@ public class SaveClss implements java.io.Serializable{
 	private final static long serialVersionUID = 3333L;
 	
 	private int cid;
-	private int id; 
+	private String id;
 	private String clss_category;
 	
 	public SaveClss() {}
 
-	public SaveClss(int cid, int id, String clss_category) {
+	public SaveClss(int cid, String id, String clss_category) {
 		super();
 		this.cid = cid;
 		this.id = id;
@@ -24,11 +24,11 @@ public class SaveClss implements java.io.Serializable{
 		this.cid = cid;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -48,6 +48,7 @@ public class SaveClss implements java.io.Serializable{
 	public String toString() {
 		return "SaveClss [cid=" + cid + ", id=" + id + ", clss_category=" + clss_category + "]";
 	}
+
 	
 	
 
