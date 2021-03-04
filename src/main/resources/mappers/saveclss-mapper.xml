@@ -70,11 +70,18 @@
 		ORDER BY  COUNT(CLSS_CATEGORY) DESC;
 	</select>
 	
-	<select id="selectPersonalSave" parameterType="_int" resultMap="personalResult">
+	<!-- <select id="selectPersonalSave" parameterType="_int" resultMap="personalResult">
 		SELECT		 	CID
 		FROM 		 	SAVE_CLSS
 		WHERE 	 	ID = #{ id }
 		GROUP BY 	CID;
+	</select>
+	 -->
+	 <!-- 재윤 -->
+	 <select id="selectPersonalSave" parameterType="_int" resultMap="personalResult">
+		SELECT		 	*
+		FROM 		 	SAVE_CLSS
+		WHERE 	 	cid = #{ cid }
 	</select>
 	
 </mapper>

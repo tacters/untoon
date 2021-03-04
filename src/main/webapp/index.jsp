@@ -7,10 +7,9 @@
 </head>
 <body>
 
-<jsp:forward page= '/WEB-INF/views/home.jsp'>
+<jsp:forward page= '/WEB-INF/views/home.jsp'/>
 
 
-</jsp:forward>
 
 </body>
 </html>
