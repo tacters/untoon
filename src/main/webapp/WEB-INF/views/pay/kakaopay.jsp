@@ -50,7 +50,7 @@
                         msg += '카드 승인번호 : ' + rsp.apply_num;
                         
                         alert(msg);
-                        location.href="<%=request.getContextPath()%>/pfinish.do";
+                        location.href="<%=request.getContextPath()%>/pfinish.do?cid=${clss.cid}";
 
                     } else {
                         //[3] 아직 제대로 결제가 되지 않았습니다.
@@ -58,7 +58,7 @@
                     }
                 });
                 //성공시 이동할 페이지
-                  location.href="<%=request.getContextPath()%>/pfinish.do";
+                  location.href="<%=request.getContextPath()%>/pfinish.do?cid=${clss.cid}";
 
                <%--  location.href='<%=request.getContextPath()%>/order/paySuccess?msg='+msg; --%>
             } else {

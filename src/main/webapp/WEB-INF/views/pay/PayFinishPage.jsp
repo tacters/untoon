@@ -27,21 +27,18 @@
 <hr>
 <p>총 결제 금액 : ${ clss.clss_price }</p> --%>
 
-<%-- 
+
 <form action="pinsert.do" method="post">
 
 <input type="hidden" name="pid" value="${loginUser.id}">
 <input type="hidden" name="cid" value="${clss.cid}">
-
- --%>
  
-	<c:url var="home" value="/home.do">
-	</c:url>
-
  
-<button class="btn" onclick="location.href='${home}'"> 결제완료 </button>
+<input type="submit" class="btn" value="결제완료">  
+<p align="left">*결제완료하기 버튼을 눌러야 결제가 완료됩니다.</p>
+<!--  input type="submit"이라고 쓰고 value="버튼에 들어갈 이름"을 쓰면 버튼이 만들어지고 클릭하면 값이 전송된다. 즉, onclick 안 써도 된다! -->
 
-<!-- </form> -->
+</form>
 
 <footer><c:import url="../common/footer.jsp"/></footer>
 
