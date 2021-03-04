@@ -14,7 +14,7 @@
 <c:import url="../member/myPageheader.jsp"/>
 
 <h3 align="left"> ${ loginUser.name }님의 결제내역 </h3>
-<h2 align ="center">${pay.pid}번 결제내역 상세보기</h2>
+<h2 align ="center">${pay.payno}번 결제내역 상세보기</h2>
 <br>
 <table align="center" width="500" border="1" cellspacing="0" cellpadding="5">
 <tr>
