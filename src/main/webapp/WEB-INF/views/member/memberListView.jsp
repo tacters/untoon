@@ -20,6 +20,8 @@
 </script>
 </head>
 <body>
+<c:import url="../common/menubar.jsp"/>
+<br><br><br>
 <h2 style="text-align: center;">회원목록</h2>
 		<div align="center" id="writerDiv">
 			<form action="msearchId.do" method="post">
@@ -61,6 +63,8 @@
 			<td align="center">${m.phone}</td>
 			<td align="center">${m.enroll_date}</td>
 			<td align="center">${m.update_date}</td>
+			<td align="center">#</td>
+			<td align="center">#</td>
 		</tr>
 	</c:forEach>
 </table>
@@ -126,7 +130,7 @@
 </c:if>
 </div>
 </c:if>
-
+<c:import url="../common/footer.jsp"/>
 
 
 

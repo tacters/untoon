@@ -37,42 +37,114 @@ function showDiv(){
 	   $(".insertTeacher").css("display","none");
 	}
 	if($("input[name=user_lv]").eq(1).is(":checked")){
-	   $(".insertTeacher").css("display","block");
+	   $(".insertTeacher").css("display","inline-block");
 	}
 }
+//아이디 중복확인 체크
+$(function(){
+	$("#userId").on("keyup",function(){
+		var userId = $(this).val();
+		
+		if(userId.length < 5){
+			$(".guide").hide();
+		
+			return;
+		}
+		$.ajax({
+			url:"idCheck.do",
+			data:{id:userId},
+			type:"post",
+			success:function(data){
+				console.log(data);
+				
+				if(data == "ok"){
+					$(".error").hide();
+					$(".ok").show();
+				}else{
+					$(".ok").hide();
+					$(".error").show();
+				}
+				
+			},error:function(jqxhr,textStatus,errorThrown){
+				console.log("ajax 처리 실패");
+				
+				console.log(jqxhr);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	});
+});
+
+//닉네임 중복확인
+$(function(){
+	$("#userNickname").on("keyup",function(){
+		var userNickname = $(this).val();
+		
+		if(userNickname.length < 2){
+			$(".nicknameCheck").hide();
+		
+			return;
+		}
+		$.ajax({
+			url:"nicknameCheck.do",
+			data:{nickname:userNickname},
+			type:"post",
+			success:function(data){
+				console.log(data);
+				
+				if(data == "ok"){
+					$(".error").hide();
+					$(".ok").show();
+				}else{
+					$(".ok").hide();
+					$(".error").show();
+				}
+				
+			},error:function(jqxhr,textStatus,errorThrown){
+				console.log("ajax 처리 실패");
+				
+				console.log(jqxhr);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+		});
+	});
+});
+
 </script>
 <body>
 <c:import url="../common/menubar.jsp"/>
 
 	<h1 align="center">회원가입</h1>
 
-	<div class="outer" align="center">
+	<div class="outer" align="center" style="margin:10% 15%;">
 		<form action="minsert.do" method="post" id="joinForm" enctype="multipart/form-data">
 			<table width="500" cellspacing="5">
 				<tr>
-					<td width="150">ID</td>
+					<td width="150">아이디</td>
 					<td><input type="text" name="id" id="userId" required>
 						<!-- ajax를 적용  -->
 						<span class="guide ok">사용가능</span>
 						<span class="guide error">사용불가능</span>
-						<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0">
+						<!-- <input type="hidden" id="idDuplicateCheck()" value="0"> -->
 						<!-- ajax를 적용  -->
 					</td>
 				</tr>
 				<tr>
-					<td>PASSWORD</td>
+					<td>비밀번호</td>
 					<td><input type="password" name="pwd" required></td>
 				</tr>
 				<tr>
-					<td>PASSWORD</td>
+					<td>비밀번호 확인</td>
 					<td><input type="password" id="pwd2" required></td>
 				</tr>
 				<tr>
-					<td>NAME</td>
+					<td>이름</td>
 					<td><input type="text" name="name" required></input></td>
 				</tr>
 				<tr>
-					<td>EMAIL</td>
+					<td>이메일</td>
 					<td>
 						<input type="email" name="email" required>&nbsp;
 						<button type="submit" id="email">이메일 인증</button>
@@ -80,32 +152,36 @@ function showDiv(){
 					
 				</tr>
 				<tr>
-					<td>NICKNAME</td>
-					<td><input type="text" name="nickname" required></td>
+					<td>별명</td>
+					<td><input type="text" name="nickname" id="userNickname" required>
+						<!-- ajax를 적용  -->
+						<span class="nicknameCheck ok">사용가능</span>
+						<span class="nicknameCheck error">사용불가능</span>
+					</td>
 				</tr>
 				<tr>
-				<td>user_lv</td>
+				<td>사용자 등급</td>
 					<td><input type="radio" name="user_lv" value="S" checked>일반 사용자 <input
 						type="radio" name="user_lv" value="T">강사 </td>
 				</tr>
 				<tr>
-					<td>BIRTHDAY</td>
-					<td><input type="text" name="birthday" placeholder="주민번호 앞 6자리 입력하세요" required></td>
+					<td>생년월일</td>
+					<td><input type="text" name="birthday" placeholder="ex)920424" required></td>
 				</tr>
 				<tr>
-					<td>GENDER</td>
+					<td>성별</td>
 					<td><input type="radio" name="gender" value="M">남 <input
 						type="radio" name="gender" value="F">여</td>
 				</tr>
 				<tr>
-					<td>PHONE</td>
-					<td><input type="tel" name="phone" placeholder="-포함해서 입력해주세요"></td>
+					<td>전화번호</td>
+					<td><input type="tel" name="phone" placeholder="-포함해주세요"></td>
 				</tr>
 				<tr>
 					<td>프로필 사진</td>
 					<td><input type="file" name="afile"></td>
 				</tr>
-				<tr class="insertTeacher" rowspan="2">
+				<tr class="insertTeacher">
 					<td>계좌번호</td>
 					<td>
 						<select name="bank">
@@ -124,17 +200,7 @@ function showDiv(){
 					<td>이력서</td>
 					<td><input type="file" name="rfile"></td>
 				</tr>
-				
-
-				<!-- jQuery와 Postcodify를 로딩한다. -->
-				<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-				<script>
-					/*  검색 단추를 누르면 팝업 레이어가 열리도록 설정한다. */
-					$(function(){
-						$("#postcodify_search_button").postcodifyPopUp();
-					});
-				</script>
-
+				</div>
 				<tr>
 					<td colspan="2" align="center">
 						<button onclick='return validate();'>가입하기</button> &nbsp; 
@@ -149,45 +215,4 @@ function showDiv(){
 	<c:import url="../common/footer.jsp"/>
 	</footer>
 </body>
-	<script type="text/javascript">	
-	function idDuplicateCheck(){
-		   $.ajax({
-		      url: "idCheck.do",
-		      type: "post",
-		      data: {userid : $("#id").val() },
-		      success: function(data){
-		         //처리결과를 문자열로 받음
-		         console.log("success : " + data);
-		         if(data == "ok"){
-		            alert("사용 가능한 아이디입니다.");
-		            $("#pwd").focus();
-		         }else{
-		            alert("이미 사용중인 아이디입니다.\n다시 입력하세요.");
-		            $("#id").select();
-		         }
-		      },
-		      error: function(jqXHR, textstatus, errorthrown){
-		         //에러 발생시 구동되는 콜백함수임
-		         console.log("error : " + jqXHR + ", " + textstatus 
-		               + ", " + errorthrown);
-		      }
-		   });
-		}
-	
-	//  email관련 ajax  
-	/* function email(){
-		$.ajax({
-			url: "emailNum.do",
-			type: "post",
-			data: {email : $("#email").val() },
-			success: function(data){
-				console.log("success :" + data);
-			  error: function(jqXHR, textstatus, errorthrown){
-			         //에러 발생시 구동되는 콜백함수임
-			         console.log("error : " + jqXHR + ", " + textstatus 
-			               + ", " + errorthrown);
-			  }    
-		});
-	} */
-	</script>
 </html>
