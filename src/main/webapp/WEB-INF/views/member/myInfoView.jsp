@@ -15,7 +15,7 @@
 	
 	<h3 align="center"> 정보 수정 </h3>
 	<br><br>
-	<div class="outer" align="center">
+	<div class="outer" align="center" style="margin:0% 15%;">
 		<form action="mupdate.do" method="post" id="joinForm" enctype="multipart/form-data">
 			<table width="500" cellspacing="5">
 				<tr>
