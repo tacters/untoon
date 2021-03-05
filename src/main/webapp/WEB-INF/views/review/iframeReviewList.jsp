@@ -44,15 +44,39 @@ body{
   font-size: 18px;
   align:right;
 }
+
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #fff; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c6d8d3; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fff; 
+}
 </style>
 </head>
 <body>
 	<!-- 클래스 후기  -->
 
 		<script type="text/javascript">
-			/* function reviewDelete(rid){
+			function reviewDelete(rid){
 				   location.href = "${ pageContext.request.contextPath }/rdelete.do?rid=" + rid + "&cid=${ clss.cid}";
-				} */
+				} 
 			function showReviewReplyForm(){
 				   $("#reviewReplyDiv").css("display", "block");
 				}
@@ -71,7 +95,9 @@ body{
 			   $("#reviewReplyListView").css("display", "none");
 				} 
 			
-		
+			$(function(){
+							   $("#reviewReplyDiv").css("display", "none");
+				});	
 		</script>
 		
 		<%-- 후기 목록 표시 영역 --%>
@@ -85,35 +111,39 @@ body{
 				<c:if test= "${ sessionScope.loginUser.id eq r.rwriter }">
 						<form action="rupdate.do" method="post" enctype="multipart/form-data">
 							<input type="hidden" name="cid" value="${ r.cid }">
-							<table align="center" width="800" border="0"  style="border-style:solid;" cellspacing="0" cellpadding="5" class="tbl">
+							<table align="center" width="1000" border="0"  style="border-style:solid;" cellspacing="0" cellpadding="5" class="tbl">
 							<tr><th colspan="2"></th></tr>
 							<tr><td> &nbsp; &nbsp; <input type="hidden" name="rwriter"  value="${ r.rwriter }" style='text-align:left;' >${ r.rwriter }</td>
 									<td style='text-align:right;'>마지막 수정일 : ${ r.r_modify_date } &nbsp; &nbsp; </td>
 									</tr>
 							<tr><th colspan="2">
 											<c:if test="${  !empty  r.ofile_r }"	> <!--  원래 첨부파일 있는 경우  -->
-													<input type='checkbox' name='delFlag' value='yes'> 파일삭제 <br>
+													
 															<img src='resources/reviewClss_files/${ r.rfile_r }'
 																		alt= "${ r.cid } 클래스 ${ r.rwriter } 님의 후기 사진"
 																		style='width:100%; align: center; position: relative; max-width: 500px; padding: 10px;'>
+																		<input type='checkbox' name='delFlag' value='yes'> 파일삭제 <br>
 											</c:if>
 											<c:if test="${  empty  r.ofile_r }"	> <!--  원래 첨부파일 XXX 없는 경우  -->
 															<input type='file' name='upfile'>
 											</c:if>
 											</th>
 							</tr>
-							<tr><th colspan="2"><textarea name="rcontent" rows="5" cols="50" value=${ r.rcontent }></textarea></th></tr>
+							<tr><th colspan="2"><textarea name="rcontent" rows="5" cols="50" value=${ r.rcontent } style="font-color:black;"></textarea></th></tr>
 							<tr><th colspan="2">
-								<input type="submit" value="수정 저장"> &nbsp; 
-								<input type="reset" value="취소"> &nbsp; 
-								<c:url var="rdelete" value="/rdelete.do">
-									<c:param name="rid" value="${ r.rid }"/>
-								</c:url>
-								<button onclick="location.href='${ rdelete }'"> 삭제 </button>
+								<input type="submit" value="수정 저장" class="button"> &nbsp; 
+								<input type="reset" value="취소" class="button"> &nbsp; 
 							</th></tr>
 							</table>
 						</form>
-						
+							<table align="center" width="1000" border="0"  style="border-style:solid;" cellspacing="0" cellpadding="5" class="tbl-btm">
+								<tr><th colspan="2">
+									<c:url var="rdelete" value="/rdelete.do">
+										<c:param name="rid" value="${ r.rid }"/>
+									</c:url>
+									<button onclick="location.href='${ rdelete }'" class="button"> 삭제 </button>
+								</th></tr>
+							</table>
 					</c:if>
 								<!-- LOGINUSER = 상세보기 클래스 가르치는 강사 -->
 								<c:if test= "${ sessionScope.loginUser.user_lv eq 'T' and clss.tchr_id eq sessionScope.loginUser.id  }">
@@ -215,8 +245,9 @@ body{
 																									<textarea name="rrcontent" rows="5" cols="50" placeholder="택터즈님의 소중한 댓글은 요기에~"></textarea>
 																								</th></tr>
 																						<tr><th colspan="2">
-																						<input type="submit" value="댓글 등록"> &nbsp; 
-																						<input type="reset" value="취소" onclick="hideReviewReplyForm(); return false;"> </th></tr>
+																						
+																						<input type="submit" value="댓글 등록" class="button"> &nbsp; 
+																						<input type="reset" value="취소" onclick="hideReviewReplyForm(); return false;" class="button"> </th></tr>
 																					</table>
 																					</form>  
 																				</div>

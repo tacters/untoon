@@ -7,20 +7,31 @@
 <meta charset="UTF-8">
 <title>UNTOON 언투온택터즈</title>
 <style type="text/css">
+body {
+	font-family: Montserrat,sans-serif;
+}
  .btn-area {
  	margin-top: 30px;
  	text-align:center;
 }
  .btn-area input {
- align:"center";
- 	width: 100% ;
+ 	align:"center";
+ 	width: 30% ;
  	height:50px;
- 	background: #166cea;
+ 	background: #2392BD;
  	color:#fff;
  	font-size: 20px;
  	border: none;
- 	borber-radius: 10px;
+ 	border-radius: 10px;
  	cursor:pointer;
+ }
+  div h3 {
+ 	padding: 10px;
+	text-align:center;
+	with: 80%;
+ 	background: #2392BD;
+ 	color:#fff;
+ 	font-size: 30px;
  }
 
 </style>
@@ -29,8 +40,9 @@
 <body>
 <c:import url="../common/menubar.jsp"/>
 
-
-<h2> 결제가 완료되었습니다. </h2>
+<div>
+<h3 align="center"> ${ loginUser.id } 님의 결제가 완료되었습니다. </h3>
+</div>
 <hr>
 
 <%-- <h3>주문정보</h3>
@@ -51,8 +63,8 @@
 <input type="hidden" name="cid" value="${clss.cid}">
  
 <div class="btn-area">
-<input type="submit" value="결제완료">  
-<p align="left">*결제완료하기 버튼을 눌러야 결제가 완료됩니다.</p>
+<B><input type="submit" value="결제완료"></B>  
+<p align="center">*결제완료하기 버튼을 눌러야 결제가 완료됩니다.</p>
 </div>
 <!--  input type="submit"이라고 쓰고 value="버튼에 들어갈 이름"을 쓰면 버튼이 만들어지고 클릭하면 값이 전송된다. 즉, onclick 안 써도 된다! -->
 

@@ -7,15 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>UNTOON 언투온택터즈</title>
+<style type="text/css">
+body {
+	font-family: Montserrat,sans-serif;
+}
+ div h2 {
+ 	padding: 10px;
+	text-align:center;
+	with: 80%;
+ 	background: #2392BD;
+ 	color:#fff;
+ 	font-size: 30px;
+ }
+</style>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/jquery-3.5.1.min.js"></script>
 
 </head>
 <body>
 
 <c:import url="../common/menubar.jsp"/>
-
-<h1 align="center"> 관리자용 결제목록 보기 </h1>
-<table align="center" border="1" width="1000" cellspacing="0">
+<div>
+<h2 align="center"> 관리자용 결제목록 보기 </h2>
+</div>
+<table border="1" width="1000" cellspacing="0">
 <tr><th>결제 번호</th><th>결제한 회원</th><th>클래스 제목</th><th>강사</th><th>결제 금액</th><th>결제상태</th></tr>
 <c:forEach items="${ requestScope.list }" var="m">
 <tr>

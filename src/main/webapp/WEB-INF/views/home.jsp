@@ -1618,9 +1618,9 @@ var revapi1,
 																	</c:url> --%>
 																	<form id="formId" action="cdetail.do" method="post"><input id="inputId" type="hidden" name="cid"  value=""></form>	
 																	<script type="text/javascript">
-																	function cdetailForm(cid){ // cdetailForm(json.sclist[i].cid)
+																	function cdetailForm( cdf ){ // cdetailForm(json.sclist[i].cid)
 																		if(true){
-																		document.getElementById("#inputId").value = cid;
+																		document.getElementById("#inputId").value = cdf;
 																		document.getElementById("#itempropA").onclick = document.getElementById("#formId").submit(); 
 																		return true; 
 																		}

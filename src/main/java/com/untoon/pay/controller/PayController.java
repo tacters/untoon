@@ -136,8 +136,8 @@ public class PayController {
 			
 		if (pay !=null){
 			System.out.println("조회성공");
-			model.addAttribute("pay", pay);
 			model.addAttribute("page", currentPage);
+			model.addAttribute("pay", pay);
 			return "pay/AdminPayDetail";
 		} else {
 			model.addAttribute("msg", payno + "번 결제내역 상세보기를 할 수 없습니다.");

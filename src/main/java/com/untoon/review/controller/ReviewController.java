@@ -140,10 +140,10 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("rdelete.do")
-	public String deleteReview(@RequestParam("rid") int rid, 
-																@RequestParam("cid") int cid, Model model) {
+	public String deleteReview(@RequestParam("rid") int rid, Model model) {
+		Review review = rService.selectReview(rid);
 		if(rService.deleteReview(rid) > 0) {
-					return "redirect: cdetail.do?cid=" + cid;
+					return  "review/iframeReviewList"; //"redirect:cdetail.do?cid=" + review.getCid();//
 		} else {
 			model.addAttribute("msg", "후기 삭제 실패.");
 			return "common/errorPage";
