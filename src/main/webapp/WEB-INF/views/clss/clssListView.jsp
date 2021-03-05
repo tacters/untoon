@@ -19,7 +19,7 @@
 <c:import url="../common/menubar.jsp"/>
 
 <table align="center" border="1" width="700" cellspacing="0">
-<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th>
+<tr><th>번호</th><th>제목</th><th>강사</th><th>시작날짜</th><th>종강날짜</th><th>조회수</th>
 </tr>
 <c:forEach items="${ requestScope.list }" var="c">
 <tr>
@@ -33,14 +33,9 @@
    </td>
    <td align="center">${ c.tchr_id }</td>
    <td align="center">
- <%--      <c:if test="${ !empty b.original_filename }">
-      ◎
-      </c:if>
-      <c:if test="${ empty b.original_filename }">
-      &nbsp;
-      </c:if> --%>
-      ${ c.clss_update }
+      ${ c.clss_start }
    </td>
+   <td align="center">${ c.clss_end }</td>
    <td>${ c.view_count }</td>
 </tr>
 </c:forEach>

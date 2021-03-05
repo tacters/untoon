@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>UNTOON 언투온택터즈</title>
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/admin/admin.css">
 </head>
 <body>

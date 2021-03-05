@@ -241,7 +241,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 						<!-- NEED TO LOGIN 로그인  안 되었을 때의 메뉴-->
 						<c:if test="${ empty sessionScope.loginUser }">
 							<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
-									<c:url var="clist" value="/clist.do" />
+									<c:url var="clist" value="/clist.do">
+										<c:param name="page" value="1"/>
+									</c:url>
 									<a href='${ clist }' title="clist">클래스 찾기</a>
 							</div>
 							<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
@@ -253,11 +255,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 									<c:url var="enrollview" value="/enrollView.do" />
 									<a href='${ enrollview }' title="enroll">회원가입</a>
 							</div>
-							<div
-								class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
-									<c:url var="tenrollview" value="/tenrollview.do" />
-									<a href='${ tenrollview }' title="tenroll">강사회원가입</a>
-							</div>
 						</c:if>
 						
 						<!-- LOGGED IN 로그인 되어있을 때의 메뉴-->
@@ -267,18 +264,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 							<c:if test="${sessionScope.loginUser.user_lv eq 'S'}">
 								<c:out value="${ loginUser.nickname }님은 오늘도 화이팅~!"/>&nbsp; &nbsp; &nbsp;
 								<div class="widget edgtf-login-register-widget edgtf-user-not-logged-in">
-											<c:url var="clist" value="/clist.do" />
+											<c:url var="clist" value="/clist.do">
+											<c:param name="page" value="1"/>
+											</c:url>
 											<a href='${ clist }' title="clist">클래스 찾기</a>
 								</div>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="mclss" value="/mclss.do" />
 									<a href='${ mclss }' title="mclss">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->
 								</div>
-								<div class="widget edgtf-login-register-widget">
+								<%-- <div class="widget edgtf-login-register-widget">
 									<c:url var="pmselect" value="/pmselect.do" >
 									</c:url>
 									<a href='${ pmselect }' title="pmselect">마이 클래스</a> <!-- selectMyPay(): 결제+수강신청 완료된 내역 리스트 조회 페이지  -->
-								</div>
+								</div> --%>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="logout" value="/logout.do" />
 									<a href='${ logout }' title="logout">로그아웃</a>
@@ -295,10 +294,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="myInfo" value="/myInfo.do" />
 									<a href='${ myInfo }' title="myInfo">마이 페이지</a> <!-- 개인정보 수정가능한 조회 페이지 -->
-								</div>
-								<div class="widget edgtf-login-register-widget">
-									<c:url var="tclist" value="/tclist.do" />
-									<a href='${ tclist }' title="tclist">마이 클래스</a> <!-- selectMyPay(): 결제+수강신청 완료된 내역 리스트 조회 페이지  -->
 								</div>
 								<div class="widget edgtf-login-register-widget">
 									<c:url var="logout" value="/logout.do" />

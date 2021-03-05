@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강의등록</title>
+<title>UNTOON 언투온택터즈</title>
 <!-- iframe 스타일 -->
 <style>
       #back{width:100vw;height:100vh;background:#000;opacity:0.7;display:none;position:fixed;top:0;z-index:10;}

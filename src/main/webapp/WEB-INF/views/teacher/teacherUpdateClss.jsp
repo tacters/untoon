@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강의등록</title>
+<title>UNTOON 언투온택터즈</title>
 <!-- iframe 스타일 -->
 <style>
       #back{width:100vw;height:100vh;background:#000;opacity:0.7;display:none;position:fixed;top:0;z-index:10;}
@@ -47,7 +47,7 @@ input[type=file] {
 		<div class="tutor_cont">
 			<div class="dim" id="dim"></div>
 			<div class="title_box">
-				<h3>강의등록하기</h3>
+				<h3>강의수정하기</h3>
 			</div>
 			<div class="info1">
 				<span class="pink">*</span>필수

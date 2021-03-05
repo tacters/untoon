@@ -1616,7 +1616,7 @@ var revapi1,
  																	<%-- <c:url var="scTop8" value="/scTop8.do">
 																		<c:param name="cid" value="${c.cid}"/>
 																	</c:url> --%>
-																	<form id="formId" action="cdetail.do" method="post"><input id="inputId" type="hidden" name="cid"  value=""></form>	
+																	<form id="formId" action="cdetail.do" method="post"><input id="inputId" type="hidden" name="cid"></form>	
 																	<script type="text/javascript">
 																	function cdetailForm( cdf ){ // cdetailForm(json.sclist[i].cid)
 																		if(true){

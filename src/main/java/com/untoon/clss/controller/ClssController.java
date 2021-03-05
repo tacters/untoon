@@ -36,7 +36,7 @@ public class ClssController {
 
 	// 사용자 전체 클래스 목록조회
 	@RequestMapping("clist.do")
-	public String clssListMethod(@RequestParam("currentPage") int currentPage, Model model) {
+	public String clssListMethod(@RequestParam("page") int currentPage, Model model) {
 		int limit = 10;
 		ArrayList<Clss> list = cService.clssAList(currentPage, limit);
 
@@ -888,6 +888,7 @@ public class ClssController {
 
 		ArrayList<Clss> list = cService.searchTitle(searches);
 		System.out.println("searches" + searches);
+		System.out.println("list : " + list);
 		// 페이지 처리와 관련된 값 처리
 		// 검색에 대한 총 페이지 계산을 위한 검색결과 총 목록 갯수 조회
 		int listCount = cService.getSearchTitleListCount(keyword);
@@ -901,6 +902,7 @@ public class ClssController {
 			endPage = maxPage;
 
 		if (list.size() > 0) {
+			model.addAttribute("list", list);
 			model.addAttribute("keyword", keyword);
 			model.addAttribute("currentPage", currentPage);
 			model.addAttribute("maxPage", maxPage);
@@ -908,7 +910,7 @@ public class ClssController {
 			model.addAttribute("endPage", endPage);
 			model.addAttribute("action", "csearchTitle.do");
 			model.addAttribute("keyword", keyword);
-			return "redirect:clist.do";
+			return "clss/clssListView";
 		} else {
 			model.addAttribute("msg", keyword + "로 검색한 결과가 없습니다.");
 			return "common/errorPage";

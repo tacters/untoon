@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>teacherListView</title>
+<title>UNTOON 언투온택터즈</title>
 </head>
 <body>
 <c:import url="../common/menubar.jsp"/>
