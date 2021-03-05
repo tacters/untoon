@@ -114,109 +114,204 @@
 							<a href="#" style="color:#fff;">#<c:out value="${ i }"/></a>[
 						</c:forEach>
 						
-				  <!-- 찜하기 / 좋아요  TO PRESS, YOU MUST LOGIN -->
-						  <script type="text/javascript">
-								function checkSaver(){
-									var txt;
-									var r = confirm("클래스 찜하기 가능한 계정으로 로그인한 후 결제 하시기 바랍니다.");
-									if (r==true) {
-										var myWindow = window.open("${pageContext.request.contextPath}/loginpage.do", "_self");
-									} else {	
-										window.open(url, "_self");
-									}
-								}
-								function showEmptyHeart(){
-									$("#emptyHeartDiv").css("display", "block");
-								}
-								function hideEmptyHeart(){
-									$("#emptyHeartDiv").css("display", "none");
-								}
-								function showFullHeart(){
-									$("#fullHeartDiv").css("display", "block");
-								}
-								function hideFullHeart(){
-									$("#fullHeartDiv").css("display", "none");
-								}
-								
-								$(function(){
-									hideFullHeart();
-									showEmptyHeart();
-									
-									var cid =${clss.cid};
-									var loginUser = "${ sessionScope.loginUser.id }";
-									
-									$.ajax({
-										url: "${ pageContext.request.contextPath }/scCheck.do",
-										type: "post",
-										data: {cid: cid, id: loginUser},
-										dataType: "json",
-										success: function(data){
-											console.log("success:" + data);
-											//object ==> string
-											var jsonStr = JSON.stringify(data);
-											//string ==> json 
-											var json = JSON.parse(jsonStr);
-											for(var i in json.list){
-												if(loginUser == json.list[i].id && cid == json.list[i].cid ){
-													hideEmptyHeart();
-													showFullHeart();
-												}
-											}// for in
-										},
-										error: function(jqXHR, textstatus, errorthrown){
-											console.log("error : " + jqXHR + ", " + textstatus + ", " 
-													+ errorthrown);
-										}
-									});//ajax
-								}
-								
-						</script>
+	<!-- 찜하기 / 좋아요  TO PRESS, YOU MUST LOGIN -->
+				<script type="text/javascript">
+			function checkSaver(){
+				var txt;
+				var r = confirm("클래스 찜하기 가능한 계정으로 로그인한 후 결제 하시기 바랍니다.");
+				if (r==true) {
+					var myWindow = window.open("${pageContext.request.contextPath}/loginpage.do", "_self");
+				} else {	
+					window.open(url, "_self");
+				}
+			}
+			function showEmptyHeart(){
+				$("#emptyHeartDiv").css("display", "block");
+				$("#fullHeartDiv").css("display", "none");
+			}
+			function hideEmptyHeart(){
+				$("#fullHeartDiv").css("display", "block");
+				$("#emptyHeartDiv").css("display", "none");
+			}
+			
+			
+			
+			// 재윤수정
+			$(function(){
+				checkSc();
+			});
+			function checkSc(){
+				var cid =${clss.cid};
+				var loginUser = "${ sessionScope.loginUser.id }";
+				
+				$.ajax({
+					url: "${ pageContext.request.contextPath }/scCheck.do",
+					type: "post",
+					data: {cid: cid, id: loginUser},
+					dataType: "json",
+					success: function(data){
+						console.log("success:" + data);
+						console.log("cid:" +cid);
+						console.log("loginUser:" +loginUser);
+						
+						//object ==> string
+						var jsonStr = JSON.stringify(data);
+						//string ==> json 
+						var json = JSON.parse(jsonStr);
+						//console.log("json : " + json);
+						if(json.sclist.length == 0){
+							console.log("빈하트");
+							showEmptyHeart();
+							//hideEmptyHeart();
+							//changeHeart();
+						}
+						for(var i in json.sclist){
+							console.log("json.sclist : " + json.sclist); 
+							if(cid == json.sclist[i].cid ){
+								console.log("좋아요o");
+								console.log("빨간하트");
+								//showEmptyHeart();
+								hideEmptyHeart();
+								//changeHeart();
+							}
+							else{
+								console.log("좋아요x");
+								console.log("빈하트");
+								showEmptyHeart();
+								//hideEmptyHeart();
+								//changeHeart();
+							}
+						}// for in
 							
-							<!-- 찜하기 / 좋아요 버튼 기능 구현   btn-save -->
-							<c:if test="${ empty sessionScope.loginUser }">
-							<button class="btn-save" onclick="checkSaver();" style="font-size:30px; border: none; outline: none; color: pink; cursor:pointer; background-color: transparent;">♡</button>
-							</c:if>
-							<c:if test="${ !empty sessionScope.loginUser }">
-								<c:url var="scInsert" value="/scInsert.do">
-									<c:param name="cid" value="${clss.cid }" />
-									<c:param name="id" value="${sessionScope.loginUser.id }"/>
-								</c:url>
-								<c:url var="scDelete" value="/scDelete.do">
-									<c:param name="cid" value="${clss.cid }" />
-									<c:param name="id" value="${sessionScope.loginUser.id }"/>
-								</c:url>
-								<c:url var="addClssSave" value="/addClssSave.do">
-									<c:param name="cid" value="${clss.cid }" />
-								</c:url>
-								<c:url var="delClssSave" value="/delClssSave.do">
-									<c:param name="cid" value="${clss.cid }" />
-								</c:url>
-								
-								<div id="saveDiv">
-									<div id="emptyHeartDiv" ><button class="btn-save" onclick="changeHeart(scInsert);" style="font-size:30px; border: none; outline: none; color: pink; cursor:pointer; background-color: transparent;">♡</button></div>
-									<div id="fullHeartDiv"><button class="btn-save" onclick="changeHeart(scDelete);" style="font-size:24px; border: none; outline: none; color: pink; cursor:pointer; background-color: transparent;">♥</button></div>
-								</div>
-								<div id="unsaveDiv">
-								
-								</div>
-							</c:if>
-							<script type="text/javascript">
-								function changeHeart(loc){
-									if (loc == scInsert){ /* scInsert을 따옴표안에 넣어야하나? */
-										addClssSave();
-										location.href="${ scInsert }"; /* JAVASCRIPT에서 이렇게 반환 가능? */
-									} else if (loc== scDelete){
-										delClssSave();
-										return location.href="${ scDelete }"; /* JAVASCRIPT에서 이렇게 반환 가능? */
-									}
-								};
-								function addClssSave(){
-									location.href="${ addClssSave }"; 
-								}
-								function delClssSave(){
-									location.href="${ delClssSave }"; 
-								}
-							</script>
+					},
+					error: function(jqXHR, textstatus, errorthrown){
+						console.log("error : " + jqXHR + ", " + textstatus + ", " 
+								+ errorthrown);
+					}
+				});//ajax
+			}
+			
+			function emptyHeart(){
+				var cid =${clss.cid};
+				var loginUser = "${ sessionScope.loginUser.id }";
+				//	location.href="${ scInsert }"; /* JAVASCRIPT에서 이렇게 반환 가능? */
+				// 하트 
+				$.ajax({
+					url : "${ pageContext.request.contextPath }/scinsert.do",
+					type : "post",
+					data: {cid: cid, id: loginUser},
+					dataType: "json",
+					success : function(data){
+						console.log("success : " + data);
+						console.log("등록성공");
+						checkSc();
+					},
+					error: function(jqXHR, textstatus, errorthrown){
+						console.log("error : " + jqXHR + ", " + textstatus + ", " 
+								+ errorthrown);
+					}
+					//checkSc();
+				});	//ajax end 
+				
+				// 클래스에 좋아요 갯수 추가
+				$.ajax({
+					url : "${ pageContext.request.contextPath }/addClssSave.do",
+					type : "post",
+					data: {cid: cid},
+					dataType: "json",
+					success : function(data){
+						//console.log("success : " + data);
+						//console.log("saveList + 1");
+						//checkSc();
+					},
+					error: function(jqXHR, textstatus, errorthrown){
+						console.log("error : " + jqXHR + ", " + textstatus + ", " 
+								+ errorthrown);
+					}
+				}); 
+			}
+			
+			
+			function fullHeart(){
+				var cid =${clss.cid};
+				var loginUser = "${ sessionScope.loginUser.id }";
+				//	location.href="${ scInsert }"; /* JAVASCRIPT에서 이렇게 반환 가능? */
+				$.ajax({
+					url : "${ pageContext.request.contextPath }/scdelete.do",
+					type : "post",
+					data: {cid: cid, id: loginUser},
+					dataType: "json",
+					success : function(data){
+						console.log("success : " + data);
+						console.log("삭제성공");
+						checkSc();
+					},
+					error: function(jqXHR, textstatus, errorthrown){
+						console.log("error : " + jqXHR + ", " + textstatus + ", " 
+								+ errorthrown);
+					}
+					//checkSc();
+				});	//ajax end 
+				
+				// 클래스에 좋아요 개수 -1
+				$.ajax({
+					url : "${ pageContext.request.contextPath }/delClssSave.do",
+					type : "post",
+					data: {cid: cid},
+					dataType: "json",
+					success : function(data){
+						//console.log("success : " + data);
+						//console.log("saveList - 1");
+						//checkSc();
+					},
+					error: function(jqXHR, textstatus, errorthrown){
+						console.log("error : " + jqXHR + ", " + textstatus + ", " 
+								+ errorthrown);
+					}
+				}); 
+			}
+			
+			
+	</script>
+				<!-- 찜하기 / 좋아요 버튼 기능 구현   btn-save -->
+				<c:if test="${ empty sessionScope.loginUser }">
+					<button class="btn-save" onclick="checkSaver();"
+						style="font-size: 24px;">♡</button>
+				</c:if>
+				<c:if test="${ !empty sessionScope.loginUser }">
+					<c:url var="scInsert" value="/scInsert.do">
+						<c:param name="cid" value="${clss.cid }" />
+						<c:param name="id" value="${sessionScope.loginUser.id }" />
+					</c:url>
+					<c:url var="scDelete" value="/scDelete.do">
+						<c:param name="cid" value="${clss.cid }" />
+						<c:param name="id" value="${sessionScope.loginUser.id }" />
+					</c:url>
+					<c:url var="addClssSave" value="/addClssSave.do">
+						<c:param name="cid" value="${clss.cid }" />
+					</c:url>
+					<c:url var="delClssSave" value="/delClssSave.do">
+						<c:param name="cid" value="${clss.cid }" />
+					</c:url>
+
+					<div id="saveDiv">
+						<div id="emptyHeartDiv">
+							<button class="btn-save" id="emptyHeart" onclick="emptyHeart();"
+								style="font-size: 24px;">♡</button>
+						</div>
+						<div id="fullHeartDiv">
+							<button class="btn-save" id="fullHeart" onclick="fullHeart();"
+								style="font-size: 24px;">♥</button>
+						</div>
+						<!-- 좋아요 버튼 원본 -->
+						<!-- <div id="emptyHeartDiv" ><button class="btn-save" onclick="changeHeart(scInsert);" style="font-size:24px;">♡</button></div>
+				<div id="fullHeartDiv"><button class="btn-save" onclick="changeHeart(scDelete);" style="font-size:24px;">♥</button></div> -->
+					</div>
+					<div id="unsaveDiv"></div>
+				</c:if>
+				
+
+			</div>
 							
 </header> <%-- ● THREE :<header class="masthead"> ● --%>
 
