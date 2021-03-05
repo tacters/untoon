@@ -517,6 +517,17 @@ public class MemberController {
 
 	}
 
+	
+	@RequestMapping(value="ecertmove.do")
+	public String ecertmove() {
+		return "member/emailAuthentication";
+	}
+	
+	@RequestMapping(value="ecertfinished.do")
+	public String ecertfinished() {
+		return "member/emailAuthentication";   // 나중에 수정 하기
+	}
+	
 	// 아이디 찾기
 	@RequestMapping(value = "findid.do", method = RequestMethod.POST)
 	public ModelAndView memberFindId(Model model, @RequestParam("email") String email) {

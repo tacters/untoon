@@ -147,7 +147,8 @@ $(function(){
 					<td>이메일</td>
 					<td>
 						<input type="email" name="email" required>&nbsp;
-						<button type="submit" id="email">이메일 인증</button>
+						<c:url var="ecertmove" value="/ecertmove.do"/>
+						<button id="email" onclick="${ecertmove}">이메일 인증</button>
 					</td>
 					
 				</tr>
@@ -181,8 +182,8 @@ $(function(){
 					<td>프로필 사진</td>
 					<td><input type="file" name="afile"></td>
 				</tr>
-				<tr class="insertTeacher">
-					<td>계좌번호</td>
+				<tr class="insertTeacher"style="margin:0% 0%;" >
+					<td >계좌번호</td>
 					<td>
 						<select name="bank">
 							<option value="null">은행을 선택해 주세요</option>
@@ -193,14 +194,13 @@ $(function(){
 							<option value="우리">우리</option>
 							<option value="하나">하나</option>
 						</select>
-						<input type="text" name="bank_accp" placeholder="-빼고 입력해주세요">
+						<input type="text" name="bank_accp"  placeholder="-빼고 입력해주세요">
 					</td>
 				</tr>
-				<tr class="insertTeacher">
+				<tr class="insertTeacher" style="margin:0% 0%;">
 					<td>이력서</td>
 					<td><input type="file" name="rfile"></td>
 				</tr>
-				</div>
 				<tr>
 					<td colspan="2" align="center">
 						<button onclick='return validate();'>가입하기</button> &nbsp; 
