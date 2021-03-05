@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.untoon.member.model.vo.Member;
 import com.untoon.qa.model.service.QaService;
 import com.untoon.qa.model.vo.QA;
+import com.untoon.review.model.vo.Review;
 
 @Controller
 public class QaController {
@@ -58,37 +59,24 @@ public class QaController {
 	}
 	
 	
-	// ajax 로 원글에 대한 댓글 조회 요청 처리용
+	// 원글에 대한 문의 조회 요청 처리용
 		@RequestMapping(value = "qlist.do", method = RequestMethod.POST)
 		@ResponseBody
-		public String replyListMethod(@RequestParam("cid") int cid) throws UnsupportedEncodingException {
-			// 원글에 대한 댓글 조회 요청
-			ArrayList<QA> list = qaService.selectQaList(cid);
-
-			// 전송용 json 객체 준비
-			JSONObject sendJson = new JSONObject();
-			// list 옮길 json 배열 준비
-			JSONArray jarr = new JSONArray();
-
-			// list 를 jarr 로 옮기기(복사)
-			for (QA qa : list) {
-				// qa 의 필드값 저장할 json 객체 생성
-				JSONObject job = new JSONObject();
-
-				job.put("qid", qa.getQid());
-				job.put("qwriter", qa.getQwriter());
-				job.put("qcontent", URLEncoder.encode(qa.getQcontent(), "utf-8"));
-				job.put("q_modify_date", qa.getQ_modify_date().toString());
-				job.put("cid", qa.getCid());
-
-				// job 를 jarr 에 저장
-				jarr.add(job);
+		public String replyListMethod(@RequestParam("cid") int cid, Model model)  {
+			
+			ArrayList<QA> qaList = qaService.selectQaList(cid);
+			
+			System.out.println("클래스 "+ cid + "번의 qaList 글 갯수: " + qaList.size());
+			if(qaList.size() > 0) {
+				model.addAttribute("qaList",qaList);
+				
+				System.out.println("클래스 "+ cid + "번의 qaList : " + qaList);
+				
+				return "qa/iframeQaList";
+			}else {
+				model.addAttribute("msg","문의 없음");   // 후기 없을때 
+				return "common/errorPage";
 			}
-
-			// 전송용 json 객체에 jarr 담음
-			sendJson.put("list", jarr);
-
-			return sendJson.toJSONString(); // jsonView 가 리턴됨
 		}
 		
 		// 마이페이지에서 1:1문의 내역 가져오기
@@ -110,6 +98,38 @@ public class QaController {
 			
 		}
 	
+//		// ajax 로 원글에 대한 댓글 조회 요청 처리용
+//				@RequestMapping(value = "qlist.do", method = RequestMethod.POST)
+//				@ResponseBody
+//				public String replyListMethod(@RequestParam("cid") int cid) throws UnsupportedEncodingException {
+//					// 원글에 대한 댓글 조회 요청
+//					ArrayList<QA> list = qaService.selectQaList(cid);
+//
+//					// 전송용 json 객체 준비
+//					JSONObject sendJson = new JSONObject();
+//					// list 옮길 json 배열 준비
+//					JSONArray jarr = new JSONArray();
+//
+//					// list 를 jarr 로 옮기기(복사)
+//					for (QA qa : list) {
+//						// qa 의 필드값 저장할 json 객체 생성
+//						JSONObject job = new JSONObject();
+//
+//						job.put("qid", qa.getQid());
+//						job.put("qwriter", qa.getQwriter());
+//						job.put("qcontent", URLEncoder.encode(qa.getQcontent(), "utf-8"));
+//						job.put("q_modify_date", qa.getQ_modify_date().toString());
+//						job.put("cid", qa.getCid());
+//
+//						// job 를 jarr 에 저장
+//						jarr.add(job);
+//					}
+//
+//					// 전송용 json 객체에 jarr 담음
+//					sendJson.put("list", jarr);
+//
+//					return sendJson.toJSONString(); // jsonView 가 리턴됨
+//				}
 	
 	
 }// QaController

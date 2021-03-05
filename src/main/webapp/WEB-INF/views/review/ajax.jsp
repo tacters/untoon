@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -210,7 +210,7 @@ function revReply(rid){
 
 	}; // END OF revReply(rid)
 
-</script>
+</script> --%>
 
 <!-- 문의 AJAX -->
 <script type="text/javascript">

@@ -74,30 +74,7 @@ body{
 	<!-- 클래스 후기  -->
 
 		<script type="text/javascript">
-			function reviewDelete(rid){
-				   location.href = "${ pageContext.request.contextPath }/rdelete.do?rid=" + rid + "&cid=${ clss.cid}";
-				} 
-			function showReviewReplyForm(){
-				   $("#reviewReplyDiv").css("display", "block");
-				}
-			/* function revReply(rid){ showReviewReplyForm(); }; */
-			function hideReviewReplyForm(){
-			   $("#reviewReplyDiv").css("display", "none");
-			}			
-			function reviewReplyDelete(rrid){
-			   location.href = "${ pageContext.request.contextPath }/rrdelete.do?rrid=" + rrid + "&rid=${ review.rid}";
-			}
 
-			function showReviewReplyListView(){
-			   $("#reviewReplyListView").css("display", "none");
-			}
-			function hideReviewReplyListView(){
-			   $("#reviewReplyListView").css("display", "none");
-				} 
-			
-			$(function(){
-							   $("#reviewReplyDiv").css("display", "none");
-				});	
 		</script>
 		
 		<%-- 후기 목록 표시 영역 --%>

@@ -149,6 +149,11 @@ body, html {
 
 	<%-- HOMEPAGE 관련 MANAGEMENT--%>
 	
+	<div style="display:block; align:center; text-align: center; margin:auto; margin: 30px 30px 30px 30px;">
+		<button style="display:block; align:center; text-align: center; margin:auto; margin: 30px 30px 30px 30px;"
+						onclick="location.href='${ pageContext.request.contextPath }'/">현재 버전 v. ${ home.huid } 의 홈페이지 화면 확인</button>
+	</div> 
+	
 	<button class="tablink" onclick="openPage('tab1', this, '#2392bd')" id="defaultOpen">서치바와 카테고리</button>
 	<button class="tablink" onclick="openPage('tab2', this, '#2392bd')">목록 문구</button>
 	 <!-- <button class="tablink" onclick="" style="background-color: #C6D8D3; cursor:default;">첨부파일 업로드</button> "openPage('tab3', this, 'blue')" -->

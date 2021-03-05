@@ -343,7 +343,7 @@
 						
 						<!-- <iframe id="embed" width="560" height="315" src=""  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/> -->
 						<div class="iframe-youtube">
-							<iframe id="embed" width="560" height="315"  src="${ clss.clss_url }" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							<iframe id="embed" align="center" width="560" height="315"  src="${ clss.clss_url }" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						</div>
 						
 				<!-- 	</div> -->
@@ -388,6 +388,7 @@
 								<button class="tablink" onclick="openPage('4-refund', this, '#2392bd')" id="tab4"> 환불정책 </button>
 								<button class="tablink" onclick="openPage('5-teacher', this, '#2392bd')" id="tab5"> 강사소개 </button>
 							</div>
+							<div class="button"></div>
 							<!-- </div> -->
 							
 							<!-- 클래스 소개 -->
@@ -405,31 +406,41 @@
 $(function(){
 	hideReviewForm();
 	hideReviewReplyForm();
+	hideQaForm();
+	hideQaReplyForm();
 });
-
+////////////////////////////////
 function showReviewForm(){
 	$("#reviewDiv").css("display", "block");
 }
 function hideReviewForm(){
 	$("#reviewDiv").css("display", "none");
 }
-
-
+///////////////////////////////
 function showReviewReplyForm(){
 	$("#reviewReplyDiv").css("display", "block");
 }
 function hideReviewReplyForm(){
 	$("#reviewReplyDiv").css("display", "none");
 }
-function reviewReplyDelete(rrid){
-	location.href = "${ pageContext.request.contextPath }/rrdelete.do?rrid=" + rrid + "&rid=${ review.rid}";
+///////////////////////////////
+function hideQaForm(){
+	$("#qaDiv").css("display", "none");
+}
+function showQaForm(){
+	$("#qaDiv").css("display", "block");
+}
+////////////////////////////////
+function hideQaReplyForm(){
+	$("#qaReplyDiv").css("display", "none");
+}
+function showQaReplyForm(){
+	$("#qaReplyDiv").css("display", "block");
 }
 
-function showReviewReplyListView(){
-	$("#reviewReplyListView").css("display", "block");
-}
-function hideReviewReplyListView(){
-	$("#reviewReplyListView").css("display", "none");
+////////////////////////////////
+function reviewReplyDelete(rrid){
+	location.href = "${ pageContext.request.contextPath }/rrdelete.do?rrid=" + rrid + "&rid=${ review.rid}";
 }
 </script>							
 									<%-- 로그인한 사용자만 후기 작성가능 --%>
@@ -461,7 +472,7 @@ function hideReviewReplyListView(){
 													<table style="display: flex; margin: auto;align:center;" width="500" border="1" cellspacing="0" cellpadding="5" class="tbl">
 														<tr><th>
 																	<div class="container-avatar"  class="tbl">
-																	  <img src="${pageContext.request.contextPath}/resources/avatar_files/${ sessionScope.loginUser.avatar}" alt="Avatar" class="image-avatar" style="width:100%; align: center; height:100px;">
+																	  <img src="${pageContext.request.contextPath}/resources/images/profilePics/${ sessionScope.loginUser.avatar}" alt="Avatar" class="image-avatar" style="width:100%; align: center; height:100px;">
 																	  <div class="middle-avatar">
 																	    <div class="text-avatar">${ sessionScope.loginUser.nickname}</div>
 																	  </div>
@@ -484,9 +495,15 @@ function hideReviewReplyListView(){
 								</div>
 							</div>
 							
-							<%-- 문의 목록 / 작성 --%>
-							<div id="3-qna" class="tabcontent">
-							<h3 style="text-align: center; color: #fff;"> 문의 </h3>		
+							
+							
+							
+							
+							
+							
+					<%-- 문의 목록 / 작성 --%>
+					<div id="3-qna" class="tabcontent">
+					<h3 style="text-align: center; color: #fff;"> 문의 </h3>		
 										<%-- 로그인한 사용자만 문의작성가능 --%>
 										<c:if test="${ !empty sessionScope.loginUser }">
 											<div style="align:center; text-align:center;">
@@ -509,85 +526,35 @@ function hideReviewReplyListView(){
 												}
 											}
 									</script>
+									
 									<%-- 문의 달기 폼 영역 --%>
 									<div id="qaDiv">
 									<form action="qinsert.do" method="post">
 									<input type="hidden" name="cid" value="${ clss.cid }" >
 									<table align="center" width="500" border="1" cellspacing="0" cellpadding="5" class="tbl">
 									<tr><th>
-												<div class="container-avatar"  class="tbl">
-												  <img src="${pageContext.request.contextPath}/resources/images/profilePics/mds_profile.jpg" alt="Avatar" class="image-avatar" style="width:100%; align: center;">
-												  <div class="middle-avatar">
-												    <div class="text-avatar">${ sessionScope.loginUser.nickname}</div>
-												  </div>
-												</div>	
-											</th>
-									<td><input type="text" name="qwriter" readonly value="${ sessionScope.loginUser.id }"></td></tr>
+																	<div class="container-avatar"  class="tbl">
+																	  <img src="${pageContext.request.contextPath}/resources/images/profilePics/${ sessionScope.loginUser.avatar}" alt="Avatar" class="image-avatar" style="width:100%; align: center; height:100px;">
+																	  <div class="middle-avatar">
+																	    <div class="text-avatar">${ sessionScope.loginUser.nickname}</div>
+																	  </div>
+																	</div>	
+																</th>
+														<td><input type="text" name="qwriter" readonly value="${ sessionScope.loginUser.id }"></td></tr>
 									<tr><th colspan="2"><textarea name="qcontent" rows="5" cols="50" placeholder="택터즈님의 궁굼한 문의사항은 요기에~"></textarea></th></tr>
 									<tr><th colspan="2">
-									<input type="submit" value="문의사항 등록"> &nbsp; 
-									<input type="reset" value="취소" onclick="hideQaForm(); return false;"> </th></tr>
+									<input type="submit" value="문의사항 등록" class="button"> &nbsp; 
+									<input type="reset" value="취소" onclick="hideQaForm(); return false;" class="button"> </th></tr>
 									</table>
 									</form>  
 									</div>	
 									
-									<%-- 문의 목록 표시 영역 --%>
-									<div id="qlistView" >
-									<table id="qlistTbl" class="tbl" align="center" cellspacing="0" cellpadding="5" border="1"></table>
-									
-											<%-- 댓글 --%>
-											<%-- 로그인한 사용자만 문의 *** 댓글 *** 작성가능 --%>
-												<c:if test="${ !empty sessionScope.loginUser }">
-													<div style=" text-align:center;">
-														<button class="btn" onclick="showQaReplyForm();"> 댓글달기 </button>
-													</div>
-												</c:if>
-												<c:if test="${ empty sessionScope.loginUser }">
-													<div style=" text-align:center;">
-														<button class="btn" onclick="goLogin();"> 댓글달기 </button>
-													</div>
-												</c:if>
-											<script type="text/javascript">
-													function goLogin(){
-														var txt;
-														var r = confirm("문의사항을 작성하려면 <일반 student> 계정으로 로그인한 후 댓글 달기 바랍니다.");
-														if (r==true) {
-															var myWindow = window.open("${pageContext.request.contextPath}/loginpage.do", "_self");
-														} else {
-															window.open(url, "_self");
-														}
-													}
-											</script>
-											<%-- 문의 ** 댓글 ** 달기 폼 영역 --%>
-											<div id="qaReplyDiv">
-												<form action="qainsert.do" method="post"> <!-- 원래는 action = "qainsert.do -->
-												<input type="hidden" name="qid" value="${ qa.qid }" >
-													<table align="center" width="500" border="1" cellspacing="0" cellpadding="5" class="tbl_reply">
-													<tr><th>
-																<div class="container-avatar"  class="tbl_reply">
-																  <img src="${pageContext.request.contextPath}/resources/images/profilePics/mds_profile.jpg" alt="Avatar" class="image-avatar" style="width:100%; align: center;">
-																  <div class="middle-avatar">
-																    <div class="text-avatar">${ sessionScope.loginUser.nickname}</div>
-																  </div>
-																</div>	
-															</th>
-													<td><input type="text" name="qawriter" readonly value="${ sessionScope.loginUser.id }"></td></tr>
-													<tr><th colspan="2">
-																<textarea name="qacontent" rows="5" cols="50" placeholder="택터즈님의 소중한 댓글은 요기에~"></textarea>
-															</th></tr>
-													<tr><th colspan="2">
-													<input type="submit" value="댓글 등록"> &nbsp; 
-													<input type="reset" value="취소" onclick="hideQaReplyForm(); return false;"> </th></tr>
-												</table>
-												</form>  
-											</div>	
-											
-											<%-- 문의 ** 댓글 ** 목록 표시 영역 --%>
-											<div id="qalistView" >
-											<table id="qalistTbl" class="tbl_reply" align="center" cellspacing="0" cellpadding="5" border="1"></table>
-											</div>
-											
-									</div>
+									<div class="iframe-reply">
+										<c:url var="qlist" value="/qlist.do">
+				 							<c:param name="cid" value="${clss.cid }" />
+										</c:url>
+									<iframe width="1200" height="1000"  src="${ qlist }" ></iframe>
+								</div>
 							
 							</div> <%-- END OF 문의 목록 / 작성 --%>
 							
