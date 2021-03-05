@@ -41,7 +41,7 @@
 	
 	<select id="selectReview" parameterType ="ReviewReply" resultMap="resultReview">
 		SELECT * FROM REVIEW
-		WHERE  	RID = # { rid }
+		WHERE  	RID = #{ rid }
 	</select>
 
 	<insert id="insertReview" parameterType="Review">
@@ -76,7 +76,7 @@
 			   </if>
 			   <if test="ofile_r != null">
 			   , OFILE_R = #{ ofile_r },
-			   OFILE_R = #{ rfile_r }
+			   RFILE_R = #{ rfile_r }
 			   </if>
 			where rid = #{ rid }
 			and r_status = 'Y'

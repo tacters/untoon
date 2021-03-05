@@ -168,7 +168,14 @@ body, html {
 			}
 			
 			// Get the element with id="defaultOpen" and click on it
-			$("defaultOpen").click();
+			/* $( document ).ready(function() {
+			   $( "#defaultOpen" ).trigger( "click" );
+			}); */
+			//$("defaultOpen").click();
+			
+			$(function(){
+				$("#defaultOpen").trigger("click");
+			});
 	</script>
 	<form action ="hinsert.do" method="post" enctype="multipart/form-data">
 			<div id="tab1" class="tabcontent">
