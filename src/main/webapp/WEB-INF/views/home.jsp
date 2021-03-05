@@ -1013,7 +1013,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]"
 											data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
 											style="z-index: 27; min-width: 686px; max-width: 686px; max-width: 286px; max-width: 286px; white-space: normal; font-size: 75px; line-height: 95px; font-weight: 600; color: #ffffff; letter-spacing: 0px; font-family: Montserrat;">
-											지금 배우고 싶은<br>것은..?</div>
+											${ home.banner1_txt }</div>
 
 										<div class="tp-caption   tp-resizeme tp-static-layer"
 											id="slider-1-layer-25"

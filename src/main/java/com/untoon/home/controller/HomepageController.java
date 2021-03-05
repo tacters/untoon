@@ -108,7 +108,7 @@ public class HomepageController {
 		
 	
 		if (homeService.insertHome(home) > 0) {
-			return "redirect:hdetail.do";  // 홈페이지 글정보가 insert 완료되면 첨부파일 넣는 것을 실행해라 
+			return "home";  // 홈페이지 글정보가 insert 완료되면 첨부파일 넣는 것을 실행해라 
 															// CREATED VIEW PAGE TO UPLOAD FILES
 		} else {
 			model.addAttribute("msg", "공지글 등록 실패.");
