@@ -51,14 +51,24 @@
 	</select>
 	
 	<select id="selectTop8" resultMap="top8Result"> <!-- // 좋아요가 가장 많은 8개 CLSS -->
-		<![CDATA[
-		SELECT 		*
+			<!-- 	SELECT 		*
 			FROM 		(SELECT ROWNUM RNUM, CID
 			           		 FROM (SELECT CID, COUNT(ID)
 				                        FROM SAVE_CLSS
 				                        GROUP BY CID
 				                        ORDER BY COUNT(ID) DESC))
-			WHERE 	RNUM >=1 AND RNUM <=8
+			WHERE 	RNUM >=1 AND RNUM <=8 -->
+		<![CDATA[
+			SELECT rnum, CID, clss_rename_filename , clss_title, tchr_id
+			from (SELECT 		*
+						FROM 		(SELECT ROWNUM RNUM, CID
+						           			 FROM (SELECT CID, COUNT(ID)
+									                        FROM SAVE_CLSS
+									                        GROUP BY CID
+									                        ORDER BY COUNT(ID) DESC))
+						WHERE 	RNUM >=1 AND RNUM <=8)
+			JOIN CLSS
+			using (cid)
 		]]>
 	</select>
 	
@@ -67,14 +77,32 @@
 		FROM		 SAVE_CLSS
 		WHERE 	 CLSS_CATEGORY = #{ clss_category }
 		GROUP BY CID
-		ORDER BY  COUNT(CLSS_CATEGORY) DESC;
+		ORDER BY  COUNT(CLSS_CATEGORY) DESC
 	</select>
+	
+	
+	
+<!-- 	<select id="selectTopFromCat" resultMap="top8Result"> // 좋아요가 가장 많은 8개 CLSS
+		<![CDATA[
+			SELECT rnum, CID, clss_rename_filename , clss_title, tchr_id
+			from (SELECT 		*
+						FROM 		(SELECT ROWNUM RNUM, CID
+						           			 FROM (SELECT CID, COUNT(ID)
+									                        FROM SAVE_CLSS
+									                        GROUP BY CID
+									                        ORDER BY COUNT(ID) DESC))
+						WHERE 	RNUM >=1 AND RNUM <=8)
+			JOIN CLSS
+			using (cid)
+		]]>
+	</select> -->
+	
 	
 	<!-- <select id="selectPersonalSave" parameterType="_int" resultMap="personalResult">
 		SELECT		 	CID
 		FROM 		 	SAVE_CLSS
 		WHERE 	 	ID = #{ id }
-		GROUP BY 	CID;
+		GROUP BY 	CID
 	</select>
 	 -->
 	 <!-- 재윤 -->

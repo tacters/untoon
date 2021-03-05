@@ -20,8 +20,8 @@ public class ReviewReplyServiceImpl implements ReviewReplyService {
 	}
 
 	@Override
-	public int updateReviewReply(ReviewReply reviewReply) {
-		return rrdao.updateReviewReply(reviewReply);
+	public int updateReviewReply(int rrid) {
+		return rrdao.updateReviewReply(rrid);
 	}
 
 	@Override

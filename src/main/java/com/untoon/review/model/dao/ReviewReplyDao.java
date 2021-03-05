@@ -18,15 +18,15 @@ public class ReviewReplyDao {
 	
 
 	public int insertReviewReply(ReviewReply reviewReply) {
-		return sqlSession.insert("reviewReplyMapper.insertReviewReply, reviewReply");
+		return sqlSession.insert("reviewReplyMapper.insertReviewReply", reviewReply);
 	}
 
-	public int updateReviewReply(ReviewReply reviewReply) {
-		return sqlSession.update("reviewReplyMapper.updateReviewReply, reviewReply");
+	public int updateReviewReply(int rrid) {
+		return sqlSession.update("reviewReplyMapper.updateReviewReply", rrid);
 	}
 
 	public int deleteReviewReply(int rrid) {
-		return sqlSession.insert("reviewReplyMapper.deleteReviewReply, rrid");
+		return sqlSession.insert("reviewReplyMapper.deleteReviewReply", rrid);
 	}
 
 	public ArrayList<ReviewReply> selectReviewReplyList(int ref_rid) {

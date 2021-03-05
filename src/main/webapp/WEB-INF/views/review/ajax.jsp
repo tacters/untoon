@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-
-
 <!-- 후기 AJAX -->
 <script type="text/javascript">
 function showReviewForm(){
@@ -213,12 +212,169 @@ function revReply(rid){
 
 </script>
 
+<!-- 문의 AJAX -->
+<script type="text/javascript">
+function showQaForm(){
+	$("#qaDiv").css("display", "block");
+}
+function hideQaForm(){
+	$("#qaDiv").css("display", "none");
+}
+function qaDelete(qid){
+	location.href = "${ pageContext.request.contextPath }/qdelete.do?qid=" + qid + "&cid=${ clss.cid}";
+}
+function showQaReplyForm(){
+	$("#qaReplyDiv").css("display", "block");
+}
+function hideQaReplyForm(){
+	$("#qaReplyDiv").css("display", "none");
+}
+function qaReplyDelete(qaid){
+	location.href = "${ pageContext.request.contextPath }/qadelete.do?qaid=" + qaid + "&qid=${ qa.qid}";
+}
+function showQaListView(){
+	$("#qalistView").css("display", "none");
+}
+function hideQaListView(){
+	$("#qalistView").css("display", "none");
+}
 
-	<%-- 후기 목록 표시 영역 --%>
-			<div id="reviewlistView" >
-			<table id="rlistTbl" class="tbl" align="center" cellspacing="0" cellpadding="5" border="1"></table>
-			</div>
+
+//jquery ajax 로 해당 < 수업 클래스 > 대한 문의 조회 요청
+//해당 < 수업 클래스 >의 번호를 전송함
+$(function(){
+	hideQaForm(); 
+	hideQaReplyForm(); // ADDED TO TEST "REPLY댓글 달기 기능"
+	hideQaListView(); // ADDED TO TEST "질문 목록조회 기능"
+		
+	var clssCid = "${ clss.cid }";  //el 의 값을 변수에 대입
+	var loginUser = "${ sessionScope.loginUser.id }";  //로그인한 회원 아이디 변수에 대입
+	var teacher = "${clss.tchr_id}"; // 수업 강사님
+	var adminLv= "${ sessionScope.loginUser.user_lv }";
+	
+	$.ajax({
+		url: "${ pageContext.request.contextPath }/qlist.do",
+		type: "post",
+		data: { cid: clssCid },  //전송값에 변수 사용
+		dataType: "json",
+		success: function(data){
+		console.log("success : " + data);
+	
+		//object ==> string
+		var jsonStr = JSON.stringify(data);
+		//string ==> json 
+		var json = JSON.parse(jsonStr);
+		
+		var values = "";
+				for(var i in json.list){
+					// 본인이 등록한 후기글일 때는 수정/삭제 가능
+					if(loginUser == json.list[i].qwriter){
+						values += "<tr><td>" + json.list[i].qwriter 
+							+ "</td><td>" +  json.list[i].q_modify_date 
+							+ "</td></tr><tr><td colspan='2'>"
+							+ "<form action='qupdate.do' method='post'>" 
+							+ "<input type='hidden' name='qid' value='" +  json.list[i].qid  + "'>"
+							+ "<input type='hidden' name='cid' value='"+clssCid+"'>"
+							/* + "<input type='hidden' name='clssCid' value='${clss.cid}'>" */
+							+ "<textarea name='qcontent'>"
+							+ decodeURIComponent(json.list[i].qcontent).replace(/\+/gi, " ") 
+							+ "</textarea><input type='submit' value='수정'></form>" 	// 원래 여기에 </form> 들어감
+							+ "<button onclick='qaDelete(" + json.list[i].qid + ");'>삭제</button>" //원래 여기에 </td></tr> 들어감
+							
+							/* for each문 안에다가 댓글달 수 있게 끔 */
+							+ "<button onclick='selfReply(" + json.list[i].qid + ");'>댓글달기</button></td></tr>";
+							
+					} else if (loginUser == teacher || adminLv == 'A' ) { //대상 강사또는 관리자일 때
+						values += "<tr><td>" + json.list[i].qwriter 
+						+ "</td><td>" +  json.list[i].q_modify_date 
+						+ "</td></tr><tr><td colspan='2'>"
+						+ decodeURIComponent(json.list[i].qcontent).replace(/\+/gi, " ") 
+						+ "</td></tr>";	
+						
+					} else { // 글작성자가 아니며, 대상 강사또는 관리자가 아닐 때
+						values += "<tr><td>" + json.list[i].qwriter 
+						+ "</td><td>" +  json.list[i].q_modify_date 
+						+ "</td></tr><tr><td colspan='2'>"
+						+ "<i style='color: gray'> 🔒 비공개 문의사항 🔒 </i>"
+						+ "</td></tr>";
+					}
+				}
+				$("#qlistTbl").html($("#qlistTbl").html() + values);
+			},
+		error: function(jqXHR, textstatus, errorthrown){
+			console.log("error : " + jqXHR + ", " + textstatus + ", " 
+				+ errorthrown);
+			}	
+		});// 문의 작성 수정/삭제 ajax
+});  //jquery document ready
+
+function selfReply(qid){
+	showQaReplyForm();
+	showQaListView();
 
 
+	//jquery ajax 로 해당 < 수업 클래스 > 대한 문의 *** 댓글 *** 조회 요청
+	//해당 < 수업 클래스 >의 *** 문의 *** 번호를 전송함
+
+	jQuery( function($) {
+		var qaQid = qid;  // selfReply(qid)의 매개변수 값 ( 위 ajax에 있던 json.list[i].qid )을 변수에 대입
+		var loginUser = "${ sessionScope.loginUser.id }";  //로그인한 회원 아이디 변수에 대입
+		var teacher = "${clss.tchr_id}"; // 수업 강사님
+		var adminLv= "${ sessionScope.loginUser.user_lv }";
+
+
+		$.ajax({
+			url: "${ pageContext.request.contextPath }/qalist.do",
+			type: "post",
+			data: { ref_qid: qaQid},  //전송값에 변수 사용 // 문의 id를 받아옴 (qid)
+			dataType: "json",
+			success: function(data){
+			console.log("success : " + data);
+		
+			//object ==> string
+			var jsonStr = JSON.stringify(data);
+			//string ==> json 
+			var json = JSON.parse(jsonStr);
+
+			var values = "";
+					for(var i in json.list){
+						// 본인이 등록한 후기 댓글일 때는 수정/삭제 가능
+						if(loginUser == json.list[i].qawriter){
+							values += "<tr><td>" + json.list[i].qawriter 
+								+ "</td><td>" +  json.list[i].q_modify_date 
+								+ "</td></tr><tr><td colspan='2'>"
+								+ "<form action='qaupdate.do' method='post'>" 
+								+ "<input type='hidden' name='qaid' value='" +  json.list[i].qaid  + "'>"
+								+ "<input type='hidden' name='ref_qid' value='"+ qaQid +"'>" 
+								+ "<textarea name='qacontent'>"
+								+ decodeURIComponent(json.list[i].qacontent).replace(/\+/gi, " ") 
+								+ "</textarea><input type='submit' value='수정'></form>"
+								+ "<button onclick='qaReplyDelete(" + json.list[i].qaid + ");'>삭제</button></td></tr>";
+						} else if ( loginUser == teacher || adminLv == 'A' ){ 
+							values += "<tr><td>" + json.list[i].qawriter 
+							+ "</td><td>" +  json.list[i].qa_modify_date 
+							+ "</td></tr><tr><td colspan='2'>"
+							+ decodeURIComponent(json.list[i].qacontent).replace(/\+/gi, " ") 
+							+ "</td></tr>";	
+						} else{ // 글작성자가 아니며, 대상 강사또는 관리자가 아닐 때
+							values += "<tr><td>" + json.list[i].qawriter 
+							+ "</td><td>" +  json.list[i].qa_modify_date 
+							+ "</td></tr><tr><td colspan='2'>"
+							+ "<i style='color: gray'> 🔒 비공개 문의사항 🔒 </i>"
+							+ "</td></tr>";	
+						}
+					}
+					$("#qalistTbl").html($("#qalistTbl").html() + values);
+				},
+			error: function(jqXHR, textstatus, errorthrown){
+				console.log("error : " + jqXHR + ", " + textstatus + ", " 
+					+ errorthrown);
+				}	
+			});// 문의 작성 수정/삭제 ajax
+	});  //jquery 
+
+	}; // END OF selfReply(qid)
+
+</script>
 </body>
 </html>

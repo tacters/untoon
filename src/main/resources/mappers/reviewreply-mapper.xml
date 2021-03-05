@@ -39,7 +39,7 @@
 		SET 
 			   RRCONTENT = #{ rrcontent }, 
 			   RR_MODIFY_DATE = sysdate
-			where rid = #{ rrid }
+			where rrid = #{ rrid }
 			and r_status = 'Y'
 	</update>
 	
