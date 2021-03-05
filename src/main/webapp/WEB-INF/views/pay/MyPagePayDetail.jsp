@@ -7,6 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>UNTOON 언투온택터즈</title>
+<style type="text/css">
+body {
+	font-family: Montserrat,sans-serif;
+}
+ div h2 {
+ 	padding: 10px;
+	text-align:center;
+	with: 80%;
+ 	background: #2392BD;
+ 	color:#fff;
+ 	font-size: 30px;
+ }
+</style>
 </head>
 <body>
 <c:import url="../common/menubar.jsp"/>
@@ -14,7 +27,9 @@
 <c:import url="../member/myPageheader.jsp"/>
 
 <h3 align="left"> ${ loginUser.name }님의 결제내역 </h3>
+<div>
 <h2 align ="center">${pay.payno}번 결제내역 상세보기</h2>
+</div>
 <br>
 <table align="center" width="500" border="1" cellspacing="0" cellpadding="5">
 <tr>

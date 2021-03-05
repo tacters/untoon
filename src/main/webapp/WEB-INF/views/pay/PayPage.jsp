@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>UNTOON 언투온택터즈</title>
 <style type="text/css">
+body {
+	font-family: Montserrat,sans-serif;
+}
  .btn-area {
  	margin-top: 30px;
 	text-align:center;
@@ -15,7 +18,7 @@
  	
  	width: 30% ;
  	height:50px;
- 	background: #166cea;
+ 	background: #2392BD;
  	color:#fff;
  	font-size: 20px;
  	border: none;
@@ -27,7 +30,7 @@
  	padding: 10px;
 	text-align:center;
 	with: 80%;
- 	background: #166cea;
+ 	background: #2392BD;
  	color:#fff;
  	font-size: 30px;
  }
