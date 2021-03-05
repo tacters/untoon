@@ -35,11 +35,11 @@ public class ReviewReplyController {
 	}
 
 	@RequestMapping(value="rrupdate.do", method=RequestMethod.POST)
-	public String updateReviewReply(ReviewReply reviewReply, @RequestParam("cid") int cid, Model model) {
-			if(rrService.updateReviewReply(reviewReply)>0) {
-				return "redirect:cdetail.do?cid=" + cid;
+	public String updateReviewReply( @RequestParam("rrid") int rrid, Model model) {
+			if(rrService.updateReviewReply(rrid)>0) {
+				return "review/iframeReviewList";
 			} else {
-				model.addAttribute("msg", reviewReply.getRrid() + "번 후기 등록 실패..");
+				model.addAttribute("msg", rrid + "번 후기 등록 실패..");
 				return "common/errorPage";
 			}
 	}

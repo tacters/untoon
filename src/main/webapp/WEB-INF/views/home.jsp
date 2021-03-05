@@ -5,7 +5,6 @@
 <head>
 
 <title>UNTOON 언투온택터즈</title>
-
 <meta property="og:url" content="https://urbango.qodeinteractive.com" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="UrbanGo" />
@@ -281,6 +280,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </style>
 </noscript>
 <script src="${ pageContext.request.contextPath }/resources/home/adCookie.js" type="text/javascript"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/resources/js/jquery-3.5.1.min.js"></script>
 </head>
 <body
 	class="home page-template page-template-full-width page-template-full-width-php page page-id-31 urbango-core-1.0 edgtf-social-login-1.0 woocommerce-no-js urbango-listing-1.0 urbango-ver-1.0 edgtf-smooth-page-transitions edgtf-smooth-page-transitions-fadeout edgtf-grid-1300 edgtf-content-is-behind-header edgtf-wide-dropdown-menu-content-in-grid edgtf-light-header edgtf-sticky-header-on-scroll-down-up edgtf-dropdown-default edgtf-header-standard edgtf-menu-area-shadow-disable edgtf-menu-area-in-grid-shadow-disable edgtf-menu-area-border-disable edgtf-menu-area-in-grid-border-disable edgtf-logo-area-border-disable edgtf-logo-area-in-grid-border-disable edgtf-woocommerce-columns-3 edgtf-woo-normal-space edgtf-woo-pl-info-below-image edgtf-woo-single-thumb-below-image edgtf-woo-single-has-pretty-photo edgtf-default-mobile-header edgtf-sticky-up-mobile-header edgtf-header-top-enabled edgtf-slide-from-header-bottom wpb-js-composer js-comp-ver-6.0.5 vc_responsive"
@@ -946,25 +946,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 											<div class="wpb_widgetised_column wpb_content_element">
 												<div class="wpb_wrapper">
 													<div class="widget edgtf-search-post-type-widget">
-														<form role="search" method="get"
-															class="edgtf-search-post-type"
-															action="https://urbango.qodeinteractive.com/">
+													<!-- BO's CODE -->
+														<%-- <c:url var="csearchTitle" value="/csearchTitle.do">
+															<c:param name="keyword" value="${ SearchAndPage.keyword }"/>
+															<c:param name="page" value="${ page }"/>
+														</c:url> --%>
+														<form role="search" method="post"	class="edgtf-search-post-type"  	action="csearchTitle.do">
 															<label class="screen-reader-text">Search for:</label>
 															<div class="edgtf-search-post-type-inner">
 																<div class="edgtf-post-type-search-field">
+																	<input type="hidden" name="page" value="1"/>
 																	<input type="search"
 																		placeholder="나만의 클래스를 찾자! ..." value=""
-																		name="s" title="Search for:" required />
+																		name="keyword" title="Search for:" required />
 																</div>
 																<div class="edgtf-post-type-search-submit">
 																	<button type="submit">
-																		<!-- <i class="edgtf-icon-font-awesome fas fa-search "></i> -->
 																		<span class="edgtf-post-type-search-label">렛츠겟잇~</span>
 																	</button>
 																</div>
-																<input type="hidden" name="post_type"
+															<!-- 	<input type="hidden" name="post_type"
 																	value="listing-item" /> <input type="hidden"
-																	name="edgtf-listing-search" value="yes" />
+																	name="edgtf-listing-search" value="yes" /> -->
 															</div>
 														</form>
 													</div>
@@ -1189,9 +1192,7 @@ var revapi1,
 															<div class="edgtf-category-tabs-holder">
 																<div class="edgtf-ct-inner">
 																	<div class="edgtf-ct-item">
-																		<div class="edgtf-ct-item-inner">
-																			<div class="edgtf-ct-icon">
-																				<script>
+																	<script>
 																					function hoverColor(){
 																							var categoryImgPng 
 																								= document.getElementsByClass('hoverColor').src.split("${pageContext.request.contextPath}/resources/images/clss/category/")[1]; // 경로 이후 = 파일명
@@ -1296,256 +1297,96 @@ var revapi1,
 																									/* document.getElementsByClass('hoverColor')[0].appendChild(style);  [] 안에다가 array 순으로....  */
 																									document.getElementsByClass('hoverColor')[6].appendChild(style);
 																								} 
-																					}
+																					};
 																				</script>
-																				<img style="max-height: 50;" alt="Arts & Crafts" class="hoverColor"
-																							src ="${pageContext.request.contextPath}/resources/images/clss/category/art_craft.png" >
+																		<div class="edgtf-ct-item-inner">
+																			<div class="edgtf-ct-icon">																			
+																				<img style="width: 80px;" alt="Arts & Crafts" class="hoverColor"
+																							src ="${pageContext.request.contextPath}/resources/images/clss/category/art_craft2.png" >
 																			</div>
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
 																				style="font-size: 13px; margin-top: 4px;" onload="hoverColor();">미술 · 공예</p>
-																				<c:url var="clist" value="clist.do">
-																					<c:param name="page" value="1"/>
-																				</c:url>
-																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${ clist }"></a>
-																		</div>
-																	</div>
-																	<div class="edgtf-ct-item">
-																		<div class="edgtf-ct-item-inner">
-																			<div class="edgtf-ct-icon">
-																				<svg xmlns="http://www.w3.org/2000/svg"
-																					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-																					y="0px" width="47.374px" height="50.696px"
-																					viewBox="0 0 47.374 50.696"
-																					enable-background="new 0 0 47.374 50.696"
-																					xml:space="preserve">
-																					<g>
-																					<path stroke-width="2" stroke-miterlimit="10"
-																						d="M9.373,36.357l-1.247-0.021 c-3.782,0-6.876-3.002-6.876-6.783V14.262" />
-																					<g>
-																					<path stroke-width="2" stroke-miterlimit="10"
-																						d="M22.184,50.406l-3.355-14.07H7.979 c-4.407-0.605-3.701-5.193-3.444-7.301c0.517-4.25,1.246-12.197,2.404-14.025c2.012-3.177,5.726-3.123,6.45-2.537 c1.696,1.364,1.926,3.715,3.678,10.866l10.685,2.697" />
-																					<circle stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						cx="16.392" cy="5.234" r="3.986" />
-																					<path stroke-width="2" stroke-linejoin="round"
-																						stroke-miterlimit="10"
-																						d="M12.675,24.124 l-0.906,5.813l9.581,1.637c0,0,1.813,0.408,2.258,2.383l2.747,15.827" />
-																					<line stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						x1="11.363" y1="19.858" x2="13.733" y2="27.303" /></g>
-																					<line stroke-width="2" stroke-linejoin="round"
-																						stroke-miterlimit="10" x1="11.833" y1="27.754"
-																						x2="47.374" y2="27.754" />
-																					<line stroke-width="2" stroke-miterlimit="10"
-																						x1="42.811" y1="27.679" x2="42.811" y2="50.143" />
-																					<polyline stroke-width="2" stroke-linejoin="round"
-																						stroke-miterlimit="10"
-																						points="22.703,21.143 25.049,14.729 43.063,14.729 38.623,27.346" />
-																					<line stroke-width="2" stroke-miterlimit="10"
-																						x1="9.42" y1="36.746" x2="9.42" y2="50.141" /></g></svg>
-																			</div>
-																			<p itemprop="name" class="edgtf-ct-title entry-title"
-																				style="font-size: 13px; margin-top: 4px">Coworking</p>
 																				<c:url var="aclist" value="aclist.do">
 																					<c:param name="page" value="1"/>
 																				</c:url>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${aclist}"></a>
+																				href="${ aclist }"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
 																		<div class="edgtf-ct-item-inner">
-																			<div class="edgtf-ct-icon">
-																				<svg class="edgtf-25"
-																					xmlns="http://www.w3.org/2000/svg"
-																					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-																					y="0px" width="34.495px" height="50.77px"
-																					viewBox="0 0 34.495 50.77"
-																					enable-background="new 0 0 34.495 50.77"
-																					xml:space="preserve">
-																					<g>
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M1.251,2.73L1.25,18.529c0.001,1.566,1.415,2.848,3.147,2.848h1.574V47.42c0,1.154,1.045,2.1,2.321,2.1h0.354 c1.276,0,2.321-0.945,2.321-2.1l-0.001-26.043h1.574c1.731,0,3.146-1.281,3.147-2.848l-0.002-15.8" />
-																					<g>
-																					<line stroke-width="2" stroke-linecap="round"
-																						stroke-miterlimit="10" x1="6.054" y1="15.01"
-																						x2="6.054" y2="2.854" />
-																					<line stroke-width="2" stroke-linecap="round"
-																						stroke-miterlimit="10" x1="10.884" y1="15.01"
-																						x2="10.885" y2="2.854" /></g>
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M33.216,4.001c-0.03-1.589,0.059-3.163-1.375-2.653c0,0-3.808,1.148-4.486,4.416l-2.078,20.244l2.789,1.294l0.049,20.08 c0.001,1.176,1.109,2.136,2.404,2.136h0.365c1.3,0,2.36-0.963,2.361-2.137l-0.014-18.329L33.216,4.001z" /></g></svg>
+																			<div class="edgtf-ct-icon">																			
+																				<img style="width: 80px;" alt="beauty_health" class="hoverColor"
+																							src ="${pageContext.request.contextPath}/resources/images/clss/category/beauty_health2.png" >
 																			</div>
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
-																				style="font-size: 13px; margin-top: 4px">Cuisine</p>
-																				<c:url var="lclist" value="/lclist.do">
+																				style="font-size: 13px; margin-top: 4px;" onload="hoverColor();">뷰티 · 헬스</p>
+																				<c:url var="bclist" value="bclist.do">
 																					<c:param name="page" value="1"/>
 																				</c:url>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${lclist}"></a>
+																				href="${ bclist }"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
 																		<div class="edgtf-ct-item-inner">
-																			<div class="edgtf-ct-icon">
-																				<svg xmlns="http://www.w3.org/2000/svg"
-																					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-																					y="0px" width="49.629px" height="46.484px"
-																					viewBox="0 0 49.629 46.484"
-																					enable-background="new 0 0 49.629 46.484"
-																					xml:space="preserve">
-																					<g>
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M15.867,12.443c-7.66,0-14.617-2.416-14.617-2.416v18.342c0,9.275,7.66,16.865,14.617,16.865c6.956,0,14.615-7.59,14.615-16.865 V10.027C30.482,10.027,23.526,12.443,15.867,12.443z" />
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M22.717,30.395c0,3.784-3.066,6.852-6.85,6.852c-3.785,0-6.852-3.067-6.852-6.852c0,0,3.066,1.367,6.852,1.367 C19.65,31.762,22.717,30.395,22.717,30.395z" />
-																					<g>
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M7.529,21.537c0.48-0.889,1.422-1.492,2.504-1.492c1.064,0,1.994,0.586,2.481,1.451" />
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M19.219,21.537c0.48-0.889,1.422-1.492,2.504-1.492c1.064,0,1.994,0.586,2.482,1.451" /></g>
-																					<path stroke-width="2" stroke-linejoin="round"
-																						stroke-miterlimit="10"
-																						d="M32.62,36.395 c0.376,0.072,0.853,0.061,1.144,0.061c6.957,0,14.615-7.589,14.615-16.865V1.25c0,0-6.955,2.416-14.615,2.416 S19.147,1.25,19.147,1.25v7.402" />
-																					<path stroke-width="2" stroke-linejoin="round"
-																						stroke-miterlimit="10"
-																						d="M33.764,26.693 c3.783,0,6.85,1.367,6.85,1.367c0-3.785-3.066-6.852-6.85-6.852" />
-																					<g>
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M37.115,11.266c0.481,0.89,1.422,1.494,2.505,1.494c1.063,0,1.993-0.586,2.481-1.452" /></g></g></svg>
+																			<div class="edgtf-ct-icon">																			
+																				<img style="width: 80px;" alt="finance" class="hoverColor"
+																							src ="${pageContext.request.contextPath}/resources/images/clss/category/finance2.png" >
 																			</div>
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
-																				style="font-size: 13px; margin-top: 4px">Culture</p>
+																				style="font-size: 13px; margin-top: 4px;" onload="hoverColor();">머니</p>
+																				<c:url var="fclist" value="fclist.do">
+																					<c:param name="page" value="1"/>
+																				</c:url>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/clist.do"></a>
-																		</div>
+																				href="${ fclist }"></a>
+																		</div>																		
 																	</div>
 																	<div class="edgtf-ct-item">
 																		<div class="edgtf-ct-item-inner">
-																			<div class="edgtf-ct-icon">
-																				<svg class="edgtf-30"
-																					xmlns="http://www.w3.org/2000/svg"
-																					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-																					y="0px" width="39.896px" height="51.895px"
-																					viewBox="0 0 39.896 51.895"
-																					enable-background="new 0 0 39.896 51.895"
-																					xml:space="preserve">
-																					<g>
-																					<g>
-																					<polyline stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						points="19.968,33.06 38.646,9.903 1.25,9.903 19.928,33.06" /></g>
-																					<line stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						x1="19.948" y1="33.06" x2="19.948" y2="50.536" />
-																					<line stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						x1="29.342" y1="50.645" x2="10.555" y2="50.645" />
-																					<line stroke-width="2" stroke-miterlimit="10"
-																						x1="27.835" y1="16.285" x2="33.065" y2="16.285" />
-																					<line stroke-width="2" stroke-miterlimit="10"
-																						x1="6.749" y1="16.285" x2="14.864" y2="16.285" />
-																					<line stroke-width="2" stroke-linecap="round"
-																						stroke-miterlimit="10" x1="23.55" y1="15.933"
-																						x2="35.295" y2="1.25" />
-																					<line stroke-width="2" stroke-linecap="round"
-																						stroke-miterlimit="10" x1="14.968" y1="26.66"
-																						x2="18.542" y2="22.193" />
-																					<ellipse
-																						transform="matrix(0.611 -0.7916 0.7916 0.611 -6.9073 24.0139)"
-																						stroke-width="2" stroke-miterlimit="10" cx="20.98"
-																						cy="19.035" rx="3.989" ry="3.17" /></g></svg>
+																			<div class="edgtf-ct-icon">																			
+																				<img style="width: 80px;" alt="language" class="hoverColor"
+																							src ="${pageContext.request.contextPath}/resources/images/clss/category/language2.png" >
 																			</div>
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
-																				style="font-size: 13px; margin-top: 4px">Nightlife</p>
+																				style="font-size: 13px; margin-top: 4px;" onload="hoverColor();">언어</p>
+																				<c:url var="lclist" value="lclist.do">
+																					<c:param name="page" value="1"/>
+																				</c:url>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/clist.do"></a>
+																				href="${ lclist }"></a>
 																		</div>
 																	</div>
 																	<div class="edgtf-ct-item">
-																		<div class="edgtf-ct-item-inner">
-																			<div class="edgtf-ct-icon">
-																				<svg xmlns="http://www.w3.org/2000/svg"
-																					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-																					y="0px" width="57.968px" height="44.409px"
-																					viewBox="0 0 57.968 44.409"
-																					enable-background="new 0 0 57.968 44.409"
-																					xml:space="preserve">
-																					<g>
-																					<line stroke-width="2" stroke-linecap="round"
-																						stroke-miterlimit="10" x1="34.859" y1="34.358"
-																						x2="44.528" y2="24.69" />
-																					<line stroke-width="2" stroke-linecap="round"
-																						stroke-miterlimit="10" x1="41.185" y1="34.363"
-																						x2="45.196" y2="30.372" />
-																					<polyline stroke-width="2" stroke-miterlimit="10"
-																						points="52.608,19.278 52.608,43.159 5.36,43.159 5.36,19.278 " />
-																					<line stroke-width="2" stroke-linecap="round"
-																						stroke-miterlimit="10" x1="5.967" y1="1.25"
-																						x2="52.017" y2="1.25" />
-																					<line stroke-width="2" stroke-miterlimit="10"
-																						x1="20.237" y1="19.278" x2="20.237" y2="43.092" />
-																					<line stroke-width="2" stroke-linecap="round"
-																						stroke-miterlimit="10" x1="15.145" y1="27"
-																						x2="15.145" y2="30.222" />
-																					<g>
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M33.729,1.661l0.641,8.069c0.253,3.131-2.109,5.692-5.25,5.692h-0.294c-3.141,0-5.49-2.56-5.22-5.689l0.683-8.074" />
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M23.578,9.733c-0.277,3.129-3.073,5.689-6.215,5.689H16.97c-3.142,0-5.062-2.486-4.27-5.525l2.151-8.237" />
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M12.673,9.899c-0.798,3.038-4.021,5.523-7.163,5.523H5.117c-3.141,0-4.685-2.356-3.431-5.236l4.21-8.816" />
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M34.391,9.733c0.277,3.129,3.074,5.689,6.214,5.689h0.394c3.142,0,5.062-2.486,4.269-5.525L43.117,1.66" />
-																					<path stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						d="M45.295,9.899c0.798,3.038,4.021,5.523,7.163,5.523h0.394c3.141,0,4.684-2.356,3.43-5.236l-4.21-8.816" /></g></g></svg>
+																			<div class="edgtf-ct-item-inner">
+																			<div class="edgtf-ct-icon">																			
+																				<img style="width: 80px;" alt="tech" class="hoverColor"
+																							src ="${pageContext.request.contextPath}/resources/images/clss/category/tech2.png" >
 																			</div>
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
-																				style="font-size: 13px; margin-top: 4px">Shopping</p>
+																				style="font-size: 13px; margin-top: 4px;" onload="hoverColor();">데이터 · 계발</p>
+																				<c:url var="dclist" value="dclist.do">
+																					<c:param name="page" value="1"/>
+																				</c:url>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/clist.do"></a>
-																		</div>
+																				href="${ dclist }"></a>
+																		</div>																
 																	</div>
 																	<div class="edgtf-ct-item">
 																		<div class="edgtf-ct-item-inner">
-																			<div class="edgtf-ct-icon">
-																				<svg xmlns="http://www.w3.org/2000/svg"
-																					xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-																					y="0px" width="48.9px" height="42.375px"
-																					viewBox="0 0 48.9 42.375"
-																					enable-background="new 0 0 48.9 42.375"
-																					xml:space="preserve">
-																					<polyline stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						points="10.337,28.385 1.25,28.385 8.75,20.34 3.157,20.34 11.022,11.295 5.718,11.295 13.745,1.25 17.9,5.352 " />
-																					<polyline stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						points="38.563,28.385 47.65,28.385 40.15,20.34 45.743,20.34 37.878,11.295 43.183,11.295 35.155,1.25 31,5.352 " />
-																					<polygon stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						points="24.516,34.625 38.381,34.625 28.631,24.25 36.193,24.25 28.318,13.875 33.256,13.875 24.516,3.5 15.776,13.875 20.713,13.875 12.838,24.25 20.401,24.25 10.651,34.625" />
-																					<polyline stroke-width="2" stroke-linecap="round"
-																						stroke-linejoin="round" stroke-miterlimit="10"
-																						points="21.933,34.625 21.933,41.125 27.099,41.125 27.099,34.625" /></svg>
+																			<div class="edgtf-ct-icon">																			
+																				<img style="width: 80px;" alt="other" class="hoverColor"
+																							src ="${pageContext.request.contextPath}/resources/images/clss/category/other2.png" >
 																			</div>
 																			<p itemprop="name" class="edgtf-ct-title entry-title"
-																				style="font-size: 13px; margin-top: 4px">Tours</p>
+																				style="font-size: 13px; margin-top: 4px;" onload="hoverColor();">기타</p>
+																				<c:url var="oclist" value="oclist.do">
+																					<c:param name="page" value="1"/>
+																				</c:url>
 																			<a itemprop="url" class="edgtf-ct-link"
-																				href="${pageContext.request.contextPath}/clist.do"></a>
-																		</div>
+																				href="${ oclist }"></a>
+																		</div>				
 																	</div>
 																</div>
 															</div>
@@ -1582,7 +1423,8 @@ var revapi1,
 															<div
 																class="edgtf-category-list-holder edgtf-grid-list edgtf-disable-bottom-space edgtf-four-columns edgtf-normal-space">
 																<div class="edgtf-cl-inner edgtf-outer-space clearfix">
-																	<article class="edgtf-cl-item edgtf-item-space">
+																
+																	<%-- <article class="edgtf-cl-item edgtf-item-space">
 																		<div class="edgtf-cl-item-inner">
 																			<div class="edgtf-cl-image">
 																				<img width="800" height="800"
@@ -1769,6 +1611,66 @@ var revapi1,
 																				href="${pageContext.request.contextPath}/tcdetail.do"></a>
 																		</div>
 																	</article>
+ --%>																
+ 																		
+ 																	<%-- <c:url var="scTop8" value="/scTop8.do">
+																		<c:param name="cid" value="${c.cid}"/>
+																	</c:url> --%>
+																	<form id="formId" action="cdetail.do" method="post"><input id="inputId" type="hidden" name="cid"  value=""></form>	
+																	<script type="text/javascript">
+																	function cdetailForm( cdf ){ // cdetailForm(json.sclist[i].cid)
+																		if(true){
+																		document.getElementById("#inputId").value = cdf;
+																		document.getElementById("#itempropA").onclick = document.getElementById("#formId").submit(); 
+																		return true; 
+																		}
+																		//document.getElementById("formId").submit(); 
+																	};
+																	
+																	$(function(){
+																		
+																		//찜하기 = 좋아요 많은 클래스 순 8개 자동 출력되게 함
+																		$.ajax({
+																			url: "${ pageContext.request.contextPath }/scTop8.do",
+																			type: "post",
+																			dataType: "json",
+																			success: function(data){
+																				console.log("success : " + data);
+																				
+																				//object ==> string
+																				var jsonStr = JSON.stringify(data);
+																				//string ==> json 
+																				var json = JSON.parse(jsonStr);
+																				
+																				var values = "";
+																				 for(var i in json.sclist){ 
+																					//for(var i = 0; i< 8 ; i++) {           8 대신에 json.sclist[i].size() 넣어도 됨 (총 갯수 만큼)
+																					values +=
+																						'<article class="edgtf-cl-item edgtf-item-space"> <div class="edgtf-cl-item-inner"> <div class="edgtf-cl-image"> <img width="800" height="800"'
+																						+ 'src="/resources/clss_files/'
+																						+ json.sclist[i].clss_rename_filename + '" class="attachment-full size-full" alt='
+																						+ decodeURIComponent(json.sclist[i].clss_title).replace(/\+/gi, " ") + '" loading="lazy" /></div>'
+																					/* 	+ '<c:url var="cdet" value="/cdetail.do"> <c:param name="cid" value="'+ json.sclist[i].cid +'"/> </c:url>' */
+																						+ '<div class="edgtf-cl-content"> <h4 itemprop="name" class="edgtf-cl-title entry-title"> <a itemprop="url" href="' //onclick, javascript:void(0); ,  #  DON'T WORK HERE :'(((
+																						+ 'javascript:cdetailForm('+json.sclist[i].cid +');" id="itempropA">'+ decodeURIComponent(json.sclist[i].clss_title).replace(/\+/gi, " ") + '</a> </h4> <p itemprop="description" class="edgtf-cl-excerpt"> 인기순 #'
+																						+ i + '!  ' + json.sclist[i].tchr_id +' 택터즈님의 원데이 클래스</p></div> <a itemprop="url" class="edgtf-cl-link" href="'
+																						+ 'javascript:cdetailForm('+json.sclist[i].cid +');" id="itempropA"></a></div></article>';	
+																					} //for in
+																				/* + '<form action="cdetail.do" method="post"><input type="hidden" name="cid"  value="'+json.sclist[i].cid+'"></form>' */
+																				/* <form action="cdetail.do" method="post"><input type="hidden" name="cid"  value="'+json.sclist[i].cid+'"></form> */
+																				
+																				$("#top_board").html($("#top_board").html() + values);
+																			},
+																			error: function(jqXHR, textstatus, errorthrown){
+																				console.log("error : " + jqXHR + ", " + textstatus + ", " 
+																						+ errorthrown);
+																			}
+																		});
+																	});
+																	</script>	
+																							<!-- 자바스크립트 변수로 랜덤 문구 돌리기 ㄱㄱ -->
+																							<!-- http://www.java2s.com/Tutorial/Java/0380__JSTL/JSTLForEachLoopwithBeginEndStep.htm -->
+																							<div id="top_board"></div>
 																</div>
 															</div>
 														</div>
@@ -1946,11 +1848,46 @@ var revapi1,
 																			data-paddingbottom="[0,0,0,0]"
 																			data-paddingleft="[0,0,0,0]"
 																			style="z-index: 7; min-width: 1038px; max-width: 1038px; max-width: 23px; max-width: 23px; white-space: normal; font-size: 20px; line-height: 22px; font-weight: 400; color: #ffffff; letter-spacing: 0px; font-family: Open Sans;">
+																			
+																			<!-- BO's CODE -->
+																			<%-- <c:url var="csearchTitle" value="/csearchCategory.do">
+																				<c:param name="keyword" value="${ SearchAndPage.keyword }"/> <!-- scCategory.do -->
+																				<c:param name="page" value="${ page }"/>
+																			</c:url> --%>
+																			
+																			<!-- BO's CODE -->
+																<%-- <jsp:useBean id="random" class="java.util.Random" scope="application" />
+																	<c:set var="randomList" value="${random.nextInt(5)}"  /> 
+																	<c:if test="${ randomList eq 0 }"> 
+																		<c:url var="aclist" value="aclist.do"> <c:param name="page" value="1"/> </c:url>
+																		<c:set var="randomList" value="${ aclist }"/>
+																	</c:if>
+																	<c:if test="${ randomList eq 1 }"> 
+																		<c:url var="bclist" value="bclist.do"> <c:param name="page" value="1"/> </c:url>
+																		<c:set var="randomList" value="${ bclist }"/>
+																	</c:if>
+																	<c:if test="${ randomList eq 2 }"> 
+																		<c:url var="fclist" value="bclist.do"> <c:param name="page" value="1"/> </c:url>
+																		<c:set var="randomList" value="${ fclist }"/>
+																	</c:if>
+																	<c:if test="${ randomList eq 3 }"> 
+																		<c:url var="lclist" value="lclist.do"> <c:param name="page" value="1"/> </c:url>
+																		<c:set var="randomList" value="${ lclist }"/>
+																	</c:if>
+																	<c:if test="${ randomList eq 4 }"> 
+																		<c:url var="dclist" value="dclist.do"> <c:param name="page" value="1"/> </c:url>
+																		<c:set var="randomList" value="${ dclist }"/>
+																	</c:if>
+																	<c:if test="${ randomList eq 5 }"> 
+																		<c:url var="oclist" value="oclist.do"> <c:param name="page" value="1"/> </c:url>
+																		<c:set var="randomList" value="${ oclist }"/>
+																	</c:if> --%>
+																	
 																			<a itemprop="url"
-																				href="https://urbango.qodeinteractive.com/listing-category/cafe/"
+																				href="${ clist }"
 																				target="_self"
 																				class="edgtf-btn edgtf-btn-medium edgtf-btn-solid">
-																				<span class="edgtf-btn-text">View List</span>
+																				<span class="edgtf-btn-text">랜덤으로 클래스 추천 받자!</span>
 																			</a>
 																		</div>
 
@@ -2075,8 +2012,8 @@ var revapi2,
 																class="edgtf-section-title-holder   edgtf-st-position-center">
 																<div class="edgtf-st-inner">
 																	<span class="edgtf-st-subtitle"
-																		style="margin-bottom: -7px"> check out </span>
-																	<h2 class="edgtf-st-title">Most Popular Locations
+																		style="margin-bottom: -7px"> 비대면 택터즈들만의 세상 </span>
+																	<h2 class="edgtf-st-title">언투온에서 함께할 수 있는 클래스를 탐색해보세요
 																	</h2>
 																</div>
 															</div>
@@ -2097,11 +2034,14 @@ var revapi2,
 															<div class="vc_empty_space" style="height: 65px">
 																<span class="vc_empty_space_inner"></span>
 															</div>
+															
+																<!-- BO's CODE -->
+																<c:url var="clist" value="clist.do"> <c:param name="page" value="1"/> </c:url>
 															<a itemprop="url"
-																href="https://urbango.qodeinteractive.com/listing-location/soho/"
+																href="${ clist }"
 																target="_self"
 																class="edgtf-btn edgtf-btn-medium edgtf-btn-outline">
-																<span class="edgtf-btn-text">View More</span>
+																<span class="edgtf-btn-text">몽땅 찾아보잣~!</span>
 															</a>
 														</div>
 													</div>

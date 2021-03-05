@@ -6,7 +6,7 @@ import com.untoon.review.model.vo.ReviewReply;
 
 public interface ReviewReplyService {
 	int insertReviewReply(ReviewReply reviewReply);
-	int updateReviewReply(ReviewReply reviewReply);
+	int updateReviewReply(int rrid);
 	int deleteReviewReply(int rrid);
 	
 	ArrayList<ReviewReply> selectReviewReplyList(int ref_rid);

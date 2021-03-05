@@ -27,7 +27,7 @@ import com.untoon.home.model.vo.HomeUpfile;
 
 @Controller
 public class HomepageController {
-	private static final Logger logger = LoggerFactory.getLogger("HomeController.class");
+	private static final Logger logger = LoggerFactory.getLogger("HomepageController.class");
 
 	@Autowired
 	private HomeService homeService;

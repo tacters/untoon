@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -83,7 +84,7 @@ public class ReviewController {
 	
 	
 	@RequestMapping(value="rupdate.do", method=RequestMethod.POST)
-	public String updateReview(Review review, @RequestParam("cid") int cid, 
+	public String updateReview(Review review, 
 													@RequestParam(name="delFlag", required=false) String delFlag,
 													HttpServletRequest request, Model model,
 													@RequestParam(name = "upfile", required = false) MultipartFile mfile) {
@@ -129,13 +130,11 @@ public class ReviewController {
 					review.setOfile_r(fileName);
 					review.setRfile_r(renameFileName);
 				}  // mfile != null
-				
-				
-				
+
 			if(rService.updateReview(review)>0) {
-				return "redirect:cdetail.do?cid=" + cid;
+				return "redirect:cdetail.do?cid=" + review.getCid();
 			} else {
-				model.addAttribute("msg", review.getRid() + "번 후기 등록 실패..");
+				model.addAttribute("msg", review.getRid() + "번 후기 수정 실패");
 				return "common/errorPage";
 			}
 	}
@@ -152,53 +151,6 @@ public class ReviewController {
 	}
 	
 	
-	// ajax 로 원글에 대한 댓글 조회 요청 처리용
-		@RequestMapping(value = "rlist.do", method = RequestMethod.POST)
-		@ResponseBody
-		public String selectReviewList(@RequestParam("cid") int cid) throws UnsupportedEncodingException {
-			// 원글에 대한 댓글 조회 요청
-			ArrayList<Review> reviewList = rService.selectReviewList(cid);
-
-			// 전송용 json 객체 준비
-			JSONObject sendJson = new JSONObject();
-			// list 옮길 json 배열 준비
-			JSONArray jarr = new JSONArray();
-
-			// list 를 jarr 로 옮기기(복사)
-			for (Review review : reviewList) {
-				// review 의 필드값 저장할 json 객체 생성
-				JSONObject job = new JSONObject();
-
-				job.put("rid", review.getRid());
-				job.put("cid", review.getCid());
-				job.put("rwriter", URLEncoder.encode(review.getRwriter(), "utf-8"));
-				job.put("rcontent", URLEncoder.encode(review.getRcontent(), "utf-8"));
-				job.put("r_create_date", review.getR_create_date().toString());
-				job.put("r_modify_date", review.getR_modify_date().toString());
-				job.put("save_count", review.getSave_count());
-
-				// job 를 jarr 에 저장
-				jarr.add(job);
-			}
-
-			// 전송용 json 객체에 jarr 담음
-			sendJson.put("reviewList", jarr);
-
-			return sendJson.toJSONString(); // jsonView 가 리턴됨
-		}
-	
-		//후기글 상세보기 요청 처리용
-		@RequestMapping("rdetail.do")
-		public String selectReview(@RequestParam("rid") int rid, Model model) {
-			Review review = rService.selectReview(rid);
-			if(review !=null) {
-				model.addAttribute("review", review); 
-				return "redirect: cdetail.do?cid=" +  review.getCid();				
-			} else {
-				model.addAttribute("msg", rid + "번 후기 글 조회 실패");
-				return "common/errorPage";
-			}
-		}
 		
 		// 마이페이지에서 본인 후기 불러오기
 		@RequestMapping("myreview.do")
@@ -218,6 +170,78 @@ public class ReviewController {
 				return "common/errorPage";
 			}
 			
-		}
-	
+		}	
+
+			@RequestMapping("rlist.do")
+			public String selectReviewList(@RequestParam("cid") int cid,
+																Model model) {
+				// 원글에 대한 댓글 조회 요청
+				ArrayList<Review> reviewList = rService.selectReviewList(cid);
+				
+				System.out.println("클래스 "+ cid + "번의 REVIEW 글 갯수: " + reviewList.size());
+				if(reviewList.size() > 0) {
+					model.addAttribute("reviewList",reviewList);
+					
+					System.out.println("클래스 "+ cid + "번의 REVIEW LIST : " + reviewList);
+					
+					return "review/iframeReviewList";
+				}else {
+					model.addAttribute("msg","후기 없음");   // 후기 없을때 
+					return "common/errorPage";
+				}
+			}
+		
+			//후기글 상세보기 요청 처리용
+			@RequestMapping("rdetail.do")
+			public String selectReview(@RequestParam("rid") int rid, Model model) {
+				Review review = rService.selectReview(rid);
+				if(review !=null) {
+					model.addAttribute("review", review); 
+					return "redirect: cdetail.do?cid=" +  review.getCid();				
+				} else {
+					model.addAttribute("msg", rid + "번 후기 글 조회 실패");
+					return "common/errorPage";
+				}
+			}
+		
+
+//			// ajax 로 원글에 대한 댓글 조회 요청 처리용
+//				@RequestMapping(value = "rlistNOTBEINGUSED.do", method = RequestMethod.POST)
+//				@ResponseBody
+//				public String selectReviewListNOTBEINGUSED(@ModelAttribute ArrayList<Review> list) throws UnsupportedEncodingException {
+//					// 원글에 대한 댓글 조회 요청
+//					ArrayList<Review> reviewList = list; // rService.selectReviewList(cid);
+//					System.out.println("rlistmove.do 에서 전달 받은 REVIEW LIST : " + list);
+//					System.out.println("rlist.do 의 reviewList =  " + reviewList);
+//					
+//					// 전송용 json 객체 준비
+//					JSONObject sendJson = new JSONObject();
+//					// list 옮길 json 배열 준비
+//					JSONArray jarr = new JSONArray();
+//
+//					// list 를 jarr 로 옮기기(복사)
+//					for (Review review : reviewList) {
+//						// review 의 필드값 저장할 json 객체 생성
+//						JSONObject job = new JSONObject();
+//
+//						job.put("rid", review.getRid());
+//						job.put("cid", review.getCid());
+//						job.put("rwriter", URLEncoder.encode(review.getRwriter(), "utf-8"));
+//						job.put("rcontent", URLEncoder.encode(review.getRcontent(), "utf-8"));
+//						//job.put("r_create_date", review.getR_create_date().toString());
+//						job.put("r_modify_date", review.getR_modify_date().toString());
+//						job.put("ofile_r", review.getOfile_r());
+//						job.put("save_count", review.getSave_count());
+//
+//						// job 를 jarr 에 저장
+//						jarr.add(job);
+//					}
+//
+//					// 전송용 json 객체에 jarr 담음
+//					sendJson.put("reviewList", jarr);
+//
+//					return sendJson.toJSONString(); // jsonView 가 리턴됨
+//				}
+			
+		
 }// ReviewController

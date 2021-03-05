@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.untoon.clss.model.service.ClssService;
+import com.untoon.clss.model.vo.Clss;
 import com.untoon.save.model.service.SaveClssService;
 import com.untoon.save.model.vo.SaveClss;
 
@@ -24,6 +26,9 @@ public class SaveController {
 
 	@Autowired
 	private SaveClssService scService;
+	
+	@Autowired
+	private ClssService cService;
 
 	// ajax 로 클래스 상세보기에서 loginUser "찜하기 / 좋아요" 조회 요청 처리용
 //	@RequestMapping(value = "scCheck.do", method = RequestMethod.POST)
@@ -200,7 +205,7 @@ public class SaveController {
 	public String selectTop8(HttpServletResponse response) throws UnsupportedEncodingException {
 		// 좋아요가 가장 많은 8개 CLSS 조회해 옴
 		ArrayList<SaveClss> sclist = scService.selectTop8();
-
+		
 		// 전송용 json 객체 준비
 		JSONObject sendJson = new JSONObject();
 		// list 옮길 json 배열 준비
@@ -208,11 +213,25 @@ public class SaveController {
 
 		// list 를 jarr 로 옮기기(복사)
 		for (SaveClss sc : sclist) {
+			
+			Clss clss = cService.selectClss(sc.getCid());
+			System.out.println("클래스 # : " + clss.getCid());			
+			
 			// 필드값 저장할 json 객체 생성
 			JSONObject job = new JSONObject();
 			job.put("cid", sc.getCid());
 			job.put("id", sc.getId());
 			job.put("clss_category", sc.getClss_category());
+			
+			job.put("clss_rename_filename", clss.getClss_rename_filename());               // Clss table join
+			System.out.println("클래스 사진파일명 : " + clss.getClss_rename_filename());			
+			
+			job.put("clss_title", URLEncoder.encode(clss.getClss_title(), "utf-8"));
+			System.out.println("클래스 타이틀 : " + clss.getClss_title());			
+			
+			job.put("tchr_id", clss.getTchr_id());
+			System.out.println("클래스 강사명 : " + clss.getTchr_id());	
+			
 
 			// job 를 jarr 에 저장
 			jarr.add(job);

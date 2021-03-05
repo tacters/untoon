@@ -4,7 +4,7 @@
 
 	<resultMap type="Review" id="resultReview">
 		<id column="rid" property="rid" />
-		<id column="cid" property="cid" />
+		<result column="cid" property="cid" />
 		<result column="rwriter" property="rwriter" />
 		<result column="rcontent" property="rcontent" />
 		<result column="r_create_date" property="r_create_date" />
@@ -17,7 +17,7 @@
 	
 	<resultMap type="ReviewClss" id="resultReviewClss">
 		<id column="rid" property="rid" />
-		<id column="cid" property="cid" />
+		<result column="cid" property="cid" />
 		<result column="rwriter" property="rwriter" />
 		<result column="rcontent" property="rcontent" />
 		<result column="r_create_date" property="r_create_date" />

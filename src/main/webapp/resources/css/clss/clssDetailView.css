@@ -2,156 +2,228 @@
 
 .body {
 	display: grid;
-	grid-template-columns: 2fr 1fr 1fr;
+	grid-template-columns:  100fr 3fr 20fr;  /* 3fr 1fr 1fr;  */
 	grid-template-rows: auto 1fr 3fr;
 	grid-template-areas:
 		"title title title"
 		"main header header"
 		"main sidebar footer";
-	
-	
-}
-.masthead {
-	grid-area: header;
-	background: #2392bd;
 }
 .page-title {
 	grid-area: title;
-	background: #c6d8d3;
+	/* background: #c6d8d3; */
+	/* margin: auto; */
+	display: block;
+	align:center; text-align:center;
+	height:100%;
+	max-height: 500px;
+	/* background-color: #2392bd; */
+/* 	background-image: radial-gradient(#2392bd, #fff, #fff); */
+	background-image: radial-gradient(farthest-corner at 50% 50%, #2392bd, #2392bd, #fff, #fff);
+}
+
+ .iframe-youtube{
+	display:block; margin: auto; align: center; float:relative;
+	/* padding: 40px; */
+ }
+ #embed{
+ 	display:block; margin: auto; align: center; margin-left: 190px; margin-top: 20px;
+ 	width:100%;
+ 	max-width: 1000px;
+	max-height: 400px;
+/* 	position: absolute;
+	top:2%;
+	left: 25%; */
+ }
+.masthead {
+	grid-area: header;
+	/* background: #2392bd; */
+	display:block; align:center; text-align:center;
+	margin-left:auto;
+	margin-right:auto; 
+	margin-top:40;
+	margin-bottom:40;
+	border-radius: 20px;
+	padding: 15px 15px 15px 15px;
+	color: #fff;
+	width:100%;
+	/* #c6d8d3*/
+
+	background-color: #2392bd;
+	padding: 200;
+	margin-bottom: 40px; /* matchced */
+	/* #c6d8d3*/
+	
+	 word-wrap: break-word;
+}
+.sidebar {
+	grid-area: sidebar;
+	 word-wrap: break-word;
+}
+.footer {
+	grid-area: footer;
+	width: 100%;
+	 word-wrap: break-word;
 }
 .main-content {
 	grid-area: main;
 	background: #black;
+	z-index:2;
 }
 
 
-
-
-/* TO STYLE USE ELEMENT, DO NOT STYLE IT IN HTML */
-HTML SCSS JSResult Skip Results Iframe
-EDIT ON
-:root {
-  --theme: #8dcfff;
-  --col : #FFFFFF
-}
-body {
-  font-family: 'Nunito', sans-serif;
-  background-color: #F5F5F5;
+#bodyDiv{
+margin: 40px;
+/* border: 1px solid #2392BD; */
+padding: 30px;
 }
 
-a {
-  color: #222222;
-  text-decoration: none;
-  display: inline-block;
+#tabArea{
+/* 	 left-margin: 10%;
+	 width: 100%;
+	 margin: 40px;
+	border: 1px solid #2392BD;
+	padding: 30px; */
+  }
+  
+  
+  .tbl{
+  background-color:#E0F5FF;border-color:#E0F5FF;color:#656565;text-align:center;vertical-align:center;
+  }
+ .tbl_reply{
+ background-color:#fff;border-color:#fff;color:#656565;text-align:center;vertical-align:center;
+ }
+  
+  .btn {
+  background-color: #000;
+  color: white;
+  border: 2px solid #000;
+  transition-duration: 0.3s;
+  padding: 15px  30px 15px 30px;
+  margin: 10px 10px;
+  cursor: pointer #2392bd;
+  font-size: 16px;
+  
 }
-.container {
-  text-align: center;
-  width: 430px;
-  margin: 0 auto;
+.btn:hover {
+  background-color: white; 
+  color: #008CBA; 
+  border: 2px solid #008CBA;
+  padding: 20px  35px 20px 35px;
+  margin: 10px 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+ 
+
+.container-avatar {
   position: relative;
+  width: 20%;
+  max-width: 200px;
+  margin-left:10px;
+  margin-right:10px;
 }
 
-.btn__wrapper, .calendar {
-  display: inline-block;
+.image-avatar {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.btn__wrapper {
+.middle-avatar {
+  transition: .5s ease;
+  opacity: 0;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  &.next {
-    right: 0;
-  }
-  &.prev {
-    left:0;
-  }
-  &.next, &.prev {
-    cursor: pointer;
-    
-    path {
-      stroke: var(--theme);
-    }
-  }
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
 }
 
-.calendar {
-  //size of day * number of days in row + margin * 2 (left and right)
-  width: (50px * 7) + 0;
-  background-color: #FFFFFF;
-  position: relative;
-  margin: 3rem auto;
-  
-  &__header {
-    background-color: var(--theme);
-    color: var(--col);
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-  &__month__year {
-    display: inline-block;
-    background-color: var(--theme);
-    position: relative;
-    padding: 5px;
-    z-index: 9999;
-  }
-  &__body {
-    position: relative;
-  }
-  &__days {
-    text-align: left;
-  }
-  &__day {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    position: relative;
-    
-    &__number {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
+.container-avatar:hover .image-avatar {
+  opacity: 0.3;
 }
 
-.draw-circle, .header__season {
-  position: absolute;
-  
-  svg {
-    position: relative;
-  }
-}
-.draw-circle {
-  svg {
-    left: 5px;
-    top: 5px;
-  }
+.container-avatar:hover .middle-avatar {
+  opacity: 1;
 }
 
-//to style use element, do not style it in html!
-svg use {
-  stroke: #222;
-  stroke-width: 1;
+.text-avatar {
+  background-color: #fff;
+  /* border-radius: 50%; */
+  opacity: 0.8;
+  color: black;
+  font-size: 12px;
+  padding: 16px 32px;
+  word-wrap: break-word;
+  width: 11em;
+}
+</style>
+
+/* div id= tabArea */
+/* * {box-sizing: border-box} */
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Montserrat,sans-serif;
 }
 
-.today-svg {
-  stroke: var(--theme);
-  stroke-width: 2;
+
+/* Style tab links */
+#tab{
+	 margin-left:15px;
+	  margin-right:15px;
+}
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 20%;
+  z-index:5;
+  /* min-width: 150px; */
+  /* border-radius: 5px; */
 }
 
-#winter, #spring, #summer, #fall {
-  visibility: hidden;
+.tablink:hover {
+  background-color: #c6d8d3;
 }
 
-#winter.winter, #spring.spring, #summer.summer, #fall.fall {
-  visibility: visible;
-}
-
-.today-svg.hidden, .selected-days.hidden {
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: white;
   display: none;
+  position: absolute;
+  height: 100%;
+  background-color: #2392bd;
+  margin:auto;
+   margin-left:15px;
+  margin-right:15px;
+  padding-top: 50px;
+  align:center;
+   padding: 20px 20px 10px 10px;
+    word-wrap: break-word;
+   min-height: 400px;
+   border-radius: 0 0 20px 20px;
 }
-View Compiled
 
-Resources1× 0.5× 0.25×Rerun
+#tab1{ border-radius: 20px 0 0 0 ;}
+#tab5{ border-radius: 0 20px 0 0 ;}
+
+.iframe-reply{
+	/*display:block; margin: auto; align: center;  position:relative; */
+}
+
+</style>
