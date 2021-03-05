@@ -12,8 +12,80 @@
 	border-width: 0px;
 }
 </style>
+
+<script>
+    //쿠키설정    
+    function setCookie( name, value, expiredays ) {
+    var todayDate = new Date();
+    todayDate.setDate( todayDate.getDate() + expiredays );
+    document.cookie = name + '=' + escape( value ) + '; path=/; expires=' + todayDate.toGMTString() + ';'
+    }
+
+    //쿠키 불러오기
+    function getCookie(name) 
+    { 
+        var obj = name + "="; 
+        var x = 0; 
+        while ( x <= document.cookie.length ) 
+        { 
+            var y = (x+obj.length); 
+            if ( document.cookie.substring( x, y ) == obj ) 
+            { 
+                if ((endOfCookie=document.cookie.indexOf( ";", y )) == -1 ) 
+                    endOfCookie = document.cookie.length;
+                return unescape( document.cookie.substring( y, endOfCookie ) ); 
+            } 
+            x = document.cookie.indexOf( " ", x ) + 1; 
+            
+            if ( x == 0 ) break; 
+        } 
+        return ""; 
+    }
+
+    //닫기 버튼 클릭시
+    function closeWin(key)
+    {
+        if($("#todaycloseyn").prop("checked"))
+        {
+            setCookie('divpop'+key, 'Y' , 1 );
+        }
+        $("#divpop"+key+"").hide();
+    }
+  
+    $(function(){    
+        if(getCookie("divpop1") !="Y"){
+            $("#divpop1").show();
+        }
+    });
+</script>
+
+<style>
+  .divpop {
+      position: absolute; z-index:999; top:50px; left:50px;
+      width:350px; height:500px; border:1px solid black;background-color:yellow;display:none;
+  }
+  .title_area {font-weight:bold;text-align:center;width:100%}
+  .button_area {position:absolute;bottom:0;left:10px;} 
+</style>
+
 </head>
 <body>
+
+
+<form name="adPopup">
+		      <div id="divpop1" class="divpop" > 
+		          <div class="title_area" >
+		          		<img src="${pageContext.request.contextPath }/resources/home/ad/20210303160636.png" alt="" 
+						style=" width: 1600; height:1600; border-radius: 5px;">
+		          </div>
+		           <div class="button_area" style="position:absolute;bottom:0;left:10px;">
+							<input type='checkbox' name='chkbox' id='todaycloseyn' value='Y'>오늘 하루 이 창을 열지 않음
+		           		
+		               <a href='#' onclick="javascript:closeWin(1);"><B>[닫기]</B></a>
+		           </div>
+		      </div>		      
+  </form>
+
  			<footer class="edgtf-page-footer ">
 				<div class="edgtf-footer-top-holder">
 					<div class="edgtf-footer-top-inner edgtf-grid">
@@ -50,7 +122,7 @@
 													<div class="edgtf-cl-content">
 														<p itemprop="name" class="edgtf-cl-title entry-title">
 															<a itemprop="url"
-																href="https://urbango.qodeinteractive.com/listing-category/wellness/">Wellness</a>
+																href="https://urbango.qodeinteractive.com/listing-category/wellness/">데이터 · 계발</a>
 														</p>
 													</div>
 													<a itemprop="url" class="edgtf-cl-link"
@@ -67,8 +139,7 @@
 													<div class="edgtf-cl-content">
 														<p itemprop="name" class="edgtf-cl-title entry-title">
 															<a itemprop="url"
-																href="https://urbango.qodeinteractive.com/listing-category/vintage-stores/">Vintage
-																Stores</a>
+																href="https://urbango.qodeinteractive.com/listing-category/vintage-stores/">뷰티 · 헬스</a>
 														</p>
 													</div>
 													<a itemprop="url" class="edgtf-cl-link"
@@ -85,7 +156,7 @@
 													<div class="edgtf-cl-content">
 														<p itemprop="name" class="edgtf-cl-title entry-title">
 															<a itemprop="url"
-																href="https://urbango.qodeinteractive.com/listing-category/trekking/">Trekking</a>
+																href="https://urbango.qodeinteractive.com/listing-category/trekking/">미술 · 공예</a>
 														</p>
 													</div>
 													<a itemprop="url" class="edgtf-cl-link"
@@ -102,7 +173,7 @@
 													<div class="edgtf-cl-content">
 														<p itemprop="name" class="edgtf-cl-title entry-title">
 															<a itemprop="url"
-																href="https://urbango.qodeinteractive.com/listing-category/tours/">Tours</a>
+																href="https://urbango.qodeinteractive.com/listing-category/tours/">머니</a>
 														</p>
 													</div>
 													<a itemprop="url" class="edgtf-cl-link"
